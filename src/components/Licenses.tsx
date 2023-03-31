@@ -5,21 +5,22 @@ import getLicenses from '../api/licenses/getLicenses';
 import { AnimatePresence, motion, Reorder } from "framer-motion";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Cookies from 'js-cookie';
 
 const form = object({
-  email: string().email('Please enter a valid email').required('This field is required')
+  userid: string().required('This field is required')
 });
 export default function Licenses() {
   const [boughtlocation, setBoughtlocation] = useState<string>('bgshop');
 
   const formik = useFormik({
-    initialValues: { email: '' },
+    initialValues: { userid: '' },
     validationSchema: form,
     onSubmit: (values) => {
       setLicense(true)
 
-      getLicenses(values.email, boughtlocation).then(() => {
-        toast.success('Your license has been sent to your email (check your spam)!', {
+      getLicenses(values.userid, boughtlocation).then(() => {
+        toast.success(boughtlocation === 'bbb' ? 'Your license has been set trough BuiltByBit conversation. Please check your BuiltByBit message center.' : 'Your license has been sent to your email (check your spam)!', {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -62,7 +63,10 @@ export default function Licenses() {
   
   
   //getAddonsList().then(result => setAddonsList(result.data))
-
+  let theme = Cookies.get('theme');
+  if(!theme) {
+    theme = 'night'
+  }
   return (
     <>
     <div className='text-center my-4'>
@@ -174,9 +178,9 @@ export default function Licenses() {
 
   <p className='mb-2 mt-2 text-white text-2xl'>Enter your email:</p><div className="mt-4 justify-center">
                <form onSubmit={formik.handleSubmit}>
-               <input id="email"
-                    name="email"
-                    type="email"
+               <input id="userid"
+                    name="userid"
+                    type="userid"
                     placeholder="email@exemple.com"
                     onChange={formik.handleChange}
                     required
@@ -199,9 +203,9 @@ export default function Licenses() {
   <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
    <p className='mb-2 mt-2 text-white text-2xl'>Enter your User id:</p><div className="mt-4 justify-center">
                <form onSubmit={formik.handleSubmit}>
-               <input id="email"
-                    name="email"
-                    type="email"
+               <input id="userid"
+                    name="userid"
+                    type="userid"
                     placeholder="187451"
                     onChange={formik.handleChange}
                     required
@@ -233,7 +237,7 @@ export default function Licenses() {
 </div>
 </div>
         </div>
-        <div className='mx-auto text-center bg-base-200'  data-theme="night">
+        <div className='mx-auto text-center bg-base-200'  data-theme={theme}>
           <h2 className="text-white text-2xl">Some stats</h2>
           <div className="stats shadow my-4">
   
