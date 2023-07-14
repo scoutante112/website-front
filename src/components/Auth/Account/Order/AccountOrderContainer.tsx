@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -7,10 +7,15 @@ import getDownloadLink from '../../../../api/shop/getDownloadLink';
 import { toast } from 'react-toastify';
 import { config } from '../../../../config/config';
 import Cookies from 'js-cookie';
+import getInvoiceDownloadLink from '../../../../api/shop/getInvoiceDownloadLink';
+import NavBarAccount from '../NavBarAccount';
+import { Account } from '../Manager/AccountContainer';
+import Loading from "../../../Elements/Loading";
+import deleteLicense from "../../../../api/licenses/deleteLicense";
 
 
 
-export default function AccountOrderContainer() {
+export default function AccountOrderContainer(account: Account) {
   const [loading, setLoading] = useState(false);
   const { data, mutate, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/orders`,
@@ -18,7 +23,7 @@ export default function AccountOrderContainer() {
   );
   const navigation = useNavigate();
   if (!data || (error || isLoading)) {
-    return <></>;
+    return <Loading/>;
   }
   if (!data['status']) {
     if(data['message'] === 'Unauthenticated.') {
@@ -26,9 +31,9 @@ export default function AccountOrderContainer() {
       window.location.reload()
     }
     mutate();
-    return <><p>Loading...</p></>;
+    return <Loading/>;
   }
-  const downloadProduct = (order: string, name: string) => {
+  const downloadProduct = (order: string) => {
     setLoading(true);
     toast.info('Please wait during the generation of the file...', {
       position: "bottom-right",
@@ -47,13 +52,16 @@ export default function AccountOrderContainer() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${Cookies.get('access_token')}`
       }}).then(response => response.blob()).then(blob => {
-          // Téléchargement du fichier blob
-          
+
           const url = window.URL.createObjectURL(new Blob([blob]));
           const link = document.createElement('a');
           link.href = url;
-          link.setAttribute('download', `${name}.zip`);
+          console.log(`Bagou450-${order}.zip`);
+          link.setAttribute('download', `Bagou450-${order}.zip`);
           document.body.appendChild(link);
+          link.addEventListener('load', () => {
+              URL.revokeObjectURL(url);
+          });
           link.click();
           if (link.parentNode) {
             link.parentNode.removeChild(link);
@@ -84,50 +92,74 @@ export default function AccountOrderContainer() {
 
     })
     setLoading(false);
+  
+  }
+  const downloadInvoice = (orderid: string) => {
+    setLoading(true);
 
-  }
-  let theme = Cookies.get('theme');
-  if(!theme) {
-    theme = 'night'
-  }
+    getInvoiceDownloadLink(orderid).then((data) => {
+      fetch(`${config.privateapilink}${data.data.data}`, {headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('access_token')}`
+      }}).then(response => response.blob()).then(blob => {
+        // Téléchargement du fichier blob
+        
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${orderid} - Bagou450.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
+        }
+        toast.success('Your invoice is now downloaded!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+    }).catch(() => {
+        toast.error('An unexcepted error happend. Please contact one of our support team.', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+  
+      })
+      setLoading(false);
+  });
+}
+  document.title = 'Bagou450 - My orders'
+
   return (
     <>
       <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data['user'][0].toUpperCase() + data.data['user'].slice(1, data.data['user'].length)}</h1>
-      <section className='mx-auto text-center'>
-        <ul className="menu menu-horizontal bg-base-100 rounded-box" data-theme={theme}>
-          <li>
-            <Link to={'/account/manage'}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-              Manage Account
-            </Link>
-          </li>
-          <li>
-            <Link to={'/account/licenses'} >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              Licenses
-            </Link>
-          </li>
-          <li>
-            <p className='bg-base-300 disabled' data-theme={theme} >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-              Orders
-            </p>
-          </li>
-        </ul>
-      </section>
+      <NavBarAccount tab={'orders'}/>
       <section className='mx-8 my-4'>
 
         <div >
           <p className='text-center text-xl my-6'>Please notice that these licenses are linked to your account. To transfer a license to another account, please <Link to={'/contact'} className='text-blue-500'>contact us</Link>.</p>
 
-          <table className="table w-full max-w-7xl mx-auto" data-theme={theme}>
+          <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
             {/* head */}
             <thead>
               <tr className='w-full'>
-                <th>Order_id</th>
+                <th className={'hidden xl:block'}>Order_id</th>
                 <th>Product</th>
                 <th>Price</th>
-                <th>Version</th>
+                <th className={'hidden xl:block'}>Stripe Id</th>
                 <th>Status</th>
                 <th></th>
               </tr>
@@ -135,13 +167,35 @@ export default function AccountOrderContainer() {
             <tbody>
               {data.data.orders.map((order: any, key: React.Key | null | undefined) => {
                 return (
-                  <tr className="hover w-full" key={key}>
-                    <th>{order['order_id']}</th>
-                    <th>{order['product']}</th>
+                  <tr className="w-full" key={key}>
+                    <th className={'hidden xl:table-cell'}>{order['order_id']}</th>
+                    <th>
+                      {order['products'].map((item: any, key: number) => (
+                        <React.Fragment key={key}>
+                          {key < 3 && <p>{item['name']}</p>}
+                          {key === 3 &&
+                            <div className="dropdown dropdown-hover">
+                            <label tabIndex={0} className={'text-neutral-content '} style={{ color: "hsl(var(--bc) / 0.6)" }}>More</label>
+                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            {order['products'].map((item: any, key: number) => (
+                              <li key={key}>{item['name']}</li>
+                              ))}
+                          </ul>
+
+                            </div>
+                          }
+                        </React.Fragment>
+                      ))}
+                    </th>
+
                     <th>{order['price']}€</th>
-                    <td>{order['version']}</td>
+                    <td className={'hidden xl:table-cell'}>{order['stripe_id']}</td>
+
                     <td className={order['status'] === 'incomplete' ? 'text-red-500' : order['status'] === 'expired' ? 'text-white' : order['status'] === 'complete' ? 'text-green-500' : ''}>{order['status'][0].toUpperCase() + order['status'].slice(1, order['status'].length)}</td>
-                    <td><button className='btn btn-primary btn-outline' data-theme={theme} disabled={loading}>More informations</button> {order['status'] === 'complete' && <button disabled={loading} className='btn mx-4' data-theme={theme} onClick={() => downloadProduct(order['order_id'], order['product'])}>Download</button>}</td>
+                    <td>
+                      <button className='btn btn-primary btn-outline border-0' disabled={loading} onClick={() => downloadInvoice(order['order_id'])}>Download invoice</button>
+                      {order['status'] === 'complete' && <button disabled={loading} className='btn btn-secondary btn-outline border-0 mx-4' onClick={() => downloadProduct(order['order_id'])}>Download product{order['products'].length > 1 && 's'}</button>}
+                    </td>
 
 
                   </tr>

@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useSWR from "swr";
 import { Link, useParams } from 'react-router-dom';
 import { RiInstallLine } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-import BBCode from '@bbob/react';
-import presetReact from '@bbob/preset-react';
-import Cookies from 'js-cookie';
+// @ts-ignore
+import BBCode from "@bbob/react";
+// @ts-ignore
+import presetReact from "@bbob/preset-react";
+import Spinner from "../Elements/Spinner";
+import Loading from "../Elements/Loading";
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
   
 export default function Product() {
 
   let { id } = useParams(); 
+
   document.title = "Bagou450 - Product";
   const { data, error, isLoading } = useSWR(`https://api.bagou450.com/api/client/web/addons/getone?id=${id}`, fetcher)
   if(!data || (error || isLoading)) {
-    return ( 
-      <p>Loading...</p>)
+    return (<Loading/>)
   }
   const addon = data.data;
   console.log(addon)
   document.title = "Bagou450 - " + addon.name;
   const plugins = [presetReact()];
-  let theme = Cookies.get('theme');
-  if(!theme) {
-    theme = 'night'
-  }
   return (
     <>
 
@@ -80,7 +79,7 @@ export default function Product() {
 </div></>
             ) : (
                 <div  className='mt-4'>
-                <Link to={`/product/purchase/${id}`}><button className="btn btn-outline btn-primary"  data-theme={theme}>Buy Now</button></Link>
+                <Link to={`/product/purchase/${id}`}><button className="btn btn-outline btn-primary"  >Buy Now</button></Link>
                 </div>
             )}
             

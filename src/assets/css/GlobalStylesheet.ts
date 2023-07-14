@@ -4,7 +4,6 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
     html {
         ${tw`font-sans`};
-        background-color: #0e1526!important;
         color: rgb(203 213 225);
         letter-spacing: 0.015em;
     }

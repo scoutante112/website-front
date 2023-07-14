@@ -1,9 +1,19 @@
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
-const ESLintPlugin = require('eslint-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const glob = require('glob');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = (process.env.environement === 'production')
+const isProduction = true
+
 module.exports = {
   mode: process.env.environement,
   watchOptions: {
@@ -14,15 +24,36 @@ module.exports = {
   },
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: isProduction ? 'bundle.js' : 'bundle.js'
+    path: path.resolve(__dirname, './public/assets'),
+    filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js'
   },
   plugins: [
+    new WebpackManifestPlugin(),
+    new ImageminWebpWebpackPlugin(),
     new Dotenv(),
-    new ESLintPlugin({
-      files: 'src/**/*.tsx',
+    isProduction && new CompressionPlugin(),
+    new LodashModuleReplacementPlugin(),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
+    }),
+    new LoadablePlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'json',
+      generateStatsFile: true,
+      statsOptions: {
+        source: false,
+        chunks: false,
+        modules: false,
+        chunksSort: 'size',
+        assetsSort: 'size',
+        excludeAssets: [/hot-update/, /runtime~.+[.]js/],
+      },
+      statsFilename: 'stats.json',
+    }),
+    new HtmlWebpackPlugin({
+      template: 'public/index.html'
     })
-  ],
+  ].filter(Boolean),
   devServer: {
     static: {
       directory: path.resolve(__dirname, './dist')
@@ -53,11 +84,40 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       }
     ]
   },
   resolve: {
     extensions: ['.jsx', '.js', '.tsx', '.ts']
+  },
+  optimization: {
+    usedExports: true,
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 10000,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+    minimizer: [
+      /*new TerserPlugin({
+        extractComments: true
+      })*/
+    ]
   }
 }

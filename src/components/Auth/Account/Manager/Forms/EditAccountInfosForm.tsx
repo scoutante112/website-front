@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useSWR from "swr";
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
@@ -9,15 +9,16 @@ import editAccountInformations from '../../../../../api/auth/editAccountInformat
 import debounce from 'lodash.debounce';
 import { fetcher } from '../../../../../api/http';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import Spinner from "../../../../Elements/Spinner";
+import Loading from "../../../../Elements/Loading";
 
 const form = object({
   society: string().nullable(),
-  address: string().required('This field is required'),
-  city: string().required('This field is required'),
-  firstname: string().required('This field is required'),
-  lastname: string().required('This field is required'),
-  postalcode: string().required('This field is required').matches(/^\d{5}(?:[-\s]\d{4})?$/, 'The postal code is not correct.'),
+  address: string().required(''),
+  city: string().required(''),
+  firstname: string().required(''),
+  lastname: string().required(''),
+  postalcode: string().required('').matches(/^\d{5}(?:[-\s]\d{4})?$/, 'The postal code is not correct.'),
 });
 export default function EditAccountInfosForm() {
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,12 @@ export default function EditAccountInfosForm() {
       setRegion(responseData.region && data.data.region === '' ? responseData.region : data.data.region !== '' ? data.data.region : '');
     }
     if (data && !erros && !isLoading) {
-      formik.setValues({ society: data.data.society, address: data.data.address, city: data.data.city, postalcode: data.data.postal_code, lastname: data.data.lastname, firstname: data.data.firstname })
+      formik.setValues({ society: data.data.society, 
+        address: data.data.address ? data.data.address : '',
+         city: data.data.city ? data.data.city : '', 
+         postalcode: data.data.postal_code ? data.data.postal_code : '',
+          lastname: data.data.lastname ? data.data.lastname : '', 
+          firstname: data.data.firstname ? data.data.firstname : '' })
       setCountry(data.data.country);
       setRegion(data.data.region);
       fetchRegion(data);
@@ -59,9 +65,7 @@ export default function EditAccountInfosForm() {
   const formik = useFormik({
     initialValues: { society: '', address: '', city: '', postalcode: '', firstname: '', lastname: '' },
     validationSchema: form,
-    onSubmit: debounce((values) => {
-
-      console.log(region);
+    onSubmit: (values) => {
       setLoading(true)
       if (region === '' || !region) {
         setError('You need to select a State/Region');
@@ -118,14 +122,11 @@ export default function EditAccountInfosForm() {
         });
         setLoading(false)
       })
-    }, 1000)
-
-
-
+    }
   });
   const navigation = useNavigate();
   if (!data || (error || isLoading)) {
-    return <></>;
+    return <Loading/>;
   }
   if (!data['status']) {
     if(data['message'] === 'Unauthenticated.') {
@@ -133,24 +134,21 @@ export default function EditAccountInfosForm() {
       window.location.reload()
     }
     mutate();
-    return <><p>Loading...</p></>;
+    return <Loading/>;
   }
-  let theme = Cookies.get('theme');
-  if(!theme) {
-    theme = 'night'
-  }
+
   return (
-    <section className={'my-4 rounded-lg '} data-theme={theme}>
+    <section className={'my-4 rounded-lg'}>
       <h2 className='text-2xl my-4 text-center' >Edit your account informations</h2>
-      <div data-theme={theme} className={error === '' ? 'hidden alert alert-warning shadow-lg' : 'flex my-4 alert alert-warning shadow-lg'}>
+      <div className={error === '' ? 'hidden alert alert-warning shadow-lg' : 'flex my-4 alert alert-warning shadow-lg'}>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           <span>{error}</span>
         </div>
       </div>
-      <form onSubmit={formik.handleSubmit} className='grid grid-cols-2 gap-x-4'>
+      <form onSubmit={formik.handleSubmit} className='grid md:grid-cols-2 gap-x-4'>
         <div className='mx-auto w-full max-w-sm'>
-        <div><label className="label mx-auto">
+        <div className={'grid grid-cols-1'}><label className="label">
               <span className="label-text">Society <span className="badge badge-outline">optional</span><br /><span className='text-red-500'>{formik.errors.society}</span></span>
 
             </label>
@@ -170,7 +168,7 @@ export default function EditAccountInfosForm() {
               <span className="label-text">City</span>
             </label>
               <input id="city"
-                defaultValue={data.data.city}
+                defaultValue={data.data.city ? data.data.city : ''}
                 name="city"
                 type="city"
                 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -192,7 +190,7 @@ export default function EditAccountInfosForm() {
               onChange={formik.handleChange}
               disabled={loading}
               required
-              defaultValue={data.data.address}
+              defaultValue={data.data.address ? data.data.address : ''}
               className="input input-bordered w-full max-w-sm" />
             <label className="label">
               <span className='text-red-500'>{formik.errors.address}</span>
@@ -207,7 +205,7 @@ export default function EditAccountInfosForm() {
             <input id="postalcode"
               name="postalcode"
               type="postalcode"
-              defaultValue={data.data.postal_code}
+              defaultValue={data.data.postal_code ? data.data.postal_code : ''}
               // eslint-disable-next-line @typescript-eslint/no-unused-expressions
               onChange={formik.handleChange}
               disabled={loading}
@@ -262,7 +260,7 @@ export default function EditAccountInfosForm() {
               onChange={formik.handleChange}
               disabled={loading}
               required
-              defaultValue={data.data.firstname}
+              defaultValue={data.data.firstname ? data.data.firstname : ''}
               className="input input-bordered w-full max-w-sm" />
             <label className="label">
               <span className='text-red-500'>{formik.errors.address}</span>
@@ -278,7 +276,7 @@ export default function EditAccountInfosForm() {
               onChange={formik.handleChange}
               disabled={loading}
               required
-              defaultValue={data.data.lastname}
+              defaultValue={data.data.lastname ? data.data.lastname : ''}
               className="input input-bordered w-full max-w-sm" />
             <label className="label">
               <span className='text-red-500'>{formik.errors.address}</span>
@@ -287,7 +285,7 @@ export default function EditAccountInfosForm() {
         </div>
 
         <div className='flex justify-end col-span-2 mx-4'>
-        <button type='submit' disabled={loading || formik.errors.postalcode ? true : false || formik.errors.address ? true : false || formik.errors.city ? true : false || formik.errors.firstname ? true : false || formik.errors.lastname ? true : false} className='btn btn-primary btn-outline w-full max-w-sm my-4 self-end '>Submit</button>
+        <button type='submit' disabled={loading || formik.errors.postalcode ? true : formik.errors.address ? true : formik.errors.city ? true : formik.errors.firstname ? true : !!formik.errors.lastname} className='btn btn-primary btn-outline border-0 w-full max-w-sm my-4 self-end '>Submit</button>
                     </div>
       </form>
 

@@ -1,212 +1,173 @@
-import './assets/App.css';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import GlobalStylesheet from './assets/css/GlobalStylesheet';
-import Products from './components/Products';
-import Licenses from './components/Licenses';
-import Login from './components/Auth/Login';
-import Product from './components/Products/Product';
-import Register from './components/Auth/Register';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-import AccountContainer from './components/Auth/Account//Manager/AccountContainer';
-import NavBar from './components/NavBar';
-import AccountLicenseContainer from './components/Auth/Account/License/AccountLicenseContainer';
-import AccountOrderContainer from './components/Auth/Account/Order/AccountOrderContainer';
-import Purchase from './components/Products/Purchase';
-import Cookies from 'js-cookie';
+import "./assets/App.css";
+import React, { Component, useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import GlobalStylesheet from "./assets/css/GlobalStylesheet";
+import Products from "./components/Products";
+import Licenses from "./components/Licenses";
+import Login from "./components/Auth/Login";
+import Product from "./components/Products/Product";
+import Register from "./components/Auth/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import AccountContainer from "./components/Auth/Account//Manager/AccountContainer";
+import NavBar from "./components/NavBar";
+import AccountLicenseContainer from "./components/Auth/Account/License/AccountLicenseContainer";
+import AccountOrderContainer from "./components/Auth/Account/Order/AccountOrderContainer";
+import Purchase from "./components/Products/Purchase";
+import Cookies from "js-cookie";
+import TokenLogin from "./components/Auth/TokenLogin";
+import NotFoundPage from "./components/NotFoundPage";
+import Contact from "./components/Contact";
+import { Crisp } from "crisp-sdk-web";
+import OauthCallback from "./components/Auth/OauthCallback";
+import { AccountLinkOauthCallback } from "./components/Auth/Account/Manager/Forms/EditAccountForm";
 
+export const MainNavRoutes = [
 
-
-
-const MainNavRoutes = [
- /* {
-    name: 'home',
-    link: '/home',
-    component: <Home />
-  },
   {
-    name: 'projects',
-    link: '/projects',
-    component: <Projects />
-  },*/
-  {
-    name: 'products',
-    link: '/products',
+    name: "products",
+    link: "/products",
     component: <Products />
   },
 
- /* {
-    name: 'services',
-    link: '/services',
-    component: <Services />
-  },*/
+
   {
-    name: 'licenses',
-    link: '/licenses',
+    name: "licenses",
+    link: "/licenses",
     component: <Licenses />
   },
- 
-];
-const AuthRoutes = [
   {
-    name: 'login',
-    link: '/login',
+    name: "contact",
+    link: "/contact",
+    component: <Contact />
+  }
+];
+export const AuthRoutes = [
+  {
+    name: "login",
+    link: "/login",
     component: <Login />
   },
   {
-    name: 'register',
-    link: '/register',
+    name: "register",
+    link: "/register",
     component: <Register />
   },
+
   {
-    name: 'account',
-    link: '/account/manage',
+    name: "logintoken",
+    link: "/login/token/:token",
+    component: <TokenLogin />
+  },
+  {
+    name: "oauthcallback",
+    link: "/login/callback",
+    component: <OauthCallback />
+  },
+  {
+    name: "account",
+    link: "/account/manage",
     component: <AccountContainer />
   },
   {
-    name: 'account',
-    link: '/account/licenses',
+    name: "account",
+    link: "/account/manage/OauthCallback",
+    component: <AccountLinkOauthCallback />
+  },
+  {
+    name: "account",
+    link: "/account/licenses",
     component: <AccountLicenseContainer />
   },
   {
-    name: 'account',
-    link: '/account/orders',
+    name: "account",
+    link: "/account/orders",
     component: <AccountOrderContainer />
   }
-]
+];
 
-const OthersRoutes = [
+export const OthersRoutes = [
   {
-    name: 'products',
-    link: '/product/:id',
+    name: "products",
+    link: "/product/:id",
     component: <Product />
   },
   {
-    name: 'purchase',
-    link: '/product/purchase/:id',
+    name: "purchase",
+    link: "/product/purchase/:id",
     component: <Purchase />
-  },
-]
-//const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const App = () => {
- /*  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };*/
-  let theme = Cookies.get('theme');
-  if(!theme) {
-    theme = 'night'
   }
-  return (
-    <>
-      <GlobalStylesheet />
-      <Router>
-        <ToastContainer/>
-      <div className="navbar bg-base-100" data-theme={theme}>
-          <div className="navbar-start">
-            <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-              </label>
-              <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                  {MainNavRoutes.map((routes, key) => (
-                    <li key={key}><Link to={routes.link}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link></li>
-                  ))}
-              </ul>
+];
+
+function App() {
+
+  useEffect(() => {
+    Crisp.configure("f82a715b-c38a-4a43-9559-426a2bf504d9");
+  }, []);
+
+
+    return (
+      <>
+        <GlobalStylesheet />
+        <Router>
+          <ToastContainer />
+          <div className="navbar border-b-2 border-neutral">
+
+            <NavBar/>
+
+          </div>
+          {/*<div className="alert alert-warning shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                   viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Warning: This website is still in development. Some functionality is still missing and some bugs may occur!</span>
             </div>
-            <Link to={'/'} className="btn btn-ghost normal-case text-xl transition  delay-150 text-white hover:text-blue-700 hover:bg-transparent duration-300"> 
-            <img
-                  src="https://cdn.bagou450.com/assets/img/logo_full_colored.png"
-                  className={`h-8 hidden md:block`}
-                  alt='Logo'
-                />
-            </Link>
-            <ul className="menu menu-horizontal px-1">
-                {MainNavRoutes.map((routes, key) => (
-                  <li key={key}><Link to={routes.link}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link></li>
-                ))}
-            </ul>
-          </div>
-          <div className="navbar-end hidden lg:flex">
-              <NavBar/>
-          </div>
-         {
-         // <div className="navbar-end">
-           // <div className="avatar">
-            //  <div className="w-24 rounded-full">
-                //</div><img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-              //</div>
-            //</Router></div>
-          //</></div>
-        }
-                  </div>
-
-
-          {/* A <Switch> looks through its children <Route>s and
-        renders the first one that matches the current URL. */}
+          </div>*/}
           <Routes>
             <Route path="/" element={<Products />} />
-           
+
             {MainNavRoutes.map((routes, key) => (
               <Route key={key} path={routes.link} element={routes.component} />
             ))}
-          {AuthRoutes.map((routes, key) => (
-              <Route key={key+500} path={routes.link} element={routes.component} />
+            {AuthRoutes.map((routes, key) => (
+              <Route key={key + 500} path={routes.link} element={routes.component} />
             ))}
-                {OthersRoutes.map((routes, key) => (
-              <Route key={key+1000} path={routes.link} element={routes.component} />
+            {OthersRoutes.map((routes, key) => (
+              <Route key={key + 1000} path={routes.link} element={routes.component} />
             ))}
-            
+            <Route path={"*"} element={<NotFoundPage />} />
           </Routes>
+          <footer className="footer p-10 border-t-2 border-neutral mt-4">
+            <div className="flex items-center space-x-4">
+              <img
+                src="https://cdn.bagou450.com/website/assets/logo/bagou-white-nobg.webp"
+                className="h-16 w-16 hidden md:block"
+                alt="Logo" />
+              <p className="text-lg font-semibold">
+                Bagou450.<br />Provide Sysadmin service since 2016. <br />Provide Pterodactyl addons since 2020.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <span className="footer-title font-semibold">About</span>
+              <div><Link to={"/contact"} className="link link-hover"><p>Contact</p></Link>
 
-      </Router>
-      <footer className="footer p-10 bg-base-100 text-base-content border-t-2 border-neutral mt-4" data-theme={theme}>
-    <div className='flex '>
-        <img
-            src="https://cdn.bagou450.com/website/assets/logo/bagou-white-nobg.png"
-            className={`h-16 hidden md:block`}
-            alt='Logo'
-        />
-        <p>Bagou450.<br/>Provide Sysadmin service since 2016. <br/> Provide Pterodactyl addons since 2020.</p>
-    </div> 
-    <div>
-        <span className="footer-title">Services</span> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/contact-information">Pterodactyl installation</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/contact-information">Whmcs installation + setup</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/contact-information">Virtualizor installation + setup</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/contact-information">Custom Pterodactyl addons</a>
-    </div> 
-    <div>
-        <span className="footer-title">Shop</span> 
-        <a className="link link-hover" href="https://shop.bagou450.com/collections">Pterodactyl addons</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/products/minecraft-premium-versions-changer">Minecraft versions changer</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/products/pterodactyl-addon-artifacts-changer">Artifacts changer</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/products/pterodactyl-addon-cloud-servers">Cloud servers</a>
-    </div> 
-    <div>
-        <span className="footer-title">About</span> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/contact-information">Contact</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/terms-of-service">Terms of Service</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/privacy-policy">Privacy Policy</a> 
-        <a className="link link-hover" href="https://shop.bagou450.com/policies/refund-policy">Refund Policy</a>
-    </div>
-    </footer>
-    </>
-  );
-};
+              <Link to={"/tos"} className="link link-hover"> <p>Terms of Service</p></Link>
+                <Link to={"/ppo"} className="link link-hover"> <p>  Privacy Policy</p></Link>
+              <Link to={"/rp"} className=" link link-hover">  <p>  Refund Policy</p></Link>
+            <Link to={"/lm"} className="link link-hover">   <p>   Legal Mention</p></Link>
+              </div>
+            </div>
+
+          </footer>
+        </Router>
+
+
+
+      </>
+    );
+}
 
 export default App;

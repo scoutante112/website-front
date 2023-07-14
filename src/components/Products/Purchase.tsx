@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 import { useFormik } from "formik";
 import { object, string } from "yup";
@@ -14,6 +14,7 @@ import createOrder from "../../api/shop/createOrder";
 import Cookies from "js-cookie";
 import getDownloadLink from "../../api/shop/getDownloadLink";
 import { config } from "../../config/config";
+import Spinner from "../Elements/Spinner";
 
 const form = object({
   society: string().nullable(),
@@ -26,8 +27,10 @@ const form = object({
   lastname: string().required(),
 });
 export default function Purchase() {
+
   const [loading, setLoading] = useState(false);
   const [country, setCountry] = useState("");
+  
   const [region, setRegion] = useState("");
   const [error, setError] = useState("");
   const [accountinfo, setAccinfo] = useState(false);
@@ -192,10 +195,11 @@ export default function Purchase() {
     mutate();
     return (
       <>
-        <p>Loading...</p>
+        <Spinner/>
       </>
     );
   }
+  
   const makePurchase = (price: number) => {
         createOrder(data2.data.id).then((data) => {
             if(data.status === 'error') {
@@ -293,17 +297,14 @@ export default function Purchase() {
   if ((!data2 || error2 || isLoading2) || (!data3 || error3 || isLoading3)) {
     return <p>Loading...</p>;
   }
-  let theme = Cookies.get('theme');
-  if(!theme) {
-    theme = 'night'
-  }
+  document.title = "Bagou450 - " + data3.data.exist ? "Order completed" : "Purchase " + data2.data.name;
+
   return (
     <>
       <section
         className="text-center justify-center mx-auto"
-        data-theme={theme}
       >
-        <h2 className="text-white text-4xl">{data3.data.exist ? data3.data.order.status === 'incomplete' ? `Purchase ${data2.data.name}` : 'Thanks for your order!' : 'Thanks for your order!'}</h2>
+        <h2 className="text-white text-4xl">{data3.data.exist ? 'Thanks for your order!' : `Purchase ${data2.data.name}`}</h2>
         <ul className="steps mx-auto text-center my-4">
           <li className="step step-primary">Enter your informations</li>
           <li className={accountinfo || data3.data.exist ? "step step-primary" : "step"}>
@@ -322,10 +323,8 @@ export default function Purchase() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           className={"my-4 rounded-lg "}
-                          data-theme={theme}
                       >
                           <div
-                              data-theme={theme}
                               className={error === ""
                                   ? "hidden alert alert-warning shadow-lg"
                                   : "flex my-4 alert alert-warning shadow-lg"}
@@ -549,7 +548,6 @@ export default function Purchase() {
                               transition={{ duration: 0.5, delay: 0.5 }}
                               animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}
-                              data-theme={theme}
                           >
                               <div className="overflow-x-auto mx-24">
                                   <table className="table w-full">
@@ -578,7 +576,7 @@ export default function Purchase() {
                                       </tbody>
                                   </table>
                               </div>
-                              <div className="flex">
+                              <div className="grid md:grid:cols-2">
                                   <div className="ml-24">
                                       <h2 className="text-white text-2xl">Your informations:</h2>
                                       <p>
@@ -628,7 +626,7 @@ export default function Purchase() {
                   </AnimatePresence></>
       ) :
       (
-        <div data-theme={theme}>
+        <div>
             <p className="text-3xl text-center">Order status: <span className={data3.data.order.status === 'complete' ? 'text-green-500' : 'text-red-500'}>{data3.data.order.status.toUpperCase()}</span></p>
             <p className="text-2xl text-center">Order content:</p>
             <div className="overflow-x-auto mx-24">
@@ -655,7 +653,7 @@ export default function Purchase() {
                                               </td>
                                               <td>{data2.data.tag}</td>
                                               <th className="textbold">{data2.data.price}€</th>
-                                              {data3.data.order.status === 'complete' && (<>{data3.data.order.license &&<td> {data3.data.order.license}</td>}<th><button className="btn mx-4" data-theme={theme} onClick={() => downloadProduct(data3.data.order.id, data2.data.name)} disabled={loading}>Download</button></th></>)}
+                                              {data3.data.order.status === 'complete' && (<>{data3.data.order.license &&<td> {data3.data.order.license}</td>}<th><button className="btn mx-4" onClick={() => downloadProduct(data3.data.order.id, data2.data.name)} disabled={loading}>Download</button></th></>)}
 
                                           </tr>
                                       </tbody>

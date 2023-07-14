@@ -1,0 +1,118 @@
+{
+  "hash": "5c83d3528fcaafb6fcc7",
+  "publicPath": "auto",
+  "outputPath": "/var/www/newwebsite/public/assets",
+  "assetsByChunkName": {
+    "main": [
+      "bundle.581b092e5707cbeb7544.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "bundle.581b092e5707cbeb7544.js",
+      "size": 5766709,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "581b092e5707cbeb7544",
+        "javascriptModule": false,
+        "related": {
+          "gzipped": "bundle.581b092e5707cbeb7544.js.gz"
+        }
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "bundle.da3012dd489db29e3e13.js",
+      "size": 8145,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "da3012dd489db29e3e13",
+        "javascriptModule": false,
+        "related": {
+          "gzipped": "bundle.da3012dd489db29e3e13.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        85
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "index.html",
+      "size": 572,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "related": {
+          "gzipped": "index.html.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [],
+      "auxiliaryChunks": []
+    }
+  ],
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "bundle.581b092e5707cbeb7544.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "generator": "loadable-components",
+  "chunks": [
+    {
+      "id": 179,
+      "files": [
+        "bundle.581b092e5707cbeb7544.js"
+      ]
+    },
+    {
+      "id": 85,
+      "files": [
+        "bundle.da3012dd489db29e3e13.js"
+      ]
+    }
+  ]
+}
