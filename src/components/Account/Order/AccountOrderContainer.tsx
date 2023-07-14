@@ -2,20 +2,20 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
-import { fetcher } from '../../../../api/http';
-import getDownloadLink from '../../../../api/shop/getDownloadLink';
+import { fetcher } from '../../../api/http';
+import getDownloadLink from '../../../api/shop/getDownloadLink';
 import { toast } from 'react-toastify';
-import { config } from '../../../../config/config';
+import { config } from '../../../config/config';
 import Cookies from 'js-cookie';
-import getInvoiceDownloadLink from '../../../../api/shop/getInvoiceDownloadLink';
+import getInvoiceDownloadLink from '../../../api/shop/getInvoiceDownloadLink';
 import NavBarAccount from '../NavBarAccount';
 import { Account } from '../Manager/AccountContainer';
-import Loading from "../../../Elements/Loading";
-import deleteLicense from "../../../../api/licenses/deleteLicense";
+import Loading from "../../Elements/Loading";
+import deleteLicense from "../../../api/licenses/deleteLicense";
 
 
 
-export default function AccountOrderContainer(account: Account) {
+export default function AccountOrderContainer() {
   const [loading, setLoading] = useState(false);
   const { data, mutate, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/orders`,
@@ -150,13 +150,12 @@ export default function AccountOrderContainer(account: Account) {
       <section className='mx-8 my-4'>
 
         <div >
-          <p className='text-center text-xl my-6'>Please notice that these licenses are linked to your account. To transfer a license to another account, please <Link to={'/contact'} className='text-blue-500'>contact us</Link>.</p>
 
           <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
             {/* head */}
             <thead>
               <tr className='w-full'>
-                <th className={'hidden xl:block'}>Order_id</th>
+                <th className={'hidden xl:block'}>Id</th>
                 <th>Product</th>
                 <th>Price</th>
                 <th className={'hidden xl:block'}>Stripe Id</th>

@@ -5,12 +5,12 @@ import { object, string } from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import editAccountInformations from '../../../../../api/auth/editAccountInformations';
+import editAccountInformations from '../../../../api/account/editAccountInformations';
 import debounce from 'lodash.debounce';
-import { fetcher } from '../../../../../api/http';
+import { fetcher } from '../../../../api/http';
 import { useNavigate } from 'react-router-dom';
-import Spinner from "../../../../Elements/Spinner";
-import Loading from "../../../../Elements/Loading";
+import Spinner from "../../../Elements/Spinner";
+import Loading from "../../../Elements/Loading";
 
 const form = object({
   society: string().nullable(),

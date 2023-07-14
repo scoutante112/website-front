@@ -1,10 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { Account } from "./Manager/AccountContainer";
-import Spinner from "../../Elements/Spinner";
-import { fetcher } from "../../../api/http";
+import Spinner from "../Elements/Spinner";
+import { fetcher } from "../../api/http";
 import useSWR from "swr";
-import Loading from "../../Elements/Loading";
+import Loading from "../Elements/Loading";
 
 interface tabs {
     tab: string;

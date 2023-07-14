@@ -1,26 +1,26 @@
 {
-  "hash": "5c83d3528fcaafb6fcc7",
+  "hash": "1cc0e14f559dc1ae9d82",
   "publicPath": "auto",
   "outputPath": "/var/www/newwebsite/public/assets",
   "assetsByChunkName": {
     "main": [
-      "bundle.581b092e5707cbeb7544.js"
+      "bundle.58e16c2676685da9c1c2.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "bundle.581b092e5707cbeb7544.js",
-      "size": 5766709,
+      "name": "bundle.58e16c2676685da9c1c2.js",
+      "size": 8104589,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "581b092e5707cbeb7544",
+        "contenthash": "58e16c2676685da9c1c2",
         "javascriptModule": false,
         "related": {
-          "gzipped": "bundle.581b092e5707cbeb7544.js.gz"
+          "gzipped": "bundle.58e16c2676685da9c1c2.js.gz"
         }
       },
       "chunkNames": [
@@ -89,7 +89,7 @@
       ],
       "assets": [
         {
-          "name": "bundle.581b092e5707cbeb7544.js"
+          "name": "bundle.58e16c2676685da9c1c2.js"
         }
       ],
       "filteredAssets": 0,
@@ -105,7 +105,7 @@
     {
       "id": 179,
       "files": [
-        "bundle.581b092e5707cbeb7544.js"
+        "bundle.58e16c2676685da9c1c2.js"
       ]
     },
     {

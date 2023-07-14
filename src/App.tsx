@@ -9,10 +9,10 @@ import Product from "./components/Products/Product";
 import Register from "./components/Auth/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import AccountContainer from "./components/Auth/Account//Manager/AccountContainer";
+import AccountContainer from "./components/Account//Manager/AccountContainer";
 import NavBar from "./components/NavBar";
-import AccountLicenseContainer from "./components/Auth/Account/License/AccountLicenseContainer";
-import AccountOrderContainer from "./components/Auth/Account/Order/AccountOrderContainer";
+import AccountLicenseContainer from "./components/Account/License/AccountLicenseContainer";
+import AccountOrderContainer from "./components/Account/Order/AccountOrderContainer";
 import Purchase from "./components/Products/Purchase";
 import Cookies from "js-cookie";
 import TokenLogin from "./components/Auth/TokenLogin";
@@ -20,7 +20,8 @@ import NotFoundPage from "./components/NotFoundPage";
 import Contact from "./components/Contact";
 import { Crisp } from "crisp-sdk-web";
 import OauthCallback from "./components/Auth/OauthCallback";
-import { AccountLinkOauthCallback } from "./components/Auth/Account/Manager/Forms/EditAccountForm";
+import { AccountLinkOauthCallback } from "./components/Account/Manager/Forms/EditAccountForm";
+import TicketContainer from "./components/Account/Ticket/TicketContainer";
 
 export const MainNavRoutes = [
 
@@ -83,6 +84,16 @@ export const AuthRoutes = [
     name: "account",
     link: "/account/orders",
     component: <AccountOrderContainer />
+  },
+  {
+    name: "tickets",
+    link: "/account/tickets",
+    component: <TicketContainer />
+  },
+  {
+    name: "tickets",
+    link: "/account/tickets/:id",
+    component: <TicketViewContainer />
   }
 ];
 

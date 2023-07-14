@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import debounce from "lodash.debounce";
 import { fetcher } from "../../api/http";
-import editAccountInformations from "../../api/auth/editAccountInformations";
+import editAccountInformations from "../../api/account/editAccountInformations";
 import { useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import createOrder from "../../api/shop/createOrder";

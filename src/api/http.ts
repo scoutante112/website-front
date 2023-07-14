@@ -11,6 +11,16 @@ const http: AxiosInstance = axios.create({
     Authorization: `Bearer ${Cookies.get('access_token')}`
   },
 });
+export const httpMultipart: AxiosInstance = axios.create({
+  withCredentials: false,
+  timeout: 20000,
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+    Accept: 'application/json',
+    'Content-Type': 'multipart/form-data',
+    Authorization: `Bearer ${Cookies.get('access_token')}`
+  },
+});
 export const fetcher = (url: RequestInfo | URL) => fetch(url, {headers: {
   'X-Requested-With': 'XMLHttpRequest',
   Accept: 'application/json',

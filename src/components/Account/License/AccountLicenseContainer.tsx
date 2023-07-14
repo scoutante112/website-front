@@ -3,10 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import useSWR from "swr";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import deleteLicense from '../../../../api/licenses/deleteLicense';
-import { fetcher } from '../../../../api/http';
+import deleteLicense from '../../../api/licenses/deleteLicense';
+import { fetcher } from '../../../api/http';
 import NavBarAccount from '../NavBarAccount';
-import Loading from "../../../Elements/Loading";
+import Loading from "../../Elements/Loading";
 
 export default function AccountLicenseContainer() {
 

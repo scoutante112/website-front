@@ -3,20 +3,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import editAccount from '../../../../../api/auth/editAccount';
+import editAccount from '../../../../api/account/editAccount';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import debounce from 'lodash.debounce';
-import { fetcher } from '../../../../../api/http';
-import Spinner from "../../../../Elements/Spinner";
-import Loading from "../../../../Elements/Loading";
-import Login from "../../../Login";
-import tokenLogin from "../../../../../api/auth/tokenLogin";
-import loginOauth from "../../../../../api/auth/loginOauth";
-import linkOauth from "../../../../../api/auth/linkOauth";
+import { fetcher } from '../../../../api/http';
+import Spinner from "../../../Elements/Spinner";
+import Loading from "../../../Elements/Loading";
+import Login from "../../../Auth/Login";
+import tokenLogin from "../../../../api/auth/tokenLogin";
+import loginOauth from "../../../../api/auth/loginOauth";
+import linkOauth from "../../../../api/account/linkOauth";
 import AccountContainer from "../AccountContainer";
 import Cookies from "js-cookie";
-import deleteOauth from "../../../../../api/auth/deleteOauth";
+import deleteOauth from "../../../../api/account/deleteOauth";
 
 const form = object({
     email: string().email('This is not a valid email.').required('')
@@ -26,6 +26,7 @@ const form = object({
 type DiscordUser = {
   avatar: string;
   username: string;
+  id: string;
   discriminator: string;
 }
 type GoogleUser = {
