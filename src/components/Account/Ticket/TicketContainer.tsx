@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
@@ -76,7 +76,7 @@ export default function TicketContainer() {
         const inputs = document.querySelectorAll('input:not(#search)');
         const textareas = document.querySelectorAll('textarea');
 
-        inputs.forEach((input) => {
+        inputs.forEach((input: any) => {
           input.value = '';
         });
         textareas.forEach((textarea) => {
@@ -249,7 +249,7 @@ export default function TicketContainer() {
 
                 </label>
                 <input type="file" className="file-input file-input-bordered w-full mx-2" multiple onChange={(e) => {
-                  const files = Array.from(e.target.files);
+                  const files = Array.from(e.target.files ? e.target.files : []);
                   formik.setFieldValue('attachments', files);
                 }}/>
 
@@ -308,7 +308,7 @@ export default function TicketContainer() {
                   <th className={ticket.priority === 'high' ? 'text-red-700' : ticket.priority === 'low' ? 'text-green-700' : ''}>{ticket.priority[0].toUpperCase()}{ticket.priority.slice(1, ticket.priority.length)}</th>
                   <td className={'hidden xl:table-cell' + (ticket.status === 'closed' ? ' text-red-700' : (ticket.status === 'support_answer' ? ' text-green-700' : ' text-blue-700'))}>{ticket.status === 'closed' ? 'Closed' : ticket.status === 'support_answer' ? 'Answered by Support' : 'Answered by Client'}</td>
                   <td>{moment(ticket.updated_at).fromNow()}</td>
-                  <td className={'btn btn-primary btn-outline my-4'}>View</td>
+                  <td className={'btn btn-primary btn-outline my-4'}><NavLink to={`/account/ticket/${ticket.id}`}>View</NavLink></td>
                 </tr>
               )
             })}

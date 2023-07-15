@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import useSWR from "swr";
 import { toast } from 'react-toastify';
@@ -10,7 +10,7 @@ import Loading from "../../Elements/Loading";
 
 export default function AccountLicenseContainer() {
 
-    const [ipData, setIpData] = React.useState(null);
+    const [ipData, setIpData] = useState<any>(null);
 
   const { data, mutate, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/license`,
@@ -77,7 +77,7 @@ export default function AccountLicenseContainer() {
                     <ul tabIndex={0} className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52 z-10">
                         {ipData ? (
                                 <>
-                                <li className='flex'><strong>Country: </strong>{ipData['country_name']} <img alt='Flag' src={`https://flagcdn.com/w20/${ipData['country_code'].toLowerCase()}.webp`} className={'mx-2'}/></li>
+                                <li className='flex'><strong>Country: </strong>{ipData['country_name']} <img alt='Flag' src={`https://flagcdn.com/w20/${ipData['country_code']}.webp`} className={'mx-2'}/></li>
                                 <li><strong>City: </strong>{ipData['city']}</li>
                                 <li><strong>Region: </strong>{ipData['region']}</li>
                                 <li><strong>Asn: </strong>{ipData['asn']}</li>

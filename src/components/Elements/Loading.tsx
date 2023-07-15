@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className={"h-screen mx-auto text-center"}>
+    <div className={"h-screen mx-auto text-center cursor-wait"}>
       <motion.img
         src="https://cdn.bagou450.com/assets/img/bg5.webp"
         className={'h-44 w-44 mx-auto'}

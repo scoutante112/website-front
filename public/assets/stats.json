@@ -1,13 +1,13 @@
 {
-  "hash": "1cc0e14f559dc1ae9d82",
+  "hash": "531b38bd6bda38badc7f",
   "version": "5.88.1",
-  "time": 3882,
-  "builtAt": 1689351586951,
+  "time": 3992,
+  "builtAt": 1689380254791,
   "publicPath": "auto",
   "outputPath": "/var/www/newwebsite/public/assets",
   "assetsByChunkName": {
     "main": [
-      "bundle.58e16c2676685da9c1c2.js"
+      "bundle.be5f22ace23f95397e8a.js"
     ]
   },
   "assets": [
@@ -33,13 +33,13 @@
         {
           "type": "gzipped",
           "name": "manifest.json.gz",
-          "size": 136,
+          "size": 135,
           "emitted": true,
           "comparedForEmit": false,
           "cached": false,
           "info": {
             "compressed": true,
-            "size": 136
+            "size": 135
           },
           "chunkNames": [],
           "chunkIdHints": [],
@@ -77,13 +77,13 @@
         {
           "type": "gzipped",
           "name": "index.html.gz",
-          "size": 356,
+          "size": 355,
           "emitted": true,
           "comparedForEmit": false,
           "cached": false,
           "info": {
             "compressed": true,
-            "size": 356
+            "size": 355
           },
           "chunkNames": [],
           "chunkIdHints": [],
@@ -145,19 +145,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.da3012dd489db29e3e13.js",
-      "size": 8145,
+      "name": "bundle.f477a6282ac02322aa83.js",
+      "size": 8147,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "da3012dd489db29e3e13",
+        "contenthash": "f477a6282ac02322aa83",
         "javascriptModule": false,
         "related": {
-          "gzipped": "bundle.da3012dd489db29e3e13.js.gz"
+          "gzipped": "bundle.f477a6282ac02322aa83.js.gz"
         },
-        "size": 8145
+        "size": 8147
       },
       "chunkNames": [],
       "chunkIdHints": [],
@@ -167,15 +167,15 @@
       "related": [
         {
           "type": "gzipped",
-          "name": "bundle.da3012dd489db29e3e13.js.gz",
-          "size": 2733,
+          "name": "bundle.f477a6282ac02322aa83.js.gz",
+          "size": 2735,
           "emitted": false,
           "comparedForEmit": false,
           "cached": true,
           "info": {
             "compressed": true,
             "immutable": true,
-            "size": 2733
+            "size": 2735
           },
           "chunkNames": [],
           "chunkIdHints": [],
@@ -195,19 +195,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.58e16c2676685da9c1c2.js",
-      "size": 8104589,
+      "name": "bundle.be5f22ace23f95397e8a.js",
+      "size": 8214104,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "immutable": true,
-        "contenthash": "58e16c2676685da9c1c2",
+        "contenthash": "be5f22ace23f95397e8a",
         "javascriptModule": false,
         "related": {
-          "gzipped": "bundle.58e16c2676685da9c1c2.js.gz"
+          "gzipped": "bundle.be5f22ace23f95397e8a.js.gz"
         },
-        "size": 8104589
+        "size": 8214104
       },
       "chunkNames": [
         "main"
@@ -219,15 +219,15 @@
       "related": [
         {
           "type": "gzipped",
-          "name": "bundle.58e16c2676685da9c1c2.js.gz",
-          "size": 2062169,
+          "name": "bundle.be5f22ace23f95397e8a.js.gz",
+          "size": 2087412,
           "emitted": true,
           "comparedForEmit": false,
           "cached": false,
           "info": {
             "compressed": true,
             "immutable": true,
-            "size": 2062169
+            "size": 2087412
           },
           "chunkNames": [],
           "chunkIdHints": [],
@@ -254,12 +254,12 @@
       ],
       "assets": [
         {
-          "name": "bundle.58e16c2676685da9c1c2.js",
-          "size": 8104589
+          "name": "bundle.be5f22ace23f95397e8a.js",
+          "size": 8214104
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 8104589,
+      "assetsSize": 8214104,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -276,12 +276,12 @@
       ],
       "assets": [
         {
-          "name": "bundle.58e16c2676685da9c1c2.js",
-          "size": 8104589
+          "name": "bundle.be5f22ace23f95397e8a.js",
+          "size": 8214104
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 8104589,
+      "assetsSize": 8214104,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,

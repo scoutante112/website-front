@@ -22,6 +22,7 @@ import { Crisp } from "crisp-sdk-web";
 import OauthCallback from "./components/Auth/OauthCallback";
 import { AccountLinkOauthCallback } from "./components/Account/Manager/Forms/EditAccountForm";
 import TicketContainer from "./components/Account/Ticket/TicketContainer";
+import TicketViewContainer from "./components/Account/Ticket/TicketViewContainer";
 
 export const MainNavRoutes = [
 
@@ -92,7 +93,7 @@ export const AuthRoutes = [
   },
   {
     name: "tickets",
-    link: "/account/tickets/:id",
+    link: "/account/ticket/:id",
     component: <TicketViewContainer />
   }
 ];

@@ -1,26 +1,26 @@
 {
-  "hash": "1cc0e14f559dc1ae9d82",
+  "hash": "531b38bd6bda38badc7f",
   "publicPath": "auto",
   "outputPath": "/var/www/newwebsite/public/assets",
   "assetsByChunkName": {
     "main": [
-      "bundle.58e16c2676685da9c1c2.js"
+      "bundle.be5f22ace23f95397e8a.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "bundle.58e16c2676685da9c1c2.js",
-      "size": 8104589,
+      "name": "bundle.be5f22ace23f95397e8a.js",
+      "size": 8214104,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "58e16c2676685da9c1c2",
+        "contenthash": "be5f22ace23f95397e8a",
         "javascriptModule": false,
         "related": {
-          "gzipped": "bundle.58e16c2676685da9c1c2.js.gz"
+          "gzipped": "bundle.be5f22ace23f95397e8a.js.gz"
         }
       },
       "chunkNames": [
@@ -37,17 +37,17 @@
     },
     {
       "type": "asset",
-      "name": "bundle.da3012dd489db29e3e13.js",
-      "size": 8145,
+      "name": "bundle.f477a6282ac02322aa83.js",
+      "size": 8147,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "da3012dd489db29e3e13",
+        "contenthash": "f477a6282ac02322aa83",
         "javascriptModule": false,
         "related": {
-          "gzipped": "bundle.da3012dd489db29e3e13.js.gz"
+          "gzipped": "bundle.f477a6282ac02322aa83.js.gz"
         }
       },
       "chunkNames": [],
@@ -89,7 +89,7 @@
       ],
       "assets": [
         {
-          "name": "bundle.58e16c2676685da9c1c2.js"
+          "name": "bundle.be5f22ace23f95397e8a.js"
         }
       ],
       "filteredAssets": 0,
@@ -105,13 +105,13 @@
     {
       "id": 179,
       "files": [
-        "bundle.58e16c2676685da9c1c2.js"
+        "bundle.be5f22ace23f95397e8a.js"
       ]
     },
     {
       "id": 85,
       "files": [
-        "bundle.da3012dd489db29e3e13.js"
+        "bundle.f477a6282ac02322aa83.js"
       ]
     }
   ]
