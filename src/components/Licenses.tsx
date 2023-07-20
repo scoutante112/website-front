@@ -81,7 +81,7 @@ export default function Licenses() {
                             exit={{ opacity: 0 }}>
                   <p className="mb-2 mt-2 text-white text-2xl">Where you bought it?:</p>
 
-                  <div className={"carousel max-h-96 my-4 "}>
+                  <div className={"carousel max-h-96 my-4 w-full"}>
                     <div id="slide1" className="carousel-item relative w-full">
                       <img src="https://cdn.bagou450.com/assets/img/bgshop.webp" alt="Bagou450 Shop"
                            className="mx-auto max-w-screen-md" />

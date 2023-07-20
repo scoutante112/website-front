@@ -11,12 +11,13 @@ export default function NavBar() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const infos = location.pathname.startsWith('/account/manage');
+  const infos = location.pathname.startsWith('/account') || location.pathname.startsWith('/admin');
   const { data, mutate, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=${infos}`,
     fetcher
   );
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'night')
+  const navigation = useNavigate();
 
   useEffect(() => {
     document!.querySelector('html')!.setAttribute('data-theme', theme);
@@ -27,6 +28,13 @@ export default function NavBar() {
     return <></>;
   }
 
+  if(infos && !data.status) {
+    mutate();
+    navigation('/login');
+  }
+  if(location.pathname.startsWith('/admin') && !data.data.role) {
+    navigation('/');
+  }
   const themeslist = ["default theme", "synthwave", "halloween", "forest", "aqua", "black", "luxury", "dracula", "business", "coffee"]
   return (
     <><div className="navbar-start ">
@@ -52,7 +60,7 @@ export default function NavBar() {
       <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
         {MainNavRoutes.map((routes, key) => (
-          <li key={key}><Link to={routes.link}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link></li>
+          <li key={key} className={'mr-2'}><Link to={routes.link}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link></li>
         ))}
       </ul>
       </div>
@@ -92,7 +100,7 @@ export default function NavBar() {
 
 
             :
-            <><li><Link to={'/login'}>Login</Link></li><li><Link to={'/register'}>Register</Link></li></>}
+            <><li className={'my-auto'}><Link to={'/login'}>Login</Link></li><li className={'mx-2 my-auto'}><Link to={'/register'}>Register</Link></li></>}
           <li className={'hidden lg:flex '}>
               <select className="select h-full bg-none mx-4 md:flex bg-neutral" onChange={(e) => setTheme(e.target.value.toLowerCase() === 'default theme' ? 'night' : e.target.value.toLowerCase())} defaultValue={theme}>
                 {themeslist.map((theme, key) => {

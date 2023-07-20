@@ -8,6 +8,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
@@ -15,6 +16,7 @@ require('dotenv').config()
 const isProduction = true
 
 module.exports = {
+  devtool: 'source-map',
   mode: process.env.environement,
   watchOptions: {
     ignored: /node_modules/,
@@ -25,11 +27,13 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, './public/assets'),
-    filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js'
+    filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js',
+    clean: true,
   },
   plugins: [
+    isProduction &&  new BrotliPlugin(),
     new WebpackManifestPlugin(),
-    new ImageminWebpWebpackPlugin(),
+    isProduction && new ImageminWebpWebpackPlugin(),
     new Dotenv(),
     isProduction && new CompressionPlugin(),
     new LodashModuleReplacementPlugin(),
@@ -83,6 +87,17 @@ module.exports = {
         ]
       },
       {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       }
@@ -115,9 +130,9 @@ module.exports = {
       },
     },
     minimizer: [
-      /*new TerserPlugin({
+      new TerserPlugin({
         extractComments: true
-      })*/
+      })
     ]
   }
 }

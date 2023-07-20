@@ -1,6 +1,7 @@
 {
-  "main.js": "auto/bundle.be5f22ace23f95397e8a.js",
-  "bundle.js": "auto/bundle.f477a6282ac02322aa83.js",
+  "main.js": "auto/bundle.5849314c3a4a5c95ed74.js",
+  "bundle.js": "auto/bundle.a1863814edee3ddaf32b.js",
   "loadable-stats.json": "auto/loadable-stats.json",
-  "index.html": "auto/index.html"
+  "index.html": "auto/index.html",
+  "bundle.js.map": "auto/bundle.a1863814edee3ddaf32b.js.map"
 }

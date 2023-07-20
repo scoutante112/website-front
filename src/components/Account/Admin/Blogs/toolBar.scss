@@ -1,0 +1,79 @@
+.custom-toolbar .ql-toolbar {
+    background-color: white;
+}
+.ql-align-center {
+    text-align: center;
+}
+
+.ql {
+    h1 {
+        font-size: 3rem; /* 48px */
+        line-height: 1;
+    }
+    h2 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+    }
+    h3 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    }
+    h4 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    }
+    h5 {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    }
+    h6 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+    }
+    .ql-align-right {
+        text-align: right;
+    }
+    blockquote{
+        font-size: 1.4em;
+        width:60%;
+        font-family: Open Sans, serif;
+        font-style:italic;
+        color: white;
+        padding:1.2em 30px 1.2em 75px;
+        border-left:8px solid #78C0A8 ;
+        line-height:1.6;
+        position: relative;
+    }
+
+    blockquote::before{
+        font-family: Arial, serif;
+        content: "\201C";
+        color:#78C0A8;
+        font-size:4em;
+        position: absolute;
+        left: 10px;
+        top:-10px;
+    }
+
+    blockquote::after{
+        content: '';
+    }
+
+    pre.ql-syntax.ql-align-justify {
+        border-radius: 4px;
+        padding: 1em;
+        overflow-x: auto;
+    }
+    .ql-size-huge {
+        font-size: 3rem; /* 48px */
+        line-height: 1;
+    }
+    .ql-size-large {
+        font-size: 1.875rem; /* 30px */
+        line-height: 2.25rem; /* 36px */
+    }
+    .ql-size-small {
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.75rem; /* 28px */
+    }
+}

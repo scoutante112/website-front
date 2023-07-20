@@ -54,4 +54,19 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-corner {
         background: transparent;
     }
+    .ql {
+      blockquote {
+        ${tw`bg-neutral`}
+      }
+      ol {
+        ${tw`list-decimal`}
+      }
+      ul {
+        ${tw`list-disc`}
+      }
+      pre.ql-syntax {
+        ${tw`bg-neutral`}
+      } 
+    }
+    
 `;

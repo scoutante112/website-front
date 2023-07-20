@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import useSWR from "swr";
 import { Link, useParams } from 'react-router-dom';
 import { RiInstallLine } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 // @ts-ignore
-import BBCode from "@bbob/react";
-// @ts-ignore
 import presetReact from "@bbob/preset-react";
-import Spinner from "../Elements/Spinner";
 import Loading from "../Elements/Loading";
+// @ts-ignore
+const BBCode = lazy(() => import('@bbob/react'));
+
+
+
+
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
   
 export default function Product() {

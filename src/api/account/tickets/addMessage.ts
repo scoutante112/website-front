@@ -3,7 +3,7 @@ import http from "../../http";
 import { Account } from "../../../components/Account/Manager/Forms/EditAccountForm";
 
 
-const addMessage = (id: number, message: string, account: Account, attachments?: File[]): Promise<any> => {
+const addMessage = (id: string, message: string, account: Account, attachments?: File[]): Promise<any> => {
   const formData = new FormData();
   formData.append('message', message);
   if (attachments) {

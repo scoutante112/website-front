@@ -25,14 +25,6 @@ export default function AccountOrderContainer() {
   if (!data || (error || isLoading)) {
     return <Loading/>;
   }
-  if (!data['status']) {
-    if(data['message'] === 'Unauthenticated.') {
-      navigation('/login');
-      window.location.reload()
-    }
-    mutate();
-    return <Loading/>;
-  }
   const downloadProduct = (order: string) => {
     setLoading(true);
     toast.info('Please wait during the generation of the file...', {
@@ -145,7 +137,6 @@ export default function AccountOrderContainer() {
 
   return (
     <>
-      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data['user'][0].toUpperCase() + data.data['user'].slice(1, data.data['user'].length)}</h1>
       <NavBarAccount tab={'orders'}/>
       <section className='mx-8 my-4'>
 

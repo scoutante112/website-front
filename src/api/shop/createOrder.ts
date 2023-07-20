@@ -6,7 +6,7 @@ const createOrder = (product: string, promocode?: string): Promise<any> => {
     http
       .post(`${config.privateapilink}/orders`, { product, promocode })
       .then((data) => resolve(data))
-      .catch((data) => resolve(data.response.data));
+      .catch((data) => resolve(data));
   });
 };
 

@@ -1,28 +1,34 @@
 import "./assets/App.css";
-import React, { Component, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import GlobalStylesheet from "./assets/css/GlobalStylesheet";
-import Products from "./components/Products";
-import Licenses from "./components/Licenses";
-import Login from "./components/Auth/Login";
-import Product from "./components/Products/Product";
-import Register from "./components/Auth/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import AccountContainer from "./components/Account//Manager/AccountContainer";
-import NavBar from "./components/NavBar";
-import AccountLicenseContainer from "./components/Account/License/AccountLicenseContainer";
-import AccountOrderContainer from "./components/Account/Order/AccountOrderContainer";
-import Purchase from "./components/Products/Purchase";
-import Cookies from "js-cookie";
-import TokenLogin from "./components/Auth/TokenLogin";
-import NotFoundPage from "./components/NotFoundPage";
-import Contact from "./components/Contact";
 import { Crisp } from "crisp-sdk-web";
-import OauthCallback from "./components/Auth/OauthCallback";
-import { AccountLinkOauthCallback } from "./components/Account/Manager/Forms/EditAccountForm";
-import TicketContainer from "./components/Account/Ticket/TicketContainer";
-import TicketViewContainer from "./components/Account/Ticket/TicketViewContainer";
+import NavBar from "./components/NavBar";
+import LazyLoad from "react-lazyload";
+
+const Loading = lazy(() => import('./components/Elements/Loading'));
+const Products = lazy(() => import('./components/Products'));
+const Licenses = lazy(() => import('./components/Licenses'));
+const Login = lazy(() => import('./components/Auth/Login'));
+const Product = lazy(() => import('./components/Products/Product'));
+const Register = lazy(() => import('./components/Auth/Register'));
+const AccountContainer = lazy(() => import('./components/Account/Manager/AccountContainer'));
+const AccountLicenseContainer = lazy(() => import('./components/Account/License/AccountLicenseContainer'));
+const AccountOrderContainer = lazy(() => import('./components/Account/Order/AccountOrderContainer'));
+const Purchase = lazy(() => import('./components/Products/Purchase'));
+const TokenLogin = lazy(() => import('./components/Auth/TokenLogin'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+const Contact = lazy(() => import('./components/Contact'));
+const OauthCallback = lazy(() => import('./components/Auth/OauthCallback'));
+const AccountLinkOauthCallback = lazy(() => import('./components/Account/Manager/Forms/AccountLinkOauthCallback'));
+const TicketContainer = lazy(() => import('./components/Account/Ticket/TicketContainer'));
+const TicketViewContainer = lazy(() => import('./components/Account/Ticket/TicketViewContainer'));
+const NewsContainer = lazy(() => import('./components/News/NewsContainer'));
+const BlogsContainer = lazy(() => import('./components/Account/Admin/Blogs/BlogsContainer'));
+const NewsCard = lazy(() => import('./components/News/NewsCard'));
+
 
 export const MainNavRoutes = [
 
@@ -31,8 +37,11 @@ export const MainNavRoutes = [
     link: "/products",
     component: <Products />
   },
-
-
+  {
+    name: "news",
+    link: "/news",
+    component: <NewsContainer />
+  },
   {
     name: "licenses",
     link: "/licenses",
@@ -98,11 +107,24 @@ export const AuthRoutes = [
   }
 ];
 
+export const AdminRoutes = [
+  {
+    name: "blogs",
+    link: "/admin/blogs",
+    component: <BlogsContainer />
+  },
+]
+
 export const OthersRoutes = [
   {
     name: "products",
     link: "/product/:id",
     component: <Product />
+  },
+  {
+    name: "new",
+    link: "/news/:id",
+    component: <NewsCard />
   },
   {
     name: "purchase",
@@ -122,11 +144,12 @@ function App() {
       <>
         <GlobalStylesheet />
         <Router>
-          <ToastContainer />
+          <LazyLoad once> <ToastContainer /></LazyLoad>
+
           <div className="navbar border-b-2 border-neutral">
-
+            <Suspense fallback={<Loading />}>
             <NavBar/>
-
+            </Suspense>
           </div>
           {/*<div className="alert alert-warning shadow-lg">
             <div>
@@ -138,7 +161,9 @@ function App() {
               <span>Warning: This website is still in development. Some functionality is still missing and some bugs may occur!</span>
             </div>
           </div>*/}
+          <Suspense fallback={<Loading />}>
           <Routes>
+
             <Route path="/" element={<Products />} />
 
             {MainNavRoutes.map((routes, key) => (
@@ -147,11 +172,16 @@ function App() {
             {AuthRoutes.map((routes, key) => (
               <Route key={key + 500} path={routes.link} element={routes.component} />
             ))}
+            {AdminRoutes.map((routes, key) => (
+              <Route key={key + 1000} path={routes.link} element={routes.component} />
+            ))}
             {OthersRoutes.map((routes, key) => (
               <Route key={key + 1000} path={routes.link} element={routes.component} />
             ))}
             <Route path={"*"} element={<NotFoundPage />} />
           </Routes>
+          </Suspense>
+
           <footer className="footer p-10 border-t-2 border-neutral mt-4">
             <div className="flex items-center space-x-4">
               <img

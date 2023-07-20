@@ -16,22 +16,13 @@ export default function AccountLicenseContainer() {
     `https://privateapi.bagou450.com/api/client/web/license`,
     fetcher
   );
-  const navigation = useNavigate();
   if (!data || (error || isLoading)) {
     return <Loading/>;
   }
-  if (!data['status']) {
-    if(data['message'] === 'Unauthenticated.') {
-      navigation('/login');
-      window.location.reload()
-    }
-    mutate();
-    return <Loading/>;
-  }
+
   document.title = 'Bagou450 - My license'
   return (
     <>
-      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data['user'][0].toUpperCase() + data.data['user'].slice(1,data.data['user'].length)}</h1>
       <NavBarAccount tab={'licenses'}/>
       <section className='mx-8 my-4'>
         

@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Account } from "./Manager/AccountContainer";
 import Spinner from "../Elements/Spinner";
 import { fetcher } from "../../api/http";
@@ -10,26 +10,20 @@ interface tabs {
     tab: string;
 }
 export default function NavBarAccount(tab: tabs) {
-    const [admin, showAdmin] = useState<boolean>(false);
   const location = useLocation();
-  const infos = location.pathname.startsWith('/account/manage');
-  const { data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=${infos}`,
+  const [admin, showAdmin] = useState<boolean>(location.pathname.startsWith('/admin/'));
+
+  const { data, error, isLoading } = useSWR(
+    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
     fetcher
   );
-      const navigation = useNavigate();
       if (!data || (error || isLoading)) {
         return <Loading/>;
       }
-      if (!data['status']) {
-        if(data['message'] === 'Unauthenticated.') {
-          navigation('/login');
-          window.location.reload()
-        }
-        mutate();
-        return <Loading/>;
-      }
+
+
     return (
+      <>      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data.name[0].toUpperCase() + data.data.name.slice(1, data.data.name.length)}</h1>
         <section className='mx-auto text-center'>
         <ul className="menu menu-horizontal rounded-box gap-x-2" >
             {!admin ? (
@@ -93,7 +87,14 @@ Products
   Tickets
                 </Link>
             </li>
-
+              <li>
+                <Link className={tab.tab === 'blogs' ? 'bg-neutral-focus disabled' : ''} to={'/admin/blogs'} >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm5 3h6M7 10h10M7 14h10M7 18h7" />
+                  </svg>
+                  Blog
+                </Link>
+              </li>
             </>
 
             )}
@@ -109,5 +110,7 @@ Products
   
     }
       </section>
+
+        </>
     )
 }

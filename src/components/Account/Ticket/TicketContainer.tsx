@@ -94,7 +94,8 @@ export default function TicketContainer() {
           theme: "dark",
         });
       }).catch((e) => {
-        setError(`Error: ${e}`);
+
+        setError(`Error: ${e.response.data.message}`);
         setLoading(false);
 
       });
@@ -108,14 +109,12 @@ export default function TicketContainer() {
     `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
     fetcher
   );
-  const navigation = useNavigate();
   if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {
 
     if(data2) {
       const account: Account = data2.data;
       return (
         <>
-          <h1 className='text-4xl my-4 text-center'>Hello, {!account.name ? 'User' : account.name[0].toUpperCase() + account.name.slice(1, account.name.length)}</h1>
           <NavBarAccount tab={'tickets'}/>
           <section className='mx-8 my-4'>
 
@@ -144,14 +143,7 @@ export default function TicketContainer() {
     return <Loading/>;
   }
   const account: Account = data2.data;
-  if (!data['status']) {
-    if(data['message'] === 'Unauthenticated.') {
-      navigation('/login');
-      window.location.reload()
-    }
-    mutate();
-    return <Loading/>;
-  }
+
 
   document.title = 'Bagou450 - My Tickets'
   const searchValue = debounce((value: string) => {
@@ -160,7 +152,6 @@ export default function TicketContainer() {
   }, 500)
   return (
     <>
-      <h1 className='text-4xl my-4 text-center'>Hello, {!account.name ? 'User' : account.name[0].toUpperCase() + account.name.slice(1, account.name.length)}</h1>
       <NavBarAccount tab={'tickets'}/>
       <section className='mx-8 my-4'>
         <input type="checkbox" id="new" className="modal-toggle" checked={isChecked}/>
@@ -308,7 +299,7 @@ export default function TicketContainer() {
                   <th className={ticket.priority === 'high' ? 'text-red-700' : ticket.priority === 'low' ? 'text-green-700' : ''}>{ticket.priority[0].toUpperCase()}{ticket.priority.slice(1, ticket.priority.length)}</th>
                   <td className={'hidden xl:table-cell' + (ticket.status === 'closed' ? ' text-red-700' : (ticket.status === 'support_answer' ? ' text-green-700' : ' text-blue-700'))}>{ticket.status === 'closed' ? 'Closed' : ticket.status === 'support_answer' ? 'Answered by Support' : 'Answered by Client'}</td>
                   <td>{moment(ticket.updated_at).fromNow()}</td>
-                  <td className={'btn btn-primary btn-outline my-4'}><NavLink to={`/account/ticket/${ticket.id}`}>View</NavLink></td>
+                  <NavLink to={`/account/ticket/${ticket.id}`}><td className={'btn btn-primary btn-outline my-4'}>View</td></NavLink>
                 </tr>
               )
             })}

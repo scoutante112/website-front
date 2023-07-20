@@ -19,21 +19,12 @@ export default function AccountContainer() {
 
   const location = useLocation();
   const infos = location.pathname.startsWith('/account/manage');
-  const { data, mutate, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=${infos}`,
     fetcher
   );
-  const navigation = useNavigate();
   if (!data || (error || isLoading)) {
     return <></>;
-  }
-  if (!data['status']) {
-    if(data['message'] === 'Unauthenticated.') {
-      navigation('/login');
-      window.location.reload()
-    }
-    mutate();
-    return <Loading/>;
   }
   const myaccount: Acc = {
     email: data.data.email,
@@ -46,7 +37,6 @@ export default function AccountContainer() {
   document.title = 'Bagou450 - My account'
   return (
     <>
-      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data.name[0].toUpperCase() + data.data.name.slice(1, data.data.name.length)}</h1>
       <NavBarAccount tab={'manage'}/>
       <section className='grid grid-cols-1 md:grid-cols-2 gap-x-4 mx-12'>
 

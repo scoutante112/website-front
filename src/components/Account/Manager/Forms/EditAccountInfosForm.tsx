@@ -128,14 +128,6 @@ export default function EditAccountInfosForm() {
   if (!data || (error || isLoading)) {
     return <Loading/>;
   }
-  if (!data['status']) {
-    if(data['message'] === 'Unauthenticated.') {
-      navigation('/login');
-      window.location.reload()
-    }
-    mutate();
-    return <Loading/>;
-  }
 
   return (
     <section className={'my-4 rounded-lg'}>
