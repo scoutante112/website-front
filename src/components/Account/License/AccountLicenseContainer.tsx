@@ -7,19 +7,20 @@ import deleteLicense from '../../../api/licenses/deleteLicense';
 import { fetcher } from '../../../api/http';
 import NavBarAccount from '../NavBarAccount';
 import Loading from "../../Elements/Loading";
+import { config } from "../../../config/config";
 
 export default function AccountLicenseContainer() {
 
     const [ipData, setIpData] = useState<any>(null);
 
   const { data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/license`,
+    `${config.privateapilink}/license`,
     fetcher
   );
   if (!data || (error || isLoading)) {
     return <Loading/>;
   }
-
+console.log(data)
   document.title = 'Bagou450 - My license'
   return (
     <>
@@ -33,13 +34,13 @@ export default function AccountLicenseContainer() {
     {/* head */}
     <thead>
       <tr>
-        <th ></th>
-        <th className={'hidden xl:block'}>Buyer</th>
-        <th>Name</th>
+        <th></th>
+        <th>Product</th>
         <th className={'hidden xl:block'}>Ip</th>
         <th>Usage</th>
         <th>License</th>
         <th className={'hidden 2xl:block'}>Version</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -47,8 +48,7 @@ export default function AccountLicenseContainer() {
         return (
         <tr key={key}>
         <th>{key}</th>
-        <th className={'hidden xl:block'}>{license['buyer']}</th>
-        <td>{license['name']}</td>
+        <td>{license['product']}</td>
         <td className={'hidden xl:block'}>{license['ip'] ? (
             license['ip'].length === 0 ? (
                 <p>No ip for this license.</p>
@@ -73,7 +73,7 @@ export default function AccountLicenseContainer() {
                                 <li><strong>Region: </strong>{ipData['region']}</li>
                                 <li><strong>Asn: </strong>{ipData['asn']}</li>
                                 <li><strong>Org: </strong>{ipData['org']}</li>
-                                <li><button className="btn btn-outline btn-error border-0 mt-3" onClick={() => {deleteLicense(license['transaction'], ip).then(() => { mutate();  toast.success(`${ip} was removed successfully.`, {
+                                <li><button className="btn btn-outline btn-error border-0 mt-3" onClick={() => {deleteLicense(license['license'], ip).then(() => { mutate();  toast.success(`${ip} was removed successfully.`, {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -111,9 +111,9 @@ export default function AccountLicenseContainer() {
       )}
         </td>
         <td>{license['usage']}/{license['maxusage']}</td>
-        <td><strong>{license['transaction']}</strong></td>
+        <td><strong>{license['license']}</strong></td>
         <td className={'hidden 2xl:block'}>{license['version']}</td>
-
+<td><button className={'btn btn-primary btn-outline outline-0'}>Buy usage</button> <br/><button className={'btn mt-2 btn-error btn-outline outline-0'}>Reset</button></td>
         </tr>
         )
       

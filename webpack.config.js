@@ -13,7 +13,7 @@ const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = true
+const isProduction = true;
 
 module.exports = {
   devtool: 'source-map',
@@ -130,7 +130,7 @@ module.exports = {
       },
     },
     minimizer: [
-      new TerserPlugin({
+      isProduction && new TerserPlugin({
         extractComments: true
       })
     ]

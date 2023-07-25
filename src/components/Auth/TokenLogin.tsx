@@ -6,12 +6,13 @@ import tokenLogin from "../../api/auth/tokenLogin";
 import { toast } from "react-toastify";
 import md5 from "blueimp-md5";
 import Loading from "../Elements/Loading";
+import { config } from "../../config/config";
 
 const TokenLogin = () => {
   const { token } = useParams();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {data, error, isLoading} = useSWR(`https://privateapi.bagou450.com/api/client/web/auth/tokendata?token=${token}`, fetcher);
+  const {data, error, isLoading} = useSWR(`${config.privateapilink}/auth/tokendata?token=${token}`, fetcher);
   if(!data || (error || isLoading)) {
     return (
       <Loading/>

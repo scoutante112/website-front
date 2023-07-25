@@ -18,7 +18,7 @@ import deleteLicense from "../../../api/licenses/deleteLicense";
 export default function AccountOrderContainer() {
   const [loading, setLoading] = useState(false);
   const { data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/orders`,
+    `${config.privateapilink}/orders`,
     fetcher
   );
   const navigation = useNavigate();

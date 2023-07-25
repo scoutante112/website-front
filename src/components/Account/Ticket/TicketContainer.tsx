@@ -14,6 +14,7 @@ import { array, mixed, object, string } from "yup";
 import createTicket from "../../../api/account/tickets/createTicket";
 import { toast } from "react-toastify";
 import { FaXmark } from "react-icons/fa6";
+import { config } from "../../../config/config";
 
 interface Ticket {
   created_at: string;
@@ -102,11 +103,11 @@ export default function TicketContainer() {
     }
   });
   const { data, mutate, error: error3, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/tickets?sort=${sort}&page=${page}&search=${search}`,
+    `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}`,
     fetcher
   );
   const { data: data2, mutate: mutate2, error: error2, isLoading: isLoading2 } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `${config.privateapilink}/auth/isLogged?infos=true`,
     fetcher
   );
   if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {

@@ -7,6 +7,7 @@ import register from '../../api/auth/register';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Loading from "../Elements/Loading";
+import { config } from "../../config/config";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
@@ -23,7 +24,7 @@ export default function Register() {
 
   
   const { data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged`,
+    `${config.privateapilink}/auth/isLogged`,
     fetcher
   );
   const formik = useFormik({

@@ -5,6 +5,7 @@ import Spinner from "../Elements/Spinner";
 import { fetcher } from "../../api/http";
 import useSWR from "swr";
 import Loading from "../Elements/Loading";
+import { config } from "../../config/config";
 
 interface tabs {
     tab: string;
@@ -14,7 +15,7 @@ export default function NavBarAccount(tab: tabs) {
   const [admin, showAdmin] = useState<boolean>(location.pathname.startsWith('/admin/'));
 
   const { data, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `${config.privateapilink}/auth/isLogged?infos=true`,
     fetcher
   );
       if (!data || (error || isLoading)) {

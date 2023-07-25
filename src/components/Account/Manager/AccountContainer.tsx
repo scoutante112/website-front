@@ -8,6 +8,7 @@ import { fetcher } from '../../../api/http';
 import NavBarAccount from '../NavBarAccount';
 import Loading from "../../Elements/Loading";
 import { string } from "yup";
+import { config } from "../../../config/config";
 
 
 export type Account = {
@@ -20,7 +21,7 @@ export default function AccountContainer() {
   const location = useLocation();
   const infos = location.pathname.startsWith('/account/manage');
   const { data, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=${infos}`,
+    `${config.privateapilink}/auth/isLogged?infos=${infos}`,
     fetcher
   );
   if (!data || (error || isLoading)) {

@@ -11,6 +11,7 @@ import { fetcher } from '../../../../api/http';
 import { useNavigate } from 'react-router-dom';
 import Spinner from "../../../Elements/Spinner";
 import Loading from "../../../Elements/Loading";
+import { config } from "../../../../config/config";
 
 const form = object({
   society: string().nullable(),
@@ -27,7 +28,7 @@ export default function EditAccountInfosForm() {
   const [error, setError] = useState('');
 
   const { data, error: erros, isLoading, mutate } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/account/getinfos`,
+    `${config.privateapilink}/account/getinfos`,
     fetcher
   );
   useEffect(() => {

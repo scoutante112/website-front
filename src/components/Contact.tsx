@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Crisp } from "crisp-sdk-web";
+import React from "react";
 
 export default function Contact() {
 

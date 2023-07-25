@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import getNews from "../../api/news/getNews";
 import { toast } from "react-toastify";
 import 'react-quill/dist/quill.snow.css';
-import '../Account/Admin/Blogs/toolBar.scss';
+import '../Admin/Blogs/toolBar.scss';
 import moment from "moment";
 import { Helmet } from 'react-helmet';
 

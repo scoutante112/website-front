@@ -10,13 +10,14 @@ import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
 import loginOauth from "../../api/auth/loginOauth";
 import Loading from "../Elements/Loading";
 import GoogleButton from 'react-google-button'
+import { config } from "../../config/config";
 
 
 export default function Login({ loginError }: { loginError?: string }) {
   const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged`,
+    `${config.privateapilink}/auth/isLogged`,
     fetcher
   );
   if (!data || (error || isLoading)) {
@@ -45,7 +46,6 @@ export default function Login({ loginError }: { loginError?: string }) {
         <GitHubButtonClick/>
       </section>
 
-      <section className='min-h-screen'></section>
     </>
   );
 }

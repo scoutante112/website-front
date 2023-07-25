@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBarAccount from "../../NavBarAccount";
+import NavBarAccount from "../../Account/NavBarAccount";
 import CategoryContainer from "./CategoryContainer";
 import NewsContainer from "./NewsContainer";
 

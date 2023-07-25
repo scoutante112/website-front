@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Login from "./Login";
 import { motion } from "framer-motion";
 import Loading from "../Elements/Loading";
+import { config } from "../../config/config";
 
 const OauthCallback = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ const OauthCallback = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get('type')
   const code = urlParams.get('code');
-  const {data, error, isLoading} = useSWR(`https://privateapi.bagou450.com/api/client/web/auth/oauthloginCallback?token=${code}&type=${type}`, fetcher);
+  const {data, error, isLoading} = useSWR(`${config.privateapilink}/auth/oauthloginCallback?token=${code}&type=${type}`, fetcher);
   if(!data || (error || isLoading)) {
      return <Loading/>;
   }

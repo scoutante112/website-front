@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import NavBarAccount from "../../NavBarAccount";
+import NavBarAccount from "../../Account/NavBarAccount";
 import useSWR from "swr";
-import { config } from "../../../../config/config";
-import { fetcher } from "../../../../api/http";
-import Loading from "../../../Elements/Loading";
+import { config } from "../../../config/config";
+import { fetcher } from "../../../api/http";
+import Loading from "../../Elements/Loading";
 import { array, mixed, number, object, string } from "yup";
 import { useFormik } from "formik";
-import createCategory from "../../../../api/admin/blogs/createCategory";
+import createCategory from "../../../api/admin/blogs/createCategory";
 import { toast } from "react-toastify";
-import createNews from "../../../../api/admin/blogs/createNews";
+import createNews from "../../../api/admin/blogs/createNews";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import './toolBar.scss';
-import deleteCategory from "../../../../api/admin/blogs/deleteCategory";
-import editCategory from "../../../../api/admin/blogs/editCategory";
-import deleteNews from "../../../../api/admin/blogs/deleteNews";
-import editNews from "../../../../api/admin/blogs/editNews";
+import deleteCategory from "../../../api/admin/blogs/deleteCategory";
+import editCategory from "../../../api/admin/blogs/editCategory";
+import deleteNews from "../../../api/admin/blogs/deleteNews";
+import editNews from "../../../api/admin/blogs/editNews";
 
 
 interface categorie {

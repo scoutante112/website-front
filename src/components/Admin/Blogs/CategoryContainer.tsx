@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import NavBarAccount from "../../NavBarAccount";
+import NavBarAccount from "../../Account/NavBarAccount";
 import useSWR from "swr";
-import { config } from "../../../../config/config";
-import { fetcher } from "../../../../api/http";
-import Loading from "../../../Elements/Loading";
+import { config } from "../../../config/config";
+import { fetcher } from "../../../api/http";
+import Loading from "../../Elements/Loading";
 import { array, mixed, object, string } from "yup";
 import { useFormik } from "formik";
-import createTicket from "../../../../api/account/tickets/createTicket";
+import createTicket from "../../../api/account/tickets/createTicket";
 import { toast } from "react-toastify";
-import createCategory from "../../../../api/admin/blogs/createCategory";
-import editCategory from "../../../../api/admin/blogs/editCategory";
-import deleteCategory from "../../../../api/admin/blogs/deleteCategory";
+import createCategory from "../../../api/admin/blogs/createCategory";
+import editCategory from "../../../api/admin/blogs/editCategory";
+import deleteCategory from "../../../api/admin/blogs/deleteCategory";
 
 interface categorie {
   id: number;

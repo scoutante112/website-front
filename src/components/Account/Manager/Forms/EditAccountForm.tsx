@@ -17,6 +17,7 @@ import linkOauth from "../../../../api/account/linkOauth";
 import AccountContainer from "../AccountContainer";
 import Cookies from "js-cookie";
 import deleteOauth from "../../../../api/account/deleteOauth";
+import { config } from "../../../../config/config";
 
 const form = object({
     email: string().email('This is not a valid email.').required('')
@@ -68,19 +69,24 @@ export default function EditAccountForm({account}: {account: Account}) {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [error, showError] = useState<string>();
-
+  const [error2, showError2] = useState<string>();
+  const { mutate } = useSWR(
+    `${config.privateapilink}/auth/isLogged?infos=true`,
+    fetcher
+  );
     const changeEmail = debounce((value: string) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if(!emailRegex.test(value)) {
         showError('This email is invalid.')
         return;
       }
+
       showError('')
       if(value === account.email) {
         return;
       }
       setLoading(true)
-      editAccount(value).then((data) => {
+      editAccount(value, 'email').then((data) => {
         if(data.data['status'] === 'error') {
           toast.error(data.data['message'], {
             position: "bottom-right",
@@ -93,7 +99,7 @@ export default function EditAccountForm({account}: {account: Account}) {
             theme: "dark",
           });
         } else {
-          toast.success('Success! Your informations was edited.', {
+          toast.success('Success! Your email was edited.', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -107,6 +113,7 @@ export default function EditAccountForm({account}: {account: Account}) {
 
         }
         setLoading(false)
+        mutate()
       }).catch((e) => {
         toast.error('An unexcepted error happend. Please contact one of our support team.', {
           position: "bottom-right",
@@ -121,6 +128,59 @@ export default function EditAccountForm({account}: {account: Account}) {
         setLoading(false)
       })
     }, 500)
+  const changeUsername = debounce((value: string) => {
+    if(value === '') {
+      showError2('Can\'t use a empty username.')
+      return;
+    }
+
+    showError2('')
+    if(value === account.name) {
+      return;
+    }
+    setLoading(true)
+    editAccount(value, 'name').then((data) => {
+      if(data.data['status'] === 'error') {
+        toast.error(data.data['message'], {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      } else {
+        toast.success('Success! Your username was edited.', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+
+      }
+      setLoading(false)
+      mutate()
+    }).catch((e) => {
+      toast.error('An unexcepted error happend. Please contact one of our support team.', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setLoading(false)
+    })
+  }, 500)
   return (
         <section className='my-4 rounded-lg' >
             <h2 className='text-2xl my-4 text-center'>Edit your address information</h2>
@@ -142,7 +202,24 @@ export default function EditAccountForm({account}: {account: Account}) {
                 <span className='text-red-500'>{error}</span>
               </label>
               </div>
+          <div>
+            <label className="label">
+              <span className="label-text">Username</span>
+            </label>
+            <input id="name"
+                   name="name"
+                   defaultValue={account.name}
+                   type="name"
+                   disabled={loading}
 
+                   placeholder="Bagou450"
+                   onChange={(e) => changeUsername(e.target.value)}
+                   required
+                   className="input input-bordered w-full mr-4" />
+            <label className="label">
+              <span className='text-red-500'>{error2}</span>
+            </label>
+          </div>
         <div className={'grid grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-x-2 md:gap-y-0'}>
 
           <Discord account={account}/>

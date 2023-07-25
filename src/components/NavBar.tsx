@@ -7,13 +7,14 @@ import md5 from 'blueimp-md5';
 import { fetcher } from '../api/http';
 import { MainNavRoutes } from '../App';
 import LazyLoad from 'react-lazyload';
+import { config } from "../config/config";
 export default function NavBar() {
   const navigate = useNavigate();
 
   const location = useLocation();
   const infos = location.pathname.startsWith('/account') || location.pathname.startsWith('/admin');
   const { data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=${infos}`,
+    `${config.privateapilink}/auth/isLogged?infos=${infos}`,
     fetcher
   );
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'night')
@@ -112,6 +113,7 @@ export default function NavBar() {
         </ul>
 
       </div>
+
       </>
   );
 }

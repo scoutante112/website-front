@@ -7,6 +7,7 @@ import { IoCheckmarkCircleOutline } from "react-icons/io5";
 // @ts-ignore
 import presetReact from "@bbob/preset-react";
 import Loading from "../Elements/Loading";
+import { config } from "../../config/config";
 // @ts-ignore
 const BBCode = lazy(() => import('@bbob/react'));
 
@@ -20,7 +21,7 @@ export default function Product() {
   let { id } = useParams(); 
 
   document.title = "Bagou450 - Product";
-  const { data, error, isLoading } = useSWR(`https://api.bagou450.com/api/client/web/addons/getone?id=${id}`, fetcher)
+  const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}`, fetcher)
   if(!data || (error || isLoading)) {
     return (<Loading/>)
   }
@@ -86,14 +87,6 @@ export default function Product() {
                 </div>
             )}
             
-            <div className='mt-8'>
-                    {addon.link.map((element: any, key: React.Key | null | undefined) => {
-    return element.name === 'bbb' && (
-        <p key={key} className='text-white text-xl'>Please notice that if you want to buy this product trough <span className='font-bold'>PayPal</span> you can use
-    <Link to={`/product/purchase/${id}`} className='text-blue-500'> BuiltByBits</Link>
-    </p>
-)})}
-</div>
         </section>
     </div>
   <div className="divider">Description</div>

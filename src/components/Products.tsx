@@ -2,6 +2,7 @@ import React, { lazy, useState, Suspense } from "react";
 import useSWR from "swr";
 import { debounce } from 'debounce';
 import Loading from "./Elements/Loading";
+import { config } from "../config/config";
 const ProductBox = lazy(() => import('./ProductBox'));
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
@@ -11,9 +12,10 @@ export default function Products() {
   const [search, setSearch] = useState<string>('')
   const [page, setPage] = useState<number>(1)
   const {data, mutate, error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/addons/get?page=${page}&search=${search}&perpage=21`,
+    `${config.privateapilink}/addons/get?page=${page}&search=${search}&perpage=21`,
     fetcher
   );
+
   document.title = "Bagou450 - Products";
   if(!data || (error || isLoading)) {
     return ( 

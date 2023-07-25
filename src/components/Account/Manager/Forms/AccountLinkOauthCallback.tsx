@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import Loading from "../../../Elements/Loading";
 import AccountContainer from "../AccountContainer";
+import { config } from "../../../../config/config";
 
 
 export default function AccountLinkOauthCallback() {
@@ -15,10 +16,10 @@ export default function AccountLinkOauthCallback() {
   const type = urlParams.get('type')
   const code = urlParams.get('code');
   const { mutate } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `${config.privateapilink}/auth/isLogged?infos=true`,
     fetcher
   );
-  const fetchUrl = `https://privateapi.bagou450.com/api/client/web/account/oauthCallback?token=${code}&type=${type}`;
+  const fetchUrl = `${config.privateapilink}/account/oauthCallback?token=${code}&type=${type}`;
   const fetchData = async () => {
     try {
       const response = await fetch(fetchUrl, {headers: {

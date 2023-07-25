@@ -15,6 +15,7 @@ import Markdown from 'marked-react';
 import breaks from 'remark-breaks';
 import addMessage from "../../../api/account/tickets/addMessage";
 import ConversationRow, { MessagesRequest } from "./ConversationRow";
+import updateTicket from "../../../api/account/tickets/updateTicket";
 
 
 interface Attachment {
@@ -37,19 +38,21 @@ const formatSize = (sizeInBytes: number) => {
 export default function TicketViewContainer() {
   const { id } = useParams();
   const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     window.scrollTo(0,0);
   }, [])
-  const { data,  error: error, isLoading } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/tickets/${id}/details`,
+  const { data,  error: error, isLoading, mutate } = useSWR(
+    `${config.privateapilink}/tickets/${id}/details`,
     fetcher
   );
   const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `${config.privateapilink}/auth/isLogged?infos=true`,
     fetcher
   );
   const { data: data3, error: error3, isLoading: isLoading3 } = useSWR<MessagesRequest>(
-    `https://privateapi.bagou450.com/api/client/web/tickets/${id}/messages?page=${page}&perPage=10`,
+    `${config.privateapilink}/tickets/${id}/messages?page=${page}&perPage=10`,
     fetcher
   );
 
@@ -59,7 +62,52 @@ export default function TicketViewContainer() {
   }
   const account: Account = data2.data;
   const totalPage = data3.data!.totalPage;
+  const UpdateStatus = () => {
+    setLoading(true);
+    updateTicket(data.data.ticket.id, data.data.ticket.status !== 'closed' ? 'closed' : account.role ? 'support_answer' : 'client_answer').then((data) => {
+      console.log(data)
+      if(data.data.status === 'error') {
+        toast.error(`Error: ${data.data.message}`, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setLoading(false);
+        return;
+      }
+      window.scrollTo(0,0);
+      mutate();
+      toast.success(`Ticket status modified successfully.`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setLoading(false);
+    }).catch((e) => {
+      toast.error(`Error: ${e}`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setLoading(false);
+    })
 
+  }
   document.title = `Bagou450 -  Ticket ${id}`
   return (
     <>
@@ -77,9 +125,12 @@ export default function TicketViewContainer() {
               <button className='btn btn-outline btn-secondary mt-2 outline-0 float-right' onClick={() => {setPage(page+1); window.scrollTo(0,0);}}>Next page</button>
             }
           </div>
+          <button disabled={loading} className={data.data.ticket.status === 'closed' ? 'btn-success btn btn-outline mt-2 outline-0' : 'btn-error btn btn-outline mt-2 outline-0'} onClick={() => UpdateStatus()}>{data.data.ticket.status === 'closed' ? 'Open Ticket' : 'Close ticket'}</button>
+
+
         </div>
         <div className={'mx-4 col-span-3'}>
-          <ConversationRow id={data.data.ticket.id} account={account} page={page}/>
+          <ConversationRow open={data.data.ticket.status !== 'closed'} id={data.data.ticket.id} account={account} page={page}/>
 
         </div>
 

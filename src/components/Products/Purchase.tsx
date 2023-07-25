@@ -42,7 +42,7 @@ export default function Purchase() {
     isLoading,
     mutate,
   } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/account/getinfos`,
+    `${config.privateapilink}/account/getinfos`,
     fetcher
   );
   const {
@@ -51,7 +51,7 @@ export default function Purchase() {
     isLoading: isLoading2,
     mutate: mutate2,
   } = useSWR(
-    `https://api.bagou450.com/api/client/web/addons/getone?id=${id}`,
+    `${config.privateapilink}/addons/getone?id=${id}`,
     fetcher
   );
   const { data: data3, error: error3, isLoading: isLoading3, mutate: mutate3 } = useSWR(

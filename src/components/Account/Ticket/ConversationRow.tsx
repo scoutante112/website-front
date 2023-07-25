@@ -7,6 +7,7 @@ import Loading from "../../Elements/Loading";
 import moment from "moment/moment";
 import Markdown from "marked-react";
 import { Account } from "../Manager/Forms/EditAccountForm";
+import { bool } from "yup";
 
 export interface Message {
   message: string;
@@ -31,10 +32,9 @@ export interface MessagesRequest {
   data?: MessagesData
 }
 
-export default function ConversationRow({id,account,page}: {id: string, account: Account, page: number}) {
+  export default function ConversationRow({id,account,page, open}: {id: string, account: Account, page: number, open: boolean}) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string>('');
-
   const {data, error, isLoading, mutate } = useSWR<MessagesRequest>(
     `https://privateapi.bagou450.com/api/client/web/tickets/${id}/messages?page=${page}&perPage=10`,
     fetcher
@@ -117,7 +117,7 @@ export default function ConversationRow({id,account,page}: {id: string, account:
 
         );
       })}
-      {data.data.totalPage === page &&
+      {data.data.totalPage === page && open &&
         <div className={'mt-4 mx-4'}>
 
           <form onSubmit={handleSubmit}>
