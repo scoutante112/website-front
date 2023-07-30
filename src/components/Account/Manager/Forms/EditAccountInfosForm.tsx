@@ -21,7 +21,7 @@ const form = object({
   lastname: string().required(''),
   postalcode: string().required('').matches(/^\d{5}(?:[-\s]\d{4})?$/, 'The postal code is not correct.'),
 });
-export default function EditAccountInfosForm() {
+export default function EditAccountInfosForm({setAddress}: {setAddress?: React.Dispatch<React.SetStateAction<boolean>>}) {
   const [loading, setLoading] = useState(false);
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
@@ -106,8 +106,10 @@ export default function EditAccountInfosForm() {
             progress: undefined,
             theme: "dark",
           });
-          setLoading(false)
-
+          setLoading(false);
+          if(setAddress) {
+            setAddress(false);
+          }
         }
         setLoading(false)
       }).catch((e) => {
@@ -174,7 +176,7 @@ export default function EditAccountInfosForm() {
               </label>
             </div>
           <div><label className="label mx-auto ">
-            <span className="label-text">Adress</span>
+            <span className="label-text">Address</span>
           </label>
             <input id="address"
               name="address"
@@ -256,7 +258,7 @@ export default function EditAccountInfosForm() {
               defaultValue={data.data.firstname ? data.data.firstname : ''}
               className="input input-bordered w-full max-w-sm" />
             <label className="label">
-              <span className='text-red-500'>{formik.errors.address}</span>
+              <span className='text-red-500'>{formik.errors.firstname}</span>
             </label>
           </div>
           <div><label className="label mx-auto ">
@@ -272,7 +274,7 @@ export default function EditAccountInfosForm() {
               defaultValue={data.data.lastname ? data.data.lastname : ''}
               className="input input-bordered w-full max-w-sm" />
             <label className="label">
-              <span className='text-red-500'>{formik.errors.address}</span>
+              <span className='text-red-500'>{formik.errors.lastname}</span>
             </label>
           </div>
         </div>

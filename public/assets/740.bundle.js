@@ -1,5 +1,170 @@
 (globalThis["__LOADABLE_LOADED_CHUNKS__"] = globalThis["__LOADABLE_LOADED_CHUNKS__"] || []).push([[740],{
 
+/***/ 9911:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (/* binding */ NavBarAccount)
+/* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9250);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9655);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var _api_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9670);
+/* harmony import */ var swr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3757);
+/* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1229);
+/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1412);
+
+
+
+
+
+
+function NavBarAccount(tab) {
+  const location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__/* .useLocation */ .TH)();
+  const [admin, showAdmin] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(location.pathname.startsWith('/admin/'));
+  const {
+    data,
+    error,
+    isLoading
+  } = (0,swr__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`${_config_config__WEBPACK_IMPORTED_MODULE_4__/* .config */ .v.privateapilink}/auth/isLogged?infos=true`, _api_http__WEBPACK_IMPORTED_MODULE_1__/* .fetcher */ ._i);
+  if (!data || error || isLoading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Elements_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "      ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "text-4xl my-4 text-center"
+  }, "Hello, ", !data || error || isLoading ? 'User' : data.data.name[0].toUpperCase() + data.data.name.slice(1, data.data.name.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: "mx-auto text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "menu menu-horizontal rounded-box gap-x-2"
+  }, !admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'manage' ? 'bg-neutral-focus disabled' : '',
+    to: '/account/manage'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "h-5 w-5",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    stroke: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+  })), "Manage Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'licenses' ? 'bg-neutral-focus disabled' : '',
+    to: '/account/licenses'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "h-5 w-5",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    stroke: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+  })), "Licenses")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    to: '/account/orders',
+    className: tab.tab === 'orders' ? 'bg-neutral-focus disabled' : ''
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "h-5 w-5",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    stroke: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+  })), "Orders")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'tickets' ? 'bg-neutral-focus disabled' : '',
+    to: '/account/tickets'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    className: "w-5 h-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+  })), "Tickets"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'users' ? 'bg-neutral-focus disabled' : '',
+    to: '/admin/users'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    className: "w-5 h-5",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+  })), "Users")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'products' ? 'bg-neutral-focus disabled' : '',
+    to: '/admin/products'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    className: "w-5 h-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+  })), "Products")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'invoices' ? 'bg-neutral-focus disabled' : '',
+    to: '/admin/invoices'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    className: "w-5 h-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+  })), "Invoices")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__/* .Link */ .rU, {
+    className: tab.tab === 'blogs' ? 'bg-neutral-focus disabled' : '',
+    to: '/admin/blogs'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    className: "w-5 h-5",
+    "stroke-width": "2",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M4 2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm5 3h6M7 10h10M7 14h10M7 18h7"
+  })), "Blog"))), data.data.role ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "checkbox",
+    className: "toggle toggle-success ml-8 my-auto",
+    checked: admin,
+    onClick: function () {
+      return showAdmin(!admin);
+    }
+  }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "mx-2 my-auto"
+  }, "Show admin")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null)), admin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "text-center text-red-500 text-xl font-semibold"
+  }, "ADMINISTRATOR MODE")));
+}
+
+/***/ }),
+
 /***/ 8740:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -6436,7 +6601,7 @@ function TicketContainer() {
     id: 'search',
     defaultValue: search,
     placeholder: "Search here",
-    className: "input input-bordered input-md w-full col-span-3",
+    className: `input input-bordered input-md w-full col-span-3 ${data.data.data.length < 1 ? 'disabled' : ''}`,
     onChange: function (e) {
       return searchValue(e.target.value);
     }
@@ -6461,7 +6626,7 @@ function TicketContainer() {
     onClick: function () {
       setIsChecked(true);
     }
-  }, "New ticket")), /*#__PURE__*/react.createElement("table", {
+  }, "New ticket")), data.data.data.length > 0 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("table", {
     className: "table w-full max-w-7xl mx-auto border-neutral border-2"
   }, /*#__PURE__*/react.createElement("thead", null, /*#__PURE__*/react.createElement("tr", {
     className: "w-full"
@@ -6484,7 +6649,9 @@ function TicketContainer() {
     }, /*#__PURE__*/react.createElement("td", {
       className: 'btn btn-primary btn-outline my-4'
     }, "View")));
-  }))), /*#__PURE__*/react.createElement("div", {
+  })))) : /*#__PURE__*/react.createElement("p", {
+    className: 'text-center opacity-80'
+  }, "No tickets matching these parameters were found for this account."), /*#__PURE__*/react.createElement("div", {
     className: 'flex w-full max-w-7xl mx-auto'
   }, page > 1 && /*#__PURE__*/react.createElement("p", {
     className: 'btn btn-primary btn-outline my-4 ',
@@ -6578,321 +6745,6 @@ function debounce(func, wait, immediate){
 debounce.debounce = debounce;
 
 module.exports = debounce;
-
-
-/***/ }),
-
-/***/ 4405:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  w_: () => (/* reexport */ GenIcon)
-});
-
-// UNUSED EXPORTS: DefaultContext, IconBase, IconContext, IconsManifest
-
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconsManifest.js
-var IconsManifest = [
-  {
-    "id": "ci",
-    "name": "Circum Icons",
-    "projectUrl": "https://circumicons.com/",
-    "license": "MPL-2.0 license",
-    "licenseUrl": "https://github.com/Klarr-Agency/Circum-Icons/blob/main/LICENSE"
-  },
-  {
-    "id": "fa",
-    "name": "Font Awesome 5",
-    "projectUrl": "https://fontawesome.com/",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "fa6",
-    "name": "Font Awesome 6",
-    "projectUrl": "https://fontawesome.com/",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "io",
-    "name": "Ionicons 4",
-    "projectUrl": "https://ionicons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/ionic-team/ionicons/blob/master/LICENSE"
-  },
-  {
-    "id": "io5",
-    "name": "Ionicons 5",
-    "projectUrl": "https://ionicons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/ionic-team/ionicons/blob/master/LICENSE"
-  },
-  {
-    "id": "md",
-    "name": "Material Design icons",
-    "projectUrl": "http://google.github.io/material-design-icons/",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "https://github.com/google/material-design-icons/blob/master/LICENSE"
-  },
-  {
-    "id": "ti",
-    "name": "Typicons",
-    "projectUrl": "http://s-ings.com/typicons/",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  },
-  {
-    "id": "go",
-    "name": "Github Octicons icons",
-    "projectUrl": "https://octicons.github.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/primer/octicons/blob/master/LICENSE"
-  },
-  {
-    "id": "fi",
-    "name": "Feather",
-    "projectUrl": "https://feathericons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/feathericons/feather/blob/master/LICENSE"
-  },
-  {
-    "id": "lu",
-    "name": "Lucide",
-    "projectUrl": "https://lucide.dev/",
-    "license": "ISC",
-    "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
-  },
-  {
-    "id": "gi",
-    "name": "Game Icons",
-    "projectUrl": "https://game-icons.net/",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
-  },
-  {
-    "id": "wi",
-    "name": "Weather Icons",
-    "projectUrl": "https://erikflowers.github.io/weather-icons/",
-    "license": "SIL OFL 1.1",
-    "licenseUrl": "http://scripts.sil.org/OFL"
-  },
-  {
-    "id": "di",
-    "name": "Devicons",
-    "projectUrl": "https://vorillaz.github.io/devicons/",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "ai",
-    "name": "Ant Design Icons",
-    "projectUrl": "https://github.com/ant-design/ant-design-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "bs",
-    "name": "Bootstrap Icons",
-    "projectUrl": "https://github.com/twbs/icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "ri",
-    "name": "Remix Icon",
-    "projectUrl": "https://github.com/Remix-Design/RemixIcon",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "http://www.apache.org/licenses/"
-  },
-  {
-    "id": "fc",
-    "name": "Flat Color Icons",
-    "projectUrl": "https://github.com/icons8/flat-color-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "gr",
-    "name": "Grommet-Icons",
-    "projectUrl": "https://github.com/grommet/grommet-icons",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "http://www.apache.org/licenses/"
-  },
-  {
-    "id": "hi",
-    "name": "Heroicons",
-    "projectUrl": "https://github.com/tailwindlabs/heroicons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "hi2",
-    "name": "Heroicons 2",
-    "projectUrl": "https://github.com/tailwindlabs/heroicons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "si",
-    "name": "Simple Icons",
-    "projectUrl": "https://simpleicons.org/",
-    "license": "CC0 1.0 Universal",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
-  },
-  {
-    "id": "sl",
-    "name": "Simple Line Icons",
-    "projectUrl": "https://thesabbir.github.io/simple-line-icons/",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "im",
-    "name": "IcoMoon Free",
-    "projectUrl": "https://github.com/Keyamoon/IcoMoon-Free",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt"
-  },
-  {
-    "id": "bi",
-    "name": "BoxIcons",
-    "projectUrl": "https://github.com/atisawd/boxicons",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://github.com/atisawd/boxicons/blob/master/LICENSE"
-  },
-  {
-    "id": "cg",
-    "name": "css.gg",
-    "projectUrl": "https://github.com/astrit/css.gg",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "vsc",
-    "name": "VS Code Icons",
-    "projectUrl": "https://github.com/microsoft/vscode-codicons",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "tb",
-    "name": "Tabler Icons",
-    "projectUrl": "https://github.com/tabler/tabler-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "tfi",
-    "name": "Themify Icons",
-    "projectUrl": "https://github.com/lykmapipo/themify-icons",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/thecreation/standard-icons/blob/master/modules/themify-icons/LICENSE"
-  },
-  {
-    "id": "rx",
-    "name": "Radix Icons",
-    "projectUrl": "https://icons.radix-ui.com",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/radix-ui/icons/blob/master/LICENSE"
-  },
-  {
-    "id": "pi",
-    "name": "Phosphor Icons",
-    "projectUrl": "https://github.com/phosphor-icons/core",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/phosphor-icons/core/blob/main/LICENSE"
-  },
-  {
-    "id": "lia",
-    "name": "Icons8 Line Awesome",
-    "projectUrl": "https://icons8.com/line-awesome",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/icons8/line-awesome/blob/master/LICENSE.md"
-  }
-]
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconContext.js
-
-var DefaultContext = {
-  color: undefined,
-  size: undefined,
-  className: undefined,
-  style: undefined,
-  attr: undefined
-};
-var IconContext = react.createContext && react.createContext(DefaultContext);
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconBase.js
-var __assign = undefined && undefined.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-    }
-    return t;
-  };
-  return __assign.apply(this, arguments);
-};
-var __rest = undefined && undefined.__rest || function (s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-
-
-function Tree2Element(tree) {
-  return tree && tree.map(function (node, i) {
-    return react.createElement(node.tag, __assign({
-      key: i
-    }, node.attr), Tree2Element(node.child));
-  });
-}
-function GenIcon(data) {
-  // eslint-disable-next-line react/display-name
-  return function (props) {
-    return react.createElement(IconBase, __assign({
-      attr: __assign({}, data.attr)
-    }, props), Tree2Element(data.child));
-  };
-}
-function IconBase(props) {
-  var elem = function (conf) {
-    var attr = props.attr,
-      size = props.size,
-      title = props.title,
-      svgProps = __rest(props, ["attr", "size", "title"]);
-    var computedSize = size || conf.size || "1em";
-    var className;
-    if (conf.className) className = conf.className;
-    if (props.className) className = (className ? className + " " : "") + props.className;
-    return react.createElement("svg", __assign({
-      stroke: "currentColor",
-      fill: "currentColor",
-      strokeWidth: "0"
-    }, conf.attr, attr, svgProps, {
-      className: className,
-      style: __assign(__assign({
-        color: props.color || conf.color
-      }, conf.style), props.style),
-      height: computedSize,
-      width: computedSize,
-      xmlns: "http://www.w3.org/2000/svg"
-    }), title && react.createElement("title", null, title), props.children);
-  };
-  return IconContext !== undefined ? react.createElement(IconContext.Consumer, null, function (conf) {
-    return elem(conf);
-  }) : elem(DefaultContext);
-}
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/index.js
-
-
 
 
 /***/ })

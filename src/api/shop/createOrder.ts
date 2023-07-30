@@ -1,12 +1,12 @@
 import { config } from '../../config/config';
 import http from '../http';
 
-const createOrder = (product: string, promocode?: string): Promise<any> => {
+const createOrder = (products: number[]): Promise<any> => {
   return new Promise((resolve, reject) => {
     http
-      .post(`${config.privateapilink}/orders`, { product, promocode })
+      .post(`${config.privateapilink}/orders`, { products })
       .then((data) => resolve(data))
-      .catch((data) => resolve(data));
+      .catch((error) => reject(error));
   });
 };
 

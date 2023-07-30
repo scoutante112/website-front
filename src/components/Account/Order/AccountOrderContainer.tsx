@@ -141,7 +141,7 @@ export default function AccountOrderContainer() {
       <section className='mx-8 my-4'>
 
         <div >
-
+          {data.data.orders.length > 0 ? <>
           <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
             {/* head */}
             <thead>
@@ -196,6 +196,8 @@ export default function AccountOrderContainer() {
 
             </tbody>
           </table>
+        </> : <p className={'text-center opacity-80'}>No orders found for this account.</p>
+        }
         </div>
       </section>
       <section className='min-h-screen'></section>

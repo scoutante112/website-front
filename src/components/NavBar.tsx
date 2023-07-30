@@ -8,6 +8,9 @@ import { fetcher } from '../api/http';
 import { MainNavRoutes } from '../App';
 import LazyLoad from 'react-lazyload';
 import { config } from "../config/config";
+import { FaShoppingBasket } from "react-icons/fa";
+import BasketIcon from "./Elements/BasketIcon";
+
 export default function NavBar() {
   const navigate = useNavigate();
 
@@ -73,7 +76,7 @@ export default function NavBar() {
             <>
 
               <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost rounded-btn h-full"> <img src={`https://www.gravatar.com/avatar/${md5(data.data.email)}?d=404`} alt='test'
+                <label tabIndex={0} className="btn btn-ghost rounded-btn h-full mx-2"> <img src={`https://www.gravatar.com/avatar/${md5(data.data.email)}?d=404`} alt='test'
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping
                     currentTarget.src = `https://ui-avatars.com/api/?background=042049&color=5271ff&name=${data.data.name}`;
@@ -102,7 +105,10 @@ export default function NavBar() {
 
             :
             <><li className={'my-auto'}><Link to={'/login'}>Login</Link></li><li className={'mx-2 my-auto'}><Link to={'/register'}>Register</Link></li></>}
-          <li className={'hidden lg:flex '}>
+
+            <BasketIcon/>
+
+          <li className={'hidden lg:flex'}>
               <select className="select h-full bg-none mx-4 md:flex bg-neutral" onChange={(e) => setTheme(e.target.value.toLowerCase() === 'default theme' ? 'night' : e.target.value.toLowerCase())} defaultValue={theme}>
                 {themeslist.map((theme, key) => {
                   return <option className={'text-white'} key={key}>{theme[0].toUpperCase() + theme.slice(1, theme.length).toUpperCase()}</option>;

@@ -6,8 +6,9 @@ import "react-toastify/dist/ReactToastify.min.css";
 import NavBar from "./components/NavBar";
 import LazyLoad from "react-lazyload";
 import { ToastContainer } from "react-toastify";
-import UsersContainer from "./components/Admin/Users/UsersContainer";
 
+const ProductsContainer = lazy(() => import('./components/Admin/Products/ProductsContainer'));
+const UsersContainer = lazy(() => import('./components/Admin/Users/UsersContainer'));
 const Loading = lazy(() => import('./components/Elements/Loading'));
 const Products = lazy(() => import('./components/Products'));
 const Licenses = lazy(() => import('./components/Licenses'));
@@ -17,7 +18,7 @@ const Register = lazy(() => import('./components/Auth/Register'));
 const AccountContainer = lazy(() => import('./components/Account/Manager/AccountContainer'));
 const AccountLicenseContainer = lazy(() => import('./components/Account/License/AccountLicenseContainer'));
 const AccountOrderContainer = lazy(() => import('./components/Account/Order/AccountOrderContainer'));
-const Purchase = lazy(() => import('./components/Products/Purchase'));
+const OrdersCallback = lazy(() => import('./components/Products/OrdersCallback'));
 const TokenLogin = lazy(() => import('./components/Auth/TokenLogin'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -28,6 +29,7 @@ const TicketViewContainer = lazy(() => import('./components/Account/Ticket/Ticke
 const NewsContainer = lazy(() => import('./components/News/NewsContainer'));
 const BlogsContainer = lazy(() => import('./components/Admin/Blogs/BlogsContainer'));
 const NewsCard = lazy(() => import('./components/News/NewsCard'));
+const Footer = lazy(() => import('./components/Elements/Footer'));
 
 
 export const MainNavRoutes = [
@@ -118,6 +120,11 @@ export const AdminRoutes = [
     link: "/admin/users",
     component: <UsersContainer />
   },
+  {
+    name: "products",
+    link: "/admin/products",
+    component: <ProductsContainer />
+  },
 ]
 
 export const OthersRoutes = [
@@ -132,13 +139,14 @@ export const OthersRoutes = [
     component: <NewsCard />
   },
   {
-    name: "purchase",
-    link: "/product/purchase/:id",
-    component: <Purchase />
+    name: "order",
+    link: "/order/:id",
+    component: <OrdersCallback />
   }
 ];
 
 function App() {
+
     return (
       <>
         <GlobalStylesheet />
@@ -172,6 +180,7 @@ function App() {
               <span>Warning: This website is still in development. Some functionality is still missing and some bugs may occur!</span>
             </div>
           </div>*/}
+          <div className={'min-h-screen'}>
           <Suspense fallback={<Loading />}>
           <Routes>
 
@@ -192,29 +201,10 @@ function App() {
             <Route path={"*"} element={<NotFoundPage />} />
           </Routes>
           </Suspense>
-
-          <footer className="footer order-t-2 border-neutral border-t-2">
-            <div className="flex items-center space-x-4 mt-4">
-              <img
-                src="https://cdn.bagou450.com/website/assets/logo/bagou-white-nobg.webp"
-                className="h-16 w-16 hidden md:block"
-                alt="Logo" />
-              <p className="text-lg font-semibold">
-                Bagou450.<br />Provide Sysadmin service since 2016. <br />Provide Pterodactyl addons since 2020.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <span className="footer-title font-semibold">About</span>
-              <div className={'gap-y-2'}><Link to={"/contact"} className="link link-hover"><p>Contact</p></Link>
-
-              <Link to={"/tos"} className="link link-hover"> <p>Terms of Service</p></Link>
-                <Link to={"/ppo"} className="link link-hover"> <p>  Privacy Policy</p></Link>
-              <Link to={"/rp"} className=" link link-hover">  <p>  Refund Policy</p></Link>
-            <Link to={"/lm"} className="link link-hover">   <p>   Legal Mention</p></Link>
-              </div>
-            </div>
-
-          </footer>
+          </div>
+          <Suspense fallback={<Loading />}>
+          <Footer/>
+          </Suspense>
         </Router>
 
 

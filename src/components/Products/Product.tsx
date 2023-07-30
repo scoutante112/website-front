@@ -1,34 +1,158 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import { RiInstallLine } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 // @ts-ignore
-import presetReact from "@bbob/preset-react";
 import Loading from "../Elements/Loading";
 import { config } from "../../config/config";
+import { basketItem } from "../Elements/BasketIcon";
+import { fetcher } from "../../api/http";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import getDownloadOneLink from "../../api/shop/getDownloadOneLink";
+import ReactHtmlParser from "react-html-parser";
 // @ts-ignore
-const BBCode = lazy(() => import('@bbob/react'));
+import 'react-quill/dist/quill.snow.css';
+import '../Admin/Blogs/toolBar.scss';
 
 
 
 
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
-  
 export default function Product() {
-
-  let { id } = useParams(); 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  let { id } = useParams();
+  const navigate = useNavigate();
+  if(!id || id == null) {
+    navigate('/');
+  }
   document.title = "Bagou450 - Product";
   const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}`, fetcher)
+  const [basket, setBasket] = useState<basketItem[]>();
+  const [inBasket, setInBasket] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleLocalStorageChange = () => {
+    const storedBasket = localStorage.getItem("basket");
+    if(!storedBasket) {
+      setInBasket(false);
+      setBasket([]);
+      return;
+    }
+    const basketArray: basketItem[] = JSON.parse(storedBasket);
+    setInBasket(basketArray.some((basketelement: basketItem) => basketelement.id.toString() === id));
+    setBasket(basketArray)
+
+  };
+  useEffect(() => {
+    handleLocalStorageChange();
+    window.addEventListener('basket', handleLocalStorageChange);
+
+    return () => {
+      window.removeEventListener('basket', handleLocalStorageChange);
+    };
+  }, []);
   if(!data || (error || isLoading)) {
     return (<Loading/>)
   }
   const addon = data.data;
-  console.log(addon)
+  const downloadProduct = () => {
+    setLoading(true);
+    toast.info('Please wait during the generation of the file...', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    if (id != null) {
+      getDownloadOneLink(id).then((data) => {
+        fetch(`${config.privateapilink}${data.data.data}?product=${id}`, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("access_token")}`
+          }
+        }).then(response => response.blob()).then(blob => {
+
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `Bagou450-${id}.zip`);
+          document.body.appendChild(link);
+          link.addEventListener("load", () => {
+            URL.revokeObjectURL(url);
+          });
+          link.click();
+          if (link.parentNode) {
+            link.parentNode.removeChild(link);
+          }
+          toast.success("Your file is now downloaded!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark"
+          });
+        });
+
+      }).catch(() => {
+        toast.error("An unexcepted error happend. Please contact one of our support team.", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+        });
+
+      });
+    }
+
+    setLoading(false);
+
+  }
+
+  const addBasket = () => {
+    const elements = localStorage.getItem("basket");
+
+    if(elements) {
+      const basketArray: basketItem[] = JSON.parse(elements);
+      setBasket(basketArray);
+    } else {
+      setBasket([]);
+    }
+    const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag };
+    if(!basket || !basket.length) {
+      localStorage.setItem("basket", JSON.stringify([newItem]));
+      window.dispatchEvent(new Event("basket"));
+
+      return;
+    }
+    if (basket.some((basketelement: basketItem) => basketelement.id === addon.id)) {
+      return;
+    }
+
+    basket.push(newItem);
+    const updatedBasket = JSON.stringify(basket);
+    localStorage.setItem("basket", updatedBasket);
+    window.dispatchEvent(new Event("basket"));
+
+  }
   document.title = "Bagou450 - " + addon.name;
-  const plugins = [presetReact()];
+  console.log(addon)
   return (
     <>
 
@@ -83,16 +207,20 @@ export default function Product() {
 </div></>
             ) : (
                 <div  className='mt-4'>
-                <Link to={`/product/purchase/${id}`}><button className="btn btn-outline btn-primary"  >Buy Now</button></Link>
+                <button className={`btn btn-outline outline-0 ${inBasket || loading ? ' btn-secondary btn-disabled' : data.owned ? 'btn-secondary' :' btn-primary'}`} onClick={() => {
+                  if(!inBasket && !data.owned) {addBasket()}
+                  if(data.owned) {downloadProduct()}
+
+                }}>{inBasket ? 'Already in basket' : data.owned ? 'Download' : 'Add to basket'}</button>
                 </div>
             )}
             
         </section>
     </div>
   <div className="divider">Description</div>
-    <section className='mx-auto text-center'><BBCode plugins={plugins} className='mx-auto text-center'>{addon.description}    </BBCode></section>
+    <section className='my-4 ql'>        {ReactHtmlParser(addon.description)}
+    </section>
     </div>
-<section className='min-h-screen'></section>
     </>
   );
 }

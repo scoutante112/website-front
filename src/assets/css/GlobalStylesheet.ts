@@ -7,6 +7,9 @@ export default createGlobalStyle`
         color: rgb(203 213 225);
         letter-spacing: 0.015em;
     }
+    footer {
+            margin-top: auto;
+    }
     h1, h2, h3, h4, h5, h6 {
         ${tw`font-medium tracking-normal`};
     }

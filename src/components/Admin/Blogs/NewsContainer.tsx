@@ -328,7 +328,7 @@ function BlogRow({blog, categories}: {blog: blog, categories: any}) {
     }
   });
   const handleQuillChange = (value: any) => {
-    formik.setFieldValue('data', value); // Mettre à jour la valeur de l'éditeur de texte dans Formik
+    formik.setFieldValue('data', value);
   };
 
   const theId = `editCateModal-${blog.title}`;

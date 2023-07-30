@@ -16,7 +16,7 @@ const form = object({
   username: string().required('You need to enter a username.'),
 });
 
-export default function Register() {
+export default function Register({setRegister, setLogin}: {setRegister?: React.Dispatch<React.SetStateAction<boolean>>, setLogin?: React.Dispatch<React.SetStateAction<boolean>>;}) {
   const [loading, setLoading] = useState(false);
   const [showerror, setError] = useState('');
   const [showmessage, setMessage] = useState('');
@@ -60,7 +60,7 @@ export default function Register() {
 
   return (
     <>
-      <h1 className='text-4xl my-4 text-center'>Register</h1>
+      <h1 className={`text-center ${setRegister ? 'text-xl' : 'text-4xl my-4'}`}>Register</h1>
       <h2 className='text-2xl my-4 text-center text-red-500'>{showerror}</h2>
       <h2 className='text-2xl my-4 text-center text-green-500'>{showmessage}</h2>
 
@@ -95,10 +95,12 @@ export default function Register() {
             Submit
           </button>
           <br/>
-          <span>You already have a account? <Link to='/login' className='text-blue-500'>Login now</Link></span>
+          <span>You already have a account? {setRegister && setLogin ? <p className={'text-blue-500 hover:underline'} onClick={() => {setRegister(false); setLogin(true)}}>Login now</p> : <Link to='/login' className='text-blue-500'>Login now</Link>}</span>
         </form>
       </section>
-      <section className='min-h-screen'></section>
+      {!setRegister &&
+        <section className='min-h-screen'></section>
+      }
     </>
   );
 }

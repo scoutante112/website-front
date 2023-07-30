@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { object, string } from "yup";
 import getLicenses from "../api/licenses/getLicenses";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
@@ -12,7 +12,6 @@ const form = object({
 });
 export default function Licenses() {
   const [boughtlocation, setBoughtlocation] = useState<string>("bgshop");
-
   const formik = useFormik({
     initialValues: { userid: "" },
     validationSchema: form,
@@ -86,32 +85,32 @@ export default function Licenses() {
                       <img src="https://cdn.bagou450.com/assets/img/bgshop.webp" alt="Bagou450 Shop"
                            className="mx-auto max-w-screen-md" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => setBoughtlocation("pm")}>❮</a>
-                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => setBoughtlocation("bbb")}>❯</a>
+                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation("pm"); window.scrollTo(0, 0);}}>❮</a>
+                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation("bbb"); window.scrollTo(0, 0);}}>❯</a>
                       </div>
                     </div>
                     <div id="slide2" className="carousel-item relative w-full">
                       <img src="https://cdn.bagou450.com/assets/img/bbb.webp" alt="BuiltByBits"
                            className="mx-auto max-w-screen-md" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => setBoughtlocation("bgshop")}>❮</a>
-                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => setBoughtlocation("ssx")}>❯</a>
+                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation("bgshop"); window.scrollTo(0, 0);}}>❮</a>
+                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation("ssx"); window.scrollTo(0, 0);}}>❯</a>
                       </div>
                     </div>
                     <div id="slide3" className="carousel-item relative w-full">
                       <img src="https://cdn.bagou450.com/assets/img/ssx.webp" alt="SourceXChange"
                            className="mx-auto max-w-screen-md" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => setBoughtlocation("bbb")}>❮</a>
-                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => setBoughtlocation("pm")}>❯</a>
+                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation("bbb"); window.scrollTo(0, 0);}}>❮</a>
+                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation("pm"); window.scrollTo(0, 0);}}>❯</a>
                       </div>
                     </div>
                     <div id="slide4" className="carousel-item relative w-full">
                       <img src="https://cdn.bagou450.com/assets/img/pm.webp" alt="Pterodactyl Market"
                            className="mx-auto max-w-screen-md" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => setBoughtlocation("ssx")}>❮</a>
-                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => setBoughtlocation("bgshop")}>❯</a>
+                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation("ssx"); window.scrollTo(0, 0);}}>❮</a>
+                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation("bgshop"); window.scrollTo(0, 0);}}>❯</a>
                       </div>
                     </div>
                   </div>

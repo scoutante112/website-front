@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { debounce } from 'debounce';
 import Loading from "./Elements/Loading";
 import { config } from "../config/config";
+import Pagination from "./Elements/Pagination";
 const ProductBox = lazy(() => import('./ProductBox'));
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
@@ -55,9 +56,7 @@ export default function Products() {
     </section>
     <div className='text-center mt-4'>
   <div className="btn-group">
-    {pageNumbers.map((element: number, key: React.Key | null | undefined) => {
-      return <button className={page === element ? "btn btn-active outline-0" : 'btn outline-0'} key={key} onClick={() => { setPage(element); mutate()}}>{element}</button>
-    })}
+    <Pagination page={page} setPage={setPage} totalPages={data.totalpage}/>
 
 
   </div>

@@ -4,6 +4,7 @@ import LazyLoad from "react-lazyload";
 import Loading from "./Elements/Loading";
 
 export default function ProductBox({element, key}: {element: any, key: any}) {
+
   return (
     <Link to={`/product/${element.id}`}>
       <div className="card card-compact bg-neutral  hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-2xl">

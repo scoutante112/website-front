@@ -53,7 +53,7 @@ export default function Login({ loginError }: { loginError?: string }) {
 
 
 
-function LoginForm() {
+export function LoginForm({setRegister, setLogin}: {setRegister?: React.Dispatch<React.SetStateAction<boolean>>, setLogin?: React.Dispatch<React.SetStateAction<boolean>>;}) {
   const form = object({
     email: string().email('This is not a valid email.').required('You need to enter a email.'),
   });
@@ -118,7 +118,7 @@ function LoginForm() {
       <button className={`btn btn-outline mt-4 w-full max-w-[16rem] mb-4 ${loading === 0 || loading === 1 ? 'btn-primary  border-0' : loading === 2 ? 'btn-success' : 'btn-error '}`} type="submit" disabled={loading !== 0 || formik.errors.email ? true : false}>
         {loading === 0 ? 'Sign in' : loading === 1 ? <span className="loading loading-spinner loading-sm text-secondary"></span> : loading === 2 ? 'Success' : 'Error'}
       </button><br/>
-      <span>You don't have a account? <Link to='/register' className='text-blue-500'>Register now</Link></span>
+      <span>You don't have a account? {setRegister && setLogin ? <p className={'text-blue-500 hover:underline'} onClick={() => {setRegister(true); setLogin(false)}}>Register now</p> : <Link to='/register' className='text-blue-500 hover:underline'>Register now</Link>}</span>
     </form>
     </div>
   )
@@ -126,7 +126,7 @@ function LoginForm() {
 
 
 
-function DiscordButton() {
+export function DiscordButton() {
   const [loading, setLoading] = useState(false);
   const discordLogin = (() => {
     setLoading(true);
@@ -143,7 +143,7 @@ function DiscordButton() {
   )
 }
 
-function GoogleButtonClick() {
+export function GoogleButtonClick() {
   const [loading, setLoading] = useState(false);
   const googleLogin = (() => {
     setLoading(true);
@@ -161,7 +161,7 @@ function GoogleButtonClick() {
 }
 
 
-function GitHubButtonClick() {
+export function GitHubButtonClick() {
   const [loading, setLoading] = useState(false);
   const githubLogin = (() => {
     setLoading(true);

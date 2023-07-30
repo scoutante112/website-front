@@ -26,12 +26,18 @@ function Contact() {
     className: "text-blue-500"
   }, "contact@bagou450.com"), " (Answer in 12-24h)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "font-bold text-3xl my-4"
-  }, "Sms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "You can send a sms to +33 7 56 89 00 36 (Your local operator's charges apply) (Answer in 12-24h)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, "Sms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For Europe: You can send a sms to  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: 'tel:+33651975031',
+    className: "text-blue-500"
+  }, "+33 (0)6 51 97 50 31"), " (Your local operator's charges apply) (Answer in 12-24h)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For America/Others: You can send a sms to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: 'tel:+16036003503',
+    className: "text-blue-500"
+  }, "+1 603-600-3503"), " (Your local operator's charges apply) (Answer in 12-24h)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "font-bold text-3xl my-4"
   }, "Discord"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "You can contact me on ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://discord.gg/bagou450",
     className: "text-blue-500"
-  }, "discord"), " (Answer in 48hours max)"));
+  }, "discord"), " (Answer in 72hours max)"));
 }
 
 /***/ })

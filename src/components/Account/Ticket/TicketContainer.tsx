@@ -266,7 +266,7 @@ export default function TicketContainer() {
         </dialog>
         <div >
           <div className="w-full max-w-7xl mx-auto mb-2 grid grid-cols-3 md:grid-cols-5 gap-x-2">
-            <input type="text" id={'search'} defaultValue={search} placeholder="Search here" className="input input-bordered input-md w-full col-span-3" onChange={(e) => searchValue(e.target.value)}/>
+            <input type="text" id={'search'} defaultValue={search} placeholder="Search here" className={`input input-bordered input-md w-full col-span-3 ${data.data.data.length < 1 ? 'disabled' : ''}`} onChange={(e) => searchValue(e.target.value)}/>
             <select className="select select-bordered w-full max-w-xs" onChange={(e) => setSort(e.target.value)}>
               <option value="status" selected>Status</option>
               <option value="asc_modified">Modified (Ascending)</option>
@@ -278,6 +278,8 @@ export default function TicketContainer() {
               setIsChecked(true);
             }}>New ticket</p>
           </div>
+          {data.data.data.length > 0 ?
+          <>
           <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
             {/* head */}
             <thead>
@@ -308,6 +310,10 @@ export default function TicketContainer() {
 
             </tbody>
           </table>
+        </>
+            :
+            <p className={'text-center opacity-80'}>No tickets matching these parameters were found for this account.</p>
+          }
           <div className={'flex w-full max-w-7xl mx-auto'}>
             {page > 1 &&
               <p className={'btn btn-primary btn-outline my-4 '} onClick={() => {window.scrollTo(0, 0); setPage(page - 1);}}>Previous page</p>

@@ -13,7 +13,7 @@ const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = true;
+const isProduction = false;
 
 module.exports = {
   devtool: 'source-map',

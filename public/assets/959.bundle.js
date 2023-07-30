@@ -1,5 +1,127 @@
 (globalThis["__LOADABLE_LOADED_CHUNKS__"] = globalThis["__LOADABLE_LOADED_CHUNKS__"] || []).push([[959],{
 
+/***/ 447:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+
+const Pagination = function (_ref) {
+  let {
+    totalPages,
+    page,
+    setPage
+  } = _ref;
+  const visiblePages = 3; // Number of visible pages on each side of the current page.
+
+  const handlePageChange = function (newPage) {
+    window.scrollTo(0, 0);
+    setPage(newPage);
+  };
+  const renderPagination = function () {
+    const currentPage = Math.max(1, Math.min(page, totalPages));
+    const ellipsis = '...';
+    let pages = [];
+    if (totalPages <= visiblePages + 2) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: i,
+          className: `join-item btn ${i === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+          onClick: function () {
+            return handlePageChange(i);
+          }
+        }, i));
+      }
+    } else {
+      if (currentPage <= visiblePages) {
+        for (let i = 1; i <= visiblePages + 1; i++) {
+          pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            key: i,
+            className: `join-item btn ${i === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+            onClick: function () {
+              return handlePageChange(i);
+            }
+          }, i));
+        }
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: "right-ellipsis",
+          className: "join-item btn btn-disabled outline-0"
+        }, ellipsis));
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: totalPages,
+          className: `join-item btn ${totalPages === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+          onClick: function () {
+            return handlePageChange(totalPages);
+          }
+        }, totalPages));
+      } else if (currentPage > totalPages - visiblePages) {
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: 1,
+          className: `join-item btn ${1 === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+          onClick: function () {
+            return handlePageChange(1);
+          }
+        }, 1));
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: "left-ellipsis",
+          className: "join-item btn btn-disabled outline-0"
+        }, ellipsis));
+        for (let i = totalPages - visiblePages; i <= totalPages; i++) {
+          pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            key: i,
+            className: `join-item btn ${i === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+            onClick: function () {
+              return handlePageChange(i);
+            }
+          }, i));
+        }
+      } else {
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: 1,
+          className: `join-item btn ${1 === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+          onClick: function () {
+            return handlePageChange(1);
+          }
+        }, 1));
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: "left-ellipsis",
+          className: "join-item btn btn-disabled outline-0"
+        }, ellipsis));
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            key: i,
+            className: `join-item btn ${i === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+            onClick: function () {
+              return handlePageChange(i);
+            }
+          }, i));
+        }
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: "right-ellipsis",
+          className: "join-item btn btn-disabled outline-0"
+        }, ellipsis));
+        pages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: totalPages,
+          className: `join-item btn ${totalPages === currentPage ? 'btn-primary outline-0' : 'outline-0'}`,
+          onClick: function () {
+            return handlePageChange(totalPages);
+          }
+        }, totalPages));
+      }
+    }
+    return pages;
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "join"
+  }, renderPagination());
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
+
+/***/ }),
+
 /***/ 4959:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -14,6 +136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(debounce__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1229);
 /* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1412);
+/* harmony import */ var _Elements_Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(447);
+
 
 
 
@@ -89,15 +213,10 @@ function Products() {
     className: "text-center mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "btn-group"
-  }, pageNumbers.map(function (element, key) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: page === element ? "btn btn-active outline-0" : 'btn outline-0',
-      key: key,
-      onClick: function () {
-        setPage(element);
-        mutate();
-      }
-    }, element);
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Elements_Pagination__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+    page: page,
+    setPage: setPage,
+    totalPages: data.totalpage
   }))));
 }
 
