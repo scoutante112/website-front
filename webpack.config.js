@@ -13,7 +13,7 @@ const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = false;
+const isProduction = true;
 
 module.exports = {
   devtool: 'source-map',
@@ -32,16 +32,16 @@ module.exports = {
   },
   plugins: [
     isProduction &&  new BrotliPlugin(),
-    new WebpackManifestPlugin(),
+    isProduction && new WebpackManifestPlugin(),
     isProduction && new ImageminWebpWebpackPlugin(),
     new Dotenv(),
     isProduction && new CompressionPlugin(),
-    new LodashModuleReplacementPlugin(),
-    new PurgeCSSPlugin({
+    isProduction && new LodashModuleReplacementPlugin(),
+    isProduction && new PurgeCSSPlugin({
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
     }),
-    new LoadablePlugin(),
-    new BundleAnalyzerPlugin({
+    isProduction && new LoadablePlugin(),
+    isProduction && new BundleAnalyzerPlugin({
       analyzerMode: 'json',
       generateStatsFile: true,
       statsOptions: {

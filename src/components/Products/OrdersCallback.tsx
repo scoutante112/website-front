@@ -1,29 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
-import { useFormik } from "formik";
-import { object, string } from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import debounce from "lodash.debounce";
 import { fetcher } from "../../api/http";
-import editAccountInformations from "../../api/account/editAccountInformations";
 import { useNavigate, useParams } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import createOrder from "../../api/shop/createOrder";
 import Cookies from "js-cookie";
 import getDownloadLink from "../../api/shop/getDownloadLink";
 import { config } from "../../config/config";
 import Spinner from "../Elements/Spinner";
-import { MdClose } from "react-icons/md";
-import { basketItem } from "../Elements/BasketIcon";
 
 
 export default function OrdersCallback() {
-  const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
-  const { data, error: error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `https://privateapi.bagou450.com/api/client/web/orders/status?id=${id}`,
     fetcher
   );
@@ -53,7 +43,6 @@ export default function OrdersCallback() {
     if(!order) {
       return;
     }
-    setLoading(true);
     toast.info("Please wait during the generation of the file...", {
       position: "bottom-right",
       autoClose: 5000,
@@ -114,17 +103,15 @@ export default function OrdersCallback() {
           }
         );
       });
-    setLoading(false);
   };
 
   document.title = `Bagou450 - Order #${data.data.order.id}`;
-
   return (
     <>
       <section className="text-center justify-center mx-auto">
         <h2 className="text-white text-4xl">Order #{data.data.order.id}</h2>
         <h3
-          className={`3xl mb-2 ${
+          className={`text-3xl mb-2 ${
             data.data.order.status === "complete"
               ? "text-green-500"
               : data.data.order.status === "expired"
@@ -137,7 +124,11 @@ export default function OrdersCallback() {
             : data.data.order.status === "expired"
               ? "Expired"
               : "Pending"}
+
         </h3>
+        {data.data.order.status === 'incomplete' &&
+          <span className={'text-xl opacity-80'}>Please be aware that an order may take a few minutes to be confirmed.</span>
+        }
       </section>
 
       <div>
@@ -161,7 +152,7 @@ export default function OrdersCallback() {
             {data.data.order.products.map((item: any, index: number) => {
               return (
                 <tr className="hover w-full" key={index}>
-                  <td><div className={'flex w-full gap-x-2'}><img src={`https://cdn.bagou450.com/assets/img/addons/${item.id}`} className={'h-16 w-16'}/><div className={'my-auto'}>{item.name}</div></div></td>
+                  <td><div className={'flex w-full gap-x-2'}><img src={`${config.privateiconlink}${item.icon}`} alt={item.name} className={'h-16 w-16'}/><div className={'my-auto'}>{item.name}</div></div></td>
                   <td>{item.tag}</td>
                   <td className={`${item.license ? 'opacity-100': 'opacity-80'}`}>{item.license ? item.license : 'No license'}</td>
                   <td>{item.price}€</td>
@@ -183,7 +174,7 @@ export default function OrdersCallback() {
                 <h4 className="text-xl font-bold">{(data.data.order.products.reduce((total: any, item: { price: any; }) => total + item.price, 0)).toFixed(2)}€</h4>
 
               </td>
-              <td><button className={'btn btn-outline btn-primary outline-0'} onClick={() => downloadProduct()}>Download product{data.data.order.products.length > 1 ? 's' : ''}</button></td>
+              <td>{data.data.order.status === "complete" ? <button className={'btn btn-outline btn-primary outline-0'} onClick={() => downloadProduct()}>Download product{data.data.order.products.length > 1 ? 's' : ''}</button> : <></>}</td>
 
             </tr>
             </tbody>

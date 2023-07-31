@@ -1,5 +1,4 @@
 import React from "react";
-import { TwStyle } from "twin.macro";
 
 
 const Spinner = () => {

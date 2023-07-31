@@ -1,12 +1,17 @@
 import "./assets/App.css";
-import React, { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GlobalStylesheet from "./assets/css/GlobalStylesheet";
 import "react-toastify/dist/ReactToastify.min.css";
 import NavBar from "./components/NavBar";
 import LazyLoad from "react-lazyload";
 import { ToastContainer } from "react-toastify";
 
+const LmContainer = lazy(() => import('./components/LmContainer'));
+const TosContainer = lazy(() => import('./components/TosContainer'));
+const PpContainer = lazy(() => import('./components/PpContainer'));
+const RpContainer = lazy(() => import('./components/RpContainer'));
+const LicensesContainer = lazy(() => import('./components/Admin/Licenses/LicensesContainer'));
 const ProductsContainer = lazy(() => import('./components/Admin/Products/ProductsContainer'));
 const UsersContainer = lazy(() => import('./components/Admin/Users/UsersContainer'));
 const Loading = lazy(() => import('./components/Elements/Loading'));
@@ -125,6 +130,11 @@ export const AdminRoutes = [
     link: "/admin/products",
     component: <ProductsContainer />
   },
+  {
+    name: "licenses",
+    link: "/admin/licenses",
+    component: <LicensesContainer />
+  },
 ]
 
 export const OthersRoutes = [
@@ -142,6 +152,26 @@ export const OthersRoutes = [
     name: "order",
     link: "/order/:id",
     component: <OrdersCallback />
+  },
+  {
+    name: "tos",
+    link: "/tos",
+    component: <TosContainer />
+  },
+  {
+    name: "pp",
+    link: "/pp",
+    component: <PpContainer />
+  },
+  {
+    name: "lm",
+    link: "/lm",
+    component: <LmContainer />
+  },
+  {
+    name: "rp",
+    link: "/rp",
+    component: <RpContainer />
   }
 ];
 

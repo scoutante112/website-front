@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../Elements/Loading";
-import { number, string } from "yup";
 import ReactHtmlParser from 'react-html-parser';
 import { useParams } from "react-router-dom";
 import getNews from "../../api/news/getNews";
@@ -35,8 +34,6 @@ export default function NewsCard() {
           setNews(data.data.data);
           return;
         }
-        console.log(data.data);
-        console.log(data.data.message);
         toast.error('Sorry a unexpected error occurred.', {
           position: "bottom-right",
           autoClose: 5000,
@@ -49,10 +46,7 @@ export default function NewsCard() {
         });
       })
     }
-
-    // Exemple d'action : afficher un message dans la console
-    console.log('La page est chargée');
-  }, []);
+    }, []);
   if(!news) {
     return <Loading/>
   }

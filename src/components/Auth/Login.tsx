@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import login from '../../api/auth/login'
-import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useSWR from "swr";
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 import loginOauth from "../../api/auth/loginOauth";
 import Loading from "../Elements/Loading";
 import GoogleButton from 'react-google-button'
@@ -76,7 +75,7 @@ export function LoginForm({setRegister, setLogin}: {setRegister?: React.Dispatch
           setLoading(2)
           setMessage('To complete the authentication process, please check your email and follow the instructions provided.');
         }
-      }).catch((data) => {
+      }).catch(() => {
         setError('No account found with this email.');
         setLoading(3)
       })
@@ -115,7 +114,7 @@ export function LoginForm({setRegister, setLogin}: {setRegister?: React.Dispatch
              className="input input-bordered input-info w-full  max-w-xs" />
 
       <br/>
-      <button className={`btn btn-outline mt-4 w-full max-w-[16rem] mb-4 ${loading === 0 || loading === 1 ? 'btn-primary  border-0' : loading === 2 ? 'btn-success' : 'btn-error '}`} type="submit" disabled={loading !== 0 || formik.errors.email ? true : false}>
+      <button className={`btn btn-outline mt-4 w-full max-w-[16rem] mb-4 ${loading === 0 || loading === 1 ? 'btn-primary  border-0' : loading === 2 ? 'btn-success' : 'btn-error '}`} type="submit" disabled={!!(loading !== 0 || formik.errors.email)}>
         {loading === 0 ? 'Sign in' : loading === 1 ? <span className="loading loading-spinner loading-sm text-secondary"></span> : loading === 2 ? 'Success' : 'Error'}
       </button><br/>
       <span>You don't have a account? {setRegister && setLogin ? <p className={'text-blue-500 hover:underline'} onClick={() => {setRegister(true); setLogin(false)}}>Register now</p> : <Link to='/register' className='text-blue-500 hover:underline'>Register now</Link>}</span>

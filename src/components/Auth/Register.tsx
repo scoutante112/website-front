@@ -4,7 +4,6 @@ import useSWR from "swr";
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import register from '../../api/auth/register';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Loading from "../Elements/Loading";
 import { config } from "../../config/config";
@@ -20,10 +19,9 @@ export default function Register({setRegister, setLogin}: {setRegister?: React.D
   const [loading, setLoading] = useState(false);
   const [showerror, setError] = useState('');
   const [showmessage, setMessage] = useState('');
-  const navigate = useNavigate();
 
   
-  const { data, mutate, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `${config.privateapilink}/auth/isLogged`,
     fetcher
   );
@@ -33,7 +31,6 @@ export default function Register({setRegister, setLogin}: {setRegister?: React.D
     onSubmit: (values) => {
       setLoading(true)
       register(values.email,values.username).then((data) => {
-        console.log(data.data);
         if(data.data['status'] === 'error') {
           setError(data.data['message']);
           setMessage('');
@@ -91,7 +88,7 @@ export default function Register({setRegister, setLogin}: {setRegister?: React.D
            
         
           <br />
-          <button className="btn btn-outline btn-primary mt-4 w-full max-w-[16rem]" type="submit" disabled={loading || formik.errors.email ? true : false || formik.errors.username ? true : false}>
+          <button className="btn btn-outline btn-primary mt-4 w-full max-w-[16rem]" type="submit" disabled={loading || formik.errors.email ? true : !!formik.errors.username}>
             Submit
           </button>
           <br/>

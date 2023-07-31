@@ -1,11 +1,10 @@
 import { useFormik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { object, string } from "yup";
 import getLicenses from "../api/licenses/getLicenses";
-import { AnimatePresence, motion, Reorder } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import Cookies from "js-cookie";
 
 const form = object({
   userid: string().required("This field is required")
@@ -51,13 +50,7 @@ export default function Licenses() {
     });
   };
   const [selected, setSelected] = useState<boolean>(false);
-  const [info, setInfo] = useState<boolean>(false);
   const [license, setLicense] = useState<boolean>(false);
-  let liste = [0, 1, 2, 3, 4];
-  while (isAscending(liste) === true) {
-    liste = liste.slice().sort(() => Math.random() - 0.5);
-  }
-  const [captcha, setCaptcha] = useState(liste);
   return (
     <>
       <div className="text-center my-4">
@@ -71,8 +64,7 @@ export default function Licenses() {
           <div>
             <ul className="steps steps-vertical lg:steps-horizontal mb-4">
               <li className="step step-primary">Select the store</li>
-              <li className={selected ? "step step-primary" : "step"}>Resolve the captcha</li>
-              <li className={info ? "step step-primary" : "step"}>Enter your informations</li>
+              <li className={selected ? "step step-primary" : "step"}>Enter your informations</li>
               <li className={license ? "step step-primary" : "step"}>Get your license</li>
             </ul>
             <AnimatePresence>  {!selected ? (
@@ -125,58 +117,15 @@ export default function Licenses() {
               :
               null
             }</AnimatePresence>
+
             <AnimatePresence>
-              {selected && !info &&
-                <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 0.5 }} animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}>
-
-                  <p className="my-2">Sort in ascending order</p>
-                  <Reorder.Group axis="y" values={captcha} onReorder={setCaptcha}>
-                    {captcha.map((item, key) => (
-                      <Reorder.Item key={item} value={item}
-                                    className="mx-auto border-2 border-solid border-blue-700 w-32 py-2 my-2">
-                        {item}
-                      </Reorder.Item>
-                    ))}
-                    <button className="btn btn-outline btn-primary" onClick={() => {
-                      if (isAscending(captcha) === true) {
-                        setInfo(true);
-                        setSelected(true);
-
-                      } else {
-                        toast.error(
-                          ["You need to learn how to count no?",
-                            "No you are serious here?",
-                            "Nope that can't work.",
-                            "So if i understand 2 > 5 that right?",
-                            "Please read again.",
-                            "Hello robot sorry but i can't let you continue."][Math.floor(Math.random() * 5)], {
-                            position: "bottom-right",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark"
-                          });
-                        console.log("error");
-                      }
-                    }}>Submit
-                    </button>
-                  </Reorder.Group>
-
-                </motion.div>
-              }
-            </AnimatePresence>
-            <AnimatePresence>
-              {boughtlocation === "bgshop" && info ? (
+              {boughtlocation === "bgshop" && selected ? (
 
                 <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}>
                   Sorry but this is not available for the moment
                 </motion.div>
-              ) : boughtlocation === "ssx" && info ? (
+              ) : boughtlocation === "ssx" && selected ? (
                   <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}>
 
@@ -200,12 +149,12 @@ export default function Licenses() {
                   </motion.div>
 
                 )
-                : boughtlocation === "pm" && info ? (
+                : boughtlocation === "pm" && selected ? (
                   <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}>
                     If you bought it on Pterodactyl Market please just use your PayPal transaction id as License
                   </motion.div>
-                ) : boughtlocation === "bbb" && info ? (
+                ) : boughtlocation === "bbb" && selected ? (
                   <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}>
                     <p className="mb-2 mt-2 text-white text-2xl">Enter your User id:</p>
@@ -237,7 +186,7 @@ export default function Licenses() {
                            className="h-[50%] w-[50%] mx-auto text-center" alt={"Find BuiltByBits username"} />
                     </div>
                   </motion.div>
-                ) : info && (
+                ) : selected && (
                   <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}>
                     <p className="text-red-500">Error 784-481 : Please reload the page</p>

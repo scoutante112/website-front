@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
@@ -11,9 +11,6 @@ import { toast } from "react-toastify";
 import { FaDownload } from "react-icons/fa";
 import { config } from "../../../config/config";
 import Cookies from "js-cookie";
-import Markdown from 'marked-react';
-import breaks from 'remark-breaks';
-import addMessage from "../../../api/account/tickets/addMessage";
 import ConversationRow, { MessagesRequest } from "./ConversationRow";
 import updateTicket from "../../../api/account/tickets/updateTicket";
 
@@ -43,7 +40,7 @@ export default function TicketViewContainer() {
   useEffect(() => {
     window.scrollTo(0,0);
   }, [])
-  const { data,  error: error, isLoading, mutate } = useSWR(
+  const { data,  error, isLoading, mutate } = useSWR(
     `${config.privateapilink}/tickets/${id}/details`,
     fetcher
   );
@@ -56,7 +53,6 @@ export default function TicketViewContainer() {
     fetcher
   );
 
-  const navigation = useNavigate();
   if ((!data || (error || isLoading)) || (!data2 || (error2 || isLoading2)) || (!data3 || (error3 || isLoading3))) {
     return <Loading/>;
   }
@@ -65,7 +61,6 @@ export default function TicketViewContainer() {
   const UpdateStatus = () => {
     setLoading(true);
     updateTicket(data.data.ticket.id, data.data.ticket.status !== 'closed' ? 'closed' : account.role ? 'support_answer' : 'client_answer').then((data) => {
-      console.log(data)
       if(data.data.status === 'error') {
         toast.error(`Error: ${data.data.message}`, {
           position: "bottom-right",
@@ -112,7 +107,7 @@ export default function TicketViewContainer() {
   return (
     <>
       <NavBarAccount tab={'tickets'}/>
-      <section className='mx-8 my-4 grid grid-cols-1 md:grid-cols-4'>
+      <section className='md:mx-8 my-4 grid grid-cols-1 lg:grid-cols-4'>
 
         <div>
         <InfoBlock data={data}/>
@@ -171,7 +166,7 @@ function InfoBlock({data}: {data: any}) {
 }
 function AttachmentsBlock({data}: {data: any}) {
   const [loading, setLoading] = useState(false);
-  const downloadAttachmentFunction = (id: number, name: string) => {
+  const downloadAttachmentFunction = (id: number) => {
     setLoading(true);
     fetch(`${config.privateapilink}/tickets/${id}/download`, {headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -226,7 +221,7 @@ function AttachmentsBlock({data}: {data: any}) {
         :
         <ul className={'ml-5 mb-4 list-disc'}>
           {data.data.attachments.map((attachment: Attachment, index: number) => {
-            return <li key={index} className={'pb-2 cursor-pointer'} onClick={() => {if(!loading) {downloadAttachmentFunction(attachment.id, attachment.name)}}}><p className={'flex'}><span className={'font-semibold'}>{attachment.name}</span>, {formatSize(attachment.size)} <FaDownload className={'ml-2 mt-1'}/></p></li>;
+            return <li key={index} className={'pb-2 cursor-pointer'} onClick={() => {if(!loading) {downloadAttachmentFunction(attachment.id)}}}><p className={'flex'}><span className={'font-semibold'}>{attachment.name}</span>, {formatSize(attachment.size)} <FaDownload className={'ml-2 mt-1'}/></p></li>;
 
           })}
         </ul>

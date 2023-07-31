@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../../api/http";
 import tokenLogin from "../../api/auth/tokenLogin";
 import { toast } from "react-toastify";
 import Login from "./Login";
-import { motion } from "framer-motion";
 import Loading from "../Elements/Loading";
 import { config } from "../../config/config";
 

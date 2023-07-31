@@ -4,12 +4,9 @@ import { config } from "../../../config/config";
 import { fetcher } from "../../../api/http";
 import Loading from "../../Elements/Loading";
 import NavBarAccount from "../../Account/NavBarAccount";
-import CategoryContainer from "../Blogs/CategoryContainer";
-import NewsContainer from "../Blogs/NewsContainer";
 import editUser from "../../../api/admin/users/editUser";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
-import editAccountInformations from "../../../api/account/editAccountInformations";
 import { object, string } from "yup";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { debounce } from "debounce";
@@ -74,9 +71,9 @@ interface User {
 
 export default function UsersContainer() {
   const [page, setPage] = useState<number>(1);
-  const [perpage, setPerPage] = useState<number>(20);
+  const [perpage] = useState<number>(20);
   const [search, setSearch] = useState<string>('');
-  const {data, error, isLoading, mutate} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+  const {data, error, isLoading} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
   if(!data || (error || isLoading)) {
     return <Loading/>
   }
@@ -141,7 +138,6 @@ function UserRow({user, index, page, perpage, search}: {user: User, index: numbe
   const {mutate} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
-  const [error, setError] = useState('');
   useEffect(() => {
     async function fetchRegion(data: { country_name: any; data: { country: React.SetStateAction<string>; country_name: React.SetStateAction<string>; region: React.SetStateAction<string>; data: { region: string; }; }; region: any; }) {
       const response = await fetch('https://ipapi.co/json/');
@@ -178,20 +174,16 @@ function UserRow({user, index, page, perpage, search}: {user: User, index: numbe
     initialValues: { name: '', email: '', society: '', address: '', city: '', postal_code: '', firstname: '', lastname: '', phone_number: '', role: '' },
     validationSchema: form,
     onSubmit: (values) => {
-      console.log(values);
       setLoading(true)
       if (region === '' || !region) {
-        setError('You need to select a State/Region');
         setLoading(false)
         return;
 
       }
       if (country === '' || !country) {
-        setError('You need to select a Country');
         setLoading(false)
         return;
       }
-      setError('');
       editUser(user.id, values.name,values.email, values.society, values.address, values.city, country, region, values.postal_code, values.phone_number, values.firstname, values.lastname, values.role).then((data) => {
         if (data.data['status'] === 'error') {
           toast.error(data.data['message'], {

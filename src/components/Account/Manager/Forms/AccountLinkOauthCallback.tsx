@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../../../../api/http";
 import Cookies from "js-cookie";
@@ -11,7 +10,6 @@ import { config } from "../../../../config/config";
 
 export default function AccountLinkOauthCallback() {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get('type')
   const code = urlParams.get('code');

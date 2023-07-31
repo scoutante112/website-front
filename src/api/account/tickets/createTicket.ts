@@ -22,8 +22,6 @@ const createTicket = (subject: string, message: string, account: Account, licens
   if(account.discord) {
     formData.append('discord_user_id', account.discord.data.id);
   }
-  console.log(formData.getAll('attachments[]'));
-
   return new Promise((resolve, reject) => {
     httpMultipart
       .post(`${config.privateapilink}/tickets`, formData)

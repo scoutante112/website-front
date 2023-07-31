@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import logout from '../api/auth/logout';
@@ -8,7 +8,6 @@ import { fetcher } from '../api/http';
 import { MainNavRoutes } from '../App';
 import LazyLoad from 'react-lazyload';
 import { config } from "../config/config";
-import { FaShoppingBasket } from "react-icons/fa";
 import BasketIcon from "./Elements/BasketIcon";
 
 export default function NavBar() {

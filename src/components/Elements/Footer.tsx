@@ -14,13 +14,13 @@ export default function Footer() {
         </p>
       </div>
       <div>
-        <span className="footer-title font-semibold mt-4">About</span>
-        <div><Link to={"/contact"} className="link link-hover"><p className={'mb-2'}>Contact</p></Link>
+        <span className="footer-title font-semibold mt-4 ">About</span>
+        <div><Link to={"/contact"} className="link link-hover"><p className={'my-2'}>Contact</p></Link>
 
-          <Link to={"/tos"} className="link link-hover"> <p className={'mb-2'}>Terms of Service</p></Link>
-          <Link to={"/ppo"} className="link link-hover"> <p className={'mb-2'}>  Privacy Policy</p></Link>
-          <Link to={"/rp"} className=" link link-hover">  <p className={'mb-2'}>  Refund Policy</p></Link>
-          <Link to={"/lm"} className="link link-hover">   <p className={'mb-2'}>   Legal Mention</p></Link>
+          <Link to={"/tos"} className="link link-hover"> <p className={'my-2'}>Terms of Service</p></Link>
+          <Link to={"/pp"} className="link link-hover"> <p className={'my-2'}>  Privacy Policy</p></Link>
+          <Link to={"/rp"} className=" link link-hover">  <p className={'my-2'}>  Refund Policy</p></Link>
+          <Link to={"/lm"} className="link link-hover">   <p className={'my-2'}>   Legal Mention</p></Link>
         </div>
       </div>
 

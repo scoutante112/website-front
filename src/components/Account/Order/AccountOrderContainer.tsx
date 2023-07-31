@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
@@ -9,19 +8,16 @@ import { config } from '../../../config/config';
 import Cookies from 'js-cookie';
 import getInvoiceDownloadLink from '../../../api/shop/getInvoiceDownloadLink';
 import NavBarAccount from '../NavBarAccount';
-import { Account } from '../Manager/AccountContainer';
 import Loading from "../../Elements/Loading";
-import deleteLicense from "../../../api/licenses/deleteLicense";
 
 
 
 export default function AccountOrderContainer() {
   const [loading, setLoading] = useState(false);
-  const { data, mutate, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `${config.privateapilink}/orders`,
     fetcher
   );
-  const navigation = useNavigate();
   if (!data || (error || isLoading)) {
     return <Loading/>;
   }
@@ -48,7 +44,6 @@ export default function AccountOrderContainer() {
           const url = window.URL.createObjectURL(new Blob([blob]));
           const link = document.createElement('a');
           link.href = url;
-          console.log(`Bagou450-${order}.zip`);
           link.setAttribute('download', `Bagou450-${order}.zip`);
           document.body.appendChild(link);
           link.addEventListener('load', () => {
@@ -138,7 +133,7 @@ export default function AccountOrderContainer() {
   return (
     <>
       <NavBarAccount tab={'orders'}/>
-      <section className='mx-8 my-4'>
+      <section className='mx-2 md:mx-8 my-4'>
 
         <div >
           {data.data.orders.length > 0 ? <>
@@ -148,9 +143,9 @@ export default function AccountOrderContainer() {
               <tr className='w-full'>
                 <th className={'hidden xl:block'}>Id</th>
                 <th>Product</th>
+                <th className={'hidden xl:block'}>Status</th>
                 <th>Price</th>
-                <th className={'hidden xl:block'}>Stripe Id</th>
-                <th>Status</th>
+                <th className={'hidden xl:block'}>Transaction Id</th>
                 <th></th>
               </tr>
             </thead>
@@ -181,10 +176,10 @@ export default function AccountOrderContainer() {
                     <th>{order['price']}€</th>
                     <td className={'hidden xl:table-cell'}>{order['stripe_id']}</td>
 
-                    <td className={order['status'] === 'incomplete' ? 'text-red-500' : order['status'] === 'expired' ? 'text-white' : order['status'] === 'complete' ? 'text-green-500' : ''}>{order['status'][0].toUpperCase() + order['status'].slice(1, order['status'].length)}</td>
+                    <td className={`hidden xl:table-cell ${order['status'] === 'incomplete' ? 'text-red-500' : order['status'] === 'expired' ? 'text-white' : order['status'] === 'complete' ? 'text-green-500' : ''}`}>{order['status'][0].toUpperCase() + order['status'].slice(1, order['status'].length)}</td>
                     <td>
                       <button className='btn btn-primary btn-outline border-0' disabled={loading} onClick={() => downloadInvoice(order['order_id'])}>Download invoice</button>
-                      {order['status'] === 'complete' && <button disabled={loading} className='btn btn-secondary btn-outline border-0 mx-4' onClick={() => downloadProduct(order['order_id'])}>Download product{order['products'].length > 1 && 's'}</button>}
+                      {order['status'] === 'complete' && <button disabled={loading} className='btn btn-secondary btn-outline border-0 my-4 lg:mx-4 lg:my-0 xl:my-4 xl:mx-0' onClick={() => downloadProduct(order['order_id'])}>Download product{order['products'].length > 1 && 's'}</button>}
                     </td>
 
 

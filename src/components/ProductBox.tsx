@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import Loading from "./Elements/Loading";
+import { config } from "../config/config";
 
 export default function ProductBox({element, key}: {element: any, key: any}) {
 
@@ -11,7 +12,7 @@ export default function ProductBox({element, key}: {element: any, key: any}) {
         <figure className={'px-4 pt-4'}>
           <LazyLoad>
             <Suspense fallback={<Loading />}>
-              <img src={`https://cdn.bagou450.com/assets/img/addons/${element.id}.webp`} alt={element.name + " icon"} className='mt-6 h-52 w-52' width="500" height="500" />
+              <img src={`${config.privateiconlink}${element.icon}`} alt={element.name + " icon"} className='mt-6 h-52 w-52' width="500" height="500" />
             </Suspense>
           </LazyLoad>
         </figure>

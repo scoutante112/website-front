@@ -3,10 +3,10 @@ import useSWR from "swr";
 import { config } from "../../config/config";
 import { fetcher } from "../../api/http";
 import Loading from "../Elements/Loading";
-import { number, string } from "yup";
 import { debounce } from "debounce";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
+
 interface categorie {
   id: number;
   name: string;
@@ -39,9 +39,9 @@ export default function NewsContainer() {
     return (
       <>
         <h1 className='text-center text-4xl mt-4 mb-2'>News</h1>
-        <div className={'text-center'}>
-          <input type="text" placeholder="Search a product" defaultValue={search} className="input w-full input-bordered max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
-          <select className="select select-bordered w-full max-w-xs mx-2 mb-4" onChange={(e) => setCategory(e.target.value)}>
+        <div className={'text-center grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mb-4'}>
+          <input type="text" placeholder="Search a product" defaultValue={search} className="input w-full input-bordered max-w-xs " onChange={(e) => searchValue(e.target.value)} />
+          <select className="select select-bordered w-full max-w-xs" onChange={(e) => setCategory(e.target.value)}>
             <option disabled selected>Select category</option>
             {categories.data.map((categorie: categorie, index: number) => {
               return   <option key={index} value={categorie.id}>{categorie.name}</option>;
@@ -58,7 +58,6 @@ export default function NewsContainer() {
     setPage(1);
     mutate()
   }, 500)
- console.log(blogs)
   return (
     <section className={'mx-16'}>
       <h1 className='text-center text-4xl mt-4 mb-2'>News</h1>
@@ -115,7 +114,6 @@ export default function NewsContainer() {
 
 function NewsCard({blog}: {blog: blog}) {
   const [imageError, setImageError] = useState(false);
-  console.log(JSON.parse(blog.pictures)[0])
   return (
     <Link to={`/news/${blog.id}`}>
     <div className="card card-compact hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 min-h-full">

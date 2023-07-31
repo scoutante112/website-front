@@ -1,28 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
 import useSWR from "swr";
-import { useFormik } from 'formik';
-import { object, string } from 'yup';
 import editAccount from '../../../../api/account/editAccount';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import debounce from 'lodash.debounce';
 import { fetcher } from '../../../../api/http';
-import Spinner from "../../../Elements/Spinner";
-import Loading from "../../../Elements/Loading";
-import Login from "../../../Auth/Login";
-import tokenLogin from "../../../../api/auth/tokenLogin";
-import loginOauth from "../../../../api/auth/loginOauth";
 import linkOauth from "../../../../api/account/linkOauth";
-import AccountContainer from "../AccountContainer";
-import Cookies from "js-cookie";
 import deleteOauth from "../../../../api/account/deleteOauth";
 import { config } from "../../../../config/config";
-
-const form = object({
-    email: string().email('This is not a valid email.').required('')
-  });
-
 
 type DiscordUser = {
   avatar: string;
@@ -39,15 +24,15 @@ type GithubUser = {
   username: string;
   plan: string;
 }
-type Discord = {
+type DiscordAcc = {
   status: boolean;
   data: DiscordUser;
 }
-type Google = {
+type GoogleAcc = {
   status: boolean;
   data: GoogleUser;
 }
-type Github = {
+type GithubAcc = {
   status: boolean;
   data: GithubUser;
 }
@@ -56,9 +41,9 @@ export type Account = {
   email: string;
   name: string;
   role: boolean;
-  discord: Discord;
-  google: Google;
-  github: Github;
+  discord: DiscordAcc;
+  google: GoogleAcc;
+  github: GithubAcc;
 }
 
 /**const { mutate } = useSWR(
@@ -114,7 +99,7 @@ export default function EditAccountForm({account}: {account: Account}) {
         }
         setLoading(false)
         mutate()
-      }).catch((e) => {
+      }).catch(() => {
         toast.error('An unexcepted error happend. Please contact one of our support team.', {
           position: "bottom-right",
           autoClose: 5000,
@@ -167,7 +152,7 @@ export default function EditAccountForm({account}: {account: Account}) {
       }
       setLoading(false)
       mutate()
-    }).catch((e) => {
+    }).catch(() => {
       toast.error('An unexcepted error happend. Please contact one of our support team.', {
         position: "bottom-right",
         autoClose: 5000,
@@ -286,7 +271,7 @@ function Discord({account}: {account: Account}) {
         <div>
           <div className="avatar">
             <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src={discord.data.avatar} />
+              <img alt={'Discord avatar'} src={discord.data.avatar} />
             </div>
           </div>
         </div>
@@ -295,13 +280,13 @@ function Discord({account}: {account: Account}) {
         <div>
           <h2 className={'mt-2'}>{discord.data.username}{discord.data.discriminator !== '0' && `#${discord.data.discriminator}`}</h2>
 
-          <button className="mt-2 btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => discordUnlink()}>Unlink Discord account</button>
+          <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => discordUnlink()}>Unlink Discord account</button>
         </div>
       </div>
       )
       :
       <div className={'mx-auto'}>
-        <button className="mt-2 btn-neutral btn-outline btn border-0 mt-4" disabled={loading} onClick={() => discordLink()}>Link Discord account</button>
+        <button className="btn-neutral btn-outline btn border-0 mt-4" disabled={loading} onClick={() => discordLink()}>Link Discord account</button>
       </div>
 
     }
@@ -367,7 +352,7 @@ function Google({account}: {account: Account}) {
               <div>
                 <div className="avatar">
                   <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={google.data.avatar} />
+                    <img alt={'Google Avatar'} src={google.data.avatar} />
                   </div>
                 </div>
               </div>
@@ -376,13 +361,13 @@ function Google({account}: {account: Account}) {
               <div>
                 <h2 className={'mt-2'}>{google.data.username}</h2>
 
-                <button className="mt-2 btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => googleUnlink()}>Unlink Google account</button>
+                <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => googleUnlink()}>Unlink Google account</button>
               </div>
             </div>
           )
           :
           <div className={'mx-auto'}>
-            <button className="mt-2 btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => googleLink()}>Link Google account</button>
+            <button className="btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => googleLink()}>Link Google account</button>
           </div>
 
         }
@@ -448,7 +433,7 @@ function Github({account}: {account: Account}) {
               <div>
                 <div className="avatar">
                   <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={github.data.avatar} />
+                    <img alt={'Github Avatar'} src={github.data.avatar} />
                   </div>
                 </div>
               </div>
@@ -457,13 +442,13 @@ function Github({account}: {account: Account}) {
               <div>
                 <h2 className={'mt-2'}>{github.data.username} {github.data.plan === 'pro' && <span className="badge badge-secondary badge-outline mr-2">Pro</span>}</h2>
 
-                <button className="mt-2 btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => githubUnlink()}>Unlink Github account</button>
+                <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => githubUnlink()}>Unlink Github account</button>
               </div>
             </div>
           )
           :
           <div className={'mx-auto'}>
-            <button className="mt-2 btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => githubLink()}>Link Github account</button>
+            <button className="btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => githubLink()}>Link Github account</button>
           </div>
 
         }

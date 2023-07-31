@@ -26,7 +26,8 @@ export default function Product() {
   }, []);
   let { id } = useParams();
   const navigate = useNavigate();
-  if(!id || id == null) {
+
+  if(!id) {
     navigate('/');
   }
   document.title = "Bagou450 - Product";
@@ -34,7 +35,6 @@ export default function Product() {
   const [basket, setBasket] = useState<basketItem[]>();
   const [inBasket, setInBasket] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleLocalStorageChange = () => {
     const storedBasket = localStorage.getItem("basket");
     if(!storedBasket) {
@@ -58,6 +58,12 @@ export default function Product() {
   if(!data || (error || isLoading)) {
     return (<Loading/>)
   }
+  if(data.status === 'error') {
+    if(data.message === 'No product found') {
+      navigate('/')
+    }
+  }
+
   const addon = data.data;
   const downloadProduct = () => {
     setLoading(true);
@@ -85,7 +91,7 @@ export default function Product() {
           const url = window.URL.createObjectURL(new Blob([blob]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", `Bagou450-${id}.zip`);
+          link.setAttribute("download", `Bagou450-${addon.name}.zip`);
           document.body.appendChild(link);
           link.addEventListener("load", () => {
             URL.revokeObjectURL(url);
@@ -134,7 +140,7 @@ export default function Product() {
     } else {
       setBasket([]);
     }
-    const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag };
+    const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag, icon: addon.icon };
     if(!basket || !basket.length) {
       localStorage.setItem("basket", JSON.stringify([newItem]));
       window.dispatchEvent(new Event("basket"));
@@ -152,14 +158,13 @@ export default function Product() {
 
   }
   document.title = "Bagou450 - " + addon.name;
-  console.log(addon)
   return (
     <>
 
         <div className="flex flex-col w-full border-opacity-50">
 
     <div className={'grid md:grid-cols-2 mx-8 mt-4 gap-x-4 gap-y-4'}>
-        <section className=''><img src={`https://cdn.bagou450.com/assets/img/addons/${addon.id}`} className='min-w-[50%]' alt={addon.name}/></section>
+        <section className=''><img src={`${config.privateiconlink}${addon.icon}`} className='min-w-[50%]' alt={addon.name}/></section>
         <section>
             <h1 className='font-bold text-white text-4xl'>{addon.name}
             <br/> <span className='font-normal text-sm'>{addon.tag}</span>

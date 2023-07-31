@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { config } from "../../../config/config";
 import { fetcher } from "../../../api/http";
 import Loading from "../../Elements/Loading";
 import NavBarAccount from "../../Account/NavBarAccount";
-import CategoryContainer from "../Blogs/CategoryContainer";
-import NewsContainer from "../Blogs/NewsContainer";
-import editUser from "../../../api/admin/users/editUser";
-import { toast } from "react-toastify";
-import { useFormik } from "formik";
-import editAccountInformations from "../../../api/account/editAccountInformations";
-import { array, boolean, number, object, string } from "yup";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { debounce } from "debounce";
 import Pagination from "../../Elements/Pagination";
-import ReactQuill from "react-quill";
-
 import 'react-quill/dist/quill.snow.css';
-import editProduct from "../../../api/admin/products/editProduct";
 import EditProductButton from "./EditProductButton";
 import NewProductButton from "./NewProductButton";
 
@@ -29,6 +18,9 @@ export interface Product {
   tabroute: string | null;
   new: boolean;
   version: number;
+  hide: boolean;
+  extension: boolean;
+  extension_product: number | null;
   created_at: string;
   updated_at: string;
   sxcname: string | null;
@@ -53,13 +45,12 @@ interface ProductResponse {
 
 export default function ProductsContainer() {
   const [page, setPage] = useState<number>(1);
-  const [perpage, setPerPage] = useState<number>(20);
+  const [perpage] = useState<number>(20);
   const [search, setSearch] = useState<string>('');
-  const {data, error, isLoading, mutate} = useSWR<ProductResponse>(`${config.privateapilink}/admin/products?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+  const {data, error, isLoading} = useSWR<ProductResponse>(`${config.privateapilink}/admin/products?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
   if(!data || (error || isLoading)) {
     return <Loading/>
   }
-  console.log(data)
   const searchValue = debounce((value: string) => {
     setSearch(value);
     setPage(1);

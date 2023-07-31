@@ -28,11 +28,6 @@ export default function Products() {
         <section className='min-h-screen'></section>
       </section>)
   }
-  
-  const pageNumbers = [];
-  for (let i = 1; i <= data.page; i++) {
-    pageNumbers.push(i);
-  }
   const searchValue = debounce((value: string) => {
     setSearch(value);
     setPage(1);
@@ -48,7 +43,7 @@ export default function Products() {
     <section className='mx-4 grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-x-3 gap-y-4'>
       <Suspense fallback={<Loading />}>
         {data.data.map((element: any, key: any) => (
-          <Suspense key={key} fallback={<img src={`https://cdn.bagou450.com/assets/img/addons/${element.id}.webp`} alt={element.name + " icon"} className='mt-6 h-52 w-52' width="500" height="500" />}>
+          <Suspense key={key} fallback={<img src={`${config.privateiconlink}${element.icon}`} alt={element.name + " icon"} className='mt-6 h-52 w-52' width="500" height="500" />}>
             <ProductBox element={element} key={key} />
           </Suspense>
         ))}

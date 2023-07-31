@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaShoppingBasket } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
 import createOrder from "../../api/shop/createOrder";
-import CreateOrder from "../../api/shop/createOrder";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import { string } from "yup";
 import { DiscordButton, GitHubButtonClick, GoogleButtonClick, LoginForm } from "../Auth/Login";
 import Register from "../Auth/Register";
 import EditAccountInfosForm from "../Account/Manager/Forms/EditAccountInfosForm";
+import { config } from "../../config/config";
 
 export interface basketItem {
   id: number,
   name: string,
   price: number,
+  icon: string;
   tag: string
 }
 export default function BasketIcon({ loginError }: { loginError?: string }) {
@@ -146,7 +144,7 @@ export default function BasketIcon({ loginError }: { loginError?: string }) {
               {basket.map((item: basketItem) => {
                 return (
                   <tr className="hover">
-                    <td><div className={'flex w-full gap-x-2'}><img src={`https://cdn.bagou450.com/assets/img/addons/${item.id}`} className={'h-16 w-16'}/><div className={'my-auto'}>{item.name}</div></div></td>
+                    <td><div className={'flex w-full gap-x-2'}><img alt={item.name} src={`${config.privateiconlink}${item.icon}`} className={'h-16 w-16'}/><div className={'my-auto'}>{item.name}</div></div></td>
                     <td>{item.tag}</td>
                     <td>{item.price}€</td>
                     <td><div><MdClose className={'hover:text-red-700 hover:border-red-600 hover:border-2 h-6 w-6 duration-75'} onClick={() => removeItem(item.id)}/></div></td>

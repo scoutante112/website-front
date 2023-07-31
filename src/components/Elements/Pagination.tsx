@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: number, setPage: any}) => {
 
-  const visiblePages = 3; // Number of visible pages on each side of the current page.
+  const visiblePages = 3;
 
   const handlePageChange = (newPage: number) => {
     window.scrollTo(0, 0);

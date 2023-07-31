@@ -39,10 +39,7 @@ export default function TicketContainer() {
   const [licenseChecked, setLicenseChecked] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
+  const navigate = useNavigate();
 
   const form = object({
     subject: string().required('The subject can\'t be empty.').min(16, 'The subject should have a minimum length of 16 characters').max(64, 'The subject should have a maximum length of 64 characters.'),
@@ -64,6 +61,7 @@ export default function TicketContainer() {
           setLoading(false);
           return null;
         }
+        return null;
       })
       createTicket(values.subject, values.message, account, values.license, values.attachments, values.logs_url).then((data) => {
 
@@ -106,14 +104,13 @@ export default function TicketContainer() {
     `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}`,
     fetcher
   );
-  const { data: data2, mutate: mutate2, error: error2, isLoading: isLoading2 } = useSWR(
+  const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
     `${config.privateapilink}/auth/isLogged?infos=true`,
     fetcher
   );
   if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {
 
     if(data2) {
-      const account: Account = data2.data;
       return (
         <>
           <NavBarAccount tab={'tickets'}/>
@@ -267,42 +264,50 @@ export default function TicketContainer() {
         <div >
           <div className="w-full max-w-7xl mx-auto mb-2 grid grid-cols-3 md:grid-cols-5 gap-x-2">
             <input type="text" id={'search'} defaultValue={search} placeholder="Search here" className={`input input-bordered input-md w-full col-span-3 ${data.data.data.length < 1 ? 'disabled' : ''}`} onChange={(e) => searchValue(e.target.value)}/>
-            <select className="select select-bordered w-full max-w-xs" onChange={(e) => setSort(e.target.value)}>
+            <select className="select select-bordered w-full col-span-2 mt-2 md:col-span-1 md:max-w-xs md:mt-0" onChange={(e) => setSort(e.target.value)}>
               <option value="status" selected>Status</option>
               <option value="asc_modified">Modified (Ascending)</option>
               <option value="desc_modified">Modified (Descending)</option>
               <option value="asc_created">Created (Ascending)</option>
               <option value="desc_created">Created (Descending)</option>
             </select>
-            <p className={'btn btn-primary btn-outline'} onClick={() => {
+            <p className={'btn btn-primary btn-outline mt-2 md:mt-0'} onClick={() => {
               setIsChecked(true);
             }}>New ticket</p>
           </div>
           {data.data.data.length > 0 ?
           <>
-          <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
+          <table className="table w-full sm:table-xs md:table-sm lg:table-md max-w-screen-sm md:max-w-7xl mx-auto border-neutral border-2">
             {/* head */}
             <thead>
+
               <tr className='w-full'>
                 <th className={'hidden xl:block'}>Id</th>
                 <th>Name</th>
                 <th>Priority</th>
                 <th className={'hidden xl:block'}>Status</th>
                 <th>Last Update</th>
-                <th></th>
+                <th className={'hidden md:table-column'}></th>
 
               </tr>
             </thead>
             <tbody>
             {data.data.data.map((ticket: Ticket, key: React.Key | null | undefined) => {
               return (
-                <tr className="w-full" key={key}>
+
+                <tr className={`w-full ${window.innerWidth < 768 ? 'cursor-pointer' : ''}`}
+              key={key}
+              onClick={window.innerWidth < 768 ? () => navigate(`/account/ticket/${ticket.id}`) : () => null}
+            >
                   <th className={'hidden xl:table-cell'}>{ticket.id}</th>
                   <th>{ticket.name}</th>
                   <th className={ticket.priority === 'high' ? 'text-red-700' : ticket.priority === 'low' ? 'text-green-700' : ''}>{ticket.priority[0].toUpperCase()}{ticket.priority.slice(1, ticket.priority.length)}</th>
                   <td className={'hidden xl:table-cell' + (ticket.status === 'closed' ? ' text-red-700' : (ticket.status === 'support_answer' ? ' text-green-700' : ' text-blue-700'))}>{ticket.status === 'closed' ? 'Closed' : ticket.status === 'support_answer' ? 'Answered by Support' : 'Answered by Client'}</td>
                   <td>{moment(ticket.updated_at).fromNow()}</td>
-                  <NavLink to={`/account/ticket/${ticket.id}`}><td className={'btn btn-primary btn-outline my-4'}>View</td></NavLink>
+              {window.innerWidth >= 768 ? (
+                <NavLink to={`/account/ticket/${ticket.id}`} className={'hidden md:table-cell'}><td className={'btn btn-primary btn-outline my-4'}>View</td></NavLink>
+              ) : null}
+
                 </tr>
               )
             })}

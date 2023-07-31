@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import NavBarAccount from "../../Account/NavBarAccount";
 import useSWR from "swr";
 import { config } from "../../../config/config";
 import { fetcher } from "../../../api/http";
 import Loading from "../../Elements/Loading";
-import { array, mixed, object, string } from "yup";
+import {object, string } from "yup";
 import { useFormik } from "formik";
-import createTicket from "../../../api/account/tickets/createTicket";
 import { toast } from "react-toastify";
 import createCategory from "../../../api/admin/blogs/createCategory";
 import editCategory from "../../../api/admin/blogs/editCategory";
@@ -16,7 +14,7 @@ interface categorie {
   id: number;
   name: string;
   slug: string;
-};
+}
 export default function CategoryContainer() {
   const {data: categories, error, mutate, isLoading} = useSWR(`${config.privateapilink}/categories`, fetcher)
   const [errorformik, setError] = useState<string>('');
@@ -209,7 +207,7 @@ function CategoryRow({categorie}: {categorie: categorie}) {
   const theId = `editCateModal-${categorie.name}`;
 
   return (
-    <div className="grid card bg-neutral-800 rounded-box place-items-center grid grid-cols-1 md:grid-cols-3 my-2 py-8 gap-y-8">
+    <div className="card bg-neutral-800 rounded-box place-items-center grid grid-cols-1 md:grid-cols-3 my-2 py-8 gap-y-8">
       <dialog id={theId} className="modal">
         <form method="dialog" className="modal-box" onSubmit={formik.handleSubmit}>
           <h3 className="font-bold text-lg">Edit category:</h3>

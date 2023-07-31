@@ -7,7 +7,6 @@ import Loading from "../../Elements/Loading";
 import moment from "moment/moment";
 import Markdown from "marked-react";
 import { Account } from "../Manager/Forms/EditAccountForm";
-import { bool } from "yup";
 
 export interface Message {
   message: string;
@@ -50,7 +49,6 @@ export interface MessagesRequest {
     if(!id) {
       return;
     }
-    console.log(message);
     addMessage(id, message, account, []).then((data) => {
       data = data.data;
       setLoading(false);
@@ -105,7 +103,7 @@ export interface MessagesRequest {
           <div key={index} className={message.own ? "chat chat-end" : "chat chat-start"}>
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
-                <img src={`https://ui-avatars.com/api/?background=042049&color=5271ff&name=${message.first_name[0]}${message.last_name[0]}`} />
+                <img alt={'User Avatar'} src={`https://ui-avatars.com/api/?background=042049&color=5271ff&name=${message.first_name[0]}${message.last_name[0]}`} />
               </div>
             </div>
             <div className="chat-header">

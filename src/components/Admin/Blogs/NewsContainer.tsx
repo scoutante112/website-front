@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react";
-import NavBarAccount from "../../Account/NavBarAccount";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { config } from "../../../config/config";
 import { fetcher } from "../../../api/http";
 import Loading from "../../Elements/Loading";
 import { array, mixed, number, object, string } from "yup";
 import { useFormik } from "formik";
-import createCategory from "../../../api/admin/blogs/createCategory";
 import { toast } from "react-toastify";
 import createNews from "../../../api/admin/blogs/createNews";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import './toolBar.scss';
-import deleteCategory from "../../../api/admin/blogs/deleteCategory";
-import editCategory from "../../../api/admin/blogs/editCategory";
 import deleteNews from "../../../api/admin/blogs/deleteNews";
 import editNews from "../../../api/admin/blogs/editNews";
+import { modules } from "../Products/NewProductButton";
 
 
 interface categorie {
@@ -34,35 +31,11 @@ interface blog {
   pictures: string;
   content: string;
 }
-const modules = {
-  toolbar: {
-    container: [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      [{ 'script': 'sub' }, { 'script': 'super' }],
-      [{ 'indent': '-1' }, { 'indent': '+1' }],
-      [{ 'direction': 'rtl' }],
-      [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      [{ 'color': [] }, { 'background': [] }],
-      [{ 'font': [] }],
-      [{ 'align': [] }],
-      ['link', 'image', 'video'],
-      ['clean']
-    ]
-  },
-
-  clipboard: {
-    matchVisual: false
-  }
-};
 
 export default function NewsContainer() {
-  const [search, setSearch] = useState<string>('');
+  const [search] = useState<string>('');
   const [category, setCategory] = useState<string>('');
-  const [page, setPage] = useState<string>('1');
+  const [page] = useState<string>('1');
   const [loading, setLoading] = useState<boolean>(false);
   const [errorformik, setError] = useState<string>();
 
@@ -88,7 +61,6 @@ export default function NewsContainer() {
       setError('')
       const tag = values.tags.split(',');
       createNews(values.title, values.category, tag, values.slug, values.data, values.pictures).then((data) => {
-        console.log(data)
         if(data.status !== 'success') {
           setError(`Error: ${data.message}`);
           setLoading(false);
@@ -287,12 +259,10 @@ function BlogRow({blog, categories}: {blog: blog, categories: any}) {
       if(values.category === -1) {
         setError('Error: Need to select a category')
       }
-      console.log(values)
       setLoading(true)
       setError('')
       const tag = values.tags.split(',');
       editNews(blog.id, values.title, values.category, tag, values.slug, values.data, values.pictures).then((data) => {
-        console.log(data)
         if(data.status !== 'success') {
           setError(`Error: ${data.message}`);
           setLoading(false);

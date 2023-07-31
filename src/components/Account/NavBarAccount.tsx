@@ -1,7 +1,5 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { Account } from "./Manager/AccountContainer";
-import Spinner from "../Elements/Spinner";
+import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import { fetcher } from "../../api/http";
 import useSWR from "swr";
 import Loading from "../Elements/Loading";
@@ -26,7 +24,7 @@ export default function NavBarAccount(tab: tabs) {
     return (
       <>      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data.name[0].toUpperCase() + data.data.name.slice(1, data.data.name.length)}</h1>
         <section className='mx-auto text-center'>
-        <ul className="menu menu-horizontal rounded-box gap-x-2" >
+        <ul className="menu menu-vertical lg:menu-horizontal rounded-box gap-x-2" >
             {!admin ? (
                 <>
           <li>
@@ -73,11 +71,10 @@ Products
                 </Link>
             </li>
             <li>
-                <Link className={tab.tab === 'invoices' ? 'bg-neutral-focus disabled' : ''} to={'/admin/invoices'} >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-</svg>
-     Invoices
+                <Link className={tab.tab === 'licensesadmin' ? 'bg-neutral-focus disabled' : ''} to={'/admin/licenses'} >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+
+                  Licenses
                 </Link>
             </li>
 

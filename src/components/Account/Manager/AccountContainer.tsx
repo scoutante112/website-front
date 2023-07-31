@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from 'react';
+import { useLocation } from "react-router-dom";
 import useSWR from "swr";
 import 'react-toastify/dist/ReactToastify.min.css';
 import EditAccountForm, { Account as Acc } from "./Forms/EditAccountForm";
 import EditAccountInfosForm from './Forms/EditAccountInfosForm';
 import { fetcher } from '../../../api/http';
 import NavBarAccount from '../NavBarAccount';
-import Loading from "../../Elements/Loading";
-import { string } from "yup";
 import { config } from "../../../config/config";
 
 
