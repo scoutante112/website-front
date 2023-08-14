@@ -20,7 +20,10 @@ const createTicket = (subject: string, message: string, account: Account, licens
     });
   }
   if(account.discord) {
-    formData.append('discord_user_id', account.discord.data.id);
+    if(account.discord.data) {
+      formData.append('discord_user_id', account.discord.data.id);
+
+    }
   }
   return new Promise((resolve, reject) => {
     httpMultipart

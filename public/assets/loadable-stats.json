@@ -1,29 +1,29 @@
 {
-  "hash": "ab41108c2bd717afa891",
+  "hash": "68c155d047505bf88320",
   "publicPath": "auto",
   "outputPath": "/var/www/newwebsite/public/assets",
   "assetsByChunkName": {
     "main": [
-      "bundle.6b4454d781188cc0eeee.js"
+      "bundle.bdd0fda604099a2b6a18.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "bundle.6b4454d781188cc0eeee.js",
-      "size": 893239,
+      "name": "bundle.bdd0fda604099a2b6a18.js",
+      "size": 860130,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "6b4454d781188cc0eeee",
+        "contenthash": "bdd0fda604099a2b6a18",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "license": "bundle.6b4454d781188cc0eeee.js.LICENSE.txt",
-          "sourceMap": "bundle.6b4454d781188cc0eeee.js.map",
-          "gzipped": "bundle.6b4454d781188cc0eeee.js.gz"
+          "license": "bundle.bdd0fda604099a2b6a18.js.LICENSE.txt",
+          "sourceMap": "bundle.bdd0fda604099a2b6a18.js.map",
+          "gzipped": "bundle.bdd0fda604099a2b6a18.js.gz"
         }
       },
       "chunkNames": [
@@ -70,19 +70,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.b56d79e7e1844c941c53.js",
-      "size": 273053,
+      "name": "bundle.cc24fd4a84a08a0388aa.js",
+      "size": 273245,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "b56d79e7e1844c941c53",
+        "contenthash": "cc24fd4a84a08a0388aa",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.b56d79e7e1844c941c53.js.map",
-          "gzipped": "bundle.b56d79e7e1844c941c53.js.gz"
+          "sourceMap": "bundle.cc24fd4a84a08a0388aa.js.map",
+          "gzipped": "bundle.cc24fd4a84a08a0388aa.js.gz"
         }
       },
       "chunkNames": [],
@@ -129,19 +129,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.d452982c7b6c91439c07.js",
-      "size": 61786,
+      "name": "bundle.33314a7da4d4adf1024d.js",
+      "size": 62077,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "d452982c7b6c91439c07",
+        "contenthash": "33314a7da4d4adf1024d",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.d452982c7b6c91439c07.js.map",
-          "gzipped": "bundle.d452982c7b6c91439c07.js.gz"
+          "sourceMap": "bundle.33314a7da4d4adf1024d.js.map",
+          "gzipped": "bundle.33314a7da4d4adf1024d.js.gz"
         }
       },
       "chunkNames": [],
@@ -185,19 +185,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.4efd78f65584df526a26.js",
-      "size": 55686,
+      "name": "bundle.fb93b4e7c214fc3b1f37.js",
+      "size": 55689,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "4efd78f65584df526a26",
+        "contenthash": "fb93b4e7c214fc3b1f37",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.4efd78f65584df526a26.js.map",
-          "gzipped": "bundle.4efd78f65584df526a26.js.gz"
+          "sourceMap": "bundle.fb93b4e7c214fc3b1f37.js.map",
+          "gzipped": "bundle.fb93b4e7c214fc3b1f37.js.gz"
         }
       },
       "chunkNames": [],
@@ -293,19 +293,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.0702d27e0155b168f121.js",
-      "size": 21260,
+      "name": "bundle.59278d4e12028ea7e974.js",
+      "size": 21452,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "0702d27e0155b168f121",
+        "contenthash": "59278d4e12028ea7e974",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.0702d27e0155b168f121.js.map",
-          "gzipped": "bundle.0702d27e0155b168f121.js.gz"
+          "sourceMap": "bundle.59278d4e12028ea7e974.js.map",
+          "gzipped": "bundle.59278d4e12028ea7e974.js.gz"
         }
       },
       "chunkNames": [],
@@ -320,19 +320,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.34bb18c32f4c22441a6c.js",
-      "size": 18872,
+      "name": "bundle.f656b53e726b037ab3b0.js",
+      "size": 19064,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "34bb18c32f4c22441a6c",
+        "contenthash": "f656b53e726b037ab3b0",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.34bb18c32f4c22441a6c.js.map",
-          "gzipped": "bundle.34bb18c32f4c22441a6c.js.gz"
+          "sourceMap": "bundle.f656b53e726b037ab3b0.js.map",
+          "gzipped": "bundle.f656b53e726b037ab3b0.js.gz"
         }
       },
       "chunkNames": [],
@@ -377,20 +377,20 @@
     },
     {
       "type": "asset",
-      "name": "bundle.62250cfb24dfccc2d0c5.js",
-      "size": 17785,
+      "name": "bundle.8269b616da9ca25663ed.js",
+      "size": 17813,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "62250cfb24dfccc2d0c5",
+        "contenthash": "8269b616da9ca25663ed",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "license": "bundle.62250cfb24dfccc2d0c5.js.LICENSE.txt",
-          "sourceMap": "bundle.62250cfb24dfccc2d0c5.js.map",
-          "gzipped": "bundle.62250cfb24dfccc2d0c5.js.gz"
+          "license": "bundle.8269b616da9ca25663ed.js.LICENSE.txt",
+          "sourceMap": "bundle.8269b616da9ca25663ed.js.map",
+          "gzipped": "bundle.8269b616da9ca25663ed.js.gz"
         }
       },
       "chunkNames": [],
@@ -405,19 +405,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.807c5a65c133c81a6cff.js",
-      "size": 14107,
+      "name": "bundle.2c7dfa1d0f8225e2a9d7.js",
+      "size": 14299,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "807c5a65c133c81a6cff",
+        "contenthash": "2c7dfa1d0f8225e2a9d7",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.807c5a65c133c81a6cff.js.map",
-          "gzipped": "bundle.807c5a65c133c81a6cff.js.gz"
+          "sourceMap": "bundle.2c7dfa1d0f8225e2a9d7.js.map",
+          "gzipped": "bundle.2c7dfa1d0f8225e2a9d7.js.gz"
         }
       },
       "chunkNames": [],
@@ -432,19 +432,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.62344af7a68768ec17bc.js",
-      "size": 13124,
+      "name": "bundle.139260fb58062527e479.js",
+      "size": 13168,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "62344af7a68768ec17bc",
+        "contenthash": "139260fb58062527e479",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.62344af7a68768ec17bc.js.map",
-          "gzipped": "bundle.62344af7a68768ec17bc.js.gz"
+          "sourceMap": "bundle.139260fb58062527e479.js.map",
+          "gzipped": "bundle.139260fb58062527e479.js.gz"
         }
       },
       "chunkNames": [],
@@ -459,19 +459,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.792345bdce5dca06e20e.js",
-      "size": 12909,
+      "name": "bundle.9f1913cb2025dd3b8085.js",
+      "size": 13129,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "792345bdce5dca06e20e",
+        "contenthash": "9f1913cb2025dd3b8085",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.792345bdce5dca06e20e.js.map",
-          "gzipped": "bundle.792345bdce5dca06e20e.js.gz"
+          "sourceMap": "bundle.9f1913cb2025dd3b8085.js.map",
+          "gzipped": "bundle.9f1913cb2025dd3b8085.js.gz"
         }
       },
       "chunkNames": [],
@@ -486,19 +486,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.e27f4db9c791eeac781e.js",
-      "size": 10648,
+      "name": "bundle.463404f92ee9739c127d.js",
+      "size": 10618,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "e27f4db9c791eeac781e",
+        "contenthash": "463404f92ee9739c127d",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.e27f4db9c791eeac781e.js.map",
-          "gzipped": "bundle.e27f4db9c791eeac781e.js.gz"
+          "sourceMap": "bundle.463404f92ee9739c127d.js.map",
+          "gzipped": "bundle.463404f92ee9739c127d.js.gz"
         }
       },
       "chunkNames": [],
@@ -568,19 +568,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.08a7b13f8eb699a3fafe.js",
-      "size": 7020,
+      "name": "bundle.2a074112aa6c97129db5.js",
+      "size": 7212,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "08a7b13f8eb699a3fafe",
+        "contenthash": "2a074112aa6c97129db5",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.08a7b13f8eb699a3fafe.js.map",
-          "gzipped": "bundle.08a7b13f8eb699a3fafe.js.gz"
+          "sourceMap": "bundle.2a074112aa6c97129db5.js.map",
+          "gzipped": "bundle.2a074112aa6c97129db5.js.gz"
         }
       },
       "chunkNames": [],
@@ -624,6 +624,33 @@
     },
     {
       "type": "asset",
+      "name": "bundle.9978edfd7382770153e1.js",
+      "size": 6366,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "9978edfd7382770153e1",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "bundle.9978edfd7382770153e1.js.map",
+          "gzipped": "bundle.9978edfd7382770153e1.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 2,
+      "chunks": [
+        971
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
       "name": "bundle.bc036fadf8d2607ba9cf.js",
       "size": 6256,
       "emitted": false,
@@ -646,33 +673,6 @@
       "filteredRelated": 2,
       "chunks": [
         404
-      ],
-      "auxiliaryChunks": []
-    },
-    {
-      "type": "asset",
-      "name": "bundle.ed4de60ddb3e9926059b.js",
-      "size": 5715,
-      "emitted": false,
-      "comparedForEmit": false,
-      "cached": true,
-      "info": {
-        "immutable": true,
-        "contenthash": "ed4de60ddb3e9926059b",
-        "javascriptModule": false,
-        "minimized": true,
-        "related": {
-          "sourceMap": "bundle.ed4de60ddb3e9926059b.js.map",
-          "gzipped": "bundle.ed4de60ddb3e9926059b.js.gz"
-        }
-      },
-      "chunkNames": [],
-      "chunkIdHints": [],
-      "auxiliaryChunkNames": [],
-      "auxiliaryChunkIdHints": [],
-      "filteredRelated": 2,
-      "chunks": [
-        959
       ],
       "auxiliaryChunks": []
     },
@@ -813,6 +813,33 @@
     },
     {
       "type": "asset",
+      "name": "bundle.6ca153c75acb9299460d.js",
+      "size": 1812,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "6ca153c75acb9299460d",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "bundle.6ca153c75acb9299460d.js.map",
+          "gzipped": "bundle.6ca153c75acb9299460d.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 2,
+      "chunks": [
+        934
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
       "name": "bundle.bd94055ace65223b3790.js",
       "size": 1599,
       "emitted": false,
@@ -835,33 +862,6 @@
       "filteredRelated": 2,
       "chunks": [
         429
-      ],
-      "auxiliaryChunks": []
-    },
-    {
-      "type": "asset",
-      "name": "bundle.338e4d13178f244e16fb.js",
-      "size": 1527,
-      "emitted": false,
-      "comparedForEmit": false,
-      "cached": true,
-      "info": {
-        "immutable": true,
-        "contenthash": "338e4d13178f244e16fb",
-        "javascriptModule": false,
-        "minimized": true,
-        "related": {
-          "sourceMap": "bundle.338e4d13178f244e16fb.js.map",
-          "gzipped": "bundle.338e4d13178f244e16fb.js.gz"
-        }
-      },
-      "chunkNames": [],
-      "chunkIdHints": [],
-      "auxiliaryChunkNames": [],
-      "auxiliaryChunkIdHints": [],
-      "filteredRelated": 2,
-      "chunks": [
-        934
       ],
       "auxiliaryChunks": []
     },
@@ -894,33 +894,6 @@
     },
     {
       "type": "asset",
-      "name": "bundle.d1541c10f8184b7703f9.js",
-      "size": 951,
-      "emitted": false,
-      "comparedForEmit": false,
-      "cached": true,
-      "info": {
-        "immutable": true,
-        "contenthash": "d1541c10f8184b7703f9",
-        "javascriptModule": false,
-        "minimized": true,
-        "related": {
-          "sourceMap": "bundle.d1541c10f8184b7703f9.js.map",
-          "gzipped": "bundle.d1541c10f8184b7703f9.js.gz"
-        }
-      },
-      "chunkNames": [],
-      "chunkIdHints": [],
-      "auxiliaryChunkNames": [],
-      "auxiliaryChunkIdHints": [],
-      "filteredRelated": 2,
-      "chunks": [
-        702
-      ],
-      "auxiliaryChunks": []
-    },
-    {
-      "type": "asset",
       "name": "index.html",
       "size": 655,
       "emitted": false,
@@ -948,7 +921,7 @@
       ],
       "assets": [
         {
-          "name": "bundle.6b4454d781188cc0eeee.js"
+          "name": "bundle.bdd0fda604099a2b6a18.js"
         }
       ],
       "filteredAssets": 0,
@@ -964,7 +937,7 @@
     {
       "id": 179,
       "files": [
-        "bundle.6b4454d781188cc0eeee.js"
+        "bundle.bdd0fda604099a2b6a18.js"
       ]
     },
     {
@@ -994,7 +967,7 @@
     {
       "id": 176,
       "files": [
-        "bundle.807c5a65c133c81a6cff.js"
+        "bundle.2c7dfa1d0f8225e2a9d7.js"
       ]
     },
     {
@@ -1006,43 +979,43 @@
     {
       "id": 124,
       "files": [
-        "bundle.0702d27e0155b168f121.js"
+        "bundle.59278d4e12028ea7e974.js"
       ]
     },
     {
-      "id": 959,
+      "id": 971,
       "files": [
-        "bundle.ed4de60ddb3e9926059b.js"
+        "bundle.9978edfd7382770153e1.js"
       ]
     },
     {
       "id": 859,
       "files": [
-        "bundle.e27f4db9c791eeac781e.js"
+        "bundle.463404f92ee9739c127d.js"
       ]
     },
     {
       "id": 597,
       "files": [
-        "bundle.4efd78f65584df526a26.js"
+        "bundle.fb93b4e7c214fc3b1f37.js"
       ]
     },
     {
       "id": 323,
       "files": [
-        "bundle.34bb18c32f4c22441a6c.js"
+        "bundle.f656b53e726b037ab3b0.js"
       ]
     },
     {
       "id": 610,
       "files": [
-        "bundle.62250cfb24dfccc2d0c5.js"
+        "bundle.8269b616da9ca25663ed.js"
       ]
     },
     {
       "id": 153,
       "files": [
-        "bundle.792345bdce5dca06e20e.js"
+        "bundle.9f1913cb2025dd3b8085.js"
       ]
     },
     {
@@ -1084,13 +1057,13 @@
     {
       "id": 885,
       "files": [
-        "bundle.62344af7a68768ec17bc.js"
+        "bundle.139260fb58062527e479.js"
       ]
     },
     {
       "id": 488,
       "files": [
-        "bundle.d452982c7b6c91439c07.js"
+        "bundle.33314a7da4d4adf1024d.js"
       ]
     },
     {
@@ -1114,19 +1087,13 @@
     {
       "id": 934,
       "files": [
-        "bundle.338e4d13178f244e16fb.js"
+        "bundle.6ca153c75acb9299460d.js"
       ]
     },
     {
       "id": 85,
       "files": [
         "bundle.44936cefba4a1c223c31.js"
-      ]
-    },
-    {
-      "id": 702,
-      "files": [
-        "bundle.d1541c10f8184b7703f9.js"
       ]
     },
     {
@@ -1144,13 +1111,13 @@
     {
       "id": 373,
       "files": [
-        "bundle.08a7b13f8eb699a3fafe.js"
+        "bundle.2a074112aa6c97129db5.js"
       ]
     },
     {
       "id": 443,
       "files": [
-        "bundle.b56d79e7e1844c941c53.js"
+        "bundle.cc24fd4a84a08a0388aa.js"
       ]
     },
     {

@@ -12,7 +12,10 @@ const addMessage = (id: string, message: string, account: Account, attachments?:
     });
   }
   if(account.discord) {
-    formData.append('discord_user_id', account.discord.data.id);
+    if(account.discord.data) {
+      formData.append('discord_user_id', account.discord.data.id);
+
+    }
   }
   return new Promise((resolve, reject) => {
     http

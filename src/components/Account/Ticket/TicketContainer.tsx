@@ -277,7 +277,7 @@ export default function TicketContainer() {
           </div>
           {data.data.data.length > 0 ?
           <>
-          <table className="table w-full sm:table-xs md:table-sm lg:table-md max-w-screen-sm md:max-w-7xl mx-auto border-neutral border-2">
+          <table className="table w-full sm:table-xs md:table-sm lg:table-md max-w-screen-sm md:max-w-7xl mx-auto border-neutral-content dark:border-neutral border-2">
             {/* head */}
             <thead>
 

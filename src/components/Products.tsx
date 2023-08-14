@@ -4,7 +4,7 @@ import { debounce } from 'debounce';
 import Loading from "./Elements/Loading";
 import { config } from "../config/config";
 import Pagination from "./Elements/Pagination";
-const ProductBox = lazy(() => import('./ProductBox'));
+import ProductBox from "./ProductBox";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 

@@ -8,7 +8,7 @@ export default function ProductBox({element, key}: {element: any, key: any}) {
 
   return (
     <Link to={`/product/${element.id}`}>
-      <div className="card card-compact bg-neutral  hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-2xl">
+      <div className="card card-compact bg-neutral-content dark:bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-2xl">
         <figure className={'px-4 pt-4'}>
           <LazyLoad>
             <Suspense fallback={<Loading />}>

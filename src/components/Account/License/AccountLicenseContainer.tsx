@@ -141,7 +141,7 @@ export default function AccountLicenseContainer() {
                   window.addlicense.showModal();
                 }}>Add license</button>
               </div>
-              <table className="table w-full border-2 border-solid border-neutral">
+              <table className="table w-full border-2 border-solid border-neutral-content dark:border-neutral">
                 {/* head */}
                 <thead>
                 <tr>

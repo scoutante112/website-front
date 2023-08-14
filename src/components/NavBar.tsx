@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import logout from '../api/auth/logout';
@@ -19,13 +19,9 @@ export default function NavBar() {
     `${config.privateapilink}/auth/isLogged?infos=${infos}`,
     fetcher
   );
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'night')
   const navigation = useNavigate();
 
-  useEffect(() => {
-    document!.querySelector('html')!.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme)
-  }, [theme]);
+
 
   if (!data || (error || isLoading)) {
     return <></>;
@@ -38,7 +34,6 @@ export default function NavBar() {
   if(location.pathname.startsWith('/admin') && !data.data.role) {
     navigation('/');
   }
-  const themeslist = ["default theme", "synthwave", "halloween", "forest", "aqua", "black", "luxury", "dracula", "business", "coffee"]
   return (
     <><div className="navbar-start ">
       <div className="dropdown">
@@ -52,13 +47,10 @@ export default function NavBar() {
         </ul>
       </div>
       <Link to={'/'} className="btn btn-ghost normal-case text-xl transition  delay-150 text-white hover:text-blue-700 hover:bg-transparent duration-300"><LazyLoad>
-        {theme === 'aqua' ? (<img
-          src="https://cdn.bagou450.com/assets/img/logo_full_white.webp"
-          className={`h-8 w-full hidden md:block`}
-          alt='Logo' />) : (<img
+       <img
           src="https://cdn.bagou450.com/assets/img/logo_full_colored.webp"
           className={`h-8 w-full hidden md:block`}
-          alt='Logo' />)}
+          alt='Logo' />
       </LazyLoad></Link>
       <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
@@ -106,15 +98,6 @@ export default function NavBar() {
             <><li className={'my-auto'}><Link to={'/login'}>Login</Link></li><li className={'mx-2 my-auto'}><Link to={'/register'}>Register</Link></li></>}
 
             <BasketIcon/>
-
-          <li className={'hidden lg:flex'}>
-              <select className="select h-full bg-none mx-4 md:flex bg-neutral" onChange={(e) => setTheme(e.target.value.toLowerCase() === 'default theme' ? 'night' : e.target.value.toLowerCase())} defaultValue={theme}>
-                {themeslist.map((theme, key) => {
-                  return <option className={'text-white'} key={key}>{theme[0].toUpperCase() + theme.slice(1, theme.length).toUpperCase()}</option>;
-                })}
-              </select>
-
-          </li>
         </ul>
 
       </div>

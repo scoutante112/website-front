@@ -138,7 +138,7 @@ export default function TicketViewContainer() {
 
 function InfoBlock({data}: {data: any}) {
   return (
-    <div className={'bg-neutral rounded-md'}>
+    <div className={'bg-neutral-content dark:bg-neutral rounded-md'}>
       <h2 className={'text-center text-xl font-bold mt-1 pt-4'} title={data.data.ticket.name}>{data.data.ticket.name[0].toUpperCase()}{(data.data.ticket.name.length > 36 ? data.data.ticket.name.slice(1, 33) + '...' : data.data.ticket.name.slice(1, data.data.ticket.name.length))}</h2>
       <div className="divider"></div>
       <ul className={'ml-5 list-disc'}>
@@ -213,7 +213,7 @@ function AttachmentsBlock({data}: {data: any}) {
     });
   }
   return (
-    <div className={'bg-neutral rounded-md mt-2'}>
+    <div className={'bg-neutral-content dark:bg-neutral rounded-md mt-2'}>
       <h2 className={'text-center text-xl font-bold pt-4'}>Attachments</h2>
       <div className="divider"></div>
       {data.data.attachments.length < 1 ?

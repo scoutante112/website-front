@@ -14,9 +14,10 @@ export default createGlobalStyle`
         ${tw`font-medium tracking-normal`};
     }
     p {
-        ${tw`leading-snug font-sans`};
-        color: rgb(203 213 225);
+        ${tw`leading-snug font-sans text-black dark:text-[#cbd5e1]`};
+        color: black;
     }
+
     form {
         ${tw`m-0`};
     }

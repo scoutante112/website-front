@@ -137,7 +137,7 @@ export default function AccountOrderContainer() {
 
         <div >
           {data.data.orders.length > 0 ? <>
-          <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
+          <table className="table w-full max-w-7xl mx-auto border-neutral-content dark:border-neutral border-2">
             {/* head */}
             <thead>
               <tr className='w-full'>

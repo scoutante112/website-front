@@ -110,7 +110,7 @@ export interface MessagesRequest {
               {message.role ? <div className="badge badge-primary mx-1 badge-sm">Support</div> : <></>} {message.first_name} {message.last_name}
               <time className="text-xs opacity-50 mx-1">{moment(message.created_at).fromNow()}</time>
             </div>
-            <div className="chat-bubble break-words"><Markdown breaks={true} openLinksInNewTab={true}>{message.message.replaceAll(/\n\n/g, '\n \n')}</Markdown></div>
+            <div className="chat-bubble break-words bg-neutral-content dark:bg-neutral"><Markdown breaks={true} openLinksInNewTab={true}>{message.message.replaceAll(/\n\n/g, '\n \n')}</Markdown></div>
           </div>
 
         );

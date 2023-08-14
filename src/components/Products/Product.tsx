@@ -214,10 +214,10 @@ export default function Product() {
     <div className={'grid md:grid-cols-2 mx-8 mt-4 gap-x-4 gap-y-4'}>
         <section className=''><img src={`${config.privateiconlink}${addon.icon}`} className='min-w-[50%]' alt={addon.name}/></section>
         <section>
-            <h1 className='font-bold text-white text-4xl'>{addon.name}
+            <h1 className='font-bold text-4xl'>{addon.name}
             <br/> <span className='font-normal text-sm'>{addon.tag}</span>
             </h1>
-            <div className="stats shadow bg-transparent hidden md:flex">
+            <div className="stats shadow bg-base-200  dark:bg-neutral hidden md:flex">
             <div className="stat">
                 <div className="stat-figure text-primary">
                 <RxUpdate color='hsl(var(--p))' size={'35px'}/>

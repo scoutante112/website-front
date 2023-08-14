@@ -225,7 +225,7 @@ export default function EditAccountInfosForm({
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             onChange={formik.handleChange}
             disabled={loading}
-            className="input input-bordered w-full  lg:max-w-sm"
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.society}</span>
@@ -244,7 +244,7 @@ export default function EditAccountInfosForm({
             onChange={formik.handleChange}
             disabled={loading}
             required
-            className="input input-bordered w-full lg:max-w-sm"
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.city}</span>
@@ -263,7 +263,7 @@ export default function EditAccountInfosForm({
             disabled={loading}
             required
             defaultValue={data.data.address ? data.data.address : ""}
-            className="input input-bordered w-full lg:max-w-sm"
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.address}</span>
@@ -284,7 +284,7 @@ export default function EditAccountInfosForm({
             onChange={formik.handleChange}
             disabled={loading}
             required
-            className="input input-bordered w-full lg:max-w-sm "
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.postalcode}</span>
@@ -300,7 +300,7 @@ export default function EditAccountInfosForm({
             value={country}
             onChange={handleCountryChange}
             disabled={loading}
-            classes="input w-full input-bordered lg:max-w-sm"
+            classes="input w-full input-bordered"
           />
           <label className="label">
             <span className="text-red-500">
@@ -320,7 +320,7 @@ export default function EditAccountInfosForm({
             value={region}
             onChange={handleRegionChange}
             disabled={loading}
-            classes="input w-full input-bordered lg:max-w-sm"
+            classes="input w-full input-bordered"
           />
           <label className="label">
             <span className="text-red-500">
@@ -341,7 +341,7 @@ export default function EditAccountInfosForm({
             disabled={loading}
             required
             defaultValue={data.data.firstname ? data.data.firstname : ""}
-            className="input input-bordered w-full lg:max-w-sm"
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.firstname}</span>
@@ -360,14 +360,14 @@ export default function EditAccountInfosForm({
             disabled={loading}
             required
             defaultValue={data.data.lastname ? data.data.lastname : ""}
-            className="input input-bordered w-full lg:max-w-sm"
+            className="input input-bordered w-full"
           />
           <label className="label">
             <span className="text-red-500">{formik.errors.lastname}</span>
           </label>
         </div>
 
-        <div className="flex justify-end col-span-2 mx-4">
+        <div className="flex justify-end col-span-2 mx-2">
           <button
             type="submit"
             disabled={

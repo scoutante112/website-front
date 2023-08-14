@@ -187,7 +187,7 @@ function App() {
             </Suspense>
           </LazyLoad>
 
-          <div className="navbar border-b-2 border-neutral">
+          <div className="navbar border-b-2 border-neutral-content dark:border-neutral">
             <Suspense fallback={<Loading />}>
             <NavBar/>
             </Suspense>
@@ -234,6 +234,7 @@ function App() {
           </div>
           <Suspense fallback={<Loading />}>
           <Footer/>
+            <p className={'text-center my-2'}>© 2022 - 2023 Bagou450. All Rights Reserved.</p>
           </Suspense>
         </Router>
 

@@ -44,11 +44,6 @@ export default function Licenses() {
   });
   document.title = "Bagou450 - Licenses";
 
-  const isAscending = (thelist: number[]) => {
-    return thelist.every(function(x, i) {
-      return i === 0 || x >= thelist[i - 1];
-    });
-  };
   const [selected, setSelected] = useState<boolean>(false);
   const [license, setLicense] = useState<boolean>(false);
   return (
@@ -90,8 +85,8 @@ export default function Licenses() {
                       </div>
                     </div>
                     <div id="slide3" className="carousel-item relative w-full">
-                      <img src="https://cdn.bagou450.com/assets/img/ssx.webp" alt="SourceXChange"
-                           className="mx-auto max-w-screen-md" />
+                      <p
+                         className="mx-auto font-bold max-w-screen-md text-4xl my-auto" >sourceXchange</p>
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation("bbb"); window.scrollTo(0, 0);}}>❮</a>
                         <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation("pm"); window.scrollTo(0, 0);}}>❯</a>
