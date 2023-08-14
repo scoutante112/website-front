@@ -107,7 +107,7 @@ export default function BasketIcon({ loginError }: { loginError?: string }) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
     });
   }

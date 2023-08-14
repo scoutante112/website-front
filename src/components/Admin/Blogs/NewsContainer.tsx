@@ -90,7 +90,7 @@ export default function NewsContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }).catch((e) => {
         setError(`Error: ${e}`);
@@ -279,7 +279,7 @@ function BlogRow({blog, categories}: {blog: blog, categories: any}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }).catch((e) => {
         setError(`Error: ${e}`);

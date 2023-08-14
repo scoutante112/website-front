@@ -97,7 +97,7 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false)
     })
@@ -116,7 +116,7 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false)
     })

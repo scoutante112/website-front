@@ -37,7 +37,7 @@ export default function AccountLinkOauthCallback() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
       } else {
@@ -50,7 +50,7 @@ export default function AccountLinkOauthCallback() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
       }
@@ -64,7 +64,7 @@ export default function AccountLinkOauthCallback() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: 'dark',
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       mutate();
     }

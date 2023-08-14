@@ -64,7 +64,7 @@ export interface MessagesRequest {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }
       toast.error(`Error: ${data['message']}`, {
@@ -75,7 +75,7 @@ export interface MessagesRequest {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
     }).catch((e) => {
       toast.error(`Error: ${e}`, {
@@ -86,7 +86,7 @@ export interface MessagesRequest {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false);
     });

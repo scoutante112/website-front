@@ -60,7 +60,7 @@ export default function CategoryContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }).catch((e) => {
         setError(`Error: ${e}`);
@@ -153,7 +153,7 @@ function CategoryRow({categorie}: {categorie: categorie}) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       mutate();
     }).catch((e) => {
@@ -195,7 +195,7 @@ function CategoryRow({categorie}: {categorie: categorie}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }).catch((e) => {
         setError(`Error: ${e}`);

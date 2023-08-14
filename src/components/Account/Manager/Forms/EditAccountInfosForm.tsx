@@ -132,7 +132,7 @@ export default function EditAccountInfosForm({
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
             });
             setLoading(false);
           } else {
@@ -145,7 +145,7 @@ export default function EditAccountInfosForm({
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
             });
             setLoading(false);
             if (setAddress) {
@@ -165,7 +165,7 @@ export default function EditAccountInfosForm({
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
             }
           );
           setLoading(false);

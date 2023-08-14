@@ -31,7 +31,7 @@ export default function AccountOrderContainer() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
     });
     getDownloadLink(order).then((data) => {
       fetch(`${config.privateapilink}${data.data.data}`, {headers: {
@@ -61,7 +61,7 @@ export default function AccountOrderContainer() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
       })     
       
@@ -74,7 +74,7 @@ export default function AccountOrderContainer() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
 
     })
@@ -110,7 +110,7 @@ export default function AccountOrderContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         })
     }).catch(() => {
         toast.error('An unexcepted error happend. Please contact one of our support team.', {
@@ -121,7 +121,7 @@ export default function AccountOrderContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
   
       })

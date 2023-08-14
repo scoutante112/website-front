@@ -78,7 +78,7 @@ export default function EditAccountForm({account}: {account: Account}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
         } else {
           toast.success('Success! Your email was edited.', {
@@ -89,7 +89,7 @@ export default function EditAccountForm({account}: {account: Account}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
 
 
@@ -105,7 +105,7 @@ export default function EditAccountForm({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         setLoading(false)
       })
@@ -131,7 +131,7 @@ export default function EditAccountForm({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       } else {
         toast.success('Success! Your username was edited.', {
@@ -142,7 +142,7 @@ export default function EditAccountForm({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
 
 
@@ -158,7 +158,7 @@ export default function EditAccountForm({account}: {account: Account}) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false)
     })
@@ -238,7 +238,7 @@ function Discord({account}: {account: Account}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'dark',
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           mutate();
           setLoading(false);
@@ -251,7 +251,7 @@ function Discord({account}: {account: Account}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'dark',
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           mutate();
           setLoading(false);
@@ -319,7 +319,7 @@ function Google({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
         setLoading(false);
@@ -332,7 +332,7 @@ function Google({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
         setLoading(false);
@@ -400,7 +400,7 @@ function Github({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
         setLoading(false);
@@ -413,7 +413,7 @@ function Github({account}: {account: Account}) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         mutate();
         setLoading(false);

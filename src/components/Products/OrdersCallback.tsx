@@ -56,7 +56,7 @@ export default function OrdersCallback() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
     });
     getDownloadLink(order)
       .then((data) => {
@@ -89,7 +89,7 @@ export default function OrdersCallback() {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
             });
           });
       })
@@ -104,7 +104,7 @@ export default function OrdersCallback() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           }
         );
       });

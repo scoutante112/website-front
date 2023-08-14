@@ -97,7 +97,7 @@ export default function Product() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
     });
     if (id != null) {
       getDownloadOneLink(id).then((data) => {
@@ -130,7 +130,7 @@ export default function Product() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark"
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
         });
 
@@ -143,7 +143,7 @@ export default function Product() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
 
       });

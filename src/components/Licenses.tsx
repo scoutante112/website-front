@@ -26,7 +26,7 @@ export default function Licenses() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       }).catch(() => {
         toast.error("Error from the api. Maybe you selected the bad store? Refresh the page and retry!", {
@@ -37,7 +37,7 @@ export default function Licenses() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
       });
     }

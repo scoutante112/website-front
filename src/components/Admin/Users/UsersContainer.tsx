@@ -194,7 +194,7 @@ function UserRow({user, index, page, perpage, search}: {user: User, index: numbe
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           setLoading(false)
 
@@ -208,7 +208,7 @@ function UserRow({user, index, page, perpage, search}: {user: User, index: numbe
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           setLoading(false);
           // @ts-ignore
@@ -224,7 +224,7 @@ function UserRow({user, index, page, perpage, search}: {user: User, index: numbe
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         setLoading(false)
       })

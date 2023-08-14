@@ -70,7 +70,7 @@ export default function TicketViewContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         setLoading(false);
         return;
@@ -85,7 +85,7 @@ export default function TicketViewContainer() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false);
     }).catch((e) => {
@@ -97,7 +97,7 @@ export default function TicketViewContainer() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false);
     })
@@ -155,7 +155,7 @@ function InfoBlock({data}: {data: any}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
         }}><span className={'font-semibold'}>License/Order:</span> {data.data.ticket.license && data.data.ticket.license !== '' ? (data.data.ticket.license.length > 30 ? data.data.ticket.license.slice(0,31) + '...' : data.data.ticket.license)  : 'No license or order provided'}</li>
         <li className={'mt-2'}><span className={'font-semibold'}>Creation:</span> {new Date(data.data.ticket.created_at).toLocaleDateString("fr-FR")}</li>
@@ -195,7 +195,7 @@ function AttachmentsBlock({data}: {data: any}) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false);
     }).catch((e) => {
@@ -207,7 +207,7 @@ function AttachmentsBlock({data}: {data: any}) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false);
     });

@@ -53,7 +53,7 @@ export default function AccountLicenseContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         //@ts-ignore
         window.addlicense.close()
@@ -66,7 +66,7 @@ export default function AccountLicenseContainer() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
 
         setLoading(false);
@@ -202,7 +202,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false)
     }).catch(() => {
@@ -214,7 +214,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
       setLoading(false)
     })
@@ -236,7 +236,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
       });
     });
   }
@@ -338,7 +338,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                                         pauseOnHover: true,
                                         draggable: true,
                                         progress: undefined,
-                                        theme: "dark",
+                                        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
                                       }
                                     );
                                   })
@@ -355,7 +355,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                                         pauseOnHover: true,
                                         draggable: true,
                                         progress: undefined,
-                                        theme: "dark",
+                                        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
                                       }
                                     );
                                   });
@@ -423,7 +423,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
             });
           }}
           disabled={loading}

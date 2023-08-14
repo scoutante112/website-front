@@ -289,7 +289,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           setLoading(false)
 
@@ -303,7 +303,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
           });
           setLoading(false);
           // @ts-ignore
@@ -319,7 +319,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
         setLoading(false)
       })
