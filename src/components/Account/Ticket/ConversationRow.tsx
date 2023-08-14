@@ -35,7 +35,7 @@ export interface MessagesRequest {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string>('');
   const {data, error, isLoading, mutate } = useSWR<MessagesRequest>(
-    `https://privateapi.bagou450.com/api/client/web/tickets/${id}/messages?page=${page}&perPage=10`,
+    `https://beta-api.bagou450.com/api/client/web/tickets/${id}/messages?page=${page}&perPage=10`,
     fetcher
   );
   if (!data || (error || isLoading)) {

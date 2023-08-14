@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import useSWR from "swr";
 import { useNavigate, useParams } from "react-router-dom";
 import { RiInstallLine } from "react-icons/ri";
@@ -16,8 +16,8 @@ import ReactHtmlParser from "react-html-parser";
 // @ts-ignore
 import 'react-quill/dist/quill.snow.css';
 import '../Admin/Blogs/toolBar.scss';
-
-
+import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 
 export default function Product() {
@@ -35,6 +35,28 @@ export default function Product() {
   const [basket, setBasket] = useState<basketItem[]>();
   const [inBasket, setInBasket] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [index, setIndex] = React.useState(-1);
+  const [images, setImages] = useState<SlideImage[]>([]);
+
+  const retrieveImages = () => {
+    const imageElements = document.querySelectorAll('#lightbox img');
+    const imageUrls: SlideImage[] = Array.from(imageElements).map((img) => ({
+      type: "image",
+      src: img.getAttribute("src") || "",
+      alt: img.getAttribute("alt") || "",
+    }));
+    setImages(imageUrls);
+
+  };
+  React.useEffect(() => {
+    console.log(index)
+  }, [index])
+  React.useEffect(() => {
+    if(data && (!error || !isLoading)) {
+
+      retrieveImages();
+    }
+  }, [data,error,isLoading]);
   const handleLocalStorageChange = () => {
     const storedBasket = localStorage.getItem("basket");
     if(!storedBasket) {
@@ -157,6 +179,32 @@ export default function Product() {
     window.dispatchEvent(new Event("basket"));
 
   }
+  const findParentWithId = (node: any, id: string): any | null => {
+    if (!node) {
+      return null;
+    }
+
+    if (node.attribs && node.attribs.id === id) {
+      return node;
+    }
+
+    return findParentWithId(node.parent, id);
+  };
+  const transformImg = (node: { name: string; attribs: any; parent: any }, index: any) => {
+    const lightboxParent = findParentWithId(node.parent, 'lightbox');
+
+    if (node.name === 'img' && lightboxParent && lightboxParent.name === 'div') {
+      const { alt } = node.attribs;
+      if (alt) {
+        return React.createElement('img', {
+          ...node.attribs,
+          onClick: () => setIndex(parseInt(alt)),
+        });
+      }
+    }
+  };
+
+
   document.title = "Bagou450 - " + addon.name;
   return (
     <>
@@ -195,7 +243,13 @@ export default function Product() {
             </div>
             
             </div>
-            <p className='text-4xl mt-12'>{addon.price}€</p>
+          <div className='hidden'>
+          <div className="divider divider-horizontal hidden">OR</div>
+          <div className=" h-20 card rounded-box place-items-center grid grid-cols-1 md:grid-cols-4 gap-x-2 gap-y-2 mx-8">
+          </div>
+          </div>
+
+          <p className='text-4xl mt-12'>{addon.price}€</p>
             {addon.price === 0 ? (
 <>
 <p className='text-2xl'>Download on:</p>
@@ -223,8 +277,30 @@ export default function Product() {
         </section>
     </div>
   <div className="divider">Description</div>
-    <section className='my-4 ql'>        {ReactHtmlParser(addon.description)}
+          <div className="mockup-browser border bg-base-300 hidden">
+            <div className="mockup-browser-toolbar">
+              <div className="input">https://daisyui.com</div>
+            </div>
+            <div className="flex justify-center px-4 py-16 bg-base-200">Hello!</div>
+          </div>
+          <div className="mockup-phone hidden">
+            <div className="camera"></div>
+            <div className="display">
+              <div className="artboard artboard-demo phone-1">Hi.</div>
+            </div>
+          </div>
+    <section className='my-4 ql'>
+      {ReactHtmlParser(addon.description.replaceAll('rel="noopener noreferrer" target="_blank"', ''), {
+        transform: transformImg,
+      })}
     </section>
+          <Lightbox
+            index={index}
+            slides={images}
+            open={index >= 0}
+            close={() => setIndex(-1)}
+          />
+
     </div>
     </>
   );

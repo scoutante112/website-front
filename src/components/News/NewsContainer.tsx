@@ -6,6 +6,7 @@ import Loading from "../Elements/Loading";
 import { debounce } from "debounce";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
+import Pagination from "../Elements/Pagination";
 
 interface categorie {
   id: number;
@@ -79,31 +80,7 @@ export default function NewsContainer() {
       <div className="text-center mt-4">
       <div className="join">
 
-        {page > 2 ?
-          ( <>
-            <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page-2}`} onClick={() => {setPage(page-2); mutate();}} />
-            <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page-1}`} onClick={() => {setPage(page-1); mutate();}} />
-
-          </> )
-          : page > 1 ?
-            ( <>
-              <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page-1}`} onClick={() => {setPage(page-1); mutate();}} />
-
-            </>)
-            :
-            (<></>)
-        }
-        <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page}`} checked />
-        {page+2 <= blogs.totalPage ?
-          ( <>
-            <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page+1}`} onClick={() => {setPage(page+1); mutate();}} />
-            <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page+2}`} onClick={() => {setPage(page+2); mutate();}} />
-          </>)
-        : page+1 <= blogs.totalPage ?
-            ( <>
-              <input className="join-item btn btn-square outline-0" type="radio" name="options" aria-label={`${page+1}`} onClick={() => {setPage(page+1); mutate();}} />
-            </>)
-        : (<></>)}
+        <Pagination setPage={setPage} totalPages={blogs.totalPage} page={page}/>
 
       </div>
     </div>
@@ -120,7 +97,7 @@ function NewsCard({blog}: {blog: blog}) {
       <figure className={'px-4 pt-4'}>
             <LazyLoad>
               <img
-                src={imageError ? "https://placehold.co/800x418" : "https://privateapi.bagou450.com" + JSON.parse(blog.pictures)[0]}
+                src={imageError ? "https://placehold.co/800x418" : "https://beta-api.bagou450.com" + JSON.parse(blog.pictures)[0]}
                 alt={blog.title + " picture"}
                 className='border-base-content bg-base-300 rounded-lg border border-opacity-5'
                 onError={() => setImageError(true)}

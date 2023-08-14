@@ -61,15 +61,23 @@ export default createGlobalStyle`
       blockquote {
         ${tw`bg-neutral`}
       }
-      ol {
-        ${tw`list-decimal`}
-      }
-      ul {
-        ${tw`list-disc`}
-      }
+
       pre.ql-syntax {
         ${tw`bg-neutral`}
-      } 
+      }
+      .ql-align-center {
+         ${tw`justify-center flex`}
+      }
+      img {
+        ${tw`my-2`}     
+      }
+      a {
+        ${tw`mx-1 text-blue-500 hover:underline`}
+      }
+            .ql-font-monospace {
+                    ${tw`font-mono`}
+            }
+      
     }
     
 `;

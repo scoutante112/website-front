@@ -46,10 +46,7 @@ export type Account = {
   github: GithubAcc;
 }
 
-/**const { mutate } = useSWR(
-  `https://privateapi.bagou450.com/api/client/web/auth/isLogged`,
-  fetcher
-);**/
+
 export default function EditAccountForm({account}: {account: Account}) {
 
     const [loading, setLoading] = useState<boolean>(false);
@@ -219,7 +216,7 @@ function Discord({account}: {account: Account}) {
   const discord = account.discord;
   const [loading, setLoading] = useState(false);
   const { mutate } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
     fetcher
   );
   const discordLink = (() => {
@@ -300,7 +297,7 @@ function Google({account}: {account: Account}) {
   const google = account.google
   const [loading, setLoading] = useState(false);
   const { mutate } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
     fetcher
   );
   const googleLink = (() => {
@@ -381,7 +378,7 @@ function Github({account}: {account: Account}) {
   const github = account.github;
   const [loading, setLoading] = useState(false);
   const { mutate } = useSWR(
-    `https://privateapi.bagou450.com/api/client/web/auth/isLogged?infos=true`,
+    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
     fetcher
   );
   const githubLink = (() => {

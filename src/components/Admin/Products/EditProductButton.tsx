@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import { Product } from './ProductsContainer';
 import useSWR from "swr";
 import { config } from "../../../config/config";
@@ -8,6 +7,11 @@ import { useFormik } from "formik";
 import editProduct from "../../../api/admin/products/editProduct";
 import { toast } from "react-toastify";
 import { mixed, number, object, string } from "yup";
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/mode/htmlmixed/htmlmixed';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
+import { html_beautify as beautifyHTML } from 'js-beautify';
 
 export default function EditProductButton({product, page, perpage, search}: {product: Product, page: number; perpage: number, search: string}) {
   const [loading, setLoading] = useState(false);
@@ -126,9 +130,13 @@ export default function EditProductButton({product, page, perpage, search}: {pro
       matchVisual: false
     }
   };
-  const handleQuillChange = (value: any) => {
+
+  const handleContentChange = (editor: any, data: any, value: string) => {
     formik.setFieldValue('description', value);
+
   };
+
+
   return (
     <>    <dialog id={"editProductModal" + product.id} className="modal">
       <div className="modal-box w-11/12 max-w-5xl">
@@ -394,26 +402,18 @@ export default function EditProductButton({product, page, perpage, search}: {pro
             </div>
           </div>
 
-          <ReactQuill
-            value={formik.values.description}
-            onChange={handleQuillChange}
-            modules={modules}
-            className={'custom-toolbar mt-2'}
-            formats={[
-              'header',
-              'bold', 'italic', 'underline', 'strike',
-              'blockquote', 'code-block',
-              'list', 'bullet',
-              'script',
-              'indent',
-              'direction',
-              'size',
-              'color', 'background',
-              'font',
-              'align',
-              'link', 'image', 'video'
-            ]}
-          />
+            <CodeMirror
+              value={formik.values.description}
+              options={{
+                mode: 'htmlmixed',
+                theme: 'dracula',
+                lineNumbers: true,
+              }}
+              className={'mt-2'}
+              onBeforeChange={handleContentChange}
+            />
+
+
           <div className='flex justify-end col-span-2 mx-4 mt-4'>
             <button type='submit' disabled={loading || !formik.errors} className='btn btn-primary btn-outline outline-0 self-end mx-4'>Submit</button>
             <button type="button" className="btn" onClick={() => { // @ts-ignore

@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: number, setPage: any}) => {
-
+  if(totalPages < 2) {
+    return <></>;
+  }
   const visiblePages = 3;
 
   const handlePageChange = (newPage: number) => {

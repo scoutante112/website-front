@@ -7,12 +7,12 @@ import { array, mixed, number, object, string } from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import createNews from "../../../api/admin/blogs/createNews";
-import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.snow.css';
-import './toolBar.scss';
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/mode/htmlmixed/htmlmixed';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
 import deleteNews from "../../../api/admin/blogs/deleteNews";
 import editNews from "../../../api/admin/blogs/editNews";
-import { modules } from "../Products/NewProductButton";
 
 
 interface categorie {
@@ -49,7 +49,10 @@ export default function NewsContainer() {
     data: string().required('The data can\'t be empty'),
     pictures: array().of(mixed()).nullable(),
   });
+  const handleContentChange = (editor: any, data: any, value: string) => {
+    formik.setFieldValue('data', value);
 
+  };
   const formik = useFormik({
     initialValues: { title: '', category: -1, tags: '', slug: '', data: '', pictures: [] },
     validationSchema: form,
@@ -96,9 +99,7 @@ export default function NewsContainer() {
       });
     }
   });
-  const handleQuillChange = (value: any) => {
-    formik.setFieldValue('data', value); // Mettre à jour la valeur de l'éditeur de texte dans Formik
-  };
+
 
   if((!blogs || (error || isLoading)) || (!categories || (error2 || isLoading2))) {
     return (
@@ -161,27 +162,17 @@ export default function NewsContainer() {
               }}/>
             </div>
           </div>
-
-        <ReactQuill
+          <CodeMirror
             value={formik.values.data}
-            onChange={handleQuillChange}
-            modules={modules}
-            className={'h-1/4 custom-toolbar'}
-            formats={[
-              'header',
-              'bold', 'italic', 'underline', 'strike',
-              'blockquote', 'code-block',
-              'list', 'bullet',
-              'script',
-              'indent',
-              'direction',
-              'size',
-              'color', 'background',
-              'font',
-              'align',
-              'link', 'image', 'video'
-            ]}
+            options={{
+              mode: 'htmlmixed',
+              theme: 'dracula',
+              lineNumbers: true,
+            }}
+            className={'mt-2'}
+            onBeforeChange={handleContentChange}
           />
+
           <div className="modal-action">
             <button className="btn btn-secondary mx-2" type={'submit'} disabled={loading}>Create category</button>
 
@@ -297,10 +288,10 @@ function BlogRow({blog, categories}: {blog: blog, categories: any}) {
       });
     }
   });
-  const handleQuillChange = (value: any) => {
+  const handleContentChange = (editor: any, data: any, value: string) => {
     formik.setFieldValue('data', value);
-  };
 
+  };
   const theId = `editCateModal-${blog.title}`;
   return (
     <tr className="hover">
@@ -370,26 +361,17 @@ function BlogRow({blog, categories}: {blog: blog, categories: any}) {
               </div>
             </div>
 
-            <ReactQuill
+            <CodeMirror
               value={formik.values.data}
-              onChange={handleQuillChange}
-              modules={modules}
-              className={'h-1/4 custom-toolbar'}
-              formats={[
-                'header',
-                'bold', 'italic', 'underline', 'strike',
-                'blockquote', 'code-block',
-                'list', 'bullet',
-                'script',
-                'indent',
-                'direction',
-                'size',
-                'color', 'background',
-                'font',
-                'align',
-                'link', 'image', 'video'
-              ]}
+              options={{
+                mode: 'htmlmixed',
+                theme: 'dracula',
+                lineNumbers: true,
+              }}
+              className={'mt-2'}
+              onBeforeChange={handleContentChange}
             />
+
             <div className="modal-action">
               <button className="btn btn-secondary mx-2" type={'submit'} disabled={loading}>Edit category</button>
 
