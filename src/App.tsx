@@ -1,11 +1,12 @@
 import "./assets/App.css";
-import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { lazy, Suspense, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStylesheet from "./assets/css/GlobalStylesheet";
 import "react-toastify/dist/ReactToastify.min.css";
 import NavBar from "./components/NavBar";
 import LazyLoad from "react-lazyload";
 import { ToastContainer } from "react-toastify";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 const LmContainer = lazy(() => import('./components/LmContainer'));
 const TosContainer = lazy(() => import('./components/TosContainer'));
@@ -176,7 +177,7 @@ export const OthersRoutes = [
 ];
 
 function App() {
-
+  const [open, setOpen] = useState<boolean>(true);
     return (
       <>
         <GlobalStylesheet />
@@ -193,12 +194,29 @@ function App() {
             </Suspense>
 
           </div>
-          <div className={'mx-16'}>
-            <div className="alert alert-warning my-4 min-w-full">
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-              <span>Warning: This website is still in beta phase, some bugs may occur!</span>
+          <div
+            className={`${
+              !open
+                ? "opacity-0 pointer-events-none"
+                : "opacity-100 pointer-events-auto"
+            } transition-all duration-300 flex items-center gap-x-6 bg-yellow-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
+          >
+            <p className="text-sm leading-6 text-black">
+              <strong className="font-semibold">Warning</strong>
+              <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
+                <circle cx={1} cy={1} r={1} />
+              </svg>
+              This website is still in beta phase, some bugs may occur!
+            </p>
+            <div className="flex flex-1 justify-end">
+              <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
+                      onClick={() => setOpen(false)}>
+                <span className="sr-only">Dismiss</span>
+                <XMarkIcon className="h-5 w-5 text-black" aria-hidden="true" />
+              </button>
             </div>
           </div>
+
 
           {/*<div className="alert alert-warning shadow-lg">
             <div>

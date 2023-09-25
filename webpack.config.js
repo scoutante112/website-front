@@ -13,7 +13,7 @@ const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = true;
+const isProduction = false;
 
 module.exports = {
   devtool: 'source-map',
@@ -60,10 +60,9 @@ module.exports = {
   ].filter(Boolean),
   devServer: {
     static: {
-      directory: path.resolve(__dirname, './dist')
+      directory: path.resolve(__dirname, "./public/assets")
     },
     historyApiFallback: true,
-    contentBase: './',
     hot: true
   },
   module: {
