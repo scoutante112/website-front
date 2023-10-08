@@ -1,11 +1,12 @@
-import './assets/App.css';
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GlobalStylesheet from './assets/css/GlobalStylesheet';
-import 'react-toastify/dist/ReactToastify.min.css';
-import NavBar from './components/NavBar';
-import LazyLoad from 'react-lazyload';
-import { ToastContainer } from 'react-toastify';
+import "./assets/App.css";
+import React, { lazy, Suspense, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import GlobalStylesheet from "./assets/css/GlobalStylesheet";
+import "react-toastify/dist/ReactToastify.min.css";
+import NavBar from "./components/NavBar";
+import LazyLoad from "react-lazyload";
+import { ToastContainer } from "react-toastify";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 const LmContainer = lazy(() => import('./components/LmContainer'));
 const TosContainer = lazy(() => import('./components/TosContainer'));
@@ -39,168 +40,185 @@ const Footer = lazy(() => import('./components/Elements/Footer'));
 
 export const MainNavRoutes = [
 
-    {
-        name: 'products',
-        link: '/products',
-        component: <Products />
-    },
-    {
-        name: 'news',
-        link: '/news',
-        component: <NewsContainer />
-    },
-    {
-        name: 'licenses',
-        link: '/licenses',
-        component: <Licenses />
-    },
-    {
-        name: 'contact',
-        link: '/contact',
-        component: <Contact />
-    }
+  {
+    name: "products",
+    link: "/products",
+    component: <Products />
+  },
+  {
+    name: "news",
+    link: "/news",
+    component: <NewsContainer />
+  },
+  {
+    name: "licenses",
+    link: "/licenses",
+    component: <Licenses />
+  },
+  {
+    name: "contact",
+    link: "/contact",
+    component: <Contact />
+  }
 ];
 export const AuthRoutes = [
-    {
-        name: 'login',
-        link: '/login',
-        component: <Login />
-    },
-    {
-        name: 'register',
-        link: '/register',
-        component: <Register />
-    },
+  {
+    name: "login",
+    link: "/login",
+    component: <Login />
+  },
+  {
+    name: "register",
+    link: "/register",
+    component: <Register />
+  },
 
-    {
-        name: 'logintoken',
-        link: '/login/token/:token',
-        component: <TokenLogin />
-    },
-    {
-        name: 'oauthcallback',
-        link: '/login/callback',
-        component: <OauthCallback />
-    },
-    {
-        name: 'account',
-        link: '/account/manage',
-        component: <AccountContainer />
-    },
-    {
-        name: 'account',
-        link: '/account/manage/OauthCallback',
-        component: <AccountLinkOauthCallback />
-    },
-    {
-        name: 'account',
-        link: '/account/licenses',
-        component: <AccountLicenseContainer />
-    },
-    {
-        name: 'account',
-        link: '/account/orders',
-        component: <AccountOrderContainer />
-    },
-    {
-        name: 'tickets',
-        link: '/account/tickets',
-        component: <TicketContainer />
-    },
-    {
-        name: 'tickets',
-        link: '/account/ticket/:id',
-        component: <TicketViewContainer />
-    }
+  {
+    name: "logintoken",
+    link: "/login/token/:token",
+    component: <TokenLogin />
+  },
+  {
+    name: "oauthcallback",
+    link: "/login/callback",
+    component: <OauthCallback />
+  },
+  {
+    name: "account",
+    link: "/account/manage",
+    component: <AccountContainer />
+  },
+  {
+    name: "account",
+    link: "/account/manage/OauthCallback",
+    component: <AccountLinkOauthCallback />
+  },
+  {
+    name: "account",
+    link: "/account/licenses",
+    component: <AccountLicenseContainer />
+  },
+  {
+    name: "account",
+    link: "/account/orders",
+    component: <AccountOrderContainer />
+  },
+  {
+    name: "tickets",
+    link: "/account/tickets",
+    component: <TicketContainer />
+  },
+  {
+    name: "tickets",
+    link: "/account/ticket/:id",
+    component: <TicketViewContainer />
+  }
 ];
 
 export const AdminRoutes = [
-    {
-        name: 'blogs',
-        link: '/admin/blogs',
-        component: <BlogsContainer />
-    },
-    {
-        name: 'users',
-        link: '/admin/users',
-        component: <UsersContainer />
-    },
-    {
-        name: 'products',
-        link: '/admin/products',
-        component: <ProductsContainer />
-    },
-    {
-        name: 'licenses',
-        link: '/admin/licenses',
-        component: <LicensesContainer />
-    },
-];
+  {
+    name: "blogs",
+    link: "/admin/blogs",
+    component: <BlogsContainer />
+  },
+  {
+    name: "users",
+    link: "/admin/users",
+    component: <UsersContainer />
+  },
+  {
+    name: "products",
+    link: "/admin/products",
+    component: <ProductsContainer />
+  },
+  {
+    name: "licenses",
+    link: "/admin/licenses",
+    component: <LicensesContainer />
+  },
+]
 
 export const OthersRoutes = [
-    {
-        name: 'products',
-        link: '/product/:id',
-        component: <Product />
-    },
-    {
-        name: 'new',
-        link: '/news/:id',
-        component: <NewsCard />
-    },
-    {
-        name: 'order',
-        link: '/order/:id',
-        component: <OrdersCallback />
-    },
-    {
-        name: 'tos',
-        link: '/tos',
-        component: <TosContainer />
-    },
-    {
-        name: 'pp',
-        link: '/pp',
-        component: <PpContainer />
-    },
-    {
-        name: 'lm',
-        link: '/lm',
-        component: <LmContainer />
-    },
-    {
-        name: 'rp',
-        link: '/rp',
-        component: <RpContainer />
-    }
+  {
+    name: "products",
+    link: "/product/:id",
+    component: <Product />
+  },
+  {
+    name: "new",
+    link: "/news/:id",
+    component: <NewsCard />
+  },
+  {
+    name: "order",
+    link: "/order/:id",
+    component: <OrdersCallback />
+  },
+  {
+    name: "tos",
+    link: "/tos",
+    component: <TosContainer />
+  },
+  {
+    name: "pp",
+    link: "/pp",
+    component: <PpContainer />
+  },
+  {
+    name: "lm",
+    link: "/lm",
+    component: <LmContainer />
+  },
+  {
+    name: "rp",
+    link: "/rp",
+    component: <RpContainer />
+  }
 ];
 
 function App() {
-
+  const [open, setOpen] = useState<boolean>(true);
     return (
-        <>
-            <GlobalStylesheet />
-            <Router>
-                <LazyLoad once>
-                    <Suspense fallback={<Loading />}>
-                        <ToastContainer />
-                    </Suspense>
-                </LazyLoad>
+      <>
+        <GlobalStylesheet />
+        <Router>
+          <LazyLoad once>
+            <Suspense fallback={<Loading />}>
+              <ToastContainer />
+            </Suspense>
+          </LazyLoad>
 
-                <div className="navbar border-b-2 border-neutral-content dark:border-neutral">
-                    <Suspense fallback={<Loading />}>
-                        <NavBar/>
-                    </Suspense>
+          <div className="navbar border-b-2 border-neutral-content dark:border-neutral">
+            <Suspense fallback={<Loading />}>
+            <NavBar/>
+            </Suspense>
 
-                </div>
-                <div className={'mx-16'}>
-                    <div className="alert alert-warning my-4 min-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                        <span>Warning: This website is still in beta phase, some bugs may occur!</span>
-                    </div>
-                </div>
+          </div>
+          <div
+            className={`${
+              !open
+                ? "opacity-0 pointer-events-none"
+                : "opacity-100 pointer-events-auto"
+            } transition-all duration-300 flex items-center gap-x-6 bg-yellow-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
+          >
+            <p className="text-sm leading-6 text-black">
+              <strong className="font-semibold">Warning</strong>
+              <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
+                <circle cx={1} cy={1} r={1} />
+              </svg>
+              This website is still in beta phase, some bugs may occur!
+            </p>
+            <div className="flex flex-1 justify-end">
+              <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
+                      onClick={() => setOpen(false)}>
+                <span className="sr-only">Dismiss</span>
+                <XMarkIcon className="h-5 w-5 text-black" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
 
-                {/*<div className="alert alert-warning shadow-lg">
+
+          {/*<div className="alert alert-warning shadow-lg">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none"
                    viewBox="0 0 24 24">
@@ -210,37 +228,37 @@ function App() {
               <span>Warning: This website is still in development. Some functionality is still missing and some bugs may occur!</span>
             </div>
           </div>*/}
-                <div className={'min-h-screen'}>
-                    <Suspense fallback={<Loading />}>
-                        <Routes>
+          <div className={'min-h-screen'}>
+          <Suspense fallback={<Loading />}>
+          <Routes>
 
-                            <Route path="/" element={<Products />} />
+            <Route path="/" element={<Products />} />
 
-                            {MainNavRoutes.map((routes, key) => (
-                                <Route key={key} path={routes.link} element={routes.component} />
-                            ))}
-                            {AuthRoutes.map((routes, key) => (
-                                <Route key={key + 500} path={routes.link} element={routes.component} />
-                            ))}
-                            {AdminRoutes.map((routes, key) => (
-                                <Route key={key + 1000} path={routes.link} element={routes.component} />
-                            ))}
-                            {OthersRoutes.map((routes, key) => (
-                                <Route key={key + 1000} path={routes.link} element={routes.component} />
-                            ))}
-                            <Route path={'*'} element={<NotFoundPage />} />
-                        </Routes>
-                    </Suspense>
-                </div>
-                <Suspense fallback={<Loading />}>
-                    <Footer/>
-                    <p className={'text-center my-2'}>© 2022 - 2023 Bagou450. All Rights Reserved.</p>
-                </Suspense>
-            </Router>
+            {MainNavRoutes.map((routes, key) => (
+              <Route key={key} path={routes.link} element={routes.component} />
+            ))}
+            {AuthRoutes.map((routes, key) => (
+              <Route key={key + 500} path={routes.link} element={routes.component} />
+            ))}
+            {AdminRoutes.map((routes, key) => (
+              <Route key={key + 1000} path={routes.link} element={routes.component} />
+            ))}
+            {OthersRoutes.map((routes, key) => (
+              <Route key={key + 1000} path={routes.link} element={routes.component} />
+            ))}
+            <Route path={"*"} element={<NotFoundPage />} />
+          </Routes>
+          </Suspense>
+          </div>
+          <Suspense fallback={<Loading />}>
+          <Footer/>
+            <p className={'text-center my-2'}>© 2022 - 2023 Bagou450. All Rights Reserved.</p>
+          </Suspense>
+        </Router>
 
 
 
-        </>
+      </>
     );
 }
 

@@ -18,6 +18,8 @@ import 'react-quill/dist/quill.snow.css';
 import '../Admin/Blogs/toolBar.scss';
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { classNames } from "../NavBar";
+import { ArrowDownCircleIcon, ArrowPathIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 
 
 export default function Product() {
@@ -217,32 +219,23 @@ export default function Product() {
             <h1 className='font-bold text-4xl'>{addon.name}
             <br/> <span className='font-normal text-sm'>{addon.tag}</span>
             </h1>
-            <div className="stats shadow bg-base-200  dark:bg-neutral hidden md:flex">
-            <div className="stat">
-                <div className="stat-figure text-primary">
-                <RxUpdate color='hsl(var(--p))' size={'35px'}/>
-                </div>
-                <div className="stat-title">Version</div>
-                <div className="stat-value text-primary">{addon.version}</div>
+          <dl className="mx-auto grid grid-cols-1 gap-px bg-gray-900/5 lg:grid-cols-3 gap-x-2">
+            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+              <dt className="truncate text-sm font-medium text-gray-500"><ArrowPathIcon className={'h-6 w-6 text-blue-500'}/>Version</dt>
+              <dd className="mt-1 text-3xl font-semibold tracking-tight text-blue-500">{addon.version}</dd>
             </div>
-            
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                 <RiInstallLine color={addon.autoinstaller ? 'green' : 'hsl(var(--er))'} size={'35px'}/>
-                </div>
-                <div className="stat-title">Auto installer</div>
-                <div className={addon.autoinstaller ? "stat-value text-success" : "stat-value text-error"}>{addon.autoinstaller ? 'Available' : 'N/A'}</div>
+            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+              <dt className="truncate text-sm font-medium text-gray-500"><ArrowDownCircleIcon className={`h-6 w-6 ${addon.autoinstaller ? 'text-green-500' : 'text-red-500'}`}/>Auto Installer</dt>
+              <dd className={`mt-1 text-3xl font-semibold tracking-tight text-gray-900  ${addon.autoinstaller ? 'text-green-500' : 'text-red-500'}`}>{addon.autoinstaller ? 'Available' : 'N/A'}</dd>
             </div>
-            
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                <IoCheckmarkCircleOutline color='hsl(var(--in))' size={'35px'}/>
-                </div>
-                <div className="stat-title">Compatible</div>
-                <div className="stat-value text-info ">1.X</div>
+            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+              <dt className="truncate text-sm font-medium text-gray-500"><CheckCircleIcon className={'h-6 w-6  text-indigo-700 '}/> Compatible</dt>
+              <dd className="mt-1 text-3xl font-semibold tracking-tight text-indigo-700">1.X</dd>
             </div>
-            
-            </div>
+
+
+
+          </dl>
           <div className='hidden'>
           <div className="divider divider-horizontal hidden">OR</div>
           <div className=" h-20 card rounded-box place-items-center grid grid-cols-1 md:grid-cols-4 gap-x-2 gap-y-2 mx-8">

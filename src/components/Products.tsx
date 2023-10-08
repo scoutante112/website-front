@@ -1,19 +1,27 @@
-import React, { lazy, useState, Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import useSWR from "swr";
-import { debounce } from 'debounce';
+import { debounce } from "debounce";
 import Loading from "./Elements/Loading";
 import { config } from "../config/config";
 import Pagination from "./Elements/Pagination";
+import { Link } from "react-router-dom";
 import ProductBox from "./ProductBox";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
+export interface Product {
+  id:number;
+  name:string;
+  tag:string;
+  price:number;
+
+}
 export default function Products() {
 
   const [search, setSearch] = useState<string>('')
   const [page, setPage] = useState<number>(1)
   const {data, mutate, error, isLoading } = useSWR(
-    `${config.privateapilink}/addons/get?page=${page}&search=${search}&perpage=21`,
+    `${config.privateapilink}/addons/get?page=${page}&search=${search}&perpage=20`,
     fetcher
   );
 
@@ -36,19 +44,22 @@ export default function Products() {
   
   return (
   <>
-    <h1 className='text-center text-4xl mt-4 mb-2'>Products</h1>
+    <h1 className="text-center text-black text-semibold text-4xl mt-4 mb-2">Products</h1>
     <div className={'text-center'}>
-    <input type="text" placeholder="Search a product" defaultValue={search} className="input w-full input-bordered max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
+      <input type="text" placeholder="Search a product" defaultValue={search}
+             className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 "
+             onChange={(e) => searchValue(e.target.value)} />
     </div>
-    <section className='mx-4 grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-x-3 gap-y-4'>
-      <Suspense fallback={<Loading />}>
-        {data.data.map((element: any, key: any) => (
-          <Suspense key={key} fallback={<img src={`${config.privateiconlink}${element.icon}`} alt={element.name + " icon"} className='mt-6 h-52 w-52' width="500" height="500" />}>
-            <ProductBox element={element} key={key} />
-          </Suspense>
-        ))}
-      </Suspense>
+    <section
+      className="mx-4 grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-x-3 gap-y-4">
+      {data.data.map((product: Product) => (
+        <Suspense fallback={<Loading />}>
+
+          <ProductBox product={product} key={product.id}/>
+        </Suspense>
+      ))}
     </section>
+
     <div className='text-center mt-4'>
   <div className="btn-group">
     <Pagination page={page} setPage={setPage} totalPages={data.totalpage}/>

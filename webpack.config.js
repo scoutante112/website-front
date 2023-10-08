@@ -11,10 +11,9 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = true;
+const isProduction = false;
 
 module.exports = {
   devtool: 'source-map',
@@ -35,7 +34,6 @@ module.exports = {
     isProduction &&  new BrotliPlugin(),
     isProduction && new WebpackManifestPlugin(),
     isProduction && new ImageminWebpWebpackPlugin(),
-    new ESLintPlugin(),
     new Dotenv(),
     isProduction && new CompressionPlugin(),
     isProduction && new LodashModuleReplacementPlugin(),
@@ -62,10 +60,9 @@ module.exports = {
   ].filter(Boolean),
   devServer: {
     static: {
-      directory: path.resolve(__dirname, './dist')
+      directory: path.resolve(__dirname, "./public/assets")
     },
     historyApiFallback: true,
-    contentBase: './',
     hot: true
   },
   module: {
