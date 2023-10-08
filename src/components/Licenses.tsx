@@ -1,244 +1,244 @@
-import { useFormik } from "formik";
-import React, { useState } from "react";
-import { object, string } from "yup";
-import getLicenses from "../api/licenses/getLicenses";
-import { AnimatePresence, motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
+import { object, string } from 'yup';
+import getLicenses from '../api/licenses/getLicenses';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const form = object({
-  userid: string().required("This field is required")
+    userid: string().required('This field is required')
 });
 export default function Licenses() {
-  const [boughtlocation, setBoughtlocation] = useState<string>("bgshop");
-  const formik = useFormik({
-    initialValues: { userid: "" },
-    validationSchema: form,
-    onSubmit: (values) => {
-      setLicense(true);
+    const [boughtlocation, setBoughtlocation] = useState<string>('bgshop');
+    const formik = useFormik({
+        initialValues: { userid: '' },
+        validationSchema: form,
+        onSubmit: (values) => {
+            setLicense(true);
 
-      getLicenses(values.userid, boughtlocation).then(() => {
-        toast.success(boughtlocation === "bbb" ? "Your license has been set trough BuiltByBit conversation. Please check your BuiltByBit message center." : "Your license has been sent to your email (check your spam)!", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-      }).catch(() => {
-        toast.error("Error from the api. Maybe you selected the bad store? Refresh the page and retry!", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-      });
-    }
-  });
-  document.title = "Bagou450 - Licenses";
+            getLicenses(values.userid, boughtlocation).then(() => {
+                toast.success(boughtlocation === 'bbb' ? 'Your license has been set trough BuiltByBit conversation. Please check your BuiltByBit message center.' : 'Your license has been sent to your email (check your spam)!', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+                });
+            }).catch(() => {
+                toast.error('Error from the api. Maybe you selected the bad store? Refresh the page and retry!', {
+                    position: 'bottom-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+                });
+            });
+        }
+    });
+    document.title = 'Bagou450 - Licenses';
 
-  const [selected, setSelected] = useState<boolean>(false);
-  const [license, setLicense] = useState<boolean>(false);
-  return (
-    <>
-      <div className="text-center my-4">
-        <ToastContainer />
+    const [selected, setSelected] = useState<boolean>(false);
+    const [license, setLicense] = useState<boolean>(false);
+    return (
+        <>
+            <div className="text-center my-4">
+                <ToastContainer />
 
-        <div>
-          <h1 className="text-white text-4xl">
+                <div>
+                    <h1 className="text-white text-4xl">
             Licenses
 
-          </h1>
-          <div>
-            <ul className="steps steps-vertical lg:steps-horizontal mb-4">
-              <li className="step step-primary">Select the store</li>
-              <li className={selected ? "step step-primary" : "step"}>Enter your informations</li>
-              <li className={license ? "step step-primary" : "step"}>Get your license</li>
-            </ul>
-            <AnimatePresence>  {!selected ? (
-                <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5 }} animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}>
-                  <p className="mb-2 mt-2 text-white text-2xl">Where you bought it?:</p>
+                    </h1>
+                    <div>
+                        <ul className="steps steps-vertical lg:steps-horizontal mb-4">
+                            <li className="step step-primary">Select the store</li>
+                            <li className={selected ? 'step step-primary' : 'step'}>Enter your informations</li>
+                            <li className={license ? 'step step-primary' : 'step'}>Get your license</li>
+                        </ul>
+                        <AnimatePresence>  {!selected ? (
+                            <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5 }} animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}>
+                                <p className="mb-2 mt-2 text-white text-2xl">Where you bought it?:</p>
 
-                  <div className={"carousel max-h-96 my-4 w-full"}>
-                    <div id="slide1" className="carousel-item relative w-full">
-                      <img src="https://cdn.bagou450.com/assets/img/bgshop.webp" alt="Bagou450 Shop"
-                           className="mx-auto max-w-screen-md" />
-                      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation("pm"); window.scrollTo(0, 0);}}>❮</a>
-                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation("bbb"); window.scrollTo(0, 0);}}>❯</a>
-                      </div>
-                    </div>
-                    <div id="slide2" className="carousel-item relative w-full">
-                      <img src="https://cdn.bagou450.com/assets/img/bbb.webp" alt="BuiltByBits"
-                           className="mx-auto max-w-screen-md" />
-                      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation("bgshop"); window.scrollTo(0, 0);}}>❮</a>
-                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation("ssx"); window.scrollTo(0, 0);}}>❯</a>
-                      </div>
-                    </div>
-                    <div id="slide3" className="carousel-item relative w-full">
-                      <p
-                         className="mx-auto font-bold max-w-screen-md text-4xl my-auto" >sourceXchange</p>
-                      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation("bbb"); window.scrollTo(0, 0);}}>❮</a>
-                        <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation("pm"); window.scrollTo(0, 0);}}>❯</a>
-                      </div>
-                    </div>
-                    <div id="slide4" className="carousel-item relative w-full">
-                      <img src="https://cdn.bagou450.com/assets/img/pm.webp" alt="Pterodactyl Market"
-                           className="mx-auto max-w-screen-md" />
-                      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation("ssx"); window.scrollTo(0, 0);}}>❮</a>
-                        <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation("bgshop"); window.scrollTo(0, 0);}}>❯</a>
-                      </div>
-                    </div>
-                  </div>
-                  <button className="btn btn-outline btn-primary mb-4" onClick={() => setSelected(!selected)}>Select this
+                                <div className={'carousel max-h-96 my-4 w-full'}>
+                                    <div id="slide1" className="carousel-item relative w-full">
+                                        <img src="https://cdn.bagou450.com/assets/img/bgshop.webp" alt="Bagou450 Shop"
+                                            className="mx-auto max-w-screen-md" />
+                                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                            <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation('pm'); window.scrollTo(0, 0);}}>❮</a>
+                                            <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation('bbb'); window.scrollTo(0, 0);}}>❯</a>
+                                        </div>
+                                    </div>
+                                    <div id="slide2" className="carousel-item relative w-full">
+                                        <img src="https://cdn.bagou450.com/assets/img/bbb.webp" alt="BuiltByBits"
+                                            className="mx-auto max-w-screen-md" />
+                                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                            <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation('bgshop'); window.scrollTo(0, 0);}}>❮</a>
+                                            <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation('ssx'); window.scrollTo(0, 0);}}>❯</a>
+                                        </div>
+                                    </div>
+                                    <div id="slide3" className="carousel-item relative w-full">
+                                        <p
+                                            className="mx-auto font-bold max-w-screen-md text-4xl my-auto" >sourceXchange</p>
+                                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                            <a href="/licenses#slide2" className="btn btn-circle" onClick={() => {setBoughtlocation('bbb'); window.scrollTo(0, 0);}}>❮</a>
+                                            <a href="/licenses#slide4" className="btn btn-circle" onClick={() => {setBoughtlocation('pm'); window.scrollTo(0, 0);}}>❯</a>
+                                        </div>
+                                    </div>
+                                    <div id="slide4" className="carousel-item relative w-full">
+                                        <img src="https://cdn.bagou450.com/assets/img/pm.webp" alt="Pterodactyl Market"
+                                            className="mx-auto max-w-screen-md" />
+                                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                            <a href="/licenses#slide3" className="btn btn-circle" onClick={() => {setBoughtlocation('ssx'); window.scrollTo(0, 0);}}>❮</a>
+                                            <a href="/licenses#slide1" className="btn btn-circle" onClick={() => {setBoughtlocation('bgshop'); window.scrollTo(0, 0);}}>❯</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="btn btn-outline btn-primary mb-4" onClick={() => setSelected(!selected)}>Select this
                     shop
-                  </button>
+                                </button>
 
-                </motion.div>
+                            </motion.div>
 
-              )
+                        )
 
-              :
-              null
-            }</AnimatePresence>
+                            :
+                            null
+                        }</AnimatePresence>
 
-            <AnimatePresence>
-              {boughtlocation === "bgshop" && selected ? (
+                        <AnimatePresence>
+                            {boughtlocation === 'bgshop' && selected ? (
 
-                <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}>
+                                <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}>
                   Sorry but this is not available for the moment
-                </motion.div>
-              ) : boughtlocation === "ssx" && selected ? (
-                  <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}>
+                                </motion.div>
+                            ) : boughtlocation === 'ssx' && selected ? (
+                                <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}>
 
-                    <p className="mb-2 mt-2 text-white text-2xl">Enter your email:</p>
-                    <div className="mt-4 justify-center">
-                      <form onSubmit={formik.handleSubmit}>
-                        <input id="userid"
-                               name="userid"
-                               type="userid"
-                               placeholder="email@exemple.com"
-                               onChange={formik.handleChange}
-                               required
-                               className="input input-bordered input-info w-full input-lg max-w-xs" />
-                        <br />
-                        <button className="btn btn-outline btn-primary mt-4" type="submit" disabled={license}>
+                                    <p className="mb-2 mt-2 text-white text-2xl">Enter your email:</p>
+                                    <div className="mt-4 justify-center">
+                                        <form onSubmit={formik.handleSubmit}>
+                                            <input id="userid"
+                                                name="userid"
+                                                type="userid"
+                                                placeholder="email@exemple.com"
+                                                onChange={formik.handleChange}
+                                                required
+                                                className="input input-bordered input-info w-full input-lg max-w-xs" />
+                                            <br />
+                                            <button className="btn btn-outline btn-primary mt-4" type="submit" disabled={license}>
                           Submit
-                        </button>
-                      </form>
-                    </div>
+                                            </button>
+                                        </form>
+                                    </div>
 
-                  </motion.div>
+                                </motion.div>
 
-                )
-                : boughtlocation === "pm" && selected ? (
-                  <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}>
+                            )
+                                : boughtlocation === 'pm' && selected ? (
+                                    <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}>
                     If you bought it on Pterodactyl Market please just use your PayPal transaction id as License
-                  </motion.div>
-                ) : boughtlocation === "bbb" && selected ? (
-                  <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}>
-                    <p className="mb-2 mt-2 text-white text-2xl">Enter your User id:</p>
-                    <div className="mt-4 justify-center">
-                      <form onSubmit={formik.handleSubmit}>
-                        <input id="userid"
-                               name="userid"
-                               type="userid"
-                               placeholder="187451"
-                               onChange={formik.handleChange}
-                               required
-                               className="input input-bordered input-info w-full input-lg max-w-xs" />
-                        <br />
-                        <button className="btn btn-outline btn-primary mt-4" type="submit" disabled={license}>
+                                    </motion.div>
+                                ) : boughtlocation === 'bbb' && selected ? (
+                                    <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}>
+                                        <p className="mb-2 mt-2 text-white text-2xl">Enter your User id:</p>
+                                        <div className="mt-4 justify-center">
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <input id="userid"
+                                                    name="userid"
+                                                    type="userid"
+                                                    placeholder="187451"
+                                                    onChange={formik.handleChange}
+                                                    required
+                                                    className="input input-bordered input-info w-full input-lg max-w-xs" />
+                                                <br />
+                                                <button className="btn btn-outline btn-primary mt-4" type="submit" disabled={license}>
                           Submit
-                        </button>
-                      </form>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div className="text-center mx-auto">
+                                            <h4 className="text-white text-2xl">How to find your UserId?</h4>
+                                            <p>For find your user id go on <a href={'https://builtbybits.com'} target="_blank"
+                                                rel="noreferrer">BuiltByBits</a> and click on your account.
+                                            <br /> After click on your username for go on your account page.
+                                            <br />When you are on the account page check the url you normally see at end something like
+                        &quot;bagou450.<span className="font-bold">187451</span>&quot;.
+                                            <br />You need to take the number after your username.
+                                            <br />Here with this exemple the id is 187451! If you need more help see the screenshot. </p>
+                                            <img src={'https://cdn.bagou450.com/assets/img/findbbbuserid.webp'}
+                                                className="h-[50%] w-[50%] mx-auto text-center" alt={'Find BuiltByBits username'} />
+                                        </div>
+                                    </motion.div>
+                                ) : selected && (
+                                    <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}>
+                                        <p className="text-red-500">Error 784-481 : Please reload the page</p>
+                                    </motion.div>
+                                )
+                            }
+                        </AnimatePresence>
+
                     </div>
-                    <div className="text-center mx-auto">
-                      <h4 className="text-white text-2xl">How to find your UserId?</h4>
-                      <p>For find your user id go on <a href={"https://builtbybits.com"} target="_blank"
-                                                        rel="noreferrer">BuiltByBits</a> and click on your account.
-                        <br /> After click on your username for go on your account page.
-                        <br />When you are on the account page check the url you normally see at end something like
-                        "bagou450.<span className="font-bold">187451</span>".
-                        <br />You need to take the number after your username.
-                        <br />Here with this exemple the id is 187451! If you need more help see the screenshot. </p>
-                      <img src={"https://cdn.bagou450.com/assets/img/findbbbuserid.webp"}
-                           className="h-[50%] w-[50%] mx-auto text-center" alt={"Find BuiltByBits username"} />
+                </div>
+            </div>
+            <div className="mx-auto text-center ">
+                <h2 className="text-white text-2xl mb-4">Some statistics</h2>
+                <div className="stats shadow my-4 bg-base-300">
+
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                className="inline-block w-8 h-8 stroke-current">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div className="stat-title">Licenses</div>
+                        <div className="stat-value">+750</div>
                     </div>
-                  </motion.div>
-                ) : selected && (
-                  <motion.div initial={{ opacity: 0 }} transition={{ duration: 0.5, delay: 1 }} animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}>
-                    <p className="text-red-500">Error 784-481 : Please reload the page</p>
-                  </motion.div>
-                )
-              }
-            </AnimatePresence>
 
-          </div>
-        </div>
-      </div>
-      <div className="mx-auto text-center ">
-        <h2 className="text-white text-2xl mb-4">Some statistics</h2>
-        <div className="stats shadow my-4 bg-base-300">
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                className="inline-block w-8 h-8 stroke-current">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                            </svg>
+                        </div>
+                        <div className="stat-title">Daily usage</div>
+                        <div className="stat-value">+25 000</div>
+                    </div>
 
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   className="inline-block w-8 h-8 stroke-current">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                className="inline-block w-8 h-8 stroke-current">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                            </svg>
+                        </div>
+                        <div className="stat-title">Uptime</div>
+                        <div className="stat-value">99.99%</div>
+                    </div>
+
+                </div>
             </div>
-            <div className="stat-title">Licenses</div>
-            <div className="stat-value">+750</div>
-          </div>
+            <div className="grid grid-cols-2">
 
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   className="inline-block w-8 h-8 stroke-current">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-              </svg>
             </div>
-            <div className="stat-title">Daily usage</div>
-            <div className="stat-value">+25 000</div>
-          </div>
 
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   className="inline-block w-8 h-8 stroke-current">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                      d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
-              </svg>
-            </div>
-            <div className="stat-title">Uptime</div>
-            <div className="stat-value">99.99%</div>
-          </div>
-
-        </div>
-      </div>
-      <div className="grid grid-cols-2">
-
-      </div>
-
-    </>
-  );
+        </>
+    );
 }

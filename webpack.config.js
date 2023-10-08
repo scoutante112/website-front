@@ -11,6 +11,7 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 require('dotenv').config()
 
 const isProduction = true;
@@ -34,6 +35,7 @@ module.exports = {
     isProduction &&  new BrotliPlugin(),
     isProduction && new WebpackManifestPlugin(),
     isProduction && new ImageminWebpWebpackPlugin(),
+    new ESLintPlugin(),
     new Dotenv(),
     isProduction && new CompressionPlugin(),
     isProduction && new LodashModuleReplacementPlugin(),

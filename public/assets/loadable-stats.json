@@ -1,29 +1,29 @@
 {
-  "hash": "335f3ada9be380c94098",
+  "hash": "62e6a077313ca947385b",
   "publicPath": "auto",
   "outputPath": "/var/www/newwebsite/public/assets",
   "assetsByChunkName": {
     "main": [
-      "bundle.a5397aa9652c71a0c432.js"
+      "bundle.572850adb18f98aac0b1.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "bundle.a5397aa9652c71a0c432.js",
-      "size": 860555,
+      "name": "bundle.572850adb18f98aac0b1.js",
+      "size": 762788,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "a5397aa9652c71a0c432",
+        "contenthash": "572850adb18f98aac0b1",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "license": "bundle.a5397aa9652c71a0c432.js.LICENSE.txt",
-          "sourceMap": "bundle.a5397aa9652c71a0c432.js.map",
-          "gzipped": "bundle.a5397aa9652c71a0c432.js.gz"
+          "license": "bundle.572850adb18f98aac0b1.js.LICENSE.txt",
+          "sourceMap": "bundle.572850adb18f98aac0b1.js.map",
+          "gzipped": "bundle.572850adb18f98aac0b1.js.gz"
         }
       },
       "chunkNames": [
@@ -124,6 +124,35 @@
       "filteredRelated": 3,
       "chunks": [
         944
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "bundle.356c1a4e2b44f6ef2e01.js",
+      "size": 78018,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "356c1a4e2b44f6ef2e01",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "bundle.356c1a4e2b44f6ef2e01.js.map",
+          "gzipped": "bundle.356c1a4e2b44f6ef2e01.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "default"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 2,
+      "chunks": [
+        21
       ],
       "auxiliaryChunks": []
     },
@@ -320,19 +349,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.178fb73cdd37f55569dd.js",
-      "size": 20084,
+      "name": "bundle.9431221720ec22e22297.js",
+      "size": 20090,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "178fb73cdd37f55569dd",
+        "contenthash": "9431221720ec22e22297",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.178fb73cdd37f55569dd.js.map",
-          "gzipped": "bundle.178fb73cdd37f55569dd.js.gz"
+          "sourceMap": "bundle.9431221720ec22e22297.js.map",
+          "gzipped": "bundle.9431221720ec22e22297.js.gz"
         }
       },
       "chunkNames": [],
@@ -400,6 +429,36 @@
       "filteredRelated": 3,
       "chunks": [
         610
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "bundle.263e466139f54da09645.js",
+      "size": 16359,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "263e466139f54da09645",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "license": "bundle.263e466139f54da09645.js.LICENSE.txt",
+          "sourceMap": "bundle.263e466139f54da09645.js.map",
+          "gzipped": "bundle.263e466139f54da09645.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "default"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 3,
+      "chunks": [
+        563
       ],
       "auxiliaryChunks": []
     },
@@ -705,6 +764,33 @@
     },
     {
       "type": "asset",
+      "name": "bundle.93e7ff96717663d7c601.js",
+      "size": 4368,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "93e7ff96717663d7c601",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "bundle.93e7ff96717663d7c601.js.map",
+          "gzipped": "bundle.93e7ff96717663d7c601.js.gz"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 2,
+      "chunks": [
+        938
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
       "name": "bundle.580076d7255014bb06b9.js",
       "size": 3735,
       "emitted": false,
@@ -813,19 +899,19 @@
     },
     {
       "type": "asset",
-      "name": "bundle.6ca153c75acb9299460d.js",
-      "size": 1812,
+      "name": "bundle.5a9b13dbab42fd0f1ca7.js",
+      "size": 1844,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "contenthash": "6ca153c75acb9299460d",
+        "contenthash": "5a9b13dbab42fd0f1ca7",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "sourceMap": "bundle.6ca153c75acb9299460d.js.map",
-          "gzipped": "bundle.6ca153c75acb9299460d.js.gz"
+          "sourceMap": "bundle.5a9b13dbab42fd0f1ca7.js.map",
+          "gzipped": "bundle.5a9b13dbab42fd0f1ca7.js.gz"
         }
       },
       "chunkNames": [],
@@ -895,7 +981,7 @@
     {
       "type": "asset",
       "name": "index.html",
-      "size": 655,
+      "size": 670,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
@@ -921,7 +1007,7 @@
       ],
       "assets": [
         {
-          "name": "bundle.a5397aa9652c71a0c432.js"
+          "name": "bundle.572850adb18f98aac0b1.js"
         }
       ],
       "filteredAssets": 0,
@@ -937,7 +1023,7 @@
     {
       "id": 179,
       "files": [
-        "bundle.a5397aa9652c71a0c432.js"
+        "bundle.572850adb18f98aac0b1.js"
       ]
     },
     {
@@ -1001,9 +1087,15 @@
       ]
     },
     {
+      "id": 938,
+      "files": [
+        "bundle.93e7ff96717663d7c601.js"
+      ]
+    },
+    {
       "id": 323,
       "files": [
-        "bundle.178fb73cdd37f55569dd.js"
+        "bundle.9431221720ec22e22297.js"
       ]
     },
     {
@@ -1087,13 +1179,25 @@
     {
       "id": 934,
       "files": [
-        "bundle.6ca153c75acb9299460d.js"
+        "bundle.5a9b13dbab42fd0f1ca7.js"
+      ]
+    },
+    {
+      "id": 563,
+      "files": [
+        "bundle.263e466139f54da09645.js"
       ]
     },
     {
       "id": 85,
       "files": [
         "bundle.44936cefba4a1c223c31.js"
+      ]
+    },
+    {
+      "id": 21,
+      "files": [
+        "bundle.356c1a4e2b44f6ef2e01.js"
       ]
     },
     {
