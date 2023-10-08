@@ -41,8 +41,8 @@ export default function NewsContainer() {
       <>
         <h1 className='text-center text-4xl mt-4 mb-2'>News</h1>
         <div className={'text-center grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mb-4'}>
-          <input type="text" placeholder="Search a product" defaultValue={search} className="input w-full input-bordered max-w-xs " onChange={(e) => searchValue(e.target.value)} />
-          <select className="select select-bordered w-full max-w-xs" onChange={(e) => setCategory(e.target.value)}>
+          <input type="text" placeholder="Search a product" defaultValue={search} className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
+          <select className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => setCategory(e.target.value)}>
             <option disabled selected>Select category</option>
             {categories.data.map((categorie: categorie, index: number) => {
               return   <option key={index} value={categorie.id}>{categorie.name}</option>;
@@ -60,18 +60,32 @@ export default function NewsContainer() {
     mutate()
   }, 500)
   return (
-    <section className={'mx-16'}>
-      <h1 className='text-center text-4xl mt-4 mb-2'>News</h1>
-      <div className={'text-center'}>
-        <input type="text" placeholder="Search a product" defaultValue={search} className="input w-full input-bordered max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
-        <select className="select select-bordered w-full max-w-xs mx-2 mb-4" onChange={(e) => setCategory(e.target.value)}>
-          <option disabled selected>Select category</option>
-          <option value={''}>All</option>
-          {categories.data.map((categorie: categorie, index: number) => {
-            return   <option key={index} value={categorie.id}>{categorie.name}</option>;
-          })}
-        </select>
+    <section className={'mx-16 '}>
+      <h1 className='text-center text-black text-4xl mt-4 mb-2'>News</h1>
+        <div className="flex">
+          <div className={"mx-auto flex gap-x-2"}>
+          <input
+            type="text"
+            placeholder="Search a product"
+            defaultValue={search}
+            className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg"
+            onChange={(e) => searchValue(e.target.value)}
+          />
+          <select
+            className=" block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg"
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option disabled selected>Select category</option>
+            {categories.data.map((categorie: categorie, index: number) => (
+              <option key={index} value={categorie.id}>
+                {categorie.name}
+              </option>
+            ))}
+          </select>
+          </div>
       </div>
+
+
       <div className={'grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-2'}>
         {blogs.data.map((blog: blog, index: number) => {
           return <NewsCard blog={blog} key={index}/>
@@ -105,10 +119,10 @@ function NewsCard({blog}: {blog: blog}) {
             </LazyLoad>
 
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{blog.title}
+      <div >
+        <h2 className="text-black text-center">{blog.title}
         </h2>
-        <p className={'text-xs opacity-60'}>{blog.slug}
+        <p className={'text-xs opacity-60 text-center'}>{blog.slug}
         </p>
       </div>
     </div>

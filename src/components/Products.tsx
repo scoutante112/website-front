@@ -5,15 +5,23 @@ import Loading from "./Elements/Loading";
 import { config } from "../config/config";
 import Pagination from "./Elements/Pagination";
 import { Link } from "react-router-dom";
+import ProductBox from "./ProductBox";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
+export interface Product {
+  id:number;
+  name:string;
+  tag:string;
+  price:number;
+
+}
 export default function Products() {
 
   const [search, setSearch] = useState<string>('')
   const [page, setPage] = useState<number>(1)
   const {data, mutate, error, isLoading } = useSWR(
-    `${config.privateapilink}/addons/get?page=${page}&search=${search}&perpage=21`,
+    `${config.privateapilink}/addons/get?page=${page}&search=${search}&perpage=20`,
     fetcher
   );
 
@@ -43,32 +51,11 @@ export default function Products() {
              onChange={(e) => searchValue(e.target.value)} />
     </div>
     <section
-      className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 xl:gap-x-8 mx-2 lg:mx-8 xl:mx-16 ">
-      {data.data.map((product) => (
+      className="mx-4 grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-x-3 gap-y-4">
+      {data.data.map((product: Product) => (
         <Suspense fallback={<Loading />}>
 
-          <div key={product.id} className="group relative">
-            <div
-              className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-              <img
-                src={`https://beta-api.bagou450.com/storage/logos/${product.id}.webp`}
-                alt={product.name + " icon"}
-                className="h-56 w-auto object-cover object-center lg:h-full lg:w-full mx-auto"
-              />
-            </div>
-            <div className="mt-4 flex justify-between">
-              <div>
-                <h3 className="text-sm text-gray-700">
-                  <Link to={`/product/${product.id}`}>
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    {product.name}
-                  </Link>
-                </h3>
-                <p className="mt-1 text-sm text-gray-500">{product.tag}</p>
-              </div>
-              <p className="text-sm font-medium text-gray-900">{product.price !== 0 ? product.price + "€" : "Free"}</p>
-            </div>
-          </div>
+          <ProductBox product={product} key={product.id}/>
         </Suspense>
       ))}
     </section>

@@ -25,12 +25,11 @@ export default function NavBar() {
   const navigation = useNavigate();
 
 
-
   if (!data || (error || isLoading)) {
     return <></>;
   }
-
-  if(infos && !data.status) {
+  const logged = data.status;
+  if(infos && !logged) {
     mutate();
     navigation('/login');
   }
@@ -58,16 +57,17 @@ export default function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center ">
+                  <Link to={'/'}>
                   <img
                     src={"https://cdn.bagou450.com/assets/img/logo_full_colored.webp"}
                     className={"h-8 w-auto"}
                     alt={"Logo Bagou450"} />
-
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {MainNavRoutes.map((routes, key) => (
                     <Link to={routes.link} key={key}
-                          className={`inline-flex items-center ${location.pathname === routes.link && "border-b-2 border-indigo-500"} px-1 pt-1 text-sm font-medium text-gray-900`}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link>
+                          className={`inline-flex items-center hover:opacity-50 duration-200 ${location.pathname === routes.link && "border-b-2 border-indigo-500"} px-1 pt-1 text-sm font-medium text-gray-900`}>{routes.name.charAt(0).toUpperCase() + routes.name.slice(1, routes.name.length)}</Link>
                   ))}
 
                 </div>
@@ -84,7 +84,9 @@ export default function NavBar() {
                 </button>*/}
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
+                {logged ? (
+
+                  <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button
                       className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -135,6 +137,15 @@ export default function NavBar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                ) : <div>
+                  <button className={'text-black hover:opacity-50 duration-200 px-2'}>
+                    Login
+                  </button>
+                  <button className={'text-black hover:opacity-50 duration-200 px-2'}>
+                    Register
+                  </button>
+                </div>
+                }
               </div>
             </div>
           </div>
