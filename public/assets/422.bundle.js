@@ -1,53 +1,37 @@
 "use strict";
-(globalThis["webpackChunknewwebsite"] = globalThis["webpackChunknewwebsite"] || []).push([[856,229],{
+(self["webpackChunknewwebsite"] = self["webpackChunknewwebsite"] || []).push([[422],{
 
-/***/ 1229:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ 2422:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Loading)
-/* harmony export */ });
-/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(665);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var react_lazyload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1216);
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": function() { return /* binding */ TicketViewContainer; }
+});
 
-
-function Loading() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "h-screen mx-auto text-center cursor-wait"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_lazyload__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_2__/* .motion */ .E.img, {
-    src: "https://cdn.bagou450.com/assets/img/bg5.webp",
-    className: 'h-44 w-44 mx-auto',
-    alt: "Logo",
-    animate: {
-      rotate: 360
-    },
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "linear"
-    }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: 'text-2xl'
-  }, "Loading...."));
-}
-
-/***/ }),
-
-/***/ 9583:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   aBF: () => (/* binding */ FaDownload),
-/* harmony export */   hJX: () => (/* binding */ FaGithub),
-/* harmony export */   j2d: () => (/* binding */ FaDiscord)
-/* harmony export */ });
-/* unused harmony exports Fa500Px, FaAccessibleIcon, FaAccusoft, FaAcquisitionsIncorporated, FaAdn, FaAdversal, FaAffiliatetheme, FaAirbnb, FaAlgolia, FaAlipay, FaAmazonPay, FaAmazon, FaAmilia, FaAndroid, FaAngellist, FaAngrycreative, FaAngular, FaAppStoreIos, FaAppStore, FaApper, FaApplePay, FaApple, FaArtstation, FaAsymmetrik, FaAtlassian, FaAudible, FaAutoprefixer, FaAvianex, FaAviato, FaAws, FaBandcamp, FaBattleNet, FaBehanceSquare, FaBehance, FaBimobject, FaBitbucket, FaBitcoin, FaBity, FaBlackTie, FaBlackberry, FaBloggerB, FaBlogger, FaBluetoothB, FaBluetooth, FaBootstrap, FaBtc, FaBuffer, FaBuromobelexperte, FaBuyNLarge, FaBuysellads, FaCanadianMapleLeaf, FaCcAmazonPay, FaCcAmex, FaCcApplePay, FaCcDinersClub, FaCcDiscover, FaCcJcb, FaCcMastercard, FaCcPaypal, FaCcStripe, FaCcVisa, FaCentercode, FaCentos, FaChrome, FaChromecast, FaCloudflare, FaCloudscale, FaCloudsmith, FaCloudversify, FaCodepen, FaCodiepie, FaConfluence, FaConnectdevelop, FaContao, FaCottonBureau, FaCpanel, FaCreativeCommonsBy, FaCreativeCommonsNcEu, FaCreativeCommonsNcJp, FaCreativeCommonsNc, FaCreativeCommonsNd, FaCreativeCommonsPdAlt, FaCreativeCommonsPd, FaCreativeCommonsRemix, FaCreativeCommonsSa, FaCreativeCommonsSamplingPlus, FaCreativeCommonsSampling, FaCreativeCommonsShare, FaCreativeCommonsZero, FaCreativeCommons, FaCriticalRole, FaCss3Alt, FaCss3, FaCuttlefish, FaDAndDBeyond, FaDAndD, FaDailymotion, FaDashcube, FaDeezer, FaDelicious, FaDeploydog, FaDeskpro, FaDev, FaDeviantart, FaDhl, FaDiaspora, FaDigg, FaDigitalOcean, FaDiscourse, FaDochub, FaDocker, FaDraft2Digital, FaDribbbleSquare, FaDribbble, FaDropbox, FaDrupal, FaDyalog, FaEarlybirds, FaEbay, FaEdgeLegacy, FaEdge, FaElementor, FaEllo, FaEmber, FaEmpire, FaEnvira, FaErlang, FaEthereum, FaEtsy, FaEvernote, FaExpeditedssl, FaFacebookF, FaFacebookMessenger, FaFacebookSquare, FaFacebook, FaFantasyFlightGames, FaFedex, FaFedora, FaFigma, FaFirefoxBrowser, FaFirefox, FaFirstOrderAlt, FaFirstOrder, FaFirstdraft, FaFlickr, FaFlipboard, FaFly, FaFontAwesomeAlt, FaFontAwesomeFlag, FaFontAwesomeLogoFull, FaFontAwesome, FaFonticonsFi, FaFonticons, FaFortAwesomeAlt, FaFortAwesome, FaForumbee, FaFoursquare, FaFreeCodeCamp, FaFreebsd, FaFulcrum, FaGalacticRepublic, FaGalacticSenate, FaGetPocket, FaGgCircle, FaGg, FaGitAlt, FaGitSquare, FaGit, FaGithubAlt, FaGithubSquare, FaGitkraken, FaGitlab, FaGitter, FaGlideG, FaGlide, FaGofore, FaGoodreadsG, FaGoodreads, FaGoogleDrive, FaGooglePay, FaGooglePlay, FaGooglePlusG, FaGooglePlusSquare, FaGooglePlus, FaGoogleWallet, FaGoogle, FaGratipay, FaGrav, FaGripfire, FaGrunt, FaGuilded, FaGulp, FaHackerNewsSquare, FaHackerNews, FaHackerrank, FaHips, FaHireAHelper, FaHive, FaHooli, FaHornbill, FaHotjar, FaHouzz, FaHtml5, FaHubspot, FaIdeal, FaImdb, FaInnosoft, FaInstagramSquare, FaInstagram, FaInstalod, FaIntercom, FaInternetExplorer, FaInvision, FaIoxhost, FaItchIo, FaItunesNote, FaItunes, FaJava, FaJediOrder, FaJenkins, FaJira, FaJoget, FaJoomla, FaJsSquare, FaJs, FaJsfiddle, FaKaggle, FaKeybase, FaKeycdn, FaKickstarterK, FaKickstarter, FaKorvue, FaLaravel, FaLastfmSquare, FaLastfm, FaLeanpub, FaLess, FaLine, FaLinkedinIn, FaLinkedin, FaLinode, FaLinux, FaLyft, FaMagento, FaMailchimp, FaMandalorian, FaMarkdown, FaMastodon, FaMaxcdn, FaMdb, FaMedapps, FaMediumM, FaMedium, FaMedrt, FaMeetup, FaMegaport, FaMendeley, FaMicroblog, FaMicrosoft, FaMix, FaMixcloud, FaMixer, FaMizuni, FaModx, FaMonero, FaNapster, FaNeos, FaNimblr, FaNodeJs, FaNode, FaNpm, FaNs8, FaNutritionix, FaOctopusDeploy, FaOdnoklassnikiSquare, FaOdnoklassniki, FaOldRepublic, FaOpencart, FaOpenid, FaOpera, FaOptinMonster, FaOrcid, FaOsi, FaPage4, FaPagelines, FaPalfed, FaPatreon, FaPaypal, FaPennyArcade, FaPerbyte, FaPeriscope, FaPhabricator, FaPhoenixFramework, FaPhoenixSquadron, FaPhp, FaPiedPiperAlt, FaPiedPiperHat, FaPiedPiperPp, FaPiedPiperSquare, FaPiedPiper, FaPinterestP, FaPinterestSquare, FaPinterest, FaPlaystation, FaProductHunt, FaPushed, FaPython, FaQq, FaQuinscape, FaQuora, FaRProject, FaRaspberryPi, FaRavelry, FaReact, FaReacteurope, FaReadme, FaRebel, FaRedRiver, FaRedditAlien, FaRedditSquare, FaReddit, FaRedhat, FaRenren, FaReplyd, FaResearchgate, FaResolving, FaRev, FaRocketchat, FaRockrms, FaRust, FaSafari, FaSalesforce, FaSass, FaSchlix, FaScribd, FaSearchengin, FaSellcast, FaSellsy, FaServicestack, FaShirtsinbulk, FaShopify, FaShopware, FaSimplybuilt, FaSistrix, FaSith, FaSketch, FaSkyatlas, FaSkype, FaSlackHash, FaSlack, FaSlideshare, FaSnapchatGhost, FaSnapchatSquare, FaSnapchat, FaSoundcloud, FaSourcetree, FaSpeakap, FaSpeakerDeck, FaSpotify, FaSquarespace, FaStackExchange, FaStackOverflow, FaStackpath, FaStaylinked, FaSteamSquare, FaSteamSymbol, FaSteam, FaStickerMule, FaStrava, FaStripeS, FaStripe, FaStudiovinari, FaStumbleuponCircle, FaStumbleupon, FaSuperpowers, FaSupple, FaSuse, FaSwift, FaSymfony, FaTeamspeak, FaTelegramPlane, FaTelegram, FaTencentWeibo, FaTheRedYeti, FaThemeco, FaThemeisle, FaThinkPeaks, FaTiktok, FaTradeFederation, FaTrello, FaTripadvisor, FaTumblrSquare, FaTumblr, FaTwitch, FaTwitterSquare, FaTwitter, FaTypo3, FaUber, FaUbuntu, FaUikit, FaUmbraco, FaUncharted, FaUniregistry, FaUnity, FaUnsplash, FaUntappd, FaUps, FaUsb, FaUsps, FaUssunnah, FaVaadin, FaViacoin, FaViadeoSquare, FaViadeo, FaViber, FaVimeoSquare, FaVimeoV, FaVimeo, FaVine, FaVk, FaVnv, FaVuejs, FaWatchmanMonitoring, FaWaze, FaWeebly, FaWeibo, FaWeixin, FaWhatsappSquare, FaWhatsapp, FaWhmcs, FaWikipediaW, FaWindows, FaWix, FaWizardsOfTheCoast, FaWodu, FaWolfPackBattalion, FaWordpressSimple, FaWordpress, FaWpbeginner, FaWpexplorer, FaWpforms, FaWpressr, FaXbox, FaXingSquare, FaXing, FaYCombinator, FaYahoo, FaYammer, FaYandexInternational, FaYandex, FaYarn, FaYelp, FaYoast, FaYoutubeSquare, FaYoutube, FaZhihu, FaAd, FaAddressBook, FaAddressCard, FaAdjust, FaAirFreshener, FaAlignCenter, FaAlignJustify, FaAlignLeft, FaAlignRight, FaAllergies, FaAmbulance, FaAmericanSignLanguageInterpreting, FaAnchor, FaAngleDoubleDown, FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleDoubleUp, FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp, FaAngry, FaAnkh, FaAppleAlt, FaArchive, FaArchway, FaArrowAltCircleDown, FaArrowAltCircleLeft, FaArrowAltCircleRight, FaArrowAltCircleUp, FaArrowCircleDown, FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowDown, FaArrowLeft, FaArrowRight, FaArrowUp, FaArrowsAltH, FaArrowsAltV, FaArrowsAlt, FaAssistiveListeningSystems, FaAsterisk, FaAt, FaAtlas, FaAtom, FaAudioDescription, FaAward, FaBabyCarriage, FaBaby, FaBackspace, FaBackward, FaBacon, FaBacteria, FaBacterium, FaBahai, FaBalanceScaleLeft, FaBalanceScaleRight, FaBalanceScale, FaBan, FaBandAid, FaBarcode, FaBars, FaBaseballBall, FaBasketballBall, FaBath, FaBatteryEmpty, FaBatteryFull, FaBatteryHalf, FaBatteryQuarter, FaBatteryThreeQuarters, FaBed, FaBeer, FaBellSlash, FaBell, FaBezierCurve, FaBible, FaBicycle, FaBiking, FaBinoculars, FaBiohazard, FaBirthdayCake, FaBlenderPhone, FaBlender, FaBlind, FaBlog, FaBold, FaBolt, FaBomb, FaBone, FaBong, FaBookDead, FaBookMedical, FaBookOpen, FaBookReader, FaBook, FaBookmark, FaBorderAll, FaBorderNone, FaBorderStyle, FaBowlingBall, FaBoxOpen, FaBoxTissue, FaBox, FaBoxes, FaBraille, FaBrain, FaBreadSlice, FaBriefcaseMedical, FaBriefcase, FaBroadcastTower, FaBroom, FaBrush, FaBug, FaBuilding, FaBullhorn, FaBullseye, FaBurn, FaBusAlt, FaBus, FaBusinessTime, FaCalculator, FaCalendarAlt, FaCalendarCheck, FaCalendarDay, FaCalendarMinus, FaCalendarPlus, FaCalendarTimes, FaCalendarWeek, FaCalendar, FaCameraRetro, FaCamera, FaCampground, FaCandyCane, FaCannabis, FaCapsules, FaCarAlt, FaCarBattery, FaCarCrash, FaCarSide, FaCar, FaCaravan, FaCaretDown, FaCaretLeft, FaCaretRight, FaCaretSquareDown, FaCaretSquareLeft, FaCaretSquareRight, FaCaretSquareUp, FaCaretUp, FaCarrot, FaCartArrowDown, FaCartPlus, FaCashRegister, FaCat, FaCertificate, FaChair, FaChalkboardTeacher, FaChalkboard, FaChargingStation, FaChartArea, FaChartBar, FaChartLine, FaChartPie, FaCheckCircle, FaCheckDouble, FaCheckSquare, FaCheck, FaCheese, FaChessBishop, FaChessBoard, FaChessKing, FaChessKnight, FaChessPawn, FaChessQueen, FaChessRook, FaChess, FaChevronCircleDown, FaChevronCircleLeft, FaChevronCircleRight, FaChevronCircleUp, FaChevronDown, FaChevronLeft, FaChevronRight, FaChevronUp, FaChild, FaChurch, FaCircleNotch, FaCircle, FaCity, FaClinicMedical, FaClipboardCheck, FaClipboardList, FaClipboard, FaClock, FaClone, FaClosedCaptioning, FaCloudDownloadAlt, FaCloudMeatball, FaCloudMoonRain, FaCloudMoon, FaCloudRain, FaCloudShowersHeavy, FaCloudSunRain, FaCloudSun, FaCloudUploadAlt, FaCloud, FaCocktail, FaCodeBranch, FaCode, FaCoffee, FaCog, FaCogs, FaCoins, FaColumns, FaCommentAlt, FaCommentDollar, FaCommentDots, FaCommentMedical, FaCommentSlash, FaComment, FaCommentsDollar, FaComments, FaCompactDisc, FaCompass, FaCompressAlt, FaCompressArrowsAlt, FaCompress, FaConciergeBell, FaCookieBite, FaCookie, FaCopy, FaCopyright, FaCouch, FaCreditCard, FaCropAlt, FaCrop, FaCross, FaCrosshairs, FaCrow, FaCrown, FaCrutch, FaCube, FaCubes, FaCut, FaDatabase, FaDeaf, FaDemocrat, FaDesktop, FaDharmachakra, FaDiagnoses, FaDiceD20, FaDiceD6, FaDiceFive, FaDiceFour, FaDiceOne, FaDiceSix, FaDiceThree, FaDiceTwo, FaDice, FaDigitalTachograph, FaDirections, FaDisease, FaDivide, FaDizzy, FaDna, FaDog, FaDollarSign, FaDollyFlatbed, FaDolly, FaDonate, FaDoorClosed, FaDoorOpen, FaDotCircle, FaDove, FaDraftingCompass, FaDragon, FaDrawPolygon, FaDrumSteelpan, FaDrum, FaDrumstickBite, FaDumbbell, FaDumpsterFire, FaDumpster, FaDungeon, FaEdit, FaEgg, FaEject, FaEllipsisH, FaEllipsisV, FaEnvelopeOpenText, FaEnvelopeOpen, FaEnvelopeSquare, FaEnvelope, FaEquals, FaEraser, FaEthernet, FaEuroSign, FaExchangeAlt, FaExclamationCircle, FaExclamationTriangle, FaExclamation, FaExpandAlt, FaExpandArrowsAlt, FaExpand, FaExternalLinkAlt, FaExternalLinkSquareAlt, FaEyeDropper, FaEyeSlash, FaEye, FaFan, FaFastBackward, FaFastForward, FaFaucet, FaFax, FaFeatherAlt, FaFeather, FaFemale, FaFighterJet, FaFileAlt, FaFileArchive, FaFileAudio, FaFileCode, FaFileContract, FaFileCsv, FaFileDownload, FaFileExcel, FaFileExport, FaFileImage, FaFileImport, FaFileInvoiceDollar, FaFileInvoice, FaFileMedicalAlt, FaFileMedical, FaFilePdf, FaFilePowerpoint, FaFilePrescription, FaFileSignature, FaFileUpload, FaFileVideo, FaFileWord, FaFile, FaFillDrip, FaFill, FaFilm, FaFilter, FaFingerprint, FaFireAlt, FaFireExtinguisher, FaFire, FaFirstAid, FaFish, FaFistRaised, FaFlagCheckered, FaFlagUsa, FaFlag, FaFlask, FaFlushed, FaFolderMinus, FaFolderOpen, FaFolderPlus, FaFolder, FaFont, FaFootballBall, FaForward, FaFrog, FaFrownOpen, FaFrown, FaFunnelDollar, FaFutbol, FaGamepad, FaGasPump, FaGavel, FaGem, FaGenderless, FaGhost, FaGift, FaGifts, FaGlassCheers, FaGlassMartiniAlt, FaGlassMartini, FaGlassWhiskey, FaGlasses, FaGlobeAfrica, FaGlobeAmericas, FaGlobeAsia, FaGlobeEurope, FaGlobe, FaGolfBall, FaGopuram, FaGraduationCap, FaGreaterThanEqual, FaGreaterThan, FaGrimace, FaGrinAlt, FaGrinBeamSweat, FaGrinBeam, FaGrinHearts, FaGrinSquintTears, FaGrinSquint, FaGrinStars, FaGrinTears, FaGrinTongueSquint, FaGrinTongueWink, FaGrinTongue, FaGrinWink, FaGrin, FaGripHorizontal, FaGripLinesVertical, FaGripLines, FaGripVertical, FaGuitar, FaHSquare, FaHamburger, FaHammer, FaHamsa, FaHandHoldingHeart, FaHandHoldingMedical, FaHandHoldingUsd, FaHandHoldingWater, FaHandHolding, FaHandLizard, FaHandMiddleFinger, FaHandPaper, FaHandPeace, FaHandPointDown, FaHandPointLeft, FaHandPointRight, FaHandPointUp, FaHandPointer, FaHandRock, FaHandScissors, FaHandSparkles, FaHandSpock, FaHandsHelping, FaHandsWash, FaHands, FaHandshakeAltSlash, FaHandshakeSlash, FaHandshake, FaHanukiah, FaHardHat, FaHashtag, FaHatCowboySide, FaHatCowboy, FaHatWizard, FaHdd, FaHeadSideCoughSlash, FaHeadSideCough, FaHeadSideMask, FaHeadSideVirus, FaHeading, FaHeadphonesAlt, FaHeadphones, FaHeadset, FaHeartBroken, FaHeart, FaHeartbeat, FaHelicopter, FaHighlighter, FaHiking, FaHippo, FaHistory, FaHockeyPuck, FaHollyBerry, FaHome, FaHorseHead, FaHorse, FaHospitalAlt, FaHospitalSymbol, FaHospitalUser, FaHospital, FaHotTub, FaHotdog, FaHotel, FaHourglassEnd, FaHourglassHalf, FaHourglassStart, FaHourglass, FaHouseDamage, FaHouseUser, FaHryvnia, FaICursor, FaIceCream, FaIcicles, FaIcons, FaIdBadge, FaIdCardAlt, FaIdCard, FaIgloo, FaImage, FaImages, FaInbox, FaIndent, FaIndustry, FaInfinity, FaInfoCircle, FaInfo, FaItalic, FaJedi, FaJoint, FaJournalWhills, FaKaaba, FaKey, FaKeyboard, FaKhanda, FaKissBeam, FaKissWinkHeart, FaKiss, FaKiwiBird, FaLandmark, FaLanguage, FaLaptopCode, FaLaptopHouse, FaLaptopMedical, FaLaptop, FaLaughBeam, FaLaughSquint, FaLaughWink, FaLaugh, FaLayerGroup, FaLeaf, FaLemon, FaLessThanEqual, FaLessThan, FaLevelDownAlt, FaLevelUpAlt, FaLifeRing, FaLightbulb, FaLink, FaLiraSign, FaListAlt, FaListOl, FaListUl, FaList, FaLocationArrow, FaLockOpen, FaLock, FaLongArrowAltDown, FaLongArrowAltLeft, FaLongArrowAltRight, FaLongArrowAltUp, FaLowVision, FaLuggageCart, FaLungsVirus, FaLungs, FaMagic, FaMagnet, FaMailBulk, FaMale, FaMapMarkedAlt, FaMapMarked, FaMapMarkerAlt, FaMapMarker, FaMapPin, FaMapSigns, FaMap, FaMarker, FaMarsDouble, FaMarsStrokeH, FaMarsStrokeV, FaMarsStroke, FaMars, FaMask, FaMedal, FaMedkit, FaMehBlank, FaMehRollingEyes, FaMeh, FaMemory, FaMenorah, FaMercury, FaMeteor, FaMicrochip, FaMicrophoneAltSlash, FaMicrophoneAlt, FaMicrophoneSlash, FaMicrophone, FaMicroscope, FaMinusCircle, FaMinusSquare, FaMinus, FaMitten, FaMobileAlt, FaMobile, FaMoneyBillAlt, FaMoneyBillWaveAlt, FaMoneyBillWave, FaMoneyBill, FaMoneyCheckAlt, FaMoneyCheck, FaMonument, FaMoon, FaMortarPestle, FaMosque, FaMotorcycle, FaMountain, FaMousePointer, FaMouse, FaMugHot, FaMusic, FaNetworkWired, FaNeuter, FaNewspaper, FaNotEqual, FaNotesMedical, FaObjectGroup, FaObjectUngroup, FaOilCan, FaOm, FaOtter, FaOutdent, FaPager, FaPaintBrush, FaPaintRoller, FaPalette, FaPallet, FaPaperPlane, FaPaperclip, FaParachuteBox, FaParagraph, FaParking, FaPassport, FaPastafarianism, FaPaste, FaPauseCircle, FaPause, FaPaw, FaPeace, FaPenAlt, FaPenFancy, FaPenNib, FaPenSquare, FaPen, FaPencilAlt, FaPencilRuler, FaPeopleArrows, FaPeopleCarry, FaPepperHot, FaPercent, FaPercentage, FaPersonBooth, FaPhoneAlt, FaPhoneSlash, FaPhoneSquareAlt, FaPhoneSquare, FaPhoneVolume, FaPhone, FaPhotoVideo, FaPiggyBank, FaPills, FaPizzaSlice, FaPlaceOfWorship, FaPlaneArrival, FaPlaneDeparture, FaPlaneSlash, FaPlane, FaPlayCircle, FaPlay, FaPlug, FaPlusCircle, FaPlusSquare, FaPlus, FaPodcast, FaPollH, FaPoll, FaPooStorm, FaPoo, FaPoop, FaPortrait, FaPoundSign, FaPowerOff, FaPray, FaPrayingHands, FaPrescriptionBottleAlt, FaPrescriptionBottle, FaPrescription, FaPrint, FaProcedures, FaProjectDiagram, FaPumpMedical, FaPumpSoap, FaPuzzlePiece, FaQrcode, FaQuestionCircle, FaQuestion, FaQuidditch, FaQuoteLeft, FaQuoteRight, FaQuran, FaRadiationAlt, FaRadiation, FaRainbow, FaRandom, FaReceipt, FaRecordVinyl, FaRecycle, FaRedoAlt, FaRedo, FaRegistered, FaRemoveFormat, FaReplyAll, FaReply, FaRepublican, FaRestroom, FaRetweet, FaRibbon, FaRing, FaRoad, FaRobot, FaRocket, FaRoute, FaRssSquare, FaRss, FaRubleSign, FaRulerCombined, FaRulerHorizontal, FaRulerVertical, FaRuler, FaRunning, FaRupeeSign, FaSadCry, FaSadTear, FaSatelliteDish, FaSatellite, FaSave, FaSchool, FaScrewdriver, FaScroll, FaSdCard, FaSearchDollar, FaSearchLocation, FaSearchMinus, FaSearchPlus, FaSearch, FaSeedling, FaServer, FaShapes, FaShareAltSquare, FaShareAlt, FaShareSquare, FaShare, FaShekelSign, FaShieldAlt, FaShieldVirus, FaShip, FaShippingFast, FaShoePrints, FaShoppingBag, FaShoppingBasket, FaShoppingCart, FaShower, FaShuttleVan, FaSignInAlt, FaSignLanguage, FaSignOutAlt, FaSign, FaSignal, FaSignature, FaSimCard, FaSink, FaSitemap, FaSkating, FaSkiingNordic, FaSkiing, FaSkullCrossbones, FaSkull, FaSlash, FaSleigh, FaSlidersH, FaSmileBeam, FaSmileWink, FaSmile, FaSmog, FaSmokingBan, FaSmoking, FaSms, FaSnowboarding, FaSnowflake, FaSnowman, FaSnowplow, FaSoap, FaSocks, FaSolarPanel, FaSortAlphaDownAlt, FaSortAlphaDown, FaSortAlphaUpAlt, FaSortAlphaUp, FaSortAmountDownAlt, FaSortAmountDown, FaSortAmountUpAlt, FaSortAmountUp, FaSortDown, FaSortNumericDownAlt, FaSortNumericDown, FaSortNumericUpAlt, FaSortNumericUp, FaSortUp, FaSort, FaSpa, FaSpaceShuttle, FaSpellCheck, FaSpider, FaSpinner, FaSplotch, FaSprayCan, FaSquareFull, FaSquareRootAlt, FaSquare, FaStamp, FaStarAndCrescent, FaStarHalfAlt, FaStarHalf, FaStarOfDavid, FaStarOfLife, FaStar, FaStepBackward, FaStepForward, FaStethoscope, FaStickyNote, FaStopCircle, FaStop, FaStopwatch20, FaStopwatch, FaStoreAltSlash, FaStoreAlt, FaStoreSlash, FaStore, FaStream, FaStreetView, FaStrikethrough, FaStroopwafel, FaSubscript, FaSubway, FaSuitcaseRolling, FaSuitcase, FaSun, FaSuperscript, FaSurprise, FaSwatchbook, FaSwimmer, FaSwimmingPool, FaSynagogue, FaSyncAlt, FaSync, FaSyringe, FaTableTennis, FaTable, FaTabletAlt, FaTablet, FaTablets, FaTachometerAlt, FaTag, FaTags, FaTape, FaTasks, FaTaxi, FaTeethOpen, FaTeeth, FaTemperatureHigh, FaTemperatureLow, FaTenge, FaTerminal, FaTextHeight, FaTextWidth, FaThLarge, FaThList, FaTh, FaTheaterMasks, FaThermometerEmpty, FaThermometerFull, FaThermometerHalf, FaThermometerQuarter, FaThermometerThreeQuarters, FaThermometer, FaThumbsDown, FaThumbsUp, FaThumbtack, FaTicketAlt, FaTimesCircle, FaTimes, FaTintSlash, FaTint, FaTired, FaToggleOff, FaToggleOn, FaToiletPaperSlash, FaToiletPaper, FaToilet, FaToolbox, FaTools, FaTooth, FaTorah, FaToriiGate, FaTractor, FaTrademark, FaTrafficLight, FaTrailer, FaTrain, FaTram, FaTransgenderAlt, FaTransgender, FaTrashAlt, FaTrashRestoreAlt, FaTrashRestore, FaTrash, FaTree, FaTrophy, FaTruckLoading, FaTruckMonster, FaTruckMoving, FaTruckPickup, FaTruck, FaTshirt, FaTty, FaTv, FaUmbrellaBeach, FaUmbrella, FaUnderline, FaUndoAlt, FaUndo, FaUniversalAccess, FaUniversity, FaUnlink, FaUnlockAlt, FaUnlock, FaUpload, FaUserAltSlash, FaUserAlt, FaUserAstronaut, FaUserCheck, FaUserCircle, FaUserClock, FaUserCog, FaUserEdit, FaUserFriends, FaUserGraduate, FaUserInjured, FaUserLock, FaUserMd, FaUserMinus, FaUserNinja, FaUserNurse, FaUserPlus, FaUserSecret, FaUserShield, FaUserSlash, FaUserTag, FaUserTie, FaUserTimes, FaUser, FaUsersCog, FaUsersSlash, FaUsers, FaUtensilSpoon, FaUtensils, FaVectorSquare, FaVenusDouble, FaVenusMars, FaVenus, FaVestPatches, FaVest, FaVial, FaVials, FaVideoSlash, FaVideo, FaVihara, FaVirusSlash, FaVirus, FaViruses, FaVoicemail, FaVolleyballBall, FaVolumeDown, FaVolumeMute, FaVolumeOff, FaVolumeUp, FaVoteYea, FaVrCardboard, FaWalking, FaWallet, FaWarehouse, FaWater, FaWaveSquare, FaWeightHanging, FaWeight, FaWheelchair, FaWifi, FaWind, FaWindowClose, FaWindowMaximize, FaWindowMinimize, FaWindowRestore, FaWineBottle, FaWineGlassAlt, FaWineGlass, FaWonSign, FaWrench, FaXRay, FaYenSign, FaYinYang, FaRegAddressBook, FaRegAddressCard, FaRegAngry, FaRegArrowAltCircleDown, FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegBellSlash, FaRegBell, FaRegBookmark, FaRegBuilding, FaRegCalendarAlt, FaRegCalendarCheck, FaRegCalendarMinus, FaRegCalendarPlus, FaRegCalendarTimes, FaRegCalendar, FaRegCaretSquareDown, FaRegCaretSquareLeft, FaRegCaretSquareRight, FaRegCaretSquareUp, FaRegChartBar, FaRegCheckCircle, FaRegCheckSquare, FaRegCircle, FaRegClipboard, FaRegClock, FaRegClone, FaRegClosedCaptioning, FaRegCommentAlt, FaRegCommentDots, FaRegComment, FaRegComments, FaRegCompass, FaRegCopy, FaRegCopyright, FaRegCreditCard, FaRegDizzy, FaRegDotCircle, FaRegEdit, FaRegEnvelopeOpen, FaRegEnvelope, FaRegEyeSlash, FaRegEye, FaRegFileAlt, FaRegFileArchive, FaRegFileAudio, FaRegFileCode, FaRegFileExcel, FaRegFileImage, FaRegFilePdf, FaRegFilePowerpoint, FaRegFileVideo, FaRegFileWord, FaRegFile, FaRegFlag, FaRegFlushed, FaRegFolderOpen, FaRegFolder, FaRegFontAwesomeLogoFull, FaRegFrownOpen, FaRegFrown, FaRegFutbol, FaRegGem, FaRegGrimace, FaRegGrinAlt, FaRegGrinBeamSweat, FaRegGrinBeam, FaRegGrinHearts, FaRegGrinSquintTears, FaRegGrinSquint, FaRegGrinStars, FaRegGrinTears, FaRegGrinTongueSquint, FaRegGrinTongueWink, FaRegGrinTongue, FaRegGrinWink, FaRegGrin, FaRegHandLizard, FaRegHandPaper, FaRegHandPeace, FaRegHandPointDown, FaRegHandPointLeft, FaRegHandPointRight, FaRegHandPointUp, FaRegHandPointer, FaRegHandRock, FaRegHandScissors, FaRegHandSpock, FaRegHandshake, FaRegHdd, FaRegHeart, FaRegHospital, FaRegHourglass, FaRegIdBadge, FaRegIdCard, FaRegImage, FaRegImages, FaRegKeyboard, FaRegKissBeam, FaRegKissWinkHeart, FaRegKiss, FaRegLaughBeam, FaRegLaughSquint, FaRegLaughWink, FaRegLaugh, FaRegLemon, FaRegLifeRing, FaRegLightbulb, FaRegListAlt, FaRegMap, FaRegMehBlank, FaRegMehRollingEyes, FaRegMeh, FaRegMinusSquare, FaRegMoneyBillAlt, FaRegMoon, FaRegNewspaper, FaRegObjectGroup, FaRegObjectUngroup, FaRegPaperPlane, FaRegPauseCircle, FaRegPlayCircle, FaRegPlusSquare, FaRegQuestionCircle, FaRegRegistered, FaRegSadCry, FaRegSadTear, FaRegSave, FaRegShareSquare, FaRegSmileBeam, FaRegSmileWink, FaRegSmile, FaRegSnowflake, FaRegSquare, FaRegStarHalf, FaRegStar, FaRegStickyNote, FaRegStopCircle, FaRegSun, FaRegSurprise, FaRegThumbsDown, FaRegThumbsUp, FaRegTimesCircle, FaRegTired, FaRegTrashAlt, FaRegUserCircle, FaRegUser, FaRegWindowClose, FaRegWindowMaximize, FaRegWindowMinimize, FaRegWindowRestore */
-/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4405);
+// EXTERNAL MODULE: ./node_modules/preact/compat/dist/compat.module.js + 2 modules
+var compat_module = __webpack_require__(5776);
+// EXTERNAL MODULE: ./node_modules/react-router/dist/index.js
+var dist = __webpack_require__(9250);
+// EXTERNAL MODULE: ./node_modules/swr/core/dist/index.mjs + 1 modules
+var core_dist = __webpack_require__(3757);
+// EXTERNAL MODULE: ./node_modules/react-toastify/dist/ReactToastify.min.css
+var ReactToastify_min = __webpack_require__(8132);
+// EXTERNAL MODULE: ./src/api/http.ts + 41 modules
+var http = __webpack_require__(9670);
+// EXTERNAL MODULE: ./src/components/Elements/Loading.tsx
+var Loading = __webpack_require__(1229);
+// EXTERNAL MODULE: ./node_modules/moment/moment.js
+var moment = __webpack_require__(381);
+var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
+// EXTERNAL MODULE: ./node_modules/react-toastify/dist/react-toastify.esm.mjs
+var react_toastify_esm = __webpack_require__(5678);
+// EXTERNAL MODULE: ./node_modules/react-icons/lib/esm/index.js + 3 modules
+var esm = __webpack_require__(4405);
+;// CONCATENATED MODULE: ./node_modules/react-icons/fa/index.esm.js
 // THIS FILE IS AUTO GENERATED
 
 function Fa500Px (props) {
@@ -375,7 +359,7 @@ function FaDigitalOcean (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M87 481.8h73.7v-73.6H87zM25.4 346.6v61.6H87v-61.6zm466.2-169.7c-23-74.2-82.4-133.3-156.6-156.6C164.9-32.8 8 93.7 8 255.9h95.8c0-101.8 101-180.5 208.1-141.7 39.7 14.3 71.5 46.1 85.8 85.7 39.1 107-39.7 207.8-141.4 208v.3h-.3V504c162.6 0 288.8-156.8 235.6-327.1zm-235.3 231v-95.3h-95.6v95.6H256v-.3z"}}]})(props);
 };
 function FaDiscord (props) {
-  return (0,_lib__WEBPACK_IMPORTED_MODULE_0__/* .GenIcon */ .w_)({"tag":"svg","attr":{"viewBox":"0 0 640 512"},"child":[{"tag":"path","attr":{"d":"M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"}}]})(props);
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 640 512"},"child":[{"tag":"path","attr":{"d":"M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"}}]})(props);
 };
 function FaDiscourse (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 448 512"},"child":[{"tag":"path","attr":{"d":"M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"}}]})(props);
@@ -564,7 +548,7 @@ function FaGithubSquare (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 448 512"},"child":[{"tag":"path","attr":{"d":"M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"}}]})(props);
 };
 function FaGithub (props) {
-  return (0,_lib__WEBPACK_IMPORTED_MODULE_0__/* .GenIcon */ .w_)({"tag":"svg","attr":{"viewBox":"0 0 496 512"},"child":[{"tag":"path","attr":{"d":"M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"}}]})(props);
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 496 512"},"child":[{"tag":"path","attr":{"d":"M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"}}]})(props);
 };
 function FaGitkraken (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 592 512"},"child":[{"tag":"path","attr":{"d":"M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"}}]})(props);
@@ -2250,7 +2234,7 @@ function FaDove (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M288 167.2v-28.1c-28.2-36.3-47.1-79.3-54.1-125.2-2.1-13.5-19-18.8-27.8-8.3-21.1 24.9-37.7 54.1-48.9 86.5 34.2 38.3 80 64.6 130.8 75.1zM400 64c-44.2 0-80 35.9-80 80.1v59.4C215.6 197.3 127 133 87 41.8c-5.5-12.5-23.2-13.2-29-.9C41.4 76 32 115.2 32 156.6c0 70.8 34.1 136.9 85.1 185.9 13.2 12.7 26.1 23.2 38.9 32.8l-143.9 36C1.4 414-3.4 426.4 2.6 435.7 20 462.6 63 508.2 155.8 512c8 .3 16-2.6 22.1-7.9l65.2-56.1H320c88.4 0 160-71.5 160-159.9V128l32-64H400zm0 96.1c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16z"}}]})(props);
 };
 function FaDownload (props) {
-  return (0,_lib__WEBPACK_IMPORTED_MODULE_0__/* .GenIcon */ .w_)({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"}}]})(props);
+  return (0,esm/* GenIcon */.w_)({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"}}]})(props);
 };
 function FaDraftingCompass (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M457.01 344.42c-25.05 20.33-52.63 37.18-82.54 49.05l54.38 94.19 53.95 23.04c9.81 4.19 20.89-2.21 22.17-12.8l7.02-58.25-54.98-95.23zm42.49-94.56c4.86-7.67 1.89-17.99-6.05-22.39l-28.07-15.57c-7.48-4.15-16.61-1.46-21.26 5.72C403.01 281.15 332.25 320 256 320c-23.93 0-47.23-4.25-69.41-11.53l67.36-116.68c.7.02 1.34.21 2.04.21s1.35-.19 2.04-.21l51.09 88.5c31.23-8.96 59.56-25.75 82.61-48.92l-51.79-89.71C347.39 128.03 352 112.63 352 96c0-53.02-42.98-96-96-96s-96 42.98-96 96c0 16.63 4.61 32.03 12.05 45.66l-68.3 118.31c-12.55-11.61-23.96-24.59-33.68-39-4.79-7.1-13.97-9.62-21.38-5.33l-27.75 16.07c-7.85 4.54-10.63 14.9-5.64 22.47 15.57 23.64 34.69 44.21 55.98 62.02L0 439.66l7.02 58.25c1.28 10.59 12.36 16.99 22.17 12.8l53.95-23.04 70.8-122.63C186.13 377.28 220.62 384 256 384c99.05 0 190.88-51.01 243.5-134.14zM256 64c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.33-32-32 14.33-32 32-32z"}}]})(props);
@@ -4884,322 +4868,3802 @@ function FaRegWindowRestore (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 512 512"},"child":[{"tag":"path","attr":{"d":"M464 0H144c-26.5 0-48 21.5-48 48v48H48c-26.5 0-48 21.5-48 48v320c0 26.5 21.5 48 48 48h320c26.5 0 48-21.5 48-48v-48h48c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-96 464H48V256h320v208zm96-96h-48V144c0-26.5-21.5-48-48-48H144V48h320v320z"}}]})(props);
 };
 
+// EXTERNAL MODULE: ./src/config/config.ts
+var config = __webpack_require__(1412);
+// EXTERNAL MODULE: ./node_modules/js-cookie/dist/js.cookie.mjs
+var js_cookie = __webpack_require__(1955);
+;// CONCATENATED MODULE: ./src/api/account/tickets/addMessage.ts
 
-/***/ }),
 
-/***/ 4405:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  w_: () => (/* reexport */ GenIcon)
-});
-
-// UNUSED EXPORTS: DefaultContext, IconBase, IconContext, IconsManifest
-
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconsManifest.js
-var IconsManifest = [
-  {
-    "id": "ci",
-    "name": "Circum Icons",
-    "projectUrl": "https://circumicons.com/",
-    "license": "MPL-2.0 license",
-    "licenseUrl": "https://github.com/Klarr-Agency/Circum-Icons/blob/main/LICENSE"
-  },
-  {
-    "id": "fa",
-    "name": "Font Awesome 5",
-    "projectUrl": "https://fontawesome.com/",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "fa6",
-    "name": "Font Awesome 6",
-    "projectUrl": "https://fontawesome.com/",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "io",
-    "name": "Ionicons 4",
-    "projectUrl": "https://ionicons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/ionic-team/ionicons/blob/master/LICENSE"
-  },
-  {
-    "id": "io5",
-    "name": "Ionicons 5",
-    "projectUrl": "https://ionicons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/ionic-team/ionicons/blob/master/LICENSE"
-  },
-  {
-    "id": "md",
-    "name": "Material Design icons",
-    "projectUrl": "http://google.github.io/material-design-icons/",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "https://github.com/google/material-design-icons/blob/master/LICENSE"
-  },
-  {
-    "id": "ti",
-    "name": "Typicons",
-    "projectUrl": "http://s-ings.com/typicons/",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  },
-  {
-    "id": "go",
-    "name": "Github Octicons icons",
-    "projectUrl": "https://octicons.github.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/primer/octicons/blob/master/LICENSE"
-  },
-  {
-    "id": "fi",
-    "name": "Feather",
-    "projectUrl": "https://feathericons.com/",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/feathericons/feather/blob/master/LICENSE"
-  },
-  {
-    "id": "lu",
-    "name": "Lucide",
-    "projectUrl": "https://lucide.dev/",
-    "license": "ISC",
-    "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
-  },
-  {
-    "id": "gi",
-    "name": "Game Icons",
-    "projectUrl": "https://game-icons.net/",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
-  },
-  {
-    "id": "wi",
-    "name": "Weather Icons",
-    "projectUrl": "https://erikflowers.github.io/weather-icons/",
-    "license": "SIL OFL 1.1",
-    "licenseUrl": "http://scripts.sil.org/OFL"
-  },
-  {
-    "id": "di",
-    "name": "Devicons",
-    "projectUrl": "https://vorillaz.github.io/devicons/",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "ai",
-    "name": "Ant Design Icons",
-    "projectUrl": "https://github.com/ant-design/ant-design-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "bs",
-    "name": "Bootstrap Icons",
-    "projectUrl": "https://github.com/twbs/icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "ri",
-    "name": "Remix Icon",
-    "projectUrl": "https://github.com/Remix-Design/RemixIcon",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "http://www.apache.org/licenses/"
-  },
-  {
-    "id": "fc",
-    "name": "Flat Color Icons",
-    "projectUrl": "https://github.com/icons8/flat-color-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "gr",
-    "name": "Grommet-Icons",
-    "projectUrl": "https://github.com/grommet/grommet-icons",
-    "license": "Apache License Version 2.0",
-    "licenseUrl": "http://www.apache.org/licenses/"
-  },
-  {
-    "id": "hi",
-    "name": "Heroicons",
-    "projectUrl": "https://github.com/tailwindlabs/heroicons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "hi2",
-    "name": "Heroicons 2",
-    "projectUrl": "https://github.com/tailwindlabs/heroicons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "si",
-    "name": "Simple Icons",
-    "projectUrl": "https://simpleicons.org/",
-    "license": "CC0 1.0 Universal",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
-  },
-  {
-    "id": "sl",
-    "name": "Simple Line Icons",
-    "projectUrl": "https://thesabbir.github.io/simple-line-icons/",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "im",
-    "name": "IcoMoon Free",
-    "projectUrl": "https://github.com/Keyamoon/IcoMoon-Free",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt"
-  },
-  {
-    "id": "bi",
-    "name": "BoxIcons",
-    "projectUrl": "https://github.com/atisawd/boxicons",
-    "license": "CC BY 4.0 License",
-    "licenseUrl": "https://github.com/atisawd/boxicons/blob/master/LICENSE"
-  },
-  {
-    "id": "cg",
-    "name": "css.gg",
-    "projectUrl": "https://github.com/astrit/css.gg",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "vsc",
-    "name": "VS Code Icons",
-    "projectUrl": "https://github.com/microsoft/vscode-codicons",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  },
-  {
-    "id": "tb",
-    "name": "Tabler Icons",
-    "projectUrl": "https://github.com/tabler/tabler-icons",
-    "license": "MIT",
-    "licenseUrl": "https://opensource.org/licenses/MIT"
-  },
-  {
-    "id": "tfi",
-    "name": "Themify Icons",
-    "projectUrl": "https://github.com/lykmapipo/themify-icons",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/thecreation/standard-icons/blob/master/modules/themify-icons/LICENSE"
-  },
-  {
-    "id": "rx",
-    "name": "Radix Icons",
-    "projectUrl": "https://icons.radix-ui.com",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/radix-ui/icons/blob/master/LICENSE"
-  },
-  {
-    "id": "pi",
-    "name": "Phosphor Icons",
-    "projectUrl": "https://github.com/phosphor-icons/core",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/phosphor-icons/core/blob/main/LICENSE"
-  },
-  {
-    "id": "lia",
-    "name": "Icons8 Line Awesome",
-    "projectUrl": "https://icons8.com/line-awesome",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/icons8/line-awesome/blob/master/LICENSE.md"
+var addMessage = function addMessage(id, message, account, attachments) {
+  var formData = new FormData();
+  formData.append('message', message);
+  if (attachments) {
+    attachments.forEach(function (file) {
+      formData.append('attachments[]', file);
+    });
   }
-]
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconContext.js
-
-var DefaultContext = {
-  color: undefined,
-  size: undefined,
-  className: undefined,
-  style: undefined,
-  attr: undefined
-};
-var IconContext = react.createContext && react.createContext(DefaultContext);
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/iconBase.js
-var __assign = undefined && undefined.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+  if (account.discord) {
+    if (account.discord.data) {
+      formData.append('discord_user_id', account.discord.data.id);
     }
-    return t;
-  };
-  return __assign.apply(this, arguments);
-};
-var __rest = undefined && undefined.__rest || function (s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
   }
-  return t;
+  return new Promise(function (resolve, reject) {
+    http/* default */.ZP.post("".concat(config/* config */.v.privateapilink, "/tickets/").concat(id, "/messages"), formData).then(function (data) {
+      return resolve(data);
+    }).catch(reject);
+  });
 };
+/* harmony default export */ var tickets_addMessage = (addMessage);
+;// CONCATENATED MODULE: ./node_modules/marked/lib/marked.esm.js
+/**
+ * marked v4.3.0 - a markdown parser
+ * Copyright (c) 2011-2023, Christopher Jeffrey. (MIT Licensed)
+ * https://github.com/markedjs/marked
+ */
 
+/**
+ * DO NOT EDIT THIS FILE
+ * The code in this file is generated from files in ./src/
+ */
 
-function Tree2Element(tree) {
-  return tree && tree.map(function (node, i) {
-    return react.createElement(node.tag, __assign({
-      key: i
-    }, node.attr), Tree2Element(node.child));
+function getDefaults() {
+  return {
+    async: false,
+    baseUrl: null,
+    breaks: false,
+    extensions: null,
+    gfm: true,
+    headerIds: true,
+    headerPrefix: '',
+    highlight: null,
+    hooks: null,
+    langPrefix: 'language-',
+    mangle: true,
+    pedantic: false,
+    renderer: null,
+    sanitize: false,
+    sanitizer: null,
+    silent: false,
+    smartypants: false,
+    tokenizer: null,
+    walkTokens: null,
+    xhtml: false
+  };
+}
+
+let defaults = getDefaults();
+
+function changeDefaults(newDefaults) {
+  defaults = newDefaults;
+}
+
+/**
+ * Helpers
+ */
+const escapeTest = /[&<>"']/;
+const escapeReplace = new RegExp(escapeTest.source, 'g');
+const escapeTestNoEncode = /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/;
+const escapeReplaceNoEncode = new RegExp(escapeTestNoEncode.source, 'g');
+const escapeReplacements = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+};
+const getEscapeReplacement = (ch) => escapeReplacements[ch];
+function marked_esm_escape(html, encode) {
+  if (encode) {
+    if (escapeTest.test(html)) {
+      return html.replace(escapeReplace, getEscapeReplacement);
+    }
+  } else {
+    if (escapeTestNoEncode.test(html)) {
+      return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+    }
+  }
+
+  return html;
+}
+
+const unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
+
+/**
+ * @param {string} html
+ */
+function marked_esm_unescape(html) {
+  // explicitly match decimal, hex, and named HTML entities
+  return html.replace(unescapeTest, (_, n) => {
+    n = n.toLowerCase();
+    if (n === 'colon') return ':';
+    if (n.charAt(0) === '#') {
+      return n.charAt(1) === 'x'
+        ? String.fromCharCode(parseInt(n.substring(2), 16))
+        : String.fromCharCode(+n.substring(1));
+    }
+    return '';
   });
 }
-function GenIcon(data) {
-  // eslint-disable-next-line react/display-name
-  return function (props) {
-    return react.createElement(IconBase, __assign({
-      attr: __assign({}, data.attr)
-    }, props), Tree2Element(data.child));
+
+const caret = /(^|[^\[])\^/g;
+
+/**
+ * @param {string | RegExp} regex
+ * @param {string} opt
+ */
+function edit(regex, opt) {
+  regex = typeof regex === 'string' ? regex : regex.source;
+  opt = opt || '';
+  const obj = {
+    replace: (name, val) => {
+      val = val.source || val;
+      val = val.replace(caret, '$1');
+      regex = regex.replace(name, val);
+      return obj;
+    },
+    getRegex: () => {
+      return new RegExp(regex, opt);
+    }
+  };
+  return obj;
+}
+
+const nonWordAndColonTest = /[^\w:]/g;
+const originIndependentUrl = /^$|^[a-z][a-z0-9+.-]*:|^[?#]/i;
+
+/**
+ * @param {boolean} sanitize
+ * @param {string} base
+ * @param {string} href
+ */
+function cleanUrl(sanitize, base, href) {
+  if (sanitize) {
+    let prot;
+    try {
+      prot = decodeURIComponent(marked_esm_unescape(href))
+        .replace(nonWordAndColonTest, '')
+        .toLowerCase();
+    } catch (e) {
+      return null;
+    }
+    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0 || prot.indexOf('data:') === 0) {
+      return null;
+    }
+  }
+  if (base && !originIndependentUrl.test(href)) {
+    href = resolveUrl(base, href);
+  }
+  try {
+    href = encodeURI(href).replace(/%25/g, '%');
+  } catch (e) {
+    return null;
+  }
+  return href;
+}
+
+const baseUrls = {};
+const justDomain = /^[^:]+:\/*[^/]*$/;
+const protocol = /^([^:]+:)[\s\S]*$/;
+const domain = /^([^:]+:\/*[^/]*)[\s\S]*$/;
+
+/**
+ * @param {string} base
+ * @param {string} href
+ */
+function resolveUrl(base, href) {
+  if (!baseUrls[' ' + base]) {
+    // we can ignore everything in base after the last slash of its path component,
+    // but we might need to add _that_
+    // https://tools.ietf.org/html/rfc3986#section-3
+    if (justDomain.test(base)) {
+      baseUrls[' ' + base] = base + '/';
+    } else {
+      baseUrls[' ' + base] = rtrim(base, '/', true);
+    }
+  }
+  base = baseUrls[' ' + base];
+  const relativeBase = base.indexOf(':') === -1;
+
+  if (href.substring(0, 2) === '//') {
+    if (relativeBase) {
+      return href;
+    }
+    return base.replace(protocol, '$1') + href;
+  } else if (href.charAt(0) === '/') {
+    if (relativeBase) {
+      return href;
+    }
+    return base.replace(domain, '$1') + href;
+  } else {
+    return base + href;
+  }
+}
+
+const noopTest = { exec: function noopTest() {} };
+
+function splitCells(tableRow, count) {
+  // ensure that every cell-delimiting pipe has a space
+  // before it to distinguish it from an escaped pipe
+  const row = tableRow.replace(/\|/g, (match, offset, str) => {
+      let escaped = false,
+        curr = offset;
+      while (--curr >= 0 && str[curr] === '\\') escaped = !escaped;
+      if (escaped) {
+        // odd number of slashes means | is escaped
+        // so we leave it alone
+        return '|';
+      } else {
+        // add space before unescaped |
+        return ' |';
+      }
+    }),
+    cells = row.split(/ \|/);
+  let i = 0;
+
+  // First/last cell in a row cannot be empty if it has no leading/trailing pipe
+  if (!cells[0].trim()) { cells.shift(); }
+  if (cells.length > 0 && !cells[cells.length - 1].trim()) { cells.pop(); }
+
+  if (cells.length > count) {
+    cells.splice(count);
+  } else {
+    while (cells.length < count) cells.push('');
+  }
+
+  for (; i < cells.length; i++) {
+    // leading or trailing whitespace is ignored per the gfm spec
+    cells[i] = cells[i].trim().replace(/\\\|/g, '|');
+  }
+  return cells;
+}
+
+/**
+ * Remove trailing 'c's. Equivalent to str.replace(/c*$/, '').
+ * /c*$/ is vulnerable to REDOS.
+ *
+ * @param {string} str
+ * @param {string} c
+ * @param {boolean} invert Remove suffix of non-c chars instead. Default falsey.
+ */
+function rtrim(str, c, invert) {
+  const l = str.length;
+  if (l === 0) {
+    return '';
+  }
+
+  // Length of suffix matching the invert condition.
+  let suffLen = 0;
+
+  // Step left until we fail to match the invert condition.
+  while (suffLen < l) {
+    const currChar = str.charAt(l - suffLen - 1);
+    if (currChar === c && !invert) {
+      suffLen++;
+    } else if (currChar !== c && invert) {
+      suffLen++;
+    } else {
+      break;
+    }
+  }
+
+  return str.slice(0, l - suffLen);
+}
+
+function findClosingBracket(str, b) {
+  if (str.indexOf(b[1]) === -1) {
+    return -1;
+  }
+  const l = str.length;
+  let level = 0,
+    i = 0;
+  for (; i < l; i++) {
+    if (str[i] === '\\') {
+      i++;
+    } else if (str[i] === b[0]) {
+      level++;
+    } else if (str[i] === b[1]) {
+      level--;
+      if (level < 0) {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+function checkSanitizeDeprecation(opt) {
+  if (opt && opt.sanitize && !opt.silent) {
+    console.warn('marked(): sanitize and sanitizer parameters are deprecated since version 0.7.0, should not be used and will be removed in the future. Read more here: https://marked.js.org/#/USING_ADVANCED.md#options');
+  }
+}
+
+// copied from https://stackoverflow.com/a/5450113/806777
+/**
+ * @param {string} pattern
+ * @param {number} count
+ */
+function repeatString(pattern, count) {
+  if (count < 1) {
+    return '';
+  }
+  let result = '';
+  while (count > 1) {
+    if (count & 1) {
+      result += pattern;
+    }
+    count >>= 1;
+    pattern += pattern;
+  }
+  return result + pattern;
+}
+
+function outputLink(cap, link, raw, lexer) {
+  const href = link.href;
+  const title = link.title ? marked_esm_escape(link.title) : null;
+  const text = cap[1].replace(/\\([\[\]])/g, '$1');
+
+  if (cap[0].charAt(0) !== '!') {
+    lexer.state.inLink = true;
+    const token = {
+      type: 'link',
+      raw,
+      href,
+      title,
+      text,
+      tokens: lexer.inlineTokens(text)
+    };
+    lexer.state.inLink = false;
+    return token;
+  }
+  return {
+    type: 'image',
+    raw,
+    href,
+    title,
+    text: marked_esm_escape(text)
   };
 }
-function IconBase(props) {
-  var elem = function (conf) {
-    var attr = props.attr,
-      size = props.size,
-      title = props.title,
-      svgProps = __rest(props, ["attr", "size", "title"]);
-    var computedSize = size || conf.size || "1em";
-    var className;
-    if (conf.className) className = conf.className;
-    if (props.className) className = (className ? className + " " : "") + props.className;
-    return react.createElement("svg", __assign({
-      stroke: "currentColor",
-      fill: "currentColor",
-      strokeWidth: "0"
-    }, conf.attr, attr, svgProps, {
-      className: className,
-      style: __assign(__assign({
-        color: props.color || conf.color
-      }, conf.style), props.style),
-      height: computedSize,
-      width: computedSize,
-      xmlns: "http://www.w3.org/2000/svg"
-    }), title && react.createElement("title", null, title), props.children);
-  };
-  return IconContext !== undefined ? react.createElement(IconContext.Consumer, null, function (conf) {
-    return elem(conf);
-  }) : elem(DefaultContext);
+
+function indentCodeCompensation(raw, text) {
+  const matchIndentToCode = raw.match(/^(\s+)(?:```)/);
+
+  if (matchIndentToCode === null) {
+    return text;
+  }
+
+  const indentToCode = matchIndentToCode[1];
+
+  return text
+    .split('\n')
+    .map(node => {
+      const matchIndentInNode = node.match(/^\s+/);
+      if (matchIndentInNode === null) {
+        return node;
+      }
+
+      const [indentInNode] = matchIndentInNode;
+
+      if (indentInNode.length >= indentToCode.length) {
+        return node.slice(indentToCode.length);
+      }
+
+      return node;
+    })
+    .join('\n');
 }
-;// CONCATENATED MODULE: ./node_modules/react-icons/lib/esm/index.js
+
+/**
+ * Tokenizer
+ */
+class Tokenizer {
+  constructor(options) {
+    this.options = options || defaults;
+  }
+
+  space(src) {
+    const cap = this.rules.block.newline.exec(src);
+    if (cap && cap[0].length > 0) {
+      return {
+        type: 'space',
+        raw: cap[0]
+      };
+    }
+  }
+
+  code(src) {
+    const cap = this.rules.block.code.exec(src);
+    if (cap) {
+      const text = cap[0].replace(/^ {1,4}/gm, '');
+      return {
+        type: 'code',
+        raw: cap[0],
+        codeBlockStyle: 'indented',
+        text: !this.options.pedantic
+          ? rtrim(text, '\n')
+          : text
+      };
+    }
+  }
+
+  fences(src) {
+    const cap = this.rules.block.fences.exec(src);
+    if (cap) {
+      const raw = cap[0];
+      const text = indentCodeCompensation(raw, cap[3] || '');
+
+      return {
+        type: 'code',
+        raw,
+        lang: cap[2] ? cap[2].trim().replace(this.rules.inline._escapes, '$1') : cap[2],
+        text
+      };
+    }
+  }
+
+  heading(src) {
+    const cap = this.rules.block.heading.exec(src);
+    if (cap) {
+      let text = cap[2].trim();
+
+      // remove trailing #s
+      if (/#$/.test(text)) {
+        const trimmed = rtrim(text, '#');
+        if (this.options.pedantic) {
+          text = trimmed.trim();
+        } else if (!trimmed || / $/.test(trimmed)) {
+          // CommonMark requires space before trailing #s
+          text = trimmed.trim();
+        }
+      }
+
+      return {
+        type: 'heading',
+        raw: cap[0],
+        depth: cap[1].length,
+        text,
+        tokens: this.lexer.inline(text)
+      };
+    }
+  }
+
+  hr(src) {
+    const cap = this.rules.block.hr.exec(src);
+    if (cap) {
+      return {
+        type: 'hr',
+        raw: cap[0]
+      };
+    }
+  }
+
+  blockquote(src) {
+    const cap = this.rules.block.blockquote.exec(src);
+    if (cap) {
+      const text = cap[0].replace(/^ *>[ \t]?/gm, '');
+      const top = this.lexer.state.top;
+      this.lexer.state.top = true;
+      const tokens = this.lexer.blockTokens(text);
+      this.lexer.state.top = top;
+      return {
+        type: 'blockquote',
+        raw: cap[0],
+        tokens,
+        text
+      };
+    }
+  }
+
+  list(src) {
+    let cap = this.rules.block.list.exec(src);
+    if (cap) {
+      let raw, istask, ischecked, indent, i, blankLine, endsWithBlankLine,
+        line, nextLine, rawLine, itemContents, endEarly;
+
+      let bull = cap[1].trim();
+      const isordered = bull.length > 1;
+
+      const list = {
+        type: 'list',
+        raw: '',
+        ordered: isordered,
+        start: isordered ? +bull.slice(0, -1) : '',
+        loose: false,
+        items: []
+      };
+
+      bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
+
+      if (this.options.pedantic) {
+        bull = isordered ? bull : '[*+-]';
+      }
+
+      // Get next list item
+      const itemRegex = new RegExp(`^( {0,3}${bull})((?:[\t ][^\\n]*)?(?:\\n|$))`);
+
+      // Check if current bullet point can start a new List Item
+      while (src) {
+        endEarly = false;
+        if (!(cap = itemRegex.exec(src))) {
+          break;
+        }
+
+        if (this.rules.block.hr.test(src)) { // End list if bullet was actually HR (possibly move into itemRegex?)
+          break;
+        }
+
+        raw = cap[0];
+        src = src.substring(raw.length);
+
+        line = cap[2].split('\n', 1)[0].replace(/^\t+/, (t) => ' '.repeat(3 * t.length));
+        nextLine = src.split('\n', 1)[0];
+
+        if (this.options.pedantic) {
+          indent = 2;
+          itemContents = line.trimLeft();
+        } else {
+          indent = cap[2].search(/[^ ]/); // Find first non-space char
+          indent = indent > 4 ? 1 : indent; // Treat indented code blocks (> 4 spaces) as having only 1 indent
+          itemContents = line.slice(indent);
+          indent += cap[1].length;
+        }
+
+        blankLine = false;
+
+        if (!line && /^ *$/.test(nextLine)) { // Items begin with at most one blank line
+          raw += nextLine + '\n';
+          src = src.substring(nextLine.length + 1);
+          endEarly = true;
+        }
+
+        if (!endEarly) {
+          const nextBulletRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ \t][^\\n]*)?(?:\\n|$))`);
+          const hrRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`);
+          const fencesBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:\`\`\`|~~~)`);
+          const headingBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}#`);
+
+          // Check if following lines should be included in List Item
+          while (src) {
+            rawLine = src.split('\n', 1)[0];
+            nextLine = rawLine;
+
+            // Re-align to follow commonmark nesting rules
+            if (this.options.pedantic) {
+              nextLine = nextLine.replace(/^ {1,4}(?=( {4})*[^ ])/g, '  ');
+            }
+
+            // End list item if found code fences
+            if (fencesBeginRegex.test(nextLine)) {
+              break;
+            }
+
+            // End list item if found start of new heading
+            if (headingBeginRegex.test(nextLine)) {
+              break;
+            }
+
+            // End list item if found start of new bullet
+            if (nextBulletRegex.test(nextLine)) {
+              break;
+            }
+
+            // Horizontal rule found
+            if (hrRegex.test(src)) {
+              break;
+            }
+
+            if (nextLine.search(/[^ ]/) >= indent || !nextLine.trim()) { // Dedent if possible
+              itemContents += '\n' + nextLine.slice(indent);
+            } else {
+              // not enough indentation
+              if (blankLine) {
+                break;
+              }
+
+              // paragraph continuation unless last line was a different block level element
+              if (line.search(/[^ ]/) >= 4) { // indented code block
+                break;
+              }
+              if (fencesBeginRegex.test(line)) {
+                break;
+              }
+              if (headingBeginRegex.test(line)) {
+                break;
+              }
+              if (hrRegex.test(line)) {
+                break;
+              }
+
+              itemContents += '\n' + nextLine;
+            }
+
+            if (!blankLine && !nextLine.trim()) { // Check if current line is blank
+              blankLine = true;
+            }
+
+            raw += rawLine + '\n';
+            src = src.substring(rawLine.length + 1);
+            line = nextLine.slice(indent);
+          }
+        }
+
+        if (!list.loose) {
+          // If the previous item ended with a blank line, the list is loose
+          if (endsWithBlankLine) {
+            list.loose = true;
+          } else if (/\n *\n *$/.test(raw)) {
+            endsWithBlankLine = true;
+          }
+        }
+
+        // Check for task list items
+        if (this.options.gfm) {
+          istask = /^\[[ xX]\] /.exec(itemContents);
+          if (istask) {
+            ischecked = istask[0] !== '[ ] ';
+            itemContents = itemContents.replace(/^\[[ xX]\] +/, '');
+          }
+        }
+
+        list.items.push({
+          type: 'list_item',
+          raw,
+          task: !!istask,
+          checked: ischecked,
+          loose: false,
+          text: itemContents
+        });
+
+        list.raw += raw;
+      }
+
+      // Do not consume newlines at end of final item. Alternatively, make itemRegex *start* with any newlines to simplify/speed up endsWithBlankLine logic
+      list.items[list.items.length - 1].raw = raw.trimRight();
+      list.items[list.items.length - 1].text = itemContents.trimRight();
+      list.raw = list.raw.trimRight();
+
+      const l = list.items.length;
+
+      // Item child tokens handled here at end because we needed to have the final item to trim it first
+      for (i = 0; i < l; i++) {
+        this.lexer.state.top = false;
+        list.items[i].tokens = this.lexer.blockTokens(list.items[i].text, []);
+
+        if (!list.loose) {
+          // Check if list should be loose
+          const spacers = list.items[i].tokens.filter(t => t.type === 'space');
+          const hasMultipleLineBreaks = spacers.length > 0 && spacers.some(t => /\n.*\n/.test(t.raw));
+
+          list.loose = hasMultipleLineBreaks;
+        }
+      }
+
+      // Set all items to loose if list is loose
+      if (list.loose) {
+        for (i = 0; i < l; i++) {
+          list.items[i].loose = true;
+        }
+      }
+
+      return list;
+    }
+  }
+
+  html(src) {
+    const cap = this.rules.block.html.exec(src);
+    if (cap) {
+      const token = {
+        type: 'html',
+        raw: cap[0],
+        pre: !this.options.sanitizer
+          && (cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style'),
+        text: cap[0]
+      };
+      if (this.options.sanitize) {
+        const text = this.options.sanitizer ? this.options.sanitizer(cap[0]) : marked_esm_escape(cap[0]);
+        token.type = 'paragraph';
+        token.text = text;
+        token.tokens = this.lexer.inline(text);
+      }
+      return token;
+    }
+  }
+
+  def(src) {
+    const cap = this.rules.block.def.exec(src);
+    if (cap) {
+      const tag = cap[1].toLowerCase().replace(/\s+/g, ' ');
+      const href = cap[2] ? cap[2].replace(/^<(.*)>$/, '$1').replace(this.rules.inline._escapes, '$1') : '';
+      const title = cap[3] ? cap[3].substring(1, cap[3].length - 1).replace(this.rules.inline._escapes, '$1') : cap[3];
+      return {
+        type: 'def',
+        tag,
+        raw: cap[0],
+        href,
+        title
+      };
+    }
+  }
+
+  table(src) {
+    const cap = this.rules.block.table.exec(src);
+    if (cap) {
+      const item = {
+        type: 'table',
+        header: splitCells(cap[1]).map(c => { return { text: c }; }),
+        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+        rows: cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, '').split('\n') : []
+      };
+
+      if (item.header.length === item.align.length) {
+        item.raw = cap[0];
+
+        let l = item.align.length;
+        let i, j, k, row;
+        for (i = 0; i < l; i++) {
+          if (/^ *-+: *$/.test(item.align[i])) {
+            item.align[i] = 'right';
+          } else if (/^ *:-+: *$/.test(item.align[i])) {
+            item.align[i] = 'center';
+          } else if (/^ *:-+ *$/.test(item.align[i])) {
+            item.align[i] = 'left';
+          } else {
+            item.align[i] = null;
+          }
+        }
+
+        l = item.rows.length;
+        for (i = 0; i < l; i++) {
+          item.rows[i] = splitCells(item.rows[i], item.header.length).map(c => { return { text: c }; });
+        }
+
+        // parse child tokens inside headers and cells
+
+        // header child tokens
+        l = item.header.length;
+        for (j = 0; j < l; j++) {
+          item.header[j].tokens = this.lexer.inline(item.header[j].text);
+        }
+
+        // cell child tokens
+        l = item.rows.length;
+        for (j = 0; j < l; j++) {
+          row = item.rows[j];
+          for (k = 0; k < row.length; k++) {
+            row[k].tokens = this.lexer.inline(row[k].text);
+          }
+        }
+
+        return item;
+      }
+    }
+  }
+
+  lheading(src) {
+    const cap = this.rules.block.lheading.exec(src);
+    if (cap) {
+      return {
+        type: 'heading',
+        raw: cap[0],
+        depth: cap[2].charAt(0) === '=' ? 1 : 2,
+        text: cap[1],
+        tokens: this.lexer.inline(cap[1])
+      };
+    }
+  }
+
+  paragraph(src) {
+    const cap = this.rules.block.paragraph.exec(src);
+    if (cap) {
+      const text = cap[1].charAt(cap[1].length - 1) === '\n'
+        ? cap[1].slice(0, -1)
+        : cap[1];
+      return {
+        type: 'paragraph',
+        raw: cap[0],
+        text,
+        tokens: this.lexer.inline(text)
+      };
+    }
+  }
+
+  text(src) {
+    const cap = this.rules.block.text.exec(src);
+    if (cap) {
+      return {
+        type: 'text',
+        raw: cap[0],
+        text: cap[0],
+        tokens: this.lexer.inline(cap[0])
+      };
+    }
+  }
+
+  escape(src) {
+    const cap = this.rules.inline.escape.exec(src);
+    if (cap) {
+      return {
+        type: 'escape',
+        raw: cap[0],
+        text: marked_esm_escape(cap[1])
+      };
+    }
+  }
+
+  tag(src) {
+    const cap = this.rules.inline.tag.exec(src);
+    if (cap) {
+      if (!this.lexer.state.inLink && /^<a /i.test(cap[0])) {
+        this.lexer.state.inLink = true;
+      } else if (this.lexer.state.inLink && /^<\/a>/i.test(cap[0])) {
+        this.lexer.state.inLink = false;
+      }
+      if (!this.lexer.state.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.lexer.state.inRawBlock = true;
+      } else if (this.lexer.state.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.lexer.state.inRawBlock = false;
+      }
+
+      return {
+        type: this.options.sanitize
+          ? 'text'
+          : 'html',
+        raw: cap[0],
+        inLink: this.lexer.state.inLink,
+        inRawBlock: this.lexer.state.inRawBlock,
+        text: this.options.sanitize
+          ? (this.options.sanitizer
+            ? this.options.sanitizer(cap[0])
+            : marked_esm_escape(cap[0]))
+          : cap[0]
+      };
+    }
+  }
+
+  link(src) {
+    const cap = this.rules.inline.link.exec(src);
+    if (cap) {
+      const trimmedUrl = cap[2].trim();
+      if (!this.options.pedantic && /^</.test(trimmedUrl)) {
+        // commonmark requires matching angle brackets
+        if (!(/>$/.test(trimmedUrl))) {
+          return;
+        }
+
+        // ending angle bracket cannot be escaped
+        const rtrimSlash = rtrim(trimmedUrl.slice(0, -1), '\\');
+        if ((trimmedUrl.length - rtrimSlash.length) % 2 === 0) {
+          return;
+        }
+      } else {
+        // find closing parenthesis
+        const lastParenIndex = findClosingBracket(cap[2], '()');
+        if (lastParenIndex > -1) {
+          const start = cap[0].indexOf('!') === 0 ? 5 : 4;
+          const linkLen = start + cap[1].length + lastParenIndex;
+          cap[2] = cap[2].substring(0, lastParenIndex);
+          cap[0] = cap[0].substring(0, linkLen).trim();
+          cap[3] = '';
+        }
+      }
+      let href = cap[2];
+      let title = '';
+      if (this.options.pedantic) {
+        // split pedantic href and title
+        const link = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(href);
+
+        if (link) {
+          href = link[1];
+          title = link[3];
+        }
+      } else {
+        title = cap[3] ? cap[3].slice(1, -1) : '';
+      }
+
+      href = href.trim();
+      if (/^</.test(href)) {
+        if (this.options.pedantic && !(/>$/.test(trimmedUrl))) {
+          // pedantic allows starting angle bracket without ending angle bracket
+          href = href.slice(1);
+        } else {
+          href = href.slice(1, -1);
+        }
+      }
+      return outputLink(cap, {
+        href: href ? href.replace(this.rules.inline._escapes, '$1') : href,
+        title: title ? title.replace(this.rules.inline._escapes, '$1') : title
+      }, cap[0], this.lexer);
+    }
+  }
+
+  reflink(src, links) {
+    let cap;
+    if ((cap = this.rules.inline.reflink.exec(src))
+        || (cap = this.rules.inline.nolink.exec(src))) {
+      let link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
+      link = links[link.toLowerCase()];
+      if (!link) {
+        const text = cap[0].charAt(0);
+        return {
+          type: 'text',
+          raw: text,
+          text
+        };
+      }
+      return outputLink(cap, link, cap[0], this.lexer);
+    }
+  }
+
+  emStrong(src, maskedSrc, prevChar = '') {
+    let match = this.rules.inline.emStrong.lDelim.exec(src);
+    if (!match) return;
+
+    // _ can't be between two alphanumerics. \p{L}\p{N} includes non-english alphabet/numbers as well
+    if (match[3] && prevChar.match(/[\p{L}\p{N}]/u)) return;
+
+    const nextChar = match[1] || match[2] || '';
+
+    if (!nextChar || (nextChar && (prevChar === '' || this.rules.inline.punctuation.exec(prevChar)))) {
+      const lLength = match[0].length - 1;
+      let rDelim, rLength, delimTotal = lLength, midDelimTotal = 0;
+
+      const endReg = match[0][0] === '*' ? this.rules.inline.emStrong.rDelimAst : this.rules.inline.emStrong.rDelimUnd;
+      endReg.lastIndex = 0;
+
+      // Clip maskedSrc to same section of string as src (move to lexer?)
+      maskedSrc = maskedSrc.slice(-1 * src.length + lLength);
+
+      while ((match = endReg.exec(maskedSrc)) != null) {
+        rDelim = match[1] || match[2] || match[3] || match[4] || match[5] || match[6];
+
+        if (!rDelim) continue; // skip single * in __abc*abc__
+
+        rLength = rDelim.length;
+
+        if (match[3] || match[4]) { // found another Left Delim
+          delimTotal += rLength;
+          continue;
+        } else if (match[5] || match[6]) { // either Left or Right Delim
+          if (lLength % 3 && !((lLength + rLength) % 3)) {
+            midDelimTotal += rLength;
+            continue; // CommonMark Emphasis Rules 9-10
+          }
+        }
+
+        delimTotal -= rLength;
+
+        if (delimTotal > 0) continue; // Haven't found enough closing delimiters
+
+        // Remove extra characters. *a*** -> *a*
+        rLength = Math.min(rLength, rLength + delimTotal + midDelimTotal);
+
+        const raw = src.slice(0, lLength + match.index + (match[0].length - rDelim.length) + rLength);
+
+        // Create `em` if smallest delimiter has odd char count. *a***
+        if (Math.min(lLength, rLength) % 2) {
+          const text = raw.slice(1, -1);
+          return {
+            type: 'em',
+            raw,
+            text,
+            tokens: this.lexer.inlineTokens(text)
+          };
+        }
+
+        // Create 'strong' if smallest delimiter has even char count. **a***
+        const text = raw.slice(2, -2);
+        return {
+          type: 'strong',
+          raw,
+          text,
+          tokens: this.lexer.inlineTokens(text)
+        };
+      }
+    }
+  }
+
+  codespan(src) {
+    const cap = this.rules.inline.code.exec(src);
+    if (cap) {
+      let text = cap[2].replace(/\n/g, ' ');
+      const hasNonSpaceChars = /[^ ]/.test(text);
+      const hasSpaceCharsOnBothEnds = /^ /.test(text) && / $/.test(text);
+      if (hasNonSpaceChars && hasSpaceCharsOnBothEnds) {
+        text = text.substring(1, text.length - 1);
+      }
+      text = marked_esm_escape(text, true);
+      return {
+        type: 'codespan',
+        raw: cap[0],
+        text
+      };
+    }
+  }
+
+  br(src) {
+    const cap = this.rules.inline.br.exec(src);
+    if (cap) {
+      return {
+        type: 'br',
+        raw: cap[0]
+      };
+    }
+  }
+
+  del(src) {
+    const cap = this.rules.inline.del.exec(src);
+    if (cap) {
+      return {
+        type: 'del',
+        raw: cap[0],
+        text: cap[2],
+        tokens: this.lexer.inlineTokens(cap[2])
+      };
+    }
+  }
+
+  autolink(src, mangle) {
+    const cap = this.rules.inline.autolink.exec(src);
+    if (cap) {
+      let text, href;
+      if (cap[2] === '@') {
+        text = marked_esm_escape(this.options.mangle ? mangle(cap[1]) : cap[1]);
+        href = 'mailto:' + text;
+      } else {
+        text = marked_esm_escape(cap[1]);
+        href = text;
+      }
+
+      return {
+        type: 'link',
+        raw: cap[0],
+        text,
+        href,
+        tokens: [
+          {
+            type: 'text',
+            raw: text,
+            text
+          }
+        ]
+      };
+    }
+  }
+
+  url(src, mangle) {
+    let cap;
+    if (cap = this.rules.inline.url.exec(src)) {
+      let text, href;
+      if (cap[2] === '@') {
+        text = marked_esm_escape(this.options.mangle ? mangle(cap[0]) : cap[0]);
+        href = 'mailto:' + text;
+      } else {
+        // do extended autolink path validation
+        let prevCapZero;
+        do {
+          prevCapZero = cap[0];
+          cap[0] = this.rules.inline._backpedal.exec(cap[0])[0];
+        } while (prevCapZero !== cap[0]);
+        text = marked_esm_escape(cap[0]);
+        if (cap[1] === 'www.') {
+          href = 'http://' + cap[0];
+        } else {
+          href = cap[0];
+        }
+      }
+      return {
+        type: 'link',
+        raw: cap[0],
+        text,
+        href,
+        tokens: [
+          {
+            type: 'text',
+            raw: text,
+            text
+          }
+        ]
+      };
+    }
+  }
+
+  inlineText(src, smartypants) {
+    const cap = this.rules.inline.text.exec(src);
+    if (cap) {
+      let text;
+      if (this.lexer.state.inRawBlock) {
+        text = this.options.sanitize ? (this.options.sanitizer ? this.options.sanitizer(cap[0]) : marked_esm_escape(cap[0])) : cap[0];
+      } else {
+        text = marked_esm_escape(this.options.smartypants ? smartypants(cap[0]) : cap[0]);
+      }
+      return {
+        type: 'text',
+        raw: cap[0],
+        text
+      };
+    }
+  }
+}
+
+/**
+ * Block-Level Grammar
+ */
+const block = {
+  newline: /^(?: *(?:\n|$))+/,
+  code: /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/,
+  fences: /^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/,
+  hr: /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/,
+  heading: /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/,
+  blockquote: /^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/,
+  list: /^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/,
+  html: '^ {0,3}(?:' // optional indentation
+    + '<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)' // (1)
+    + '|comment[^\\n]*(\\n+|$)' // (2)
+    + '|<\\?[\\s\\S]*?(?:\\?>\\n*|$)' // (3)
+    + '|<![A-Z][\\s\\S]*?(?:>\\n*|$)' // (4)
+    + '|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)' // (5)
+    + '|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (6)
+    + '|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (7) open tag
+    + '|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (7) closing tag
+    + ')',
+  def: /^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/,
+  table: noopTest,
+  lheading: /^((?:.|\n(?!\n))+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+  // regex template, placeholders will be replaced according to different paragraph
+  // interruption rules of commonmark and the original markdown spec:
+  _paragraph: /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/,
+  text: /^[^\n]+/
+};
+
+block._label = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
+block._title = /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/;
+block.def = edit(block.def)
+  .replace('label', block._label)
+  .replace('title', block._title)
+  .getRegex();
+
+block.bullet = /(?:[*+-]|\d{1,9}[.)])/;
+block.listItemStart = edit(/^( *)(bull) */)
+  .replace('bull', block.bullet)
+  .getRegex();
+
+block.list = edit(block.list)
+  .replace(/bull/g, block.bullet)
+  .replace('hr', '\\n+(?=\\1?(?:(?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$))')
+  .replace('def', '\\n+(?=' + block.def.source + ')')
+  .getRegex();
+
+block._tag = 'address|article|aside|base|basefont|blockquote|body|caption'
+  + '|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption'
+  + '|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe'
+  + '|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option'
+  + '|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr'
+  + '|track|ul';
+block._comment = /<!--(?!-?>)[\s\S]*?(?:-->|$)/;
+block.html = edit(block.html, 'i')
+  .replace('comment', block._comment)
+  .replace('tag', block._tag)
+  .replace('attribute', / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/)
+  .getRegex();
+
+block.paragraph = edit(block._paragraph)
+  .replace('hr', block.hr)
+  .replace('heading', ' {0,3}#{1,6} ')
+  .replace('|lheading', '') // setex headings don't interrupt commonmark paragraphs
+  .replace('|table', '')
+  .replace('blockquote', ' {0,3}>')
+  .replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+  .replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+  .replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+  .replace('tag', block._tag) // pars can be interrupted by type (6) html blocks
+  .getRegex();
+
+block.blockquote = edit(block.blockquote)
+  .replace('paragraph', block.paragraph)
+  .getRegex();
+
+/**
+ * Normal Block Grammar
+ */
+
+block.normal = { ...block };
+
+/**
+ * GFM Block Grammar
+ */
+
+block.gfm = {
+  ...block.normal,
+  table: '^ *([^\\n ].*\\|.*)\\n' // Header
+    + ' {0,3}(?:\\| *)?(:?-+:? *(?:\\| *:?-+:? *)*)(?:\\| *)?' // Align
+    + '(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)' // Cells
+};
+
+block.gfm.table = edit(block.gfm.table)
+  .replace('hr', block.hr)
+  .replace('heading', ' {0,3}#{1,6} ')
+  .replace('blockquote', ' {0,3}>')
+  .replace('code', ' {4}[^\\n]')
+  .replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+  .replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+  .replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+  .replace('tag', block._tag) // tables can be interrupted by type (6) html blocks
+  .getRegex();
+
+block.gfm.paragraph = edit(block._paragraph)
+  .replace('hr', block.hr)
+  .replace('heading', ' {0,3}#{1,6} ')
+  .replace('|lheading', '') // setex headings don't interrupt commonmark paragraphs
+  .replace('table', block.gfm.table) // interrupt paragraphs with table
+  .replace('blockquote', ' {0,3}>')
+  .replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+  .replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+  .replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+  .replace('tag', block._tag) // pars can be interrupted by type (6) html blocks
+  .getRegex();
+/**
+ * Pedantic grammar (original John Gruber's loose markdown specification)
+ */
+
+block.pedantic = {
+  ...block.normal,
+  html: edit(
+    '^ *(?:comment *(?:\\n|\\s*$)'
+    + '|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)' // closed tag
+    + '|<tag(?:"[^"]*"|\'[^\']*\'|\\s[^\'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))')
+    .replace('comment', block._comment)
+    .replace(/tag/g, '(?!(?:'
+      + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub'
+      + '|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)'
+      + '\\b)\\w+(?!:|[^\\w\\s@]*@)\\b')
+    .getRegex(),
+  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
+  heading: /^(#{1,6})(.*)(?:\n+|$)/,
+  fences: noopTest, // fences not supported
+  lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+  paragraph: edit(block.normal._paragraph)
+    .replace('hr', block.hr)
+    .replace('heading', ' *#{1,6} *[^\n]')
+    .replace('lheading', block.lheading)
+    .replace('blockquote', ' {0,3}>')
+    .replace('|fences', '')
+    .replace('|list', '')
+    .replace('|html', '')
+    .getRegex()
+};
+
+/**
+ * Inline-Level Grammar
+ */
+const inline = {
+  escape: /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/,
+  autolink: /^<(scheme:[^\s\x00-\x1f<>]*|email)>/,
+  url: noopTest,
+  tag: '^comment'
+    + '|^</[a-zA-Z][\\w:-]*\\s*>' // self-closing tag
+    + '|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>' // open tag
+    + '|^<\\?[\\s\\S]*?\\?>' // processing instruction, e.g. <?php ?>
+    + '|^<![a-zA-Z]+\\s[\\s\\S]*?>' // declaration, e.g. <!DOCTYPE html>
+    + '|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>', // CDATA section
+  link: /^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/,
+  reflink: /^!?\[(label)\]\[(ref)\]/,
+  nolink: /^!?\[(ref)\](?:\[\])?/,
+  reflinkSearch: 'reflink|nolink(?!\\()',
+  emStrong: {
+    lDelim: /^(?:\*+(?:([punct_])|[^\s*]))|^_+(?:([punct*])|([^\s_]))/,
+    //        (1) and (2) can only be a Right Delimiter. (3) and (4) can only be Left.  (5) and (6) can be either Left or Right.
+    //          () Skip orphan inside strong                                      () Consume to delim     (1) #***                (2) a***#, a***                             (3) #***a, ***a                 (4) ***#              (5) #***#                 (6) a***a
+    rDelimAst: /^(?:[^_*\\]|\\.)*?\_\_(?:[^_*\\]|\\.)*?\*(?:[^_*\\]|\\.)*?(?=\_\_)|(?:[^*\\]|\\.)+(?=[^*])|[punct_](\*+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\*+)(?=[punct_\s]|$)|[punct_\s](\*+)(?=[^punct*_\s])|[\s](\*+)(?=[punct_])|[punct_](\*+)(?=[punct_])|(?:[^punct*_\s\\]|\\.)(\*+)(?=[^punct*_\s])/,
+    rDelimUnd: /^(?:[^_*\\]|\\.)*?\*\*(?:[^_*\\]|\\.)*?\_(?:[^_*\\]|\\.)*?(?=\*\*)|(?:[^_\\]|\\.)+(?=[^_])|[punct*](\_+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\_+)(?=[punct*\s]|$)|[punct*\s](\_+)(?=[^punct*_\s])|[\s](\_+)(?=[punct*])|[punct*](\_+)(?=[punct*])/ // ^- Not allowed for _
+  },
+  code: /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,
+  br: /^( {2,}|\\)\n(?!\s*$)/,
+  del: noopTest,
+  text: /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/,
+  punctuation: /^([\spunctuation])/
+};
+
+// list of punctuation marks from CommonMark spec
+// without * and _ to handle the different emphasis markers * and _
+inline._punctuation = '!"#$%&\'()+\\-.,/:;<=>?@\\[\\]`^{|}~';
+inline.punctuation = edit(inline.punctuation).replace(/punctuation/g, inline._punctuation).getRegex();
+
+// sequences em should skip over [title](link), `code`, <html>
+inline.blockSkip = /\[[^\]]*?\]\([^\)]*?\)|`[^`]*?`|<[^>]*?>/g;
+// lookbehind is not available on Safari as of version 16
+// inline.escapedEmSt = /(?<=(?:^|[^\\)(?:\\[^])*)\\[*_]/g;
+inline.escapedEmSt = /(?:^|[^\\])(?:\\\\)*\\[*_]/g;
+
+inline._comment = edit(block._comment).replace('(?:-->|$)', '-->').getRegex();
+
+inline.emStrong.lDelim = edit(inline.emStrong.lDelim)
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
+
+inline.emStrong.rDelimAst = edit(inline.emStrong.rDelimAst, 'g')
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
+
+inline.emStrong.rDelimUnd = edit(inline.emStrong.rDelimUnd, 'g')
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
+
+inline._escapes = /\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/g;
+
+inline._scheme = /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/;
+inline._email = /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/;
+inline.autolink = edit(inline.autolink)
+  .replace('scheme', inline._scheme)
+  .replace('email', inline._email)
+  .getRegex();
+
+inline._attribute = /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/;
+
+inline.tag = edit(inline.tag)
+  .replace('comment', inline._comment)
+  .replace('attribute', inline._attribute)
+  .getRegex();
+
+inline._label = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
+inline._href = /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/;
+inline._title = /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/;
+
+inline.link = edit(inline.link)
+  .replace('label', inline._label)
+  .replace('href', inline._href)
+  .replace('title', inline._title)
+  .getRegex();
+
+inline.reflink = edit(inline.reflink)
+  .replace('label', inline._label)
+  .replace('ref', block._label)
+  .getRegex();
+
+inline.nolink = edit(inline.nolink)
+  .replace('ref', block._label)
+  .getRegex();
+
+inline.reflinkSearch = edit(inline.reflinkSearch, 'g')
+  .replace('reflink', inline.reflink)
+  .replace('nolink', inline.nolink)
+  .getRegex();
+
+/**
+ * Normal Inline Grammar
+ */
+
+inline.normal = { ...inline };
+
+/**
+ * Pedantic Inline Grammar
+ */
+
+inline.pedantic = {
+  ...inline.normal,
+  strong: {
+    start: /^__|\*\*/,
+    middle: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+    endAst: /\*\*(?!\*)/g,
+    endUnd: /__(?!_)/g
+  },
+  em: {
+    start: /^_|\*/,
+    middle: /^()\*(?=\S)([\s\S]*?\S)\*(?!\*)|^_(?=\S)([\s\S]*?\S)_(?!_)/,
+    endAst: /\*(?!\*)/g,
+    endUnd: /_(?!_)/g
+  },
+  link: edit(/^!?\[(label)\]\((.*?)\)/)
+    .replace('label', inline._label)
+    .getRegex(),
+  reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/)
+    .replace('label', inline._label)
+    .getRegex()
+};
+
+/**
+ * GFM Inline Grammar
+ */
+
+inline.gfm = {
+  ...inline.normal,
+  escape: edit(inline.escape).replace('])', '~|])').getRegex(),
+  _extended_email: /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/,
+  url: /^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/,
+  _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
+  del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
+  text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
+};
+
+inline.gfm.url = edit(inline.gfm.url, 'i')
+  .replace('email', inline.gfm._extended_email)
+  .getRegex();
+/**
+ * GFM + Line Breaks Inline Grammar
+ */
+
+inline.breaks = {
+  ...inline.gfm,
+  br: edit(inline.br).replace('{2,}', '*').getRegex(),
+  text: edit(inline.gfm.text)
+    .replace('\\b_', '\\b_| {2,}\\n')
+    .replace(/\{2,\}/g, '*')
+    .getRegex()
+};
+
+/**
+ * smartypants text replacement
+ * @param {string} text
+ */
+function smartypants(text) {
+  return text
+    // em-dashes
+    .replace(/---/g, '\u2014')
+    // en-dashes
+    .replace(/--/g, '\u2013')
+    // opening singles
+    .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
+    // closing singles & apostrophes
+    .replace(/'/g, '\u2019')
+    // opening doubles
+    .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
+    // closing doubles
+    .replace(/"/g, '\u201d')
+    // ellipses
+    .replace(/\.{3}/g, '\u2026');
+}
+
+/**
+ * mangle email addresses
+ * @param {string} text
+ */
+function mangle(text) {
+  let out = '',
+    i,
+    ch;
+
+  const l = text.length;
+  for (i = 0; i < l; i++) {
+    ch = text.charCodeAt(i);
+    if (Math.random() > 0.5) {
+      ch = 'x' + ch.toString(16);
+    }
+    out += '&#' + ch + ';';
+  }
+
+  return out;
+}
+
+/**
+ * Block Lexer
+ */
+class Lexer {
+  constructor(options) {
+    this.tokens = [];
+    this.tokens.links = Object.create(null);
+    this.options = options || defaults;
+    this.options.tokenizer = this.options.tokenizer || new Tokenizer();
+    this.tokenizer = this.options.tokenizer;
+    this.tokenizer.options = this.options;
+    this.tokenizer.lexer = this;
+    this.inlineQueue = [];
+    this.state = {
+      inLink: false,
+      inRawBlock: false,
+      top: true
+    };
+
+    const rules = {
+      block: block.normal,
+      inline: inline.normal
+    };
+
+    if (this.options.pedantic) {
+      rules.block = block.pedantic;
+      rules.inline = inline.pedantic;
+    } else if (this.options.gfm) {
+      rules.block = block.gfm;
+      if (this.options.breaks) {
+        rules.inline = inline.breaks;
+      } else {
+        rules.inline = inline.gfm;
+      }
+    }
+    this.tokenizer.rules = rules;
+  }
+
+  /**
+   * Expose Rules
+   */
+  static get rules() {
+    return {
+      block,
+      inline
+    };
+  }
+
+  /**
+   * Static Lex Method
+   */
+  static lex(src, options) {
+    const lexer = new Lexer(options);
+    return lexer.lex(src);
+  }
+
+  /**
+   * Static Lex Inline Method
+   */
+  static lexInline(src, options) {
+    const lexer = new Lexer(options);
+    return lexer.inlineTokens(src);
+  }
+
+  /**
+   * Preprocessing
+   */
+  lex(src) {
+    src = src
+      .replace(/\r\n|\r/g, '\n');
+
+    this.blockTokens(src, this.tokens);
+
+    let next;
+    while (next = this.inlineQueue.shift()) {
+      this.inlineTokens(next.src, next.tokens);
+    }
+
+    return this.tokens;
+  }
+
+  /**
+   * Lexing
+   */
+  blockTokens(src, tokens = []) {
+    if (this.options.pedantic) {
+      src = src.replace(/\t/g, '    ').replace(/^ +$/gm, '');
+    } else {
+      src = src.replace(/^( *)(\t+)/gm, (_, leading, tabs) => {
+        return leading + '    '.repeat(tabs.length);
+      });
+    }
+
+    let token, lastToken, cutSrc, lastParagraphClipped;
+
+    while (src) {
+      if (this.options.extensions
+        && this.options.extensions.block
+        && this.options.extensions.block.some((extTokenizer) => {
+          if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
+            src = src.substring(token.raw.length);
+            tokens.push(token);
+            return true;
+          }
+          return false;
+        })) {
+        continue;
+      }
+
+      // newline
+      if (token = this.tokenizer.space(src)) {
+        src = src.substring(token.raw.length);
+        if (token.raw.length === 1 && tokens.length > 0) {
+          // if there's a single \n as a spacer, it's terminating the last line,
+          // so move it there so that we don't get unecessary paragraph tags
+          tokens[tokens.length - 1].raw += '\n';
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      // code
+      if (token = this.tokenizer.code(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        // An indented code block cannot interrupt a paragraph.
+        if (lastToken && (lastToken.type === 'paragraph' || lastToken.type === 'text')) {
+          lastToken.raw += '\n' + token.raw;
+          lastToken.text += '\n' + token.text;
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      // fences
+      if (token = this.tokenizer.fences(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // heading
+      if (token = this.tokenizer.heading(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // hr
+      if (token = this.tokenizer.hr(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // blockquote
+      if (token = this.tokenizer.blockquote(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // list
+      if (token = this.tokenizer.list(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // html
+      if (token = this.tokenizer.html(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // def
+      if (token = this.tokenizer.def(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && (lastToken.type === 'paragraph' || lastToken.type === 'text')) {
+          lastToken.raw += '\n' + token.raw;
+          lastToken.text += '\n' + token.raw;
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else if (!this.tokens.links[token.tag]) {
+          this.tokens.links[token.tag] = {
+            href: token.href,
+            title: token.title
+          };
+        }
+        continue;
+      }
+
+      // table (gfm)
+      if (token = this.tokenizer.table(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // lheading
+      if (token = this.tokenizer.lheading(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // top-level paragraph
+      // prevent paragraph consuming extensions by clipping 'src' to extension start
+      cutSrc = src;
+      if (this.options.extensions && this.options.extensions.startBlock) {
+        let startIndex = Infinity;
+        const tempSrc = src.slice(1);
+        let tempStart;
+        this.options.extensions.startBlock.forEach(function(getStartIndex) {
+          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
+          if (typeof tempStart === 'number' && tempStart >= 0) { startIndex = Math.min(startIndex, tempStart); }
+        });
+        if (startIndex < Infinity && startIndex >= 0) {
+          cutSrc = src.substring(0, startIndex + 1);
+        }
+      }
+      if (this.state.top && (token = this.tokenizer.paragraph(cutSrc))) {
+        lastToken = tokens[tokens.length - 1];
+        if (lastParagraphClipped && lastToken.type === 'paragraph') {
+          lastToken.raw += '\n' + token.raw;
+          lastToken.text += '\n' + token.text;
+          this.inlineQueue.pop();
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        lastParagraphClipped = (cutSrc.length !== src.length);
+        src = src.substring(token.raw.length);
+        continue;
+      }
+
+      // text
+      if (token = this.tokenizer.text(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && lastToken.type === 'text') {
+          lastToken.raw += '\n' + token.raw;
+          lastToken.text += '\n' + token.text;
+          this.inlineQueue.pop();
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      if (src) {
+        const errMsg = 'Infinite loop on byte: ' + src.charCodeAt(0);
+        if (this.options.silent) {
+          console.error(errMsg);
+          break;
+        } else {
+          throw new Error(errMsg);
+        }
+      }
+    }
+
+    this.state.top = true;
+    return tokens;
+  }
+
+  inline(src, tokens = []) {
+    this.inlineQueue.push({ src, tokens });
+    return tokens;
+  }
+
+  /**
+   * Lexing/Compiling
+   */
+  inlineTokens(src, tokens = []) {
+    let token, lastToken, cutSrc;
+
+    // String with links masked to avoid interference with em and strong
+    let maskedSrc = src;
+    let match;
+    let keepPrevChar, prevChar;
+
+    // Mask out reflinks
+    if (this.tokens.links) {
+      const links = Object.keys(this.tokens.links);
+      if (links.length > 0) {
+        while ((match = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) != null) {
+          if (links.includes(match[0].slice(match[0].lastIndexOf('[') + 1, -1))) {
+            maskedSrc = maskedSrc.slice(0, match.index) + '[' + repeatString('a', match[0].length - 2) + ']' + maskedSrc.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex);
+          }
+        }
+      }
+    }
+    // Mask out other blocks
+    while ((match = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null) {
+      maskedSrc = maskedSrc.slice(0, match.index) + '[' + repeatString('a', match[0].length - 2) + ']' + maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
+    }
+
+    // Mask out escaped em & strong delimiters
+    while ((match = this.tokenizer.rules.inline.escapedEmSt.exec(maskedSrc)) != null) {
+      maskedSrc = maskedSrc.slice(0, match.index + match[0].length - 2) + '++' + maskedSrc.slice(this.tokenizer.rules.inline.escapedEmSt.lastIndex);
+      this.tokenizer.rules.inline.escapedEmSt.lastIndex--;
+    }
+
+    while (src) {
+      if (!keepPrevChar) {
+        prevChar = '';
+      }
+      keepPrevChar = false;
+
+      // extensions
+      if (this.options.extensions
+        && this.options.extensions.inline
+        && this.options.extensions.inline.some((extTokenizer) => {
+          if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
+            src = src.substring(token.raw.length);
+            tokens.push(token);
+            return true;
+          }
+          return false;
+        })) {
+        continue;
+      }
+
+      // escape
+      if (token = this.tokenizer.escape(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // tag
+      if (token = this.tokenizer.tag(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && token.type === 'text' && lastToken.type === 'text') {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      // link
+      if (token = this.tokenizer.link(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // reflink, nolink
+      if (token = this.tokenizer.reflink(src, this.tokens.links)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && token.type === 'text' && lastToken.type === 'text') {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      // em & strong
+      if (token = this.tokenizer.emStrong(src, maskedSrc, prevChar)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // code
+      if (token = this.tokenizer.codespan(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // br
+      if (token = this.tokenizer.br(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // del (gfm)
+      if (token = this.tokenizer.del(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // autolink
+      if (token = this.tokenizer.autolink(src, mangle)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // url (gfm)
+      if (!this.state.inLink && (token = this.tokenizer.url(src, mangle))) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+
+      // text
+      // prevent inlineText consuming extensions by clipping 'src' to extension start
+      cutSrc = src;
+      if (this.options.extensions && this.options.extensions.startInline) {
+        let startIndex = Infinity;
+        const tempSrc = src.slice(1);
+        let tempStart;
+        this.options.extensions.startInline.forEach(function(getStartIndex) {
+          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
+          if (typeof tempStart === 'number' && tempStart >= 0) { startIndex = Math.min(startIndex, tempStart); }
+        });
+        if (startIndex < Infinity && startIndex >= 0) {
+          cutSrc = src.substring(0, startIndex + 1);
+        }
+      }
+      if (token = this.tokenizer.inlineText(cutSrc, smartypants)) {
+        src = src.substring(token.raw.length);
+        if (token.raw.slice(-1) !== '_') { // Track prevChar before string of ____ started
+          prevChar = token.raw.slice(-1);
+        }
+        keepPrevChar = true;
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && lastToken.type === 'text') {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+
+      if (src) {
+        const errMsg = 'Infinite loop on byte: ' + src.charCodeAt(0);
+        if (this.options.silent) {
+          console.error(errMsg);
+          break;
+        } else {
+          throw new Error(errMsg);
+        }
+      }
+    }
+
+    return tokens;
+  }
+}
+
+/**
+ * Renderer
+ */
+class Renderer {
+  constructor(options) {
+    this.options = options || defaults;
+  }
+
+  code(code, infostring, escaped) {
+    const lang = (infostring || '').match(/\S*/)[0];
+    if (this.options.highlight) {
+      const out = this.options.highlight(code, lang);
+      if (out != null && out !== code) {
+        escaped = true;
+        code = out;
+      }
+    }
+
+    code = code.replace(/\n$/, '') + '\n';
+
+    if (!lang) {
+      return '<pre><code>'
+        + (escaped ? code : marked_esm_escape(code, true))
+        + '</code></pre>\n';
+    }
+
+    return '<pre><code class="'
+      + this.options.langPrefix
+      + marked_esm_escape(lang)
+      + '">'
+      + (escaped ? code : marked_esm_escape(code, true))
+      + '</code></pre>\n';
+  }
+
+  /**
+   * @param {string} quote
+   */
+  blockquote(quote) {
+    return `<blockquote>\n${quote}</blockquote>\n`;
+  }
+
+  html(html) {
+    return html;
+  }
+
+  /**
+   * @param {string} text
+   * @param {string} level
+   * @param {string} raw
+   * @param {any} slugger
+   */
+  heading(text, level, raw, slugger) {
+    if (this.options.headerIds) {
+      const id = this.options.headerPrefix + slugger.slug(raw);
+      return `<h${level} id="${id}">${text}</h${level}>\n`;
+    }
+
+    // ignore IDs
+    return `<h${level}>${text}</h${level}>\n`;
+  }
+
+  hr() {
+    return this.options.xhtml ? '<hr/>\n' : '<hr>\n';
+  }
+
+  list(body, ordered, start) {
+    const type = ordered ? 'ol' : 'ul',
+      startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
+    return '<' + type + startatt + '>\n' + body + '</' + type + '>\n';
+  }
+
+  /**
+   * @param {string} text
+   */
+  listitem(text) {
+    return `<li>${text}</li>\n`;
+  }
+
+  checkbox(checked) {
+    return '<input '
+      + (checked ? 'checked="" ' : '')
+      + 'disabled="" type="checkbox"'
+      + (this.options.xhtml ? ' /' : '')
+      + '> ';
+  }
+
+  /**
+   * @param {string} text
+   */
+  paragraph(text) {
+    return `<p>${text}</p>\n`;
+  }
+
+  /**
+   * @param {string} header
+   * @param {string} body
+   */
+  table(header, body) {
+    if (body) body = `<tbody>${body}</tbody>`;
+
+    return '<table>\n'
+      + '<thead>\n'
+      + header
+      + '</thead>\n'
+      + body
+      + '</table>\n';
+  }
+
+  /**
+   * @param {string} content
+   */
+  tablerow(content) {
+    return `<tr>\n${content}</tr>\n`;
+  }
+
+  tablecell(content, flags) {
+    const type = flags.header ? 'th' : 'td';
+    const tag = flags.align
+      ? `<${type} align="${flags.align}">`
+      : `<${type}>`;
+    return tag + content + `</${type}>\n`;
+  }
+
+  /**
+   * span level renderer
+   * @param {string} text
+   */
+  strong(text) {
+    return `<strong>${text}</strong>`;
+  }
+
+  /**
+   * @param {string} text
+   */
+  em(text) {
+    return `<em>${text}</em>`;
+  }
+
+  /**
+   * @param {string} text
+   */
+  codespan(text) {
+    return `<code>${text}</code>`;
+  }
+
+  br() {
+    return this.options.xhtml ? '<br/>' : '<br>';
+  }
+
+  /**
+   * @param {string} text
+   */
+  del(text) {
+    return `<del>${text}</del>`;
+  }
+
+  /**
+   * @param {string} href
+   * @param {string} title
+   * @param {string} text
+   */
+  link(href, title, text) {
+    href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
+    if (href === null) {
+      return text;
+    }
+    let out = '<a href="' + href + '"';
+    if (title) {
+      out += ' title="' + title + '"';
+    }
+    out += '>' + text + '</a>';
+    return out;
+  }
+
+  /**
+   * @param {string} href
+   * @param {string} title
+   * @param {string} text
+   */
+  image(href, title, text) {
+    href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
+    if (href === null) {
+      return text;
+    }
+
+    let out = `<img src="${href}" alt="${text}"`;
+    if (title) {
+      out += ` title="${title}"`;
+    }
+    out += this.options.xhtml ? '/>' : '>';
+    return out;
+  }
+
+  text(text) {
+    return text;
+  }
+}
+
+/**
+ * TextRenderer
+ * returns only the textual part of the token
+ */
+class TextRenderer {
+  // no need for block level renderers
+  strong(text) {
+    return text;
+  }
+
+  em(text) {
+    return text;
+  }
+
+  codespan(text) {
+    return text;
+  }
+
+  del(text) {
+    return text;
+  }
+
+  html(text) {
+    return text;
+  }
+
+  text(text) {
+    return text;
+  }
+
+  link(href, title, text) {
+    return '' + text;
+  }
+
+  image(href, title, text) {
+    return '' + text;
+  }
+
+  br() {
+    return '';
+  }
+}
+
+/**
+ * Slugger generates header id
+ */
+class Slugger {
+  constructor() {
+    this.seen = {};
+  }
+
+  /**
+   * @param {string} value
+   */
+  serialize(value) {
+    return value
+      .toLowerCase()
+      .trim()
+      // remove html tags
+      .replace(/<[!\/a-z].*?>/ig, '')
+      // remove unwanted chars
+      .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
+      .replace(/\s/g, '-');
+  }
+
+  /**
+   * Finds the next safe (unique) slug to use
+   * @param {string} originalSlug
+   * @param {boolean} isDryRun
+   */
+  getNextSafeSlug(originalSlug, isDryRun) {
+    let slug = originalSlug;
+    let occurenceAccumulator = 0;
+    if (this.seen.hasOwnProperty(slug)) {
+      occurenceAccumulator = this.seen[originalSlug];
+      do {
+        occurenceAccumulator++;
+        slug = originalSlug + '-' + occurenceAccumulator;
+      } while (this.seen.hasOwnProperty(slug));
+    }
+    if (!isDryRun) {
+      this.seen[originalSlug] = occurenceAccumulator;
+      this.seen[slug] = 0;
+    }
+    return slug;
+  }
+
+  /**
+   * Convert string to unique id
+   * @param {object} [options]
+   * @param {boolean} [options.dryrun] Generates the next unique slug without
+   * updating the internal accumulator.
+   */
+  slug(value, options = {}) {
+    const slug = this.serialize(value);
+    return this.getNextSafeSlug(slug, options.dryrun);
+  }
+}
+
+/**
+ * Parsing & Compiling
+ */
+class Parser {
+  constructor(options) {
+    this.options = options || defaults;
+    this.options.renderer = this.options.renderer || new Renderer();
+    this.renderer = this.options.renderer;
+    this.renderer.options = this.options;
+    this.textRenderer = new TextRenderer();
+    this.slugger = new Slugger();
+  }
+
+  /**
+   * Static Parse Method
+   */
+  static parse(tokens, options) {
+    const parser = new Parser(options);
+    return parser.parse(tokens);
+  }
+
+  /**
+   * Static Parse Inline Method
+   */
+  static parseInline(tokens, options) {
+    const parser = new Parser(options);
+    return parser.parseInline(tokens);
+  }
+
+  /**
+   * Parse Loop
+   */
+  parse(tokens, top = true) {
+    let out = '',
+      i,
+      j,
+      k,
+      l2,
+      l3,
+      row,
+      cell,
+      header,
+      body,
+      token,
+      ordered,
+      start,
+      loose,
+      itemBody,
+      item,
+      checked,
+      task,
+      checkbox,
+      ret;
+
+    const l = tokens.length;
+    for (i = 0; i < l; i++) {
+      token = tokens[i];
+
+      // Run any renderer extensions
+      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+        ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
+        if (ret !== false || !['space', 'hr', 'heading', 'code', 'table', 'blockquote', 'list', 'html', 'paragraph', 'text'].includes(token.type)) {
+          out += ret || '';
+          continue;
+        }
+      }
+
+      switch (token.type) {
+        case 'space': {
+          continue;
+        }
+        case 'hr': {
+          out += this.renderer.hr();
+          continue;
+        }
+        case 'heading': {
+          out += this.renderer.heading(
+            this.parseInline(token.tokens),
+            token.depth,
+            marked_esm_unescape(this.parseInline(token.tokens, this.textRenderer)),
+            this.slugger);
+          continue;
+        }
+        case 'code': {
+          out += this.renderer.code(token.text,
+            token.lang,
+            token.escaped);
+          continue;
+        }
+        case 'table': {
+          header = '';
+
+          // header
+          cell = '';
+          l2 = token.header.length;
+          for (j = 0; j < l2; j++) {
+            cell += this.renderer.tablecell(
+              this.parseInline(token.header[j].tokens),
+              { header: true, align: token.align[j] }
+            );
+          }
+          header += this.renderer.tablerow(cell);
+
+          body = '';
+          l2 = token.rows.length;
+          for (j = 0; j < l2; j++) {
+            row = token.rows[j];
+
+            cell = '';
+            l3 = row.length;
+            for (k = 0; k < l3; k++) {
+              cell += this.renderer.tablecell(
+                this.parseInline(row[k].tokens),
+                { header: false, align: token.align[k] }
+              );
+            }
+
+            body += this.renderer.tablerow(cell);
+          }
+          out += this.renderer.table(header, body);
+          continue;
+        }
+        case 'blockquote': {
+          body = this.parse(token.tokens);
+          out += this.renderer.blockquote(body);
+          continue;
+        }
+        case 'list': {
+          ordered = token.ordered;
+          start = token.start;
+          loose = token.loose;
+          l2 = token.items.length;
+
+          body = '';
+          for (j = 0; j < l2; j++) {
+            item = token.items[j];
+            checked = item.checked;
+            task = item.task;
+
+            itemBody = '';
+            if (item.task) {
+              checkbox = this.renderer.checkbox(checked);
+              if (loose) {
+                if (item.tokens.length > 0 && item.tokens[0].type === 'paragraph') {
+                  item.tokens[0].text = checkbox + ' ' + item.tokens[0].text;
+                  if (item.tokens[0].tokens && item.tokens[0].tokens.length > 0 && item.tokens[0].tokens[0].type === 'text') {
+                    item.tokens[0].tokens[0].text = checkbox + ' ' + item.tokens[0].tokens[0].text;
+                  }
+                } else {
+                  item.tokens.unshift({
+                    type: 'text',
+                    text: checkbox
+                  });
+                }
+              } else {
+                itemBody += checkbox;
+              }
+            }
+
+            itemBody += this.parse(item.tokens, loose);
+            body += this.renderer.listitem(itemBody, task, checked);
+          }
+
+          out += this.renderer.list(body, ordered, start);
+          continue;
+        }
+        case 'html': {
+          // TODO parse inline content if parameter markdown=1
+          out += this.renderer.html(token.text);
+          continue;
+        }
+        case 'paragraph': {
+          out += this.renderer.paragraph(this.parseInline(token.tokens));
+          continue;
+        }
+        case 'text': {
+          body = token.tokens ? this.parseInline(token.tokens) : token.text;
+          while (i + 1 < l && tokens[i + 1].type === 'text') {
+            token = tokens[++i];
+            body += '\n' + (token.tokens ? this.parseInline(token.tokens) : token.text);
+          }
+          out += top ? this.renderer.paragraph(body) : body;
+          continue;
+        }
+
+        default: {
+          const errMsg = 'Token with "' + token.type + '" type was not found.';
+          if (this.options.silent) {
+            console.error(errMsg);
+            return;
+          } else {
+            throw new Error(errMsg);
+          }
+        }
+      }
+    }
+
+    return out;
+  }
+
+  /**
+   * Parse Inline Tokens
+   */
+  parseInline(tokens, renderer) {
+    renderer = renderer || this.renderer;
+    let out = '',
+      i,
+      token,
+      ret;
+
+    const l = tokens.length;
+    for (i = 0; i < l; i++) {
+      token = tokens[i];
+
+      // Run any renderer extensions
+      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+        ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
+        if (ret !== false || !['escape', 'html', 'link', 'image', 'strong', 'em', 'codespan', 'br', 'del', 'text'].includes(token.type)) {
+          out += ret || '';
+          continue;
+        }
+      }
+
+      switch (token.type) {
+        case 'escape': {
+          out += renderer.text(token.text);
+          break;
+        }
+        case 'html': {
+          out += renderer.html(token.text);
+          break;
+        }
+        case 'link': {
+          out += renderer.link(token.href, token.title, this.parseInline(token.tokens, renderer));
+          break;
+        }
+        case 'image': {
+          out += renderer.image(token.href, token.title, token.text);
+          break;
+        }
+        case 'strong': {
+          out += renderer.strong(this.parseInline(token.tokens, renderer));
+          break;
+        }
+        case 'em': {
+          out += renderer.em(this.parseInline(token.tokens, renderer));
+          break;
+        }
+        case 'codespan': {
+          out += renderer.codespan(token.text);
+          break;
+        }
+        case 'br': {
+          out += renderer.br();
+          break;
+        }
+        case 'del': {
+          out += renderer.del(this.parseInline(token.tokens, renderer));
+          break;
+        }
+        case 'text': {
+          out += renderer.text(token.text);
+          break;
+        }
+        default: {
+          const errMsg = 'Token with "' + token.type + '" type was not found.';
+          if (this.options.silent) {
+            console.error(errMsg);
+            return;
+          } else {
+            throw new Error(errMsg);
+          }
+        }
+      }
+    }
+    return out;
+  }
+}
+
+class Hooks {
+  constructor(options) {
+    this.options = options || defaults;
+  }
+
+  static passThroughHooks = new Set([
+    'preprocess',
+    'postprocess'
+  ]);
+
+  /**
+   * Process markdown before marked
+   */
+  preprocess(markdown) {
+    return markdown;
+  }
+
+  /**
+   * Process HTML after marked is finished
+   */
+  postprocess(html) {
+    return html;
+  }
+}
+
+function onError(silent, async, callback) {
+  return (e) => {
+    e.message += '\nPlease report this to https://github.com/markedjs/marked.';
+
+    if (silent) {
+      const msg = '<p>An error occurred:</p><pre>'
+        + marked_esm_escape(e.message + '', true)
+        + '</pre>';
+      if (async) {
+        return Promise.resolve(msg);
+      }
+      if (callback) {
+        callback(null, msg);
+        return;
+      }
+      return msg;
+    }
+
+    if (async) {
+      return Promise.reject(e);
+    }
+    if (callback) {
+      callback(e);
+      return;
+    }
+    throw e;
+  };
+}
+
+function parseMarkdown(lexer, parser) {
+  return (src, opt, callback) => {
+    if (typeof opt === 'function') {
+      callback = opt;
+      opt = null;
+    }
+
+    const origOpt = { ...opt };
+    opt = { ...marked.defaults, ...origOpt };
+    const throwError = onError(opt.silent, opt.async, callback);
+
+    // throw error in case of non string input
+    if (typeof src === 'undefined' || src === null) {
+      return throwError(new Error('marked(): input parameter is undefined or null'));
+    }
+    if (typeof src !== 'string') {
+      return throwError(new Error('marked(): input parameter is of type '
+        + Object.prototype.toString.call(src) + ', string expected'));
+    }
+
+    checkSanitizeDeprecation(opt);
+
+    if (opt.hooks) {
+      opt.hooks.options = opt;
+    }
+
+    if (callback) {
+      const highlight = opt.highlight;
+      let tokens;
+
+      try {
+        if (opt.hooks) {
+          src = opt.hooks.preprocess(src);
+        }
+        tokens = lexer(src, opt);
+      } catch (e) {
+        return throwError(e);
+      }
+
+      const done = function(err) {
+        let out;
+
+        if (!err) {
+          try {
+            if (opt.walkTokens) {
+              marked.walkTokens(tokens, opt.walkTokens);
+            }
+            out = parser(tokens, opt);
+            if (opt.hooks) {
+              out = opt.hooks.postprocess(out);
+            }
+          } catch (e) {
+            err = e;
+          }
+        }
+
+        opt.highlight = highlight;
+
+        return err
+          ? throwError(err)
+          : callback(null, out);
+      };
+
+      if (!highlight || highlight.length < 3) {
+        return done();
+      }
+
+      delete opt.highlight;
+
+      if (!tokens.length) return done();
+
+      let pending = 0;
+      marked.walkTokens(tokens, function(token) {
+        if (token.type === 'code') {
+          pending++;
+          setTimeout(() => {
+            highlight(token.text, token.lang, function(err, code) {
+              if (err) {
+                return done(err);
+              }
+              if (code != null && code !== token.text) {
+                token.text = code;
+                token.escaped = true;
+              }
+
+              pending--;
+              if (pending === 0) {
+                done();
+              }
+            });
+          }, 0);
+        }
+      });
+
+      if (pending === 0) {
+        done();
+      }
+
+      return;
+    }
+
+    if (opt.async) {
+      return Promise.resolve(opt.hooks ? opt.hooks.preprocess(src) : src)
+        .then(src => lexer(src, opt))
+        .then(tokens => opt.walkTokens ? Promise.all(marked.walkTokens(tokens, opt.walkTokens)).then(() => tokens) : tokens)
+        .then(tokens => parser(tokens, opt))
+        .then(html => opt.hooks ? opt.hooks.postprocess(html) : html)
+        .catch(throwError);
+    }
+
+    try {
+      if (opt.hooks) {
+        src = opt.hooks.preprocess(src);
+      }
+      const tokens = lexer(src, opt);
+      if (opt.walkTokens) {
+        marked.walkTokens(tokens, opt.walkTokens);
+      }
+      let html = parser(tokens, opt);
+      if (opt.hooks) {
+        html = opt.hooks.postprocess(html);
+      }
+      return html;
+    } catch (e) {
+      return throwError(e);
+    }
+  };
+}
+
+/**
+ * Marked
+ */
+function marked(src, opt, callback) {
+  return parseMarkdown(Lexer.lex, Parser.parse)(src, opt, callback);
+}
+
+/**
+ * Options
+ */
+
+marked.options =
+marked.setOptions = function(opt) {
+  marked.defaults = { ...marked.defaults, ...opt };
+  changeDefaults(marked.defaults);
+  return marked;
+};
+
+marked.getDefaults = getDefaults;
+
+marked.defaults = defaults;
+
+/**
+ * Use Extension
+ */
+
+marked.use = function(...args) {
+  const extensions = marked.defaults.extensions || { renderers: {}, childTokens: {} };
+
+  args.forEach((pack) => {
+    // copy options to new object
+    const opts = { ...pack };
+
+    // set async to true if it was set to true before
+    opts.async = marked.defaults.async || opts.async || false;
+
+    // ==-- Parse "addon" extensions --== //
+    if (pack.extensions) {
+      pack.extensions.forEach((ext) => {
+        if (!ext.name) {
+          throw new Error('extension name required');
+        }
+        if (ext.renderer) { // Renderer extensions
+          const prevRenderer = extensions.renderers[ext.name];
+          if (prevRenderer) {
+            // Replace extension with func to run new extension but fall back if false
+            extensions.renderers[ext.name] = function(...args) {
+              let ret = ext.renderer.apply(this, args);
+              if (ret === false) {
+                ret = prevRenderer.apply(this, args);
+              }
+              return ret;
+            };
+          } else {
+            extensions.renderers[ext.name] = ext.renderer;
+          }
+        }
+        if (ext.tokenizer) { // Tokenizer Extensions
+          if (!ext.level || (ext.level !== 'block' && ext.level !== 'inline')) {
+            throw new Error("extension level must be 'block' or 'inline'");
+          }
+          if (extensions[ext.level]) {
+            extensions[ext.level].unshift(ext.tokenizer);
+          } else {
+            extensions[ext.level] = [ext.tokenizer];
+          }
+          if (ext.start) { // Function to check for start of token
+            if (ext.level === 'block') {
+              if (extensions.startBlock) {
+                extensions.startBlock.push(ext.start);
+              } else {
+                extensions.startBlock = [ext.start];
+              }
+            } else if (ext.level === 'inline') {
+              if (extensions.startInline) {
+                extensions.startInline.push(ext.start);
+              } else {
+                extensions.startInline = [ext.start];
+              }
+            }
+          }
+        }
+        if (ext.childTokens) { // Child tokens to be visited by walkTokens
+          extensions.childTokens[ext.name] = ext.childTokens;
+        }
+      });
+      opts.extensions = extensions;
+    }
+
+    // ==-- Parse "overwrite" extensions --== //
+    if (pack.renderer) {
+      const renderer = marked.defaults.renderer || new Renderer();
+      for (const prop in pack.renderer) {
+        const prevRenderer = renderer[prop];
+        // Replace renderer with func to run extension, but fall back if false
+        renderer[prop] = (...args) => {
+          let ret = pack.renderer[prop].apply(renderer, args);
+          if (ret === false) {
+            ret = prevRenderer.apply(renderer, args);
+          }
+          return ret;
+        };
+      }
+      opts.renderer = renderer;
+    }
+    if (pack.tokenizer) {
+      const tokenizer = marked.defaults.tokenizer || new Tokenizer();
+      for (const prop in pack.tokenizer) {
+        const prevTokenizer = tokenizer[prop];
+        // Replace tokenizer with func to run extension, but fall back if false
+        tokenizer[prop] = (...args) => {
+          let ret = pack.tokenizer[prop].apply(tokenizer, args);
+          if (ret === false) {
+            ret = prevTokenizer.apply(tokenizer, args);
+          }
+          return ret;
+        };
+      }
+      opts.tokenizer = tokenizer;
+    }
+
+    // ==-- Parse Hooks extensions --== //
+    if (pack.hooks) {
+      const hooks = marked.defaults.hooks || new Hooks();
+      for (const prop in pack.hooks) {
+        const prevHook = hooks[prop];
+        if (Hooks.passThroughHooks.has(prop)) {
+          hooks[prop] = (arg) => {
+            if (marked.defaults.async) {
+              return Promise.resolve(pack.hooks[prop].call(hooks, arg)).then(ret => {
+                return prevHook.call(hooks, ret);
+              });
+            }
+
+            const ret = pack.hooks[prop].call(hooks, arg);
+            return prevHook.call(hooks, ret);
+          };
+        } else {
+          hooks[prop] = (...args) => {
+            let ret = pack.hooks[prop].apply(hooks, args);
+            if (ret === false) {
+              ret = prevHook.apply(hooks, args);
+            }
+            return ret;
+          };
+        }
+      }
+      opts.hooks = hooks;
+    }
+
+    // ==-- Parse WalkTokens extensions --== //
+    if (pack.walkTokens) {
+      const walkTokens = marked.defaults.walkTokens;
+      opts.walkTokens = function(token) {
+        let values = [];
+        values.push(pack.walkTokens.call(this, token));
+        if (walkTokens) {
+          values = values.concat(walkTokens.call(this, token));
+        }
+        return values;
+      };
+    }
+
+    marked.setOptions(opts);
+  });
+};
+
+/**
+ * Run callback for every token
+ */
+
+marked.walkTokens = function(tokens, callback) {
+  let values = [];
+  for (const token of tokens) {
+    values = values.concat(callback.call(marked, token));
+    switch (token.type) {
+      case 'table': {
+        for (const cell of token.header) {
+          values = values.concat(marked.walkTokens(cell.tokens, callback));
+        }
+        for (const row of token.rows) {
+          for (const cell of row) {
+            values = values.concat(marked.walkTokens(cell.tokens, callback));
+          }
+        }
+        break;
+      }
+      case 'list': {
+        values = values.concat(marked.walkTokens(token.items, callback));
+        break;
+      }
+      default: {
+        if (marked.defaults.extensions && marked.defaults.extensions.childTokens && marked.defaults.extensions.childTokens[token.type]) { // Walk any extensions
+          marked.defaults.extensions.childTokens[token.type].forEach(function(childTokens) {
+            values = values.concat(marked.walkTokens(token[childTokens], callback));
+          });
+        } else if (token.tokens) {
+          values = values.concat(marked.walkTokens(token.tokens, callback));
+        }
+      }
+    }
+  }
+  return values;
+};
+
+/**
+ * Parse Inline
+ * @param {string} src
+ */
+marked.parseInline = parseMarkdown(Lexer.lexInline, Parser.parseInline);
+
+/**
+ * Expose
+ */
+marked.Parser = Parser;
+marked.parser = Parser.parse;
+marked.Renderer = Renderer;
+marked.TextRenderer = TextRenderer;
+marked.Lexer = Lexer;
+marked.lexer = Lexer.lex;
+marked.Tokenizer = Tokenizer;
+marked.Slugger = Slugger;
+marked.Hooks = Hooks;
+marked.parse = marked;
+
+const options = marked.options;
+const setOptions = marked.setOptions;
+const use = marked.use;
+const walkTokens = marked.walkTokens;
+const parseInline = marked.parseInline;
+const parse = (/* unused pure expression or super */ null && (marked));
+const parser = Parser.parse;
+const lexer = Lexer.lex;
 
 
 
+;// CONCATENATED MODULE: ./node_modules/marked-react/dist/marked-react.js
+
+
+
+const htmlUnescapes = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+};
+/** Used to match HTML entities and HTML characters. */
+const reEscapedHtml = /&(?:amp|lt|gt|quot|#(?:0+)?39);/g;
+const reHasEscapedHtml = RegExp(reEscapedHtml.source);
+const marked_react_unescape = (str = '') => {
+    return reHasEscapedHtml.test(str) ? str.replace(reEscapedHtml, (entity) => htmlUnescapes[entity] || "'") : str;
+};
+const joinBase = (path, base) => {
+    if (!base) {
+        return path;
+    }
+    try {
+        return new URL(path, base).href;
+    }
+    catch (_a) {
+        return path;
+    }
+};
+
+class ReactParser {
+    constructor(options) {
+        this.renderer = options.renderer;
+    }
+    parse(tokens) {
+        return tokens.map((token) => {
+            switch (token.type) {
+                case 'space': {
+                    return null;
+                }
+                case 'heading': {
+                    const level = token.depth;
+                    return this.renderer.heading(this.parseInline(token.tokens), level);
+                }
+                case 'paragraph': {
+                    return this.renderer.paragraph(this.parseInline(token.tokens));
+                }
+                case 'text': {
+                    const textTokens = token.tokens;
+                    return textTokens ? this.parseInline(textTokens) : token.text;
+                }
+                case 'blockquote': {
+                    const quote = this.parse(token.tokens);
+                    return this.renderer.blockquote(quote);
+                }
+                case 'list': {
+                    const children = token.items.map((item) => {
+                        var _a;
+                        const listItemChildren = [];
+                        if (item.task) {
+                            listItemChildren.push(this.renderer.checkbox((_a = item.checked) !== null && _a !== void 0 ? _a : false));
+                        }
+                        listItemChildren.push(this.parse(item.tokens));
+                        return this.renderer.listItem(listItemChildren);
+                    });
+                    return this.renderer.list(children, token.ordered);
+                }
+                case 'code': {
+                    return this.renderer.code(token.text, token.lang);
+                }
+                case 'html': {
+                    return this.renderer.html(token.text);
+                }
+                case 'table': {
+                    const headerCells = token.header.map((cell, index) => {
+                        return this.renderer.tableCell(this.parseInline(cell.tokens), { header: true, align: token.align[index] });
+                    });
+                    const headerRow = this.renderer.tableRow(headerCells);
+                    const header = this.renderer.tableHeader(headerRow);
+                    const bodyChilren = token.rows.map((row) => {
+                        const rowChildren = row.map((cell, index) => {
+                            return this.renderer.tableCell(this.parseInline(cell.tokens), {
+                                header: false,
+                                align: token.align[index],
+                            });
+                        });
+                        return this.renderer.tableRow(rowChildren);
+                    });
+                    const body = this.renderer.tableBody(bodyChilren);
+                    return this.renderer.table([header, body]);
+                }
+                case 'hr': {
+                    return this.renderer.hr();
+                }
+                default: {
+                    console.warn(`Token with "${token.type}" type was not found`); // eslint-disable-line no-console
+                    return null;
+                }
+            }
+        });
+    }
+    parseInline(tokens) {
+        return tokens.map((token) => {
+            switch (token.type) {
+                case 'text': {
+                    return this.renderer.text(marked_react_unescape(token.text));
+                }
+                case 'strong': {
+                    return this.renderer.strong(this.parseInline(token.tokens));
+                }
+                case 'em': {
+                    return this.renderer.em(this.parseInline(token.tokens));
+                }
+                case 'del': {
+                    return this.renderer.del(this.parseInline(token.tokens));
+                }
+                case 'codespan': {
+                    return this.renderer.codespan(marked_react_unescape(token.text));
+                }
+                case 'link': {
+                    return this.renderer.link(token.href, this.parseInline(token.tokens));
+                }
+                case 'image': {
+                    return this.renderer.image(token.href, token.text, token.title);
+                }
+                case 'html': {
+                    return this.renderer.html(token.text);
+                }
+                case 'br': {
+                    return this.renderer.br();
+                }
+                case 'escape': {
+                    return this.renderer.text(token.text);
+                }
+                default: {
+                    console.warn(`Token with "${token.type}" type was not found`); // eslint-disable-line no-console
+                    return null;
+                }
+            }
+        });
+    }
+}
+
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
+
+var _ReactRenderer_instances, _ReactRenderer_elId, _ReactRenderer_options, _ReactRenderer_h, _ReactRenderer_incrementElId;
+class ReactRenderer {
+    constructor(options = {}) {
+        _ReactRenderer_instances.add(this);
+        _ReactRenderer_elId.set(this, 0);
+        _ReactRenderer_options.set(this, void 0);
+        const { renderer } = options;
+        __classPrivateFieldSet(this, _ReactRenderer_options, options, "f");
+        if (renderer && typeof renderer === 'object') {
+            Object.entries(renderer).forEach(([key, value]) => {
+                const rendererName = key;
+                const rendererFunction = value;
+                if (!this[rendererName] || rendererName === 'elementId' || typeof rendererFunction !== 'function') {
+                    return;
+                }
+                this[rendererName];
+                this[rendererName] = (...args) => {
+                    __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_incrementElId).call(this);
+                    return rendererFunction.apply(this, args);
+                };
+            });
+        }
+    }
+    get elementId() {
+        return __classPrivateFieldGet(this, _ReactRenderer_elId, "f");
+    }
+    heading(children, level) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, `h${level}`, children);
+    }
+    paragraph(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'p', children);
+    }
+    link(href, text) {
+        const url = joinBase(href, __classPrivateFieldGet(this, _ReactRenderer_options, "f").baseURL);
+        const target = __classPrivateFieldGet(this, _ReactRenderer_options, "f").openLinksInNewTab ? '_blank' : null;
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'a', text, { href: url, target });
+    }
+    image(src, alt, title) {
+        const url = joinBase(src, __classPrivateFieldGet(this, _ReactRenderer_options, "f").baseURL);
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'img', null, { src: url, alt, title });
+    }
+    codespan(code, lang = null) {
+        const className = lang ? `${__classPrivateFieldGet(this, _ReactRenderer_options, "f").langPrefix}${lang}` : null;
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'code', code, { className });
+    }
+    code(code, lang) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'pre', this.codespan(code, lang));
+    }
+    blockquote(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'blockquote', children);
+    }
+    list(children, ordered) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, ordered ? 'ol' : 'ul', children);
+    }
+    listItem(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'li', children);
+    }
+    checkbox(checked) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'input', null, { type: 'checkbox', disabled: true, checked });
+    }
+    table(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'table', children);
+    }
+    tableHeader(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'thead', children);
+    }
+    tableBody(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'tbody', children);
+    }
+    tableRow(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'tr', children);
+    }
+    tableCell(children, flags) {
+        const tag = flags.header ? 'th' : 'td';
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, tag, children, { align: flags.align });
+    }
+    strong(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'strong', children);
+    }
+    em(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'em', children);
+    }
+    del(children) {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'del', children);
+    }
+    text(text) {
+        return text;
+    }
+    html(html) {
+        return html;
+    }
+    hr() {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'hr');
+    }
+    br() {
+        return __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_h).call(this, 'br');
+    }
+}
+_ReactRenderer_elId = new WeakMap(), _ReactRenderer_options = new WeakMap(), _ReactRenderer_instances = new WeakSet(), _ReactRenderer_h = function _ReactRenderer_h(el, children = null, props = {}) {
+    const elProps = {
+        key: `marked-react-${this.elementId}`,
+    };
+    __classPrivateFieldGet(this, _ReactRenderer_instances, "m", _ReactRenderer_incrementElId).call(this);
+    return (0,compat_module.createElement)(el, Object.assign(Object.assign({}, props), elProps), children);
+}, _ReactRenderer_incrementElId = function _ReactRenderer_incrementElId() {
+    __classPrivateFieldSet(this, _ReactRenderer_elId, __classPrivateFieldGet(this, _ReactRenderer_elId, "f") + 1, "f");
+};
+
+const validateComponentProps = (props) => {
+    if (props.value && typeof props.value !== 'string') {
+        throw new TypeError(`[marked-react]: Expected value to be of type string but got ${typeof props.value}`);
+    }
+    if (props.children && typeof props.children !== 'string') {
+        throw new TypeError(`[marked-react]: Expected children to be of type string but got ${typeof props.children}`);
+    }
+};
+const defaultProps = {
+    isInline: false,
+    breaks: false,
+    gfm: true,
+    baseURL: undefined,
+    openLinksInNewTab: true,
+    langPrefix: 'language-',
+    renderer: undefined,
+};
+const Markdown = (incomingProps) => {
+    var _a, _b;
+    const props = Object.assign(Object.assign({}, defaultProps), incomingProps);
+    validateComponentProps(props);
+    // lexer options
+    const lexerOptions = {
+        breaks: props.breaks,
+        gfm: props.gfm,
+    };
+    // convert input markdown into tokens
+    const markdownString = (_b = (_a = props.value) !== null && _a !== void 0 ? _a : props.children) !== null && _b !== void 0 ? _b : '';
+    const tokens = props.isInline
+        ? Lexer.lexInline(markdownString, lexerOptions)
+        : Lexer.lex(markdownString, lexerOptions);
+    // parser options
+    const parserOptions = {
+        renderer: new ReactRenderer({
+            renderer: props.renderer,
+            baseURL: props.baseURL,
+            openLinksInNewTab: props.openLinksInNewTab,
+            langPrefix: props.langPrefix,
+        }),
+    };
+    const parser = new ReactParser(parserOptions);
+    const children = props.isInline ? parser.parseInline(tokens) : parser.parse(tokens);
+    return (0,compat_module.createElement)(compat_module.Fragment, null, children);
+};
+
+
+
+;// CONCATENATED MODULE: ./src/components/Account/Ticket/ConversationRow.tsx
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+function ConversationRow(_ref) {
+  var id = _ref.id,
+    account = _ref.account,
+    page = _ref.page,
+    open = _ref.open;
+  var _useState = (0,compat_module.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    loading = _useState2[0],
+    setLoading = _useState2[1];
+  var _useState3 = (0,compat_module.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    message = _useState4[0],
+    setMessage = _useState4[1];
+  var _useSWR = (0,core_dist/* default */.ZP)("".concat(config/* config */.v.privateapilink, "/tickets/").concat(id, "/messages?page=").concat(page, "&perPage=10"), http/* fetcher */._i),
+    data = _useSWR.data,
+    error = _useSWR.error,
+    isLoading = _useSWR.isLoading,
+    mutate = _useSWR.mutate;
+  if (!data || error || isLoading) {
+    return /*#__PURE__*/compat_module["default"].createElement(Loading["default"], null);
+  }
+  var handleChange = function handleChange(e) {
+    setMessage(e.target.value);
+  };
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    if (!id) {
+      return;
+    }
+    tickets_addMessage(id, message, account, []).then(function (data) {
+      data = data.data;
+      setLoading(false);
+      mutate();
+      if (data['status'] === 'success') {
+        return react_toastify_esm/* toast */.Am.success('Your message had been sent', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        });
+      }
+      react_toastify_esm/* toast */.Am.error("Error: ".concat(data['message']), {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+    }).catch(function (e) {
+      react_toastify_esm/* toast */.Am.error("Error: ".concat(e), {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+      setLoading(false);
+    });
+  };
+  if (!data.data) {
+    return /*#__PURE__*/compat_module["default"].createElement(Loading["default"], null);
+  }
+  return /*#__PURE__*/compat_module["default"].createElement("div", null, data.data.messages.map(function (message, index) {
+    return /*#__PURE__*/compat_module["default"].createElement("div", {
+      className: "flex items-start my-2",
+      key: index
+    }, /*#__PURE__*/compat_module["default"].createElement("div", {
+      className: "mr-2"
+    }, /*#__PURE__*/compat_module["default"].createElement("img", {
+      alt: 'User Avatar',
+      className: 'rounded-full h-10 w-10',
+      src: "https://ui-avatars.com/api/?background=042049&color=5271ff&name=".concat(message.first_name[0]).concat(message.last_name[0])
+    })), /*#__PURE__*/compat_module["default"].createElement("div", null, /*#__PURE__*/compat_module["default"].createElement("h4", {
+      className: "text-lg font-bold text-black"
+    }, message.role && /*#__PURE__*/compat_module["default"].createElement("div", {
+      className: "mr-2 inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
+    }, "Support"), message.first_name, " ", message.last_name, /*#__PURE__*/compat_module["default"].createElement("time", {
+      className: "text-xs opacity-50 mx-1"
+    }, moment_default()(message.created_at).fromNow())), /*#__PURE__*/compat_module["default"].createElement("div", {
+      className: "mt-1 text-black"
+    }, /*#__PURE__*/compat_module["default"].createElement(Markdown, {
+      breaks: true,
+      openLinksInNewTab: true,
+      className: 'text-black',
+      style: {
+        whiteSpace: 'pre-line'
+      }
+    }, message.message.replaceAll(/\n\n/g, '\n \n')))));
+  }), data.data.totalPage === page && open && /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'mt-4 mx-4'
+  }, /*#__PURE__*/compat_module["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: "mt-2"
+  }, /*#__PURE__*/compat_module["default"].createElement("textarea", {
+    rows: 4,
+    name: "comment",
+    id: "comment",
+    disabled: loading,
+    onChange: handleChange,
+    className: "".concat(loading && 'opacity-50', " block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
+    defaultValue: ''
+  })), /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'flex justify-end'
+  }, /*#__PURE__*/compat_module["default"].createElement("button", {
+    className: "".concat(loading && 'opacity-50', " mt-2 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"),
+    type: 'submit',
+    disabled: loading
+  }, "Send message")))));
+}
+;// CONCATENATED MODULE: ./src/api/account/tickets/updateTicket.ts
+
+
+var createTicket = function createTicket(ticket, status) {
+  return new Promise(function (resolve, reject) {
+    http/* default */.ZP.post("".concat(config/* config */.v.privateapilink, "/tickets/").concat(ticket, "/status"), {
+      status: status
+    }).then(function (data) {
+      return resolve(data);
+    }).catch(reject);
+  });
+};
+/* harmony default export */ var updateTicket = (createTicket);
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/solid/esm/ChevronLeftIcon.js
+
+function ChevronLeftIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/compat_module.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/compat_module.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/compat_module.createElement("path", {
+    fillRule: "evenodd",
+    d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
+    clipRule: "evenodd"
+  }));
+}
+const ForwardRef = compat_module.forwardRef(ChevronLeftIcon);
+/* harmony default export */ var esm_ChevronLeftIcon = (ForwardRef);
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/solid/esm/ChevronRightIcon.js
+
+function ChevronRightIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/compat_module.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/compat_module.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/compat_module.createElement("path", {
+    fillRule: "evenodd",
+    d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
+    clipRule: "evenodd"
+  }));
+}
+const ChevronRightIcon_ForwardRef = compat_module.forwardRef(ChevronRightIcon);
+/* harmony default export */ var esm_ChevronRightIcon = (ChevronRightIcon_ForwardRef);
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/solid/esm/LockOpenIcon.js
+
+function LockOpenIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/compat_module.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/compat_module.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/compat_module.createElement("path", {
+    d: "M18 1.5c2.9 0 5.25 2.35 5.25 5.25v3.75a.75.75 0 01-1.5 0V6.75a3.75 3.75 0 10-7.5 0v3a3 3 0 013 3v6.75a3 3 0 01-3 3H3.75a3 3 0 01-3-3v-6.75a3 3 0 013-3h9v-3c0-2.9 2.35-5.25 5.25-5.25z"
+  }));
+}
+const LockOpenIcon_ForwardRef = compat_module.forwardRef(LockOpenIcon);
+/* harmony default export */ var esm_LockOpenIcon = (LockOpenIcon_ForwardRef);
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/solid/esm/LockClosedIcon.js
+
+function LockClosedIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/compat_module.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/compat_module.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/compat_module.createElement("path", {
+    fillRule: "evenodd",
+    d: "M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z",
+    clipRule: "evenodd"
+  }));
+}
+const LockClosedIcon_ForwardRef = compat_module.forwardRef(LockClosedIcon);
+/* harmony default export */ var esm_LockClosedIcon = (LockClosedIcon_ForwardRef);
+;// CONCATENATED MODULE: ./src/components/Account/Ticket/TicketViewContainer.tsx
+function TicketViewContainer_slicedToArray(arr, i) { return TicketViewContainer_arrayWithHoles(arr) || TicketViewContainer_iterableToArrayLimit(arr, i) || TicketViewContainer_unsupportedIterableToArray(arr, i) || TicketViewContainer_nonIterableRest(); }
+function TicketViewContainer_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function TicketViewContainer_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return TicketViewContainer_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return TicketViewContainer_arrayLikeToArray(o, minLen); }
+function TicketViewContainer_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function TicketViewContainer_iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function TicketViewContainer_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var formatSize = function formatSize(sizeInBytes) {
+  var units = ['b', 'Kb', 'Mb', 'Gb', 'Tb'];
+  var size = sizeInBytes;
+  var unitIndex = 0;
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex++;
+  }
+  return "".concat(size.toFixed(2), " ").concat(units[unitIndex]);
+};
+function TicketViewContainer() {
+  var _useParams = (0,dist/* useParams */.UO)(),
+    id = _useParams.id;
+  var _useState = (0,compat_module.useState)(1),
+    _useState2 = TicketViewContainer_slicedToArray(_useState, 2),
+    page = _useState2[0],
+    setPage = _useState2[1];
+  var _useState3 = (0,compat_module.useState)(false),
+    _useState4 = TicketViewContainer_slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  (0,compat_module.useEffect)(function () {
+    window.scrollTo(0, 0);
+  }, []);
+  var _useSWR = (0,core_dist/* default */.ZP)("".concat(config/* config */.v.privateapilink, "/tickets/").concat(id, "/details"), http/* fetcher */._i),
+    data = _useSWR.data,
+    error = _useSWR.error,
+    isLoading = _useSWR.isLoading,
+    mutate = _useSWR.mutate;
+  var _useSWR2 = (0,core_dist/* default */.ZP)("".concat(config/* config */.v.privateapilink, "/auth/isLogged?infos=true"), http/* fetcher */._i),
+    data2 = _useSWR2.data,
+    error2 = _useSWR2.error,
+    isLoading2 = _useSWR2.isLoading;
+  var _useSWR3 = (0,core_dist/* default */.ZP)("".concat(config/* config */.v.privateapilink, "/tickets/").concat(id, "/messages?page=").concat(page, "&perPage=10"), http/* fetcher */._i),
+    data3 = _useSWR3.data,
+    error3 = _useSWR3.error,
+    isLoading3 = _useSWR3.isLoading;
+  if (!data || error || isLoading || !data2 || error2 || isLoading2 || !data3 || error3 || isLoading3) {
+    return /*#__PURE__*/compat_module["default"].createElement(Loading["default"], null);
+  }
+  var account = data2.data;
+  var totalPage = data3.data.totalPage;
+  var UpdateStatus = function UpdateStatus() {
+    setLoading(true);
+    updateTicket(data.data.ticket.id, data.data.ticket.status !== 'closed' ? 'closed' : account.role ? 'support_answer' : 'client_answer').then(function (data) {
+      if (data.data.status === 'error') {
+        react_toastify_esm/* toast */.Am.error("Error: ".concat(data.data.message), {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        });
+        setLoading(false);
+        return;
+      }
+      window.scrollTo(0, 0);
+      mutate();
+      react_toastify_esm/* toast */.Am.success('Ticket status modified successfully.', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+      setLoading(false);
+    }).catch(function (e) {
+      react_toastify_esm/* toast */.Am.error("Error: ".concat(e), {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+      setLoading(false);
+    });
+  };
+  document.title = "Bagou450 -  Ticket ".concat(id);
+  return /*#__PURE__*/compat_module["default"].createElement(compat_module["default"].Fragment, null, /*#__PURE__*/compat_module["default"].createElement("section", {
+    className: "md:mx-8 my-4 grid grid-cols-1"
+  }, /*#__PURE__*/compat_module["default"].createElement("div", null, /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'grid lg:grid-cols-2 gap-x-2'
+  }, /*#__PURE__*/compat_module["default"].createElement(InfoBlock, {
+    data: data
+  }), /*#__PURE__*/compat_module["default"].createElement(AttachmentsBlock, {
+    data: data
+  })), /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'flex justify-between my-2'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: "isolate inline-flex rounded-md shadow-sm mt-2"
+  }, /*#__PURE__*/compat_module["default"].createElement("button", {
+    type: "button",
+    disabled: page > 1 || loading,
+    onClick: function onClick() {
+      setPage(page - 1);
+      window.scrollTo(0, 0);
+    },
+    className: "relative inline-flex items-center rounded-l-md bg-indigo-600 px-1.5 py-1 text-white  ".concat(loading && 'opacity-50', "  hover:bg-indigo-500 focus:z-10 ").concat(page > 1 && 'opacity-50')
+  }, /*#__PURE__*/compat_module["default"].createElement(esm_ChevronLeftIcon, {
+    className: "h-3 w-3",
+    "aria-hidden": "true"
+  }), "Previous page"), /*#__PURE__*/compat_module["default"].createElement("button", {
+    type: "button",
+    onClick: function onClick() {
+      setPage(page + 1);
+      window.scrollTo(0, 0);
+    },
+    disabled: page < totalPage || loading,
+    className: "relative -ml-px inline-flex items-center rounded-r-md bg-indigo-600 px-1.5 py-1 text-white ".concat(loading && 'opacity-50', "  hover:bg-indigo-500 focus:z-10 ").concat(page < totalPage && 'opacity-50')
+  }, "Next page", /*#__PURE__*/compat_module["default"].createElement(esm_ChevronRightIcon, {
+    className: "h-3 w-3",
+    "aria-hidden": "true"
+  }))), /*#__PURE__*/compat_module["default"].createElement("button", {
+    disabled: loading,
+    className: "".concat(data.data.ticket.status === 'closed' ? 'hover:bg-green-500 bg-green-600' : 'hover:bg-red-500 bg-red-600', " ").concat(loading && 'opacity-50', " flex rounded  px-1.5 py-1 text-sm font-semibold text-white shadow-sm mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"),
+    onClick: function onClick() {
+      return UpdateStatus();
+    }
+  }, data.data.ticket.status === 'closed' ? /*#__PURE__*/compat_module["default"].createElement(esm_LockOpenIcon, {
+    className: "h-3 w-3",
+    "aria-hidden": "true"
+  }) : /*#__PURE__*/compat_module["default"].createElement(esm_LockClosedIcon, {
+    className: "h-5 w-5",
+    "aria-hidden": "true"
+  }), data.data.ticket.status === 'closed' ? 'Open Ticket' : 'Close ticket'))), /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'mx-4 col-span-3'
+  }, /*#__PURE__*/compat_module["default"].createElement(ConversationRow, {
+    open: data.data.ticket.status !== 'closed',
+    id: data.data.ticket.id,
+    account: account,
+    page: page
+  }))), /*#__PURE__*/compat_module["default"].createElement("section", {
+    className: "min-h-screen"
+  }));
+}
+function InfoBlock(_ref) {
+  var data = _ref.data;
+  return /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'bg-gray-200 rounded-md h-full'
+  }, /*#__PURE__*/compat_module["default"].createElement("h2", {
+    className: 'text-center text-xl font-bold mt-1 pt-4  text-black',
+    title: data.data.ticket.name
+  }, data.data.ticket.name[0].toUpperCase(), data.data.ticket.name.length > 36 ? data.data.ticket.name.slice(1, 33) + '...' : data.data.ticket.name.slice(1, data.data.ticket.name.length)), /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: "divider"
+  }), /*#__PURE__*/compat_module["default"].createElement("ul", {
+    className: 'ml-5 list-disc'
+  }, /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2  text-black'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold'
+  }, "Status:"), " ", /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: data.data.ticket.status === 'closed' ? ' text-red-700' : data.data.ticket.status === 'support_answer' ? ' text-green-700' : ' text-blue-700'
+  }, data.data.ticket.status === 'client_answer' ? 'Answered by Client' : data.data.ticket.status === 'support_answer' ? 'Answered by Support' : 'Closed')), /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2  text-black'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold'
+  }, "Priority:"), " ", /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: data.data.ticket.priority === 'high' ? 'text-red-700' : data.data.ticket.priority === 'low' ? 'text-green-700' : ''
+  }, data.data.ticket.priority[0].toUpperCase(), data.data.ticket.priority.slice(1, data.data.ticket.priority.length))), /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2  text-black'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold'
+  }, "Logs Url:"), " ", data.data.ticket.logs_url && data.data.ticket.logs_url !== '' ? data.data.ticket.logs_url : 'No logs provided'), /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2 cursor-copy  text-black',
+    title: data.data.ticket.license,
+    onClick: function onClick() {
+      navigator.clipboard.writeText(data.data.ticket.license);
+      react_toastify_esm/* toast */.Am.success('Copied to clipboard!.', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+    }
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold  text-black'
+  }, "License/Order:"), " ", data.data.ticket.license && data.data.ticket.license !== '' ? data.data.ticket.license.length > 30 ? data.data.ticket.license.slice(0, 31) + '...' : data.data.ticket.license : 'No license or order provided'), /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2  text-black'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold'
+  }, "Creation:"), " ", new Date(data.data.ticket.created_at).toLocaleDateString('fr-FR')), /*#__PURE__*/compat_module["default"].createElement("li", {
+    className: 'mt-2 pb-2  text-black'
+  }, /*#__PURE__*/compat_module["default"].createElement("span", {
+    className: 'font-semibold'
+  }, "Last update:"), " ", moment_default()(data.data.ticket.updated_at).fromNow())));
+}
+function AttachmentsBlock(_ref2) {
+  var data = _ref2.data;
+  var _useState5 = (0,compat_module.useState)(false),
+    _useState6 = TicketViewContainer_slicedToArray(_useState5, 2),
+    loading = _useState6[0],
+    setLoading = _useState6[1];
+  var downloadAttachmentFunction = function downloadAttachmentFunction(id) {
+    setLoading(true);
+    fetch("".concat(config/* config */.v.privateapilink, "/tickets/").concat(id, "/download"), {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: "Bearer ".concat(js_cookie/* default */.Z.get('access_token'))
+      }
+    }).then(function (response) {
+      return response.blob();
+    }).then(function (blob) {
+      var url = window.URL.createObjectURL(new Blob([blob]));
+      var link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'name');
+      document.body.appendChild(link);
+      link.addEventListener('load', function () {
+        URL.revokeObjectURL(url);
+      });
+      link.click();
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
+      react_toastify_esm/* toast */.Am.success('Your file is now downloaded!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+      setLoading(false);
+    }).catch(function (e) {
+      react_toastify_esm/* toast */.Am.error("Error: ".concat(e), {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      });
+      setLoading(false);
+    });
+  };
+  return /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: 'bg-gray-200 rounded-md mt-2 lg:mt-0 h-full'
+  }, /*#__PURE__*/compat_module["default"].createElement("h2", {
+    className: 'text-center text-xl font-bold pt-4 text-black'
+  }, "Attachments"), /*#__PURE__*/compat_module["default"].createElement("div", {
+    className: "divider"
+  }), data.data.attachments.length < 1 ? /*#__PURE__*/compat_module["default"].createElement("p", {
+    className: 'text-center pb-2  text-black'
+  }, "No attachments found.") : /*#__PURE__*/compat_module["default"].createElement("ul", {
+    className: 'ml-5 mb-4 list-disc  text-black'
+  }, data.data.attachments.map(function (attachment, index) {
+    return /*#__PURE__*/compat_module["default"].createElement("li", {
+      key: index,
+      className: 'pb-2 cursor-pointer  text-black',
+      onClick: function onClick() {
+        if (!loading) {
+          downloadAttachmentFunction(attachment.id);
+        }
+      }
+    }, /*#__PURE__*/compat_module["default"].createElement("p", {
+      className: 'flex'
+    }, /*#__PURE__*/compat_module["default"].createElement("span", {
+      className: 'font-semibold'
+    }, attachment.name), ", ", formatSize(attachment.size), " ", /*#__PURE__*/compat_module["default"].createElement(FaDownload, {
+      className: 'ml-2 mt-1'
+    })));
+  })));
+}
 
 /***/ })
 
 }]);
-//# sourceMappingURL=856.bundle.js.map
+//# sourceMappingURL=422.bundle.js.map

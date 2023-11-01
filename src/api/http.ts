@@ -2,44 +2,52 @@ import axios, { AxiosInstance } from 'axios';
 import Cookies from 'js-cookie';
 
 const http: AxiosInstance = axios.create({
-  withCredentials: false,
-  timeout: 20000,
-  headers: {
+    withCredentials: false,
+    timeout: 20000,
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    
+    },
+});
+http.interceptors.request.use((config) => {
+    const newAccessToken = Cookies.get('access_token');
+    if (newAccessToken) {
+        config.headers.Authorization = `Bearer ${newAccessToken}`;
+    }
+
+    return config;
+});
+export const httpMultipart: AxiosInstance = axios.create({
+    withCredentials: false,
+    timeout: 20000,
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${Cookies.get('access_token')}`
+    },
+});
+export const fetcher = (url: RequestInfo | URL) => fetch(url, {headers: {
     'X-Requested-With': 'XMLHttpRequest',
     Accept: 'application/json',
     'Content-Type': 'application/json',
     Authorization: `Bearer ${Cookies.get('access_token')}`
-  },
-});
-export const httpMultipart: AxiosInstance = axios.create({
-  withCredentials: false,
-  timeout: 20000,
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-    Accept: 'application/json',
-    'Content-Type': 'multipart/form-data',
-    Authorization: `Bearer ${Cookies.get('access_token')}`
-  },
-});
-export const fetcher = (url: RequestInfo | URL) => fetch(url, {headers: {
-  'X-Requested-With': 'XMLHttpRequest',
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${Cookies.get('access_token')}`
 }}).then((res) => res.json());
 
 
 http.interceptors.request.use((req) => {
-  return req;
+    return req;
 });
 
 http.interceptors.response.use(
-  (resp) => {
-    return resp;
-  },
-  (error) => {
-    throw error;
-  }
+    (resp) => {
+        return resp;
+    },
+    (error) => {
+        throw error;
+    }
 );
 
 export default http;
@@ -49,30 +57,30 @@ export default http;
  * make sure we display the message from the server back to the user if we can.
  */
 export function httpErrorToHuman(error: any): string {
-  if (error.response && error.response.data) {
-    let { data } = error.response;
+    if (error.response && error.response.data) {
+        let { data } = error.response;
 
-    // Some non-JSON requests can still return the error as a JSON block. In those cases, attempt
-    // to parse it into JSON so we can display an actual error.
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) {
-        // do nothing, bad json
-      }
+        // Some non-JSON requests can still return the error as a JSON block. In those cases, attempt
+        // to parse it into JSON so we can display an actual error.
+        if (typeof data === 'string') {
+            try {
+                data = JSON.parse(data);
+            } catch (e) {
+                // do nothing, bad json
+            }
+        }
+
+        if (data.errors && data.errors[0] && data.errors[0].detail) {
+            return data.errors[0].detail;
+        }
+
+        // Errors from wings directory, mostly just for file uploads.
+        if (data.error && typeof data.error === 'string') {
+            return data.error;
+        }
     }
 
-    if (data.errors && data.errors[0] && data.errors[0].detail) {
-      return data.errors[0].detail;
-    }
-
-    // Errors from wings directory, mostly just for file uploads.
-    if (data.error && typeof data.error === 'string') {
-      return data.error;
-    }
-  }
-
-  return error.message;
+    return error.message;
 }
 
 export interface FractalResponseData {
@@ -116,13 +124,13 @@ export interface PaginationDataSet {
 }
 
 export function getPaginationSet(data: any): PaginationDataSet {
-  return {
-    total: data.total,
-    count: data.count,
-    perPage: data.per_page,
-    currentPage: data.current_page,
-    totalPages: data.total_pages
-  };
+    return {
+        total: data.total,
+        count: data.count,
+        perPage: data.per_page,
+        currentPage: data.current_page,
+        totalPages: data.total_pages
+    };
 }
 
 type QueryBuilderFilterValue = string | number | boolean | null;
@@ -146,26 +154,26 @@ export interface QueryBuilderParams<
  * filters deterministically based on the provided values.
  */
 export const withQueryBuilderParams = (data?: QueryBuilderParams): Record<string, unknown> => {
-  if (!data) return {};
+    if (!data) return {};
 
-  const filters = Object.keys(data.filters || {}).reduce((obj, key) => {
-    const value = data.filters?.[key];
+    const filters = Object.keys(data.filters || {}).reduce((obj, key) => {
+        const value = data.filters?.[key];
 
-    return !value || value === '' ? obj : { ...obj, [`filter[${key}]`]: value };
-  }, {} as NonNullable<QueryBuilderParams['filters']>);
+        return !value || value === '' ? obj : { ...obj, [`filter[${key}]`]: value };
+    }, {} as NonNullable<QueryBuilderParams['filters']>);
 
-  const sorts = Object.keys(data.sorts || {}).reduce((arr, key) => {
-    const value = data.sorts?.[key];
-    if (!value || !['asc', 'desc', 1, -1].includes(value)) {
-      return arr;
-    }
+    const sorts = Object.keys(data.sorts || {}).reduce((arr, key) => {
+        const value = data.sorts?.[key];
+        if (!value || !['asc', 'desc', 1, -1].includes(value)) {
+            return arr;
+        }
 
-    return [...arr, (value === -1 || value === 'desc' ? '-' : '') + key];
-  }, [] as string[]);
+        return [...arr, (value === -1 || value === 'desc' ? '-' : '') + key];
+    }, [] as string[]);
 
-  return {
-    ...filters,
-    sort: !sorts.length ? undefined : sorts.join(','),
-    page: data.page
-  };
+    return {
+        ...filters,
+        sort: !sorts.length ? undefined : sorts.join(','),
+        page: data.page
+    };
 };

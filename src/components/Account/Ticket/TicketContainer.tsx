@@ -1,22 +1,23 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import useSWR from "swr";
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
 
-import NavBarAccount from '../NavBarAccount';
-import Loading from "../../Elements/Loading";
-import { Account } from "../Manager/Forms/EditAccountForm";
-import moment from 'moment';
-import { debounce } from "debounce";
-import { useFormik } from "formik";
-import { array, mixed, object, string } from "yup";
-import createTicket from "../../../api/account/tickets/createTicket";
-import { toast } from "react-toastify";
-import { FaXmark } from "react-icons/fa6";
-import { config } from "../../../config/config";
+import Loading from '../../Elements/Loading';
+import { Account } from '../Manager/Forms/EditAccountForm';
+import { debounce } from 'debounce';
+import { config } from '../../../config/config';
+import { NavContext } from '../AccountRouter';
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid';
+import { classNames } from '../../NavBar';
+import { ArrowDownCircleIcon } from '@heroicons/react/24/outline';
+import CreateTicketForm from './CreateTicketForm';
+import TicketRow from './TicketRow';
+import { useDark } from '../../../App';
 
-interface Ticket {
+export interface Ticket {
   created_at: string;
   discord_id: string;
   discord_user_id: string;
@@ -29,307 +30,384 @@ interface Ticket {
   updated_at: string;
   user_id: number;
 }
+interface Sort {
+    name: string;
+    value: string;
+    subname: string;
+}
+
+const sortType: Sort[] = [
+    {
+        name: 'Status',
+        value: 'status',
+        subname: ''
+    },
+    {
+        name: 'Modified',
+        value: 'asc_modified',
+        subname: 'Ascending'
+    },
+    {
+        name: 'Modified',
+        value: 'desc_modified',
+        subname: 'Descending'
+    },
+    {
+        name: 'Created',
+        value: 'asc_created',
+        subname: 'Ascending'
+    },
+    {
+        name: 'Created',
+        value: 'desc_created',
+        subname: 'Descending'
+    },
+];
 export default function TicketContainer() {
-  const [loading, setLoading] = useState(false);
-  const [sort, setSort] = useState<string>('status');
-  const [page, setPage] = useState<number>(1);
-  const [search, setSearch] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [checked, setChecked] = useState<boolean>(false);
-  const [licenseChecked, setLicenseChecked] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
 
-  const form = object({
-    subject: string().required('The subject can\'t be empty.').min(16, 'The subject should have a minimum length of 16 characters').max(64, 'The subject should have a maximum length of 64 characters.'),
-    message: string().required('The message can\'t be empty').min(64, 'The message should have a minimum length of 64 characters'),
-    license: string().nullable(),
-    attachments: array().of(mixed()).nullable(),
-    logs_url: string().nullable('').url('Logs need to be a url!')
-  });
+    const [sort, setSort] = useState<string>('status');
+    const [page, setPage] = useState<number>(1);
+    const [search, setSearch] = useState<string>('');
+    const {dark} = useDark();
+    const [open, setOpen] = useState<boolean>(false);
 
-  const formik = useFormik({
-    initialValues: { subject: '', message: '', attachments: [], license: '', logs_url: '' },
-    validationSchema: form,
-    onSubmit: (values) => {
-      setLoading(true)
-      values.attachments.map((file: any) => {
-        setError('');
-        if(file.size > 8388608) {
-          setError('Error: File size should be less than 8MB');
-          setLoading(false);
-          return null;
+    const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
+    const { setActive } = useContext(NavContext);
+    useEffect(() => {
+        setActive(window.location.pathname);
+    }, []);
+
+    const { data, mutate, error: error3, isLoading } = useSWR(
+        `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}`,
+        fetcher
+    );
+    const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
+        `${config.privateapilink}/auth/isLogged?infos=true`,
+        fetcher
+    );
+
+    if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {
+
+        if(data2) {
+            return (
+                <>
+                    <section >
+
+                        <div className='px-4 sm:px-6 lg:px-8'>
+
+                            <div className='sm:flex sm:items-center'>
+                                <div className='sm:flex-auto'>
+                                    <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Tickets</h1>
+                                    <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
+
+                                        You are on the <strong
+                                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>tickets</strong> page.
+                                        You can here see all your support tickets.
+                                    </p>
+                                </div>
+
+                                <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
+                                    <button
+                                        type='button'
+                                        onClick={() => setOpen(!open)}
+                                        className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
+                                    >
+                                        New ticket
+                                        <ArrowDownCircleIcon
+                                            className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
+                                                open ? 'rotate-180' : 'rotate-0'
+                                            }`}
+
+                                        />
+
+                                    </button>
+                                </div>
+
+                            </div>
+                            {open && (
+                                <CreateTicketForm mutate={mutate} account={account} setOpen={setOpen} />
+                            )}
+                            <div className="mt-10 w-full mb-2 grid grid-cols-3 lg:grid-cols-4 gap-x-2">
+                                <div className={' lg:col-span-3'}>
+                                    <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6`}>
+                                        Search
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="search"
+                                        id="search"
+                                        onChange={(e) => searchValue(e.target.value)}
+                                        className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full  rounded-md border-0 py-1.5 shadow-sm ring-1 ring-insetfocus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
+                                        placeholder="Search here"
+                                    />
+                                </div>
+                                <Listbox value={sort} onChange={setSort}>
+                                    {({ open }) => (
+                                        <>
+                                            <div className="relative mt-auto col-span-2 lg:col-span-1">
+                                                <Listbox.Button className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} relative w-full mt-1 cursor-default rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-bg450-logo sm:text-sm sm:leading-6`}>
+                                                    <span className="inline-flex w-full truncate">
+                                                        <span className="truncate">{sortType.find((item) => item.value === sort).name}</span>
+                                                        <span className="ml-2 truncate text-gray-500">{sortType.find((item) => item.value === sort).subname}</span>
+                                                    </span>
+                                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                        <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                    </span>
+                                                </Listbox.Button>
+
+                                                <Transition
+                                                    show={open}
+                                                    as={Fragment}
+                                                    leave="transition ease-in duration-100"
+                                                    leaveFrom="opacity-100"
+                                                    leaveTo="opacity-0"
+                                                >
+                                                    <Listbox.Options className={`${dark ? 'bg-bg450-inputdark text-slate-300' : 'bg-white'} absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
+
+                                                        {sortType.map((sortTyp) => (
+                                                            <Listbox.Option
+                                                                key={sortTyp.name}
+                                                                className={({ active }) =>
+                                                                    classNames(
+                                                                        active ? dark ? 'bg-bg450-logo text-white' : 'bg-indigo-600 text-white'
+                                                                            : dark ? 'text-slate-200' : 'text-gray-900',
+                                                                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                                    )
+                                                                }
+                                                                value={sortTyp.value}
+                                                            >
+                                                                {({ selected, active }) => (
+                                                                    <>
+                                                                        <div className="flex">
+                                                                            <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'truncate')}>
+                                                                                {sortTyp.name}
+                                                                            </span>
+                                                                            <span className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'ml-2 truncate')}>
+                                                                                {sortTyp.subname}
+                                                                            </span>
+                                                                        </div>
+
+                                                                        {selected ? (
+                                                                            <span
+                                                                                className={classNames(
+                                                                                    active ? 'text-white' : 'text-bg450-logo',
+                                                                                    'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                                                )}
+                                                                            >
+                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                            </span>
+                                                                        ) : null}
+                                                                    </>
+                                                                )}
+                                                            </Listbox.Option>
+                                                        ))}
+                                                    </Listbox.Options>
+                                                </Transition>
+                                            </div>
+                                        </>
+                                    )}
+                                </Listbox>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <section className='min-h-screen'><Loading /></section>
+                </>
+
+            );
+
         }
-        return null;
-      })
-      createTicket(values.subject, values.message, account, values.license, values.attachments, values.logs_url).then((data) => {
-
-        if(data.data.status === 'error') {
-          setError(`Error: ${data.data.message}`);
-          setLoading(false);
-          return null;
-        }
-        setIsChecked(false);
-        mutate();
-        const inputs = document.querySelectorAll('input:not(#search)');
-        const textareas = document.querySelectorAll('textarea');
-
-        inputs.forEach((input: any) => {
-          input.value = '';
-        });
-        textareas.forEach((textarea) => {
-          textarea.value = '';
-        });
-        setLoading(false)
-        toast.success(`Ticket created successfully.`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-      }).catch((e) => {
-
-        setError(`Error: ${e.response.data.message}`);
-        setLoading(false);
-
-      });
+        return <Loading />;
     }
-  });
-  const { data, mutate, error: error3, isLoading } = useSWR(
-    `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}`,
-    fetcher
-  );
-  const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
-    `${config.privateapilink}/auth/isLogged?infos=true`,
-    fetcher
-  );
-  if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {
+    const account: Account = data2.data;
 
-    if(data2) {
-      return (
+
+    document.title = 'Bagou450 - My Tickets';
+    const searchValue = debounce((value: string) => {
+        setSearch(value);
+        setPage(1);
+    }, 500);
+    return (
         <>
-          <NavBarAccount tab={'tickets'}/>
-          <section className='mx-8 my-4'>
+            <section>
+                <div className='px-4 sm:px-6 lg:px-8'>
 
-            <div >
-              <div className="w-full max-w-7xl mx-auto mb-2 grid grid-cols-3 md:grid-cols-5 gap-x-2">
-                <input type="text" placeholder="Search here" className="input input-bordered input-md w-full col-span-3" defaultValue={search} onChange={(e) => searchValue(e.target.value)}/>
-                <select className="select select-bordered w-full max-w-xs" onChange={(e) => setSort(e.target.value)}>
-                  <option value="status" selected>Status</option>
-                  <option value="asc_modified">Modified (Ascending)</option>
-                  <option value="desc_modified">Modified (Descending)</option>
-                  <option value="asc_created">Created (Ascending)</option>
-                  <option value="desc_created">Created (Descending)</option>
-                </select>
-                <p className={'btn btn-primary btn-outline'}>New ticket</p>
-              </div>
-              <Loading/>
+                    <div className='sm:flex sm:items-center'>
+                        <div className='sm:flex-auto'>
+                            <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Tickets</h1>
+                            <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
 
-            </div>
-          </section>
-          <section className='min-h-screen'></section>
-        </>
+                                You are on the <strong
+                                    className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>tickets</strong> page.
+                                You can here see all your support tickets.
+                            </p>
+                        </div>
 
-      );
+                        <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
+                            <button
+                                type='button'
+                                onClick={() => setOpen(!open)}
+                                className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
+                            >
+                                New ticket
+                                <ArrowDownCircleIcon
+                                    className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
+                                        open ? 'rotate-180' : 'rotate-0'
+                                    }`}
 
-    }
-    return <Loading/>;
-  }
-  const account: Account = data2.data;
+                                />
 
+                            </button>
+                        </div>
 
-  document.title = 'Bagou450 - My Tickets'
-  const searchValue = debounce((value: string) => {
-    setSearch(value);
-    setPage(1);
-  }, 500)
-  return (
-    <>
-      <NavBarAccount tab={'tickets'}/>
-      <section className='mx-8 my-4'>
-        <input type="checkbox" id="new" className="modal-toggle" checked={isChecked}/>
-        <dialog id="new" className="modal modal-bottom sm:modal-middle">
-          <form onSubmit={formik.handleSubmit} method="dialog" className="modal-box">
-            <div className={'flex'}>
-            <h3 className="font-bold text-lg">Create new ticket</h3>
-              <FaXmark className={`ml-auto text-xl transition-colors duration-200 mt-1 ${isHovered ? 'text-red-700' : ''}`}
-                       onMouseEnter={() => setIsHovered(true)}
-                       onMouseLeave={() => setIsHovered(false)}
-                       onClick={() => setIsChecked(false)}
-              />
-            </div>
-            {error &&
-              <div className="alert alert-error">
-                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>{error}</span>
-              </div>
-            }
-            <div><label className="label">
-              <span className="label-text">Subject</span>
+                    </div>
+                    {open && (
+                        <CreateTicketForm mutate={mutate} account={account} setOpen={setOpen}/>
+                    )}
+                    <div className="mt-10 w-full mb-2 grid grid-cols-3 lg:grid-cols-4 gap-x-2">
+                        <div className={' lg:col-span-3'}>
+                            <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6`}>
+                            Search
+                            </label>
+                            <input
+                                type="text"
+                                name="search"
+                                id="search"
+                                onChange={(e) => searchValue(e.target.value)}
+                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full  rounded-md border-0 py-1.5 shadow-sm ring-1 ring-insetfocus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
+                                placeholder="Search here"
+                            />
+                        </div>
+                        <Listbox value={sort} onChange={setSort}>
+                            {({ open }) => (
+                                <>
+                                    <div className="relative mt-auto col-span-2 lg:col-span-1">
+                                        <Listbox.Button className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} relative w-full mt-1 cursor-default rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-bg450-logo sm:text-sm sm:leading-6`}>
+                                            <span className="inline-flex w-full truncate">
+                                                <span className="truncate">{sortType.find((item) => item.value === sort).name}</span>
+                                                <span className="ml-2 truncate text-gray-500">{sortType.find((item) => item.value === sort).subname}</span>
+                                            </span>
+                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                            </span>
+                                        </Listbox.Button>
 
-            </label>
-              <input id="subject"
-                     name="subject"
-                     type="subject"
-                     onChange={formik.handleChange}
-                     disabled={loading}
-                     className="input input-bordered w-full  mx-2" />
-              <label className="label">
-                <span className='text-red-500'>{formik.errors.subject}</span>
-              </label>
-            </div>
-            <div><label className="label">
-              <span className="label-text">Message</span>
+                                        <Transition
+                                            show={open}
+                                            as={Fragment}
+                                            leave="transition ease-in duration-100"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <Listbox.Options className={`${dark ? 'bg-bg450-inputdark text-slate-300' : 'bg-white'} absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
 
-            </label>
-              <textarea
-                placeholder="Hello..."
-                className="textarea textarea-bordered textarea-lg w-full mx-2"
-                id="message"
-                name="message"
-                onChange={formik.handleChange}
-                disabled={loading}
-              ></textarea>
-              <label className="label">
-                <span className='text-red-500'>{formik.errors.message}</span>
-              </label>
-            </div>
-            <div className={`grid grid-cols-2 gap-x-2`}>
-              <div>
-                <label className="label">
-                  <span className="label-text">License/Order <div className="badge badge-neutral my-auto ml-2">Optional</div></span>
+                                                {sortType.map((sortTyp) => (
+                                                    <Listbox.Option
+                                                        key={sortTyp.name}
+                                                        className={({ active }) =>
+                                                            classNames(
+                                                                active ? dark ? 'bg-bg450-logo text-white' : 'bg-indigo-600 text-white'
+                                                                    : dark ? 'text-slate-200' : 'text-gray-900',
+                                                                'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                            )
+                                                        }
+                                                        value={sortTyp.value}
+                                                    >
+                                                        {({ selected, active }) => (
+                                                            <>
+                                                                <div className="flex">
+                                                                    <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'truncate')}>
+                                                                        {sortTyp.name}
+                                                                    </span>
+                                                                    <span className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'ml-2 truncate')}>
+                                                                        {sortTyp.subname}
+                                                                    </span>
+                                                                </div>
 
-                </label>
-                <input id="license"
-                       name="license"
-                       type="license"
-                       onChange={formik.handleChange}
-                       disabled={loading}
-                       className="input input-bordered w-full  mx-2" />
-                <label className="label">
-                  <span className='text-red-500'>{formik.errors.license}</span>
-                </label>
-              </div>
-              <div>
-                <label className="label">
-                  <span className="label-text">Logs Url <div className="badge badge-neutral my-auto ml-2">Optional</div></span>
-
-                </label>
-                <input id="logs_url"
-                       name="logs_url"
-                       type="logs_url"
-                       onChange={formik.handleChange}
-                       disabled={loading}
-                       className="input input-bordered w-full  mx-2" />
-                <label className="label">
-                  <span className='text-red-500'>{formik.errors.logs_url}</span>
-                </label>
-              </div>
-            </div>
-            <div>
-              <div>
-                <label className="label">
-                  <span className="label-text">Files <div className="badge badge-neutral my-auto ml-2">Optional</div></span>
-
-                </label>
-                <input type="file" className="file-input file-input-bordered w-full mx-2" multiple onChange={(e) => {
-                  const files = Array.from(e.target.files ? e.target.files : []);
-                  formik.setFieldValue('attachments', files);
-                }}/>
-
-              </div>
-            </div>
-            {!formik.values.logs_url &&
-              <label className="cursor-pointer label mt-2">
-                <span className="label-text">I acknowledge that not providing logs may limit the assistance<br/>I receive in most cases.</span>
-                <input type="checkbox" checked={checked} className="checkbox checkbox-secondary" onClick={() => setChecked(!checked)}/>
-              </label>
-            }
-            {!formik.values.license &&
-              <label className="cursor-pointer label mt-2">
-                <span className="label-text">I acknowledge that not providing order/license may limit the assistance I receive in most cases.</span>
-                <input type="checkbox" checked={licenseChecked} className="checkbox checkbox-secondary" onClick={() => setLicenseChecked(!licenseChecked)}/>
-              </label>
-            }
-            <div className="modal-action">
-              <button className="btn btn-primary btn-outline mx-2 border-0" type='submit' disabled={loading || !formik.dirty || !formik.isValid || (!formik.values.logs_url && !checked) || (!formik.values.license && !licenseChecked)}>Create Ticket</button>
-            </div>
-          </form>
-        </dialog>
-        <div >
-          <div className="w-full max-w-7xl mx-auto mb-2 grid grid-cols-3 md:grid-cols-5 gap-x-2">
-            <input type="text" id={'search'} defaultValue={search} placeholder="Search here" className={`input input-bordered input-md w-full col-span-3 ${data.data.data.length < 1 ? 'disabled' : ''}`} onChange={(e) => searchValue(e.target.value)}/>
-            <select className="select select-bordered w-full col-span-2 mt-2 md:col-span-1 md:max-w-xs md:mt-0" onChange={(e) => setSort(e.target.value)}>
-              <option value="status" selected>Status</option>
-              <option value="asc_modified">Modified (Ascending)</option>
-              <option value="desc_modified">Modified (Descending)</option>
-              <option value="asc_created">Created (Ascending)</option>
-              <option value="desc_created">Created (Descending)</option>
-            </select>
-            <p className={'btn btn-primary btn-outline mt-2 md:mt-0'} onClick={() => {
-              setIsChecked(true);
-            }}>New ticket</p>
-          </div>
-          {data.data.data.length > 0 ?
-          <>
-          <table className="table w-full sm:table-xs md:table-sm lg:table-md max-w-screen-sm md:max-w-7xl mx-auto border-neutral-content dark:border-neutral border-2">
-            {/* head */}
-            <thead>
-
-              <tr className='w-full'>
-                <th className={'hidden xl:block'}>Id</th>
-                <th>Name</th>
-                <th>Priority</th>
-                <th className={'hidden xl:block'}>Status</th>
-                <th>Last Update</th>
-                <th className={'hidden md:table-column'}></th>
-
-              </tr>
-            </thead>
-            <tbody>
-            {data.data.data.map((ticket: Ticket, key: React.Key | null | undefined) => {
-              return (
-
-                <tr className={`w-full ${window.innerWidth < 768 ? 'cursor-pointer' : ''}`}
-              key={key}
-              onClick={window.innerWidth < 768 ? () => navigate(`/account/ticket/${ticket.id}`) : () => null}
-            >
-                  <th className={'hidden xl:table-cell'}>{ticket.id}</th>
-                  <th>{ticket.name}</th>
-                  <th className={ticket.priority === 'high' ? 'text-red-700' : ticket.priority === 'low' ? 'text-green-700' : ''}>{ticket.priority[0].toUpperCase()}{ticket.priority.slice(1, ticket.priority.length)}</th>
-                  <td className={'hidden xl:table-cell' + (ticket.status === 'closed' ? ' text-red-700' : (ticket.status === 'support_answer' ? ' text-green-700' : ' text-blue-700'))}>{ticket.status === 'closed' ? 'Closed' : ticket.status === 'support_answer' ? 'Answered by Support' : 'Answered by Client'}</td>
-                  <td>{moment(ticket.updated_at).fromNow()}</td>
-              {window.innerWidth >= 768 ? (
-                <NavLink to={`/account/ticket/${ticket.id}`} className={'hidden md:table-cell'}><td className={'btn btn-primary btn-outline my-4'}>View</td></NavLink>
-              ) : null}
-
-                </tr>
-              )
-            })}
+                                                                {selected ? (
+                                                                    <span
+                                                                        className={classNames(
+                                                                            active ? 'text-white' : 'text-bg450-logo',
+                                                                            'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                                        )}
+                                                                    >
+                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                    </span>
+                                                                ) : null}
+                                                            </>
+                                                        )}
+                                                    </Listbox.Option>
+                                                ))}
+                                            </Listbox.Options>
+                                        </Transition>
+                                    </div>
+                                </>
+                            )}
+                        </Listbox>
 
 
-            </tbody>
-          </table>
-        </>
-            :
-            <p className={'text-center opacity-80'}>No tickets matching these parameters were found for this account.</p>
-          }
-          <div className={'flex w-full max-w-7xl mx-auto'}>
-            {page > 1 &&
+
+                    </div>
+
+                    {data.data.data.length > 0 ?
+                        <div className="-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+                            <table className="min-w-full divide-y divide-gray-300">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold hidden lg:table-cell sm:pl-6`}>
+                                        Id
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
+                                        >
+                                        Name
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}
+                                        >
+                                        Priority
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
+                                        >
+                                        Status
+                                        </th>
+                                        <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}>
+                                        Last Update
+                                        </th>
+                                        <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'}  relative py-3.5 pl-3 pr-4 sm:pr-6 hidden lg:table-cell`}>
+                                            <span className="sr-only">Select</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {data.data.data.map((ticket: Ticket, key: React.Key | null | undefined) => (
+                                        <TicketRow ticket={ticket}/>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        :
+                        <p className={'text-center text-black opacity-80'}>No tickets matching these parameters were found for this account.</p>
+                    }
+                    <div className={'flex w-full max-w-7xl mx-auto'}>
+                        {page > 1 &&
               <p className={'btn btn-primary btn-outline my-4 '} onClick={() => {window.scrollTo(0, 0); setPage(page - 1);}}>Previous page</p>
-            }
-            {page < data.data.last_page &&
+                        }
+                        {page < data.data.last_page &&
               <p className={'btn btn-primary btn-outline my-4 text-right ml-auto'} onClick={() => {window.scrollTo(0, 0); setPage(page + 1);}}>Next page</p>
-            }
-          </div>
-        </div>
-      </section>
-      <section className='min-h-screen'></section>
-    </>
-  );
+                        }
+                    </div>
+                </div>
+            </section>
+            <section className='min-h-screen'></section>
+        </>
+    );
 }

@@ -1,5 +1,4 @@
-export function clearAndReload() {
-    location.reload();
+export function clearFields() {
     const inputs = document.querySelectorAll('input:not(#search)');
     const textareas = document.querySelectorAll('textarea');
 
@@ -10,3 +9,5 @@ export function clearAndReload() {
         textarea.value = '';
     });
 }
+
+

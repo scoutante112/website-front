@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import useSWR from "swr";
-import { config } from "../../../config/config";
-import { fetcher } from "../../../api/http";
-import Loading from "../../Elements/Loading";
-import NavBarAccount from "../../Account/NavBarAccount";
-import { debounce } from "debounce";
-import Pagination from "../../Elements/Pagination";
+import React, { useState } from 'react';
+import useSWR from 'swr';
+import { config } from '../../../config/config';
+import { fetcher } from '../../../api/http';
+import Loading from '../../Elements/Loading';
+import NavBarAccount from '../../Account/NavBarAccount';
+import { debounce } from 'debounce';
+import Pagination from '../../Elements/Pagination';
 import 'react-quill/dist/quill.snow.css';
-import EditProductButton from "./EditProductButton";
-import NewProductButton from "./NewProductButton";
+import EditProductButton from './EditProductButton';
+import NewProductButton from './NewProductButton';
 
 
 export interface Product {
@@ -44,78 +44,114 @@ interface ProductResponse {
 }
 
 export default function ProductsContainer() {
-  const [page, setPage] = useState<number>(1);
-  const [perpage] = useState<number>(20);
-  const [search, setSearch] = useState<string>('');
-  const {data, error, isLoading} = useSWR<ProductResponse>(`${config.privateapilink}/admin/products?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
-  if(!data || (error || isLoading)) {
-    return <Loading/>
-  }
-  const searchValue = debounce((value: string) => {
-    setSearch(value);
-    setPage(1);
-  }, 500)
-  return (
-    <>
-      <NavBarAccount tab={'products'}/>
-      <h1 className="text-center text-4xl my-2">Products</h1>
-      <div className="w-full max-w-7xl mx-auto mb-2 md:flex md:gap-x-2">
-        <input type="text" id={'search'} defaultValue={search} placeholder="Search here" className={`input input-bordered input-md w-full `} onChange={(e) => searchValue(e.target.value)}/>
-        <NewProductButton page={page} perpage={perpage} search={search}/>
-      </div>
-      <table className="table w-full max-w-7xl mx-auto border-neutral border-2">
-        {/* head */}
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Admin tab</th>
-          <th>New</th>
-          <th>Version</th>
-          <th>Licensed</th>
-          <th>Tag</th>
-          <th>AutoInstaller</th>
-          <th>Price</th>
-          <th>Recurrent</th>
-          <th></th>
+    const [page, setPage] = useState<number>(1);
+    const [perpage] = useState<number>(20);
+    const [search] = useState<string>('');
+    const {data, error, isLoading} = useSWR<ProductResponse>(`${config.privateapilink}/admin/products?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+    if(!data || (error || isLoading)) {
+        return <Loading/>;
+    }
 
-        </tr>
-        </thead>
-        <tbody>
-        {data.data.map((product: Product, index: number) => {
-          return (
-            <ProductRow product={product} index={index} page={page} perpage={perpage} search={search}/>
-          )
-        })}
-        {/* row 1 */}
+    return (
+        <>
+            <div className='px-4 sm:px-6 lg:px-8'>
 
-        </tbody>
-      </table>
-      <div className={'text-center mt-2'}>
-        <Pagination totalPages={data.total} page={page} setPage={setPage}/>
+                <div className='sm:flex sm:items-center'>
+                    <div className='sm:flex-auto'>
+                        <h1 className='text-base font-semibold leading-6 text-gray-900'>Products</h1>
+                        <p className='mt-2 text-sm text-gray-700'>
+                            You are on the <strong
+                            className='font-semibold text-gray-900'>products</strong> page.
+                            You can here see and manage all products.
+                        </p>
+                    </div>
+                    <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
+                        <NewProductButton/>
 
-      </div>
-    </>
-  )
+                    </div>
+
+                </div>
+            </div>
+            <div className='-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg'>
+                <table className='min-w-full divide-y divide-gray-300 text-black'>
+                    {/* head */}
+                    <thead>
+                    <tr>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                            Id
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            Name
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            Tag
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                            Admin
+                        </th>
+
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            Version
+                        </th>
+                        <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900  table-cell'>
+                            Licensed
+                            </th>
+
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900  table-cell'>
+                            AutoInstaller
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900  table-cell'>
+                            Price
+                            </th>
+
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900  table-cell'>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.data.map((product: Product, index: number) => {
+                            return (
+                                <ProductRow product={product} key={index} page={page} perpage={perpage} search={search}/>
+                            );
+                        })}
+                        {/* row 1 */}
+
+                    </tbody>
+                </table>
+            </div>
+            <div className={'text-center mt-2'}>
+                <Pagination totalPages={data.total} page={page} setPage={setPage}/>
+
+            </div>
+        </>
+    );
 }
 
-function ProductRow({product, index, page, perpage, search}: {product: Product, index: number, page: number; perpage: number, search: string}) {
+function ProductRow({product, page, perpage, search}: {product: Product, page: number; perpage: number, search: string}) {
 
-  return (
-    <tr key={index}>
+    return (
+        <tr>
 
-      <th>{product.id}</th>
-      <td>{product.name}</td>
-      <td className={product.tab ? 'text-green-500' : 'text-red-500'}>{product.tab ? 'Yes': 'No'}</td>
-      <td className={product.new ? 'text-green-500' : 'text-red-500'}>{product.new? 'Yes': 'No'}</td>
-      <td>{product.version}</td>
-      <td className={product.licensed ? 'text-green-500' : 'text-red-500'}>{product.licensed? 'Yes': 'No'}</td>
-      <td>{product.tag}</td>
-      <td className={product.autoinstaller ? 'text-green-500' : 'text-red-500'}>{product.autoinstaller ? 'Yes': 'No'}</td>
-      <td>{product.price}</td>
-      <td className={product.recurrent ? 'text-green-500' : 'text-red-500'}>{product.recurrent ? 'Yes': 'No'}</td>
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{product.id}</td>
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{product.name}</td>
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{product.tag}</td>
 
-      <td><EditProductButton product={product} page={page} perpage={perpage} search={search}/></td>
-    </tr>
-  )
+            <td className={`border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell ${product.tab ? 'text-green-500' : 'text-red-500'}`}>{product.tab ? 'Yes' : 'No'}</td>
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{product.version}</td>
+            <td className={`border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell ${product.licensed ? 'text-green-500' : 'text-red-500'}`}>{product.licensed ? 'Yes' : 'No'}</td>
+            <td className={`border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell ${product.autoinstaller ? 'text-green-500' : 'text-red-500'}`}>{product.autoinstaller ? 'Yes' : 'No'}</td>
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{product.price}€</td>
+
+            <td><EditProductButton product={product} page={page} perpage={perpage} search={search} /></td>
+        </tr>
+    );
 }

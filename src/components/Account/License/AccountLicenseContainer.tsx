@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useSWR from "swr";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import deleteLicense from "../../../api/licenses/deleteLicense";
-import { fetcher } from "../../../api/http";
-import NavBarAccount from "../NavBarAccount";
-import Loading from "../../Elements/Loading";
-import { config } from "../../../config/config";
-import resetLicense from "../../../api/admin/licenses/resetLicense";
-import createOrder from "../../../api/shop/createOrder";
-import { object, string } from "yup";
-import { useFormik } from "formik";
-import linkLicense from "../../../api/licenses/linkLicense";
-import { FaXmark } from "react-icons/fa6";
+import React, { useContext, useEffect, useState } from 'react';
+import useSWR from 'swr';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { fetcher } from '../../../api/http';
+import Loading from '../../Elements/Loading';
+import { config } from '../../../config/config';
+import resetLicense from '../../../api/admin/licenses/resetLicense';
+import createOrder from '../../../api/shop/createOrder';
+import { object, string } from 'yup';
+import { useFormik } from 'formik';
+import linkLicense from '../../../api/licenses/linkLicense';
+import { NavContext } from '../AccountRouter';
+
+import { ArrowDownCircleIcon } from '@heroicons/react/24/outline';
+import debounce from 'lodash.debounce';
+import { useDark } from '../../../App';
 
 interface License {
   product: string;
@@ -26,411 +27,422 @@ interface License {
   ip: string[];
 }
 export default function AccountLicenseContainer() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [isHovered, setHovered] = useState<boolean>(false);
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState<string>('');
+    const [page, setPage] = useState<number>(1);
+    const {dark} = useDark();
+    // @ts-ignore
+    const { setActive } = useContext(NavContext);
+    useEffect(() => {
+        setActive(window.location.pathname);
+    }, []);
+    const { data, mutate, error, isLoading } = useSWR(
+        `${config.privateapilink}/license?search=${search}&page=${page}`,
+        fetcher
+    );
+    const form = object({
+        license: string().required('You need to enter a license').min(8),
+    });
 
-  const { data, mutate, error, isLoading } = useSWR(
-    `${config.privateapilink}/license`,
-    fetcher
-  );
-  const form = object({
-    license: string().required('You need to enter a license').min(8),
-  });
+    const formik = useFormik({
+        initialValues: { license: '' },
+        validationSchema: form,
+        onSubmit: (values) => {
+            linkLicense(values.license).then(() => {
+                mutate();
+                toast.success('License added successfully.', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
 
-  const formik = useFormik({
-    initialValues: { license: '' },
-    validationSchema: form,
-    onSubmit: (values) => {
-      setLoading(true)
-      linkLicense(values.license).then(() => {
-        mutate();
-        setLoading(false)
-        toast.success(`License added successfully.`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-        //@ts-ignore
-        window.addlicense.close()
-      }).catch((e) => {
-        toast.error(`Error: ${e.response.data.message}`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
+            }).catch((e) => {
+                toast.error(`Error: ${e.response.data.message}`, {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
 
-        setLoading(false);
 
-      });
+            });
+            setOpen(false);
+        }
+    });
+    if (!data || error || isLoading) {
+        return (
+            <div className='px-4 sm:px-6 lg:px-8'>
+
+                <div className='sm:flex sm:items-center'>
+                    <div className='sm:flex-auto'>
+                        <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Licenses</h1>
+                        <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm`}>
+                            You are on the <strong
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>licenses</strong> page.
+                            You can here see all your licenses releated to our products.
+                        </p>
+                    </div>
+
+                    <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
+                        <button
+                            type='button'
+                            onClick={() => setOpen(!open)}
+                            className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
+                        >
+                            Add license
+                            <ArrowDownCircleIcon
+                                className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
+                                    open ? 'rotate-180' : 'rotate-0'
+                                }`}
+
+                            />
+
+                        </button>
+                    </div>
+
+                </div>
+
+                <div
+                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow sm:rounded-lg mt-2 transition-transform duration-300 ${open ? 'opacity-100 scale-100' : 'hidden opacity-0 scale-0'}`}>
+                    <div className='flex justify-between px-4 py-5 sm:p-6'>
+                        <div>
+                            <h3 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Add
+                                a license</h3>
+                            <div className={`${dark ? 'text-slate-300' : 'text-gray-500'} mt-2 max-w-xl text-sm `}>
+                                <p>Link a license to your account.</p>
+                            </div>
+                        </div>
+                        <form className='mx-2 sm:flex sm:items-center' onSubmit={formik.handleSubmit}>
+                            <div className='w-full sm:max-w-xl'>
+                                <label htmlFor='email' className='sr-only'>
+                                    License
+                                </label>
+                                <input
+                                    type='text'
+                                    name='license'
+                                    id='license'
+                                    className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 px-1.5 mx-auto shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-xs`}
+                                    placeholder='bgxw_Dhofd6545564FDijofsids4dsf7'
+                                />
+                            </div>
+                            <button
+                                type='submit'
+                                className='inline-flex w-full items-center justify-center rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled sm:ml-3 sm:mt-0 sm:w-auto'
+                            >
+                                Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <Loading />
+            </div>
+        );
     }
-  });
-  if (!data || error || isLoading) {
-    return <Loading />;
-  }
+    document.title = 'Bagou450 - My license';
+    console.log(page);
+    return (
+        <>
 
-  document.title = "Bagou450 - My license";
-  return (
-    <>
-      <NavBarAccount tab={"licenses"} />
-      <section className="mx-2 md:mx-8 my-4">
-        <dialog id="addlicense" className="modal">
+            <div className='px-4 sm:px-6 lg:px-8'>
 
-          <form onSubmit={formik.handleSubmit} className="modal-box">
-            <h3 className="font-bold text-lg">Add license</h3>
-            <FaXmark className={`ml-auto text-xl transition-colors duration-200 mt-1 absolute right-2 top-2 ${isHovered ? 'text-red-700' : ''}`}
-                     onMouseEnter={() => setHovered(true)}
-                     onMouseLeave={() => setHovered(false)}
-                     onClick={() => {
-                       //@ts-ignore
-                       window.addlicense.close()
-                     }}
-            />
-            <h2 className={'opacity-80 text-sm'}>You can link a already exist license to this account here.</h2>
-            <div>
-              <label className="label">
-                <span className="label-text">License</span>
+                <div className='sm:flex sm:items-center'>
+                    <div className='sm:flex-auto'>
+                        <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Licenses</h1>
+                        <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm`}>
+                            You are on the <strong
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>licenses</strong> page.
+                            You can here see all your licenses releated to our products.
+                        </p>
+                    </div>
 
-              </label>
-              <input id="license"
-                     name="license"
-                     type="license"
-                     onChange={formik.handleChange}
-                     disabled={loading}
-                     required
-                     className="input input-bordered w-full  mx-2" />
-              <label className="label">
-                <span className='text-red-500'>{formik.errors.license}</span>
-              </label>
+                    <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
+                        <button
+                            type='button'
+                            onClick={() => setOpen(!open)}
+                            className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
+                        >
+                            Add license
+                            <ArrowDownCircleIcon
+                                className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
+                                    open ? 'rotate-180' : 'rotate-0'
+                                }`}
+
+                            />
+
+                        </button>
+                    </div>
+
+                </div>
+
+                <div
+                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow sm:rounded-lg mt-2 transition-transform duration-300 ${open ? 'opacity-100 scale-100' : 'hidden opacity-0 scale-0'}`}>
+                    <div className='flex justify-between px-4 py-5 sm:p-6'>
+                        <div>
+                            <h3 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Add
+                                a license</h3>
+                            <div className={`${dark ? 'text-slate-300' : 'text-gray-500'} mt-2 max-w-xl text-sm `}>
+                                <p>Link a license to your account.</p>
+                            </div>
+                        </div>
+                        <form className='mx-2 sm:flex sm:items-center' onSubmit={formik.handleSubmit}>
+                            <div className='w-full sm:max-w-xl'>
+                                <label htmlFor='email' className='sr-only'>
+                                    License
+                                </label>
+                                <input
+                                    type='text'
+                                    name='license'
+                                    id='license'
+                                    className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 px-1.5 mx-auto shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-xs`}
+                                    placeholder='bgxw_Dhofd6545564FDijofsids4dsf7'
+                                />
+                            </div>
+                            <button
+                                type='submit'
+                                className='inline-flex w-full items-center justify-center rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled sm:ml-3 sm:mt-0 sm:w-auto'
+                            >
+                                Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} mt-10 block text-sm font-medium leading-6`}>
+                            Search
+                        </label>
+                    </div>
+                    <div className="mt-2">
+                        <input
+                            type="text"
+                            name="search"
+                            onChange={debounce((e) => {setSearch(e.target.value);}, 500)}
+                            id="search"
+                            defaultValue={search}
+                            className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 px-1.5 mx-auto shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
+                            placeholder="bgxw_Ddf4dg45bfdb54b5df4b5d"
+                        />
+                    </div>
+                </div>
+                <div className="-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+                    <table className="min-w-full divide-y divide-gray-300">
+                        <thead>
+                            <tr>
+                                <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                        Product
+                                </th>
+                                <th
+                                    scope="col"
+                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
+                                >
+                        License
+                                </th>
+                                <th
+                                    scope="col"
+                                 className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}
+                                >
+                        Usage
+                                </th>
+                                <th
+                                    scope="col"
+                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
+                                >
+                        Ip
+                                </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                                Version
+                            </th>
+                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                    <span className="sr-only">Select</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.data.license.map((plan: License, planIdx: number) => (
+                                <LicenseRow license={plan} mutate={mutate} index={planIdx} key={planIdx}/>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div className="modal-action">
-              <button className="btn btn-primary btn-outline mx-2 border-0" type='submit' disabled={loading || !formik.dirty || !formik.isValid}>Add license</button>
-            </div>
-          </form>
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        </dialog>
-        <div>
-          {data.data["license"].length > 0 ? (
-            <>
-              <p className="text-center text-xl my-6">
-                Please notice that these licenses are linked to your account. To
-                transfer a license to another account, please{" "}
-                <Link to={"/contact"} className="text-blue-500">
-                  contact us
-                </Link>
-                .
-              </p>
-              <div className="alert my-4 mx-auto max-w-1/2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>You have a US server? Consider using our US server instead of the European server. For more information, please <Link to={'/contact'} className={'text-blue-500'}>contact us</Link>.</span>
-              </div>
-              <div className={'text-right mb-4 mx-2 md:mx-8'}>
-                <button className={'btn btn-wide btn-secondary btn-outline outline-0'} onClick={() => {
-                  //@ts-ignore
-                  window.addlicense.showModal();
-                }}>Add license</button>
-              </div>
-              <table className="table w-full border-2 border-solid border-neutral-content dark:border-neutral">
-                {/* head */}
-                <thead>
-                <tr>
-                  <th className={"hidden md:table-cell"}></th>
-                  <th>Product</th>
-                  <th className={"hidden xl:table-cell"}>Ip</th>
-                  <th>Usage</th>
-                  <th className={"hidden 2xl:table-cell"}>License</th>
-                  <th>Version</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data.data["license"].map(
-                  (license: License, key: number) => {
-                    return (
-                    <LicenseRow license={license} mutate={mutate} index={key}/>
-                    );
-                  }
-                )}
-                </tbody>
-              </table>
-            </>
-          ) : (
-            <>
-
-              <div className={'text-right mb-4 mx-2 md:mx-8'}>
-                <button className={'btn btn-wide btn-secondary btn-outline outline-0'} onClick={() => {
-                  //@ts-ignore
-                  window.addlicense.showModal();
-                }}>Add license</button>
-              </div>
-            <p className={"text-center opacity-80"}>
-              No licenses found for this account.
-            </p>
-            </>
-          )}
-        </div>
-      </section>
-      <section className="min-h-screen"></section>
-    </>
-  );
+            <nav
+                className="flex items-center justify-between px-4 py-3 sm:px-6 my-2"
+                aria-label="Pagination"
+            >
+                <div className="hidden sm:block">
+                    <p className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-sm `}>
+                        Showing <span className="font-medium">{page*10-10}</span> to <span className="font-medium">{page*10}</span> of{' '}
+                        <span className="font-medium">{data.data.total}</span> results
+                    </p>
+                </div>
+                <div className="flex flex-1 justify-between sm:justify-end">
+                    <button
+                        onClick={() => setPage(page-1)}
+                        disabled={page < 2}
+                        className={`${page < 2 && 'opacity-50'} relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
+                    >
+                        Previous
+                    </button>
+                    <button
+                        onClick={() => setPage(page+1)}
+                        disabled={page*10 >= data.data.total}
+                        className={`${page*10 >= data.data.total && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
+                    >
+                        Next
+                    </button>
+                </div>
+            </nav>
+        </>
+    );
 }
 
 
 function LicenseRow({license, mutate, index}: {license: License, mutate: any, index: number}) {
-  const [ipData, setIpData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const resettheLicense = () => {
-    setLoading(true);
-    resetLicense(license.license).then(() => {
-      mutate();
-      toast.success('License has been reset successfully.', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-      });
-      setLoading(false)
-    }).catch(() => {
-      toast.error('An unexcepted error happend. Please contact one of our support team.', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-      });
-      setLoading(false)
-    })
-  }
-  const buyUsage = () => {
-    setLoading(true);
-    createOrder([license.product_id], true).then((data) => {
-      setLoading(false);
-      if(data.data.status === 'success') {
-        window.location.href = data.data.data;
-      }
-    }).catch(() => {
-      setLoading(false)
-      toast.error('An unexcepted error happend. Please contact one of our support team.', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-      });
-    });
-  }
-  return (
-    <tr key={index}>
-      <th className={"hidden md:table-cell"}>{index}</th>
-      <td>{license["product"]}</td>
-      <td className={"hidden xl:table-cell"}>
-        {license["ip"] ? (
-          license["ip"].length === 0 ? (
-            <p>No ip for this license.</p>
-          ) : (
-            license["ip"].map(
-              (
-                ip:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactPortal
-                  | React.ReactElement<
-                  any,
-                  | string
-                  | React.JSXElementConstructor<any>
-                >
-                  | null
-                  | undefined,
-                key: number
-              ) => {
-                const handleMouseEnter = async () => {
-                  const response = await fetch(
-                    `https://ipapi.co/${ip}/json/`
-                  );
-                  const data = await response.json();
-
-                  setIpData(data);
-                };
-                return (
-                  <div
-                    className="dropdown dropdown-right dropdown-hover"
-                    key={key + 50}
-                  >
-                    <label
-                      tabIndex={0}
-                      className="btn m-1 btn-neutral z-1"
-                      onMouseEnter={handleMouseEnter}
-                    >
-                      {ip}
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52 z-10"
-                    >
-                      {ipData ? (
-                        <>
-                          <li className="flex">
-                            <strong>Country: </strong>
-                            {ipData["country_name"]}{" "}
-                            <img
-                              alt="Flag"
-                              src={`https://flagcdn.com/w20/${ipData["country_code"]}.webp`}
-                              className={"mx-2"}
-                            />
-                          </li>
-                          <li>
-                            <strong>City: </strong>
-                            {ipData["city"]}
-                          </li>
-                          <li>
-                            <strong>Region: </strong>
-                            {ipData["region"]}
-                          </li>
-                          <li>
-                            <strong>Asn: </strong>
-                            {ipData["asn"]}
-                          </li>
-                          <li>
-                            <strong>Org: </strong>
-                            {ipData["org"]}
-                          </li>
-                          <li>
-                            <button
-                              className="btn btn-outline btn-error border-0 mt-3"
-                              onClick={() => {
-                                deleteLicense(
-                                  license["license"],
-                                  ip
-                                )
-                                  .then(() => {
-                                    mutate();
-                                    toast.success(
-                                      `${ip} was removed successfully.`,
-                                      {
-                                        position:
-                                          "bottom-right",
-                                        autoClose: 5000,
-                                        hideProgressBar:
-                                          false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-                                      }
-                                    );
-                                  })
-                                  .catch(() => {
-                                    toast.error(
-                                      "An unexcepted error happend. Please contact one of our support team.",
-                                      {
-                                        position:
-                                          "bottom-right",
-                                        autoClose: 5000,
-                                        hideProgressBar:
-                                          false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-                                      }
-                                    );
-                                  });
-                              }}
-                            >
-                              Delete
-                            </button>
-                          </li>
-                        </>
-                      ) : (
-                        <p>Loading...</p>
-                      )}
-                    </ul>
-                  </div>
-                );
-              }
-            )
-          )
-        ) : (
-          <p className={'my-auto h-full'}>No ip for this license.</p>
-        )}
-      </td>
-      <td>
-        {license["usage"]}/{license["maxusage"]}
-      </td>
-
-      <td className={"hidden 2xl:table-cell"}>
-        <strong>{license["license"]}</strong>
-      </td>
-      <td>
-        <span>{license["version"]}</span>
-      </td>
-      <td>
-        <button
-          className={
-            "btn btn-primary btn-outline outline-0"
-          }
-          disabled={loading}
-          onClick={() => buyUsage()}
-        >
-          Buy usage
-        </button>{" "}
-        <br />
-        <button
-          className={
-            "btn mt-2 btn-error btn-outline outline-0"
-          }
-          onClick={() => resettheLicense()}
-          disabled={loading}
-        >
-          Reset
-        </button>
-        <br/>
-        <button
-          className={
-            "btn mt-2 btn-secondary btn-outline outline-0 2xl:hidden"
-          }
-          onClick={() => {
-            navigator.clipboard.writeText(license['license']);
-            toast.success('License copied in clipboard.', {
-              position: "bottom-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+    const [ipData, setIpData] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const {dark} = useDark();
+    const resettheLicense = () => {
+        setLoading(true);
+        resetLicense(license.license).then(() => {
+            mutate();
+            toast.success('License has been reset successfully.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
             });
-          }}
-          disabled={loading}
-        >
-          Copy License
-        </button>
-      </td>
-    </tr>
-  )
+            setLoading(false);
+        }).catch(() => {
+            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+            setLoading(false);
+        });
+    };
+    const buyUsage = () => {
+        setLoading(true);
+        createOrder([license.product_id], true).then((data) => {
+            setLoading(false);
+            if(data.data.status === 'success') {
+                window.location.href = data.data.data;
+            }
+        }).catch(() => {
+            setLoading(false);
+            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+        });
+    };
+    return (
+
+        
+        <tr key={index}>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
+                <div className="font-medium">{license['product']}</div>
+            </td>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}
+                onClick={() => {
+                navigator.clipboard.writeText(license['license']);
+                toast.success('License copied to clipboard.', {
+                        position: 'bottom-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                    });
+                }}>
+                {license['license'].slice(0,17)}{license['license'].length > 17 && '...'}
+            </td>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
+                {license['usage']}/{license['maxusage']}
+            </td>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
+                <div className='w-48'>
+                    {license['ip'].length === 0 && 'No ip for this license'}
+                    {license['ip'].map((thelicense, index) => (
+                        <button
+                            className={`${dark ? 'bg-bg450-inputdark text-slate-300 hover:bg-bg450-dark' : 'hover:bg-gray-50 bg-white text-gray-900'} block rounded-md  px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white mb-2 truncate`}
+                            disabled={loading}
+                            key={index}
+                            title={thelicense}
+                        >
+                            {thelicense.slice(0,17)}{thelicense.length > 17 && '...'}
+                        </button>
+                    ))}
+                </div>
+            </td>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
+                {license['version']}
+            </td>
+            <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
+                <button
+                    className="inline-flex items-center rounded-md bg-red-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    onClick={() => resettheLicense()}
+                    disabled={loading}
+                >
+                               Reset
+                </button>
+                <br />
+                <button
+                    className="inline-flex items-center rounded-md bg-purple-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    onClick={() => buyUsage()}
+                    disabled={loading}
+                >
+                               Buy Usage
+                </button>
+                <br />
+                <button
+                    className="inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    onClick={() => {
+                        navigator.clipboard.writeText(license['license']);
+                        toast.success('License copied to clipboard.', {
+                            position: 'bottom-right',
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: dark ? 'dark' : 'light',
+                        });
+                    }}
+                    disabled={loading}
+                >
+                    Copy license
+                </button>
+            </td>
+        </tr>
+  
+    );
 }

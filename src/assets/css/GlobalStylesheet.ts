@@ -1,12 +1,14 @@
 import tw from 'twin.macro';
 import { createGlobalStyle } from 'styled-components';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 export default createGlobalStyle`
     html {
         ${tw`font-sans`};
-        color: rgb(203 213 225);
         letter-spacing: 0.015em;
     }
+
     footer {
             margin-top: auto;
     }
@@ -59,6 +61,30 @@ export default createGlobalStyle`
         background: transparent;
     }
     .ql {
+        .dark-content {
+${tw`text-slate-200`}
+      blockquote {
+        ${tw`bg-bg450-inputdark`}
+      }
+
+      pre.ql-syntax {
+        ${tw`bg-bg450-inputdark`}
+      }
+      .ql-align-center {
+         ${tw`justify-center flex`}
+      }
+      img {
+        ${tw`my-2`}     
+      }
+      a {
+        ${tw`mx-1 text-blue-500 hover:underline`}
+      }
+            .ql-font-monospace {
+                    ${tw`font-mono`}
+            }
+        }
+        .light-content {
+            ${tw`text-black`}
       blockquote {
         ${tw`bg-neutral`}
       }
@@ -78,7 +104,10 @@ export default createGlobalStyle`
             .ql-font-monospace {
                     ${tw`font-mono`}
             }
+        }
+            
       
     }
+   
     
 `;

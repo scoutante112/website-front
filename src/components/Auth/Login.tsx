@@ -1,178 +1,139 @@
 import React, { useState } from 'react';
-import login from '../../api/auth/login'
-import { Link, Navigate } from "react-router-dom";
-import useSWR from "swr";
-import { useFormik } from 'formik';
-import { object, string } from 'yup';
+import { Navigate } from 'react-router-dom';
+import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { FaDiscord, FaGithub } from "react-icons/fa";
-import loginOauth from "../../api/auth/loginOauth";
-import Loading from "../Elements/Loading";
-import GoogleButton from 'react-google-button'
-import { config } from "../../config/config";
+import loginOauth from '../../api/auth/loginOauth';
+import Loading from '../Elements/Loading';
+import { config } from '../../config/config';
+
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import FinalAuthForm from './FinalAuthForm';
+import { useDark } from '../../App';
 
 
-export default function Login({ loginError }: { loginError?: string }) {
-  const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+export default function Login() {
+    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+    const [Isregistred, setIsRegistred] = useState<boolean>(true);
+    const {dark} = useDark();
 
-  const { data, error, isLoading } = useSWR(
-    `${config.privateapilink}/auth/isLogged`,
-    fetcher
-  );
-  if (!data || (error || isLoading)) {
-    return <Loading/>;
-  }
-  if (data['status'] === true) {
-    return <Navigate to="/" />
-  }
-  document.title = 'Bagou450 - Sign In'
-  return (
-    <>
-      <h1 className='text-4xl my-4 text-center'>Sign In</h1>
-      {loginError &&
-        <div className="alert alert-error mx-auto w-2/4 my-4">
-          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>{loginError}</span>
-        </div>
-      }
-      <section className='my-4 text-center mx-auto'>
-        <LoginForm/>
-      </section>
-      <section className='my-4 text-center mx-auto'>
-          <div className="divider w-1/5 mx-auto">OR</div>
-        <DiscordButton/>
-        <GoogleButtonClick/>
-        <GitHubButtonClick/>
-      </section>
-
-    </>
-  );
-}
-
-
-
-
-export function LoginForm({setRegister, setLogin}: {setRegister?: React.Dispatch<React.SetStateAction<boolean>>, setLogin?: React.Dispatch<React.SetStateAction<boolean>>;}) {
-  const form = object({
-    email: string().email('This is not a valid email.').required('You need to enter a email.'),
-  });
-  const [loading, setLoading] = useState<number>(0);
-  const [showerror, setError] = useState('');
-  const [showmessage, setMessage] = useState('');
-
-  const formik = useFormik({
-    initialValues: { email: '', username: '' },
-    validationSchema: form,
-    onSubmit: (values) => {
-      setLoading(1)
-      login(values.email).then((data) => {
-        if(data.data['status'] === 'error') {
-          setError(data.data['message']);
-          setMessage('');
-          setLoading(3);
-        } else {
-          setError('');
-          setLoading(2)
-          setMessage('To complete the authentication process, please check your email and follow the instructions provided.');
-        }
-      }).catch(() => {
-        setError('No account found with this email.');
-        setLoading(3)
-      })
-
+    const [email, setEmail] = useState<string>('');
+    const { data, error, isLoading } = useSWR(
+        `${config.privateapilink}/auth/isLogged`,
+        fetcher
+    );
+    if (!data || (error || isLoading)) {
+        return <Loading/>;
     }
-  });
+    if (data['status'] === true) {
+        return <Navigate to="/" />;
+    }
 
-  return (
-    <div>
-      {showerror &&
-        <div className="alert alert-error mx-auto w-2/4 my-4">
-          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>{showerror}</span>
+    document.title = 'Bagou450 - Sign In';
+    return (
+        <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+
+            <section className='py-4 text-center mx-auto'>
+                {Isregistred && email === '' ?
+                    <LoginForm setEmail={setEmail} setIsRegistred={setIsRegistred}/>
+                    : Isregistred && email !== '' ?
+                        <FinalAuthForm email={email}/>
+                        :
+                        <RegisterForm setEmail={setEmail} email={email} setIsRegistred={setIsRegistred}/>
+
+
+                }
+            </section>
+
+
         </div>
-      }
-      {showmessage &&
-          <div className="alert alert-success mx-auto w-2/4 my-4">
-            <svg  xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>{showmessage}</span>
-          </div>
-
-
-      }
-
-    <form onSubmit={formik.handleSubmit}>
-
-      <label className="label mx-auto text-center w-fit">
-        <span className="label-text">Your Email<br/><span className='text-red-500'>{formik.errors.email}</span></span>
-      </label>
-      <input id="email"
-             name="email"
-             type="email"
-             placeholder="exemple@exemple.com"
-             onChange={formik.handleChange}
-             required
-             className="input input-bordered input-info w-full  max-w-xs" />
-
-      <br/>
-      <button className={`btn btn-outline mt-4 w-full max-w-[16rem] mb-4 ${loading === 0 || loading === 1 ? 'btn-primary  border-0' : loading === 2 ? 'btn-success' : 'btn-error '}`} type="submit" disabled={!!(loading !== 0 || formik.errors.email)}>
-        {loading === 0 ? 'Sign in' : loading === 1 ? <span className="loading loading-spinner loading-sm text-secondary"></span> : loading === 2 ? 'Success' : 'Error'}
-      </button><br/>
-      <span>You don't have a account? {setRegister && setLogin ? <p className={'text-blue-500 hover:underline'} onClick={() => {setRegister(true); setLogin(false)}}>Register now</p> : <Link to='/register' className='text-blue-500 hover:underline'>Register now</Link>}</span>
-    </form>
-    </div>
-  )
+    );
 }
+
+
 
 
 
 export function DiscordButton() {
-  const [loading, setLoading] = useState(false);
-  const discordLogin = (() => {
-    setLoading(true);
-    loginOauth('discord').then((data) => {
-      window.location.href = data.data.data.url
+    const [loading, setLoading] = useState(false);
+    const discordLogin = (() => {
+        setLoading(true);
+        loginOauth('discord').then((data) => {
+            window.location.href = data.data.data.url;
 
-    })
-  })
-  return (
-    <div className={'mx-auto'}>
-      <button className={`btn btn-neutral flex mx-auto`} disabled={loading} onClick={() => discordLogin()}><FaDiscord size={'35px'}/> <p className={'my-auto mx-2 text-ml'}>{loading ? <span className="loading loading-spinner loading-sm"/>  : 'Sign in with Discord'}</p></button>
-
-    </div>
-  )
+        });
+    });
+    return (
+        <div className={'mx-auto mt-4'}>
+            <button
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-[#7289DA] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7289DA]"
+                disabled={loading} onClick={() => discordLogin()}>
+                <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        fillRule="evenodd"
+                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+                <span className="text-sm font-semibold leading-6">Discord</span>
+            </button>
+        </div>
+    );
 }
 
 export function GoogleButtonClick() {
-  const [loading, setLoading] = useState(false);
-  const googleLogin = (() => {
-    setLoading(true);
-    loginOauth('google').then((data) => {
-      window.location.href = data.data.data.url
+    const [loading, setLoading] = useState(false);
+    const googleLogin = (() => {
+        setLoading(true);
+        loginOauth('google').then((data) => {
+            window.location.href = data.data.data.url;
 
-    })
-  })
-  return (
-    <div className={'mx-auto mt-4'}>
-      <GoogleButton className={'mx-auto'} type="dark" disabled={loading} onClick={() => googleLogin()}/>
+        });
+    });
+    return (
+        <div className={'mx-auto mt-4'}>
+            <button
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-[#4285F4] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4285F4]"
+                disabled={loading} onClick={() => googleLogin()}>
+                <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        fillRule="evenodd"
+                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+                <span className="text-sm font-semibold leading-6">Google</span>
+            </button>
+        </div>
 
-    </div>
-  )
+    );
 }
 
 
 export function GitHubButtonClick() {
-  const [loading, setLoading] = useState(false);
-  const githubLogin = (() => {
-    setLoading(true);
-    loginOauth('github').then((data) => {
-      window.location.href = data.data.data.url
+    const [loading, setLoading] = useState(false);
+    const githubLogin = (() => {
+        setLoading(true);
+        loginOauth('github').then((data) => {
+            window.location.href = data.data.data.url;
 
-    })
-  })
-  return (
-    <div className={'mx-auto mt-4'}>
-      <button className={`btn flex mx-auto`} disabled={loading} onClick={() => githubLogin()}><FaGithub size={'35px'}/> <p className={'my-auto mx-2 text-ml'}>{loading ? <span className="loading loading-spinner loading-sm"/>  : 'Sign in with GitHub'}</p></button>
+        });
+    });
+    return (
+        <div className={'mx-auto mt-4'}>
+            <button
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
+                disabled={loading} onClick={() => githubLogin()}>
+                <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        fillRule="evenodd"
+                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+                <span className="text-sm font-semibold leading-6">GitHub</span>
+            </button>
 
-    </div>
-  )
+        </div>
+    );
 }

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import useSWR from "swr";
+import useSWR from 'swr';
 import editAccount from '../../../../api/account/editAccount';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import debounce from 'lodash.debounce';
 import { fetcher } from '../../../../api/http';
-import linkOauth from "../../../../api/account/linkOauth";
-import deleteOauth from "../../../../api/account/deleteOauth";
-import { config } from "../../../../config/config";
+import linkOauth from '../../../../api/account/linkOauth';
+import deleteOauth from '../../../../api/account/deleteOauth';
+import { config } from '../../../../config/config';
+import { useDark } from '../../../../App';
 
 type DiscordUser = {
   avatar: string;
@@ -51,406 +52,442 @@ export default function EditAccountForm({account}: {account: Account}) {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [error, showError] = useState<string>();
-  const [error2, showError2] = useState<string>();
-  const { mutate } = useSWR(
-    `${config.privateapilink}/auth/isLogged?infos=true`,
-    fetcher
-  );
+    const [error2, showError2] = useState<string>();
+    const {dark} = useDark();
+    const { mutate } = useSWR(
+        `${config.privateapilink}/auth/isLogged?infos=true`,
+        fetcher
+    );
     const changeEmail = debounce((value: string) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(!emailRegex.test(value)) {
-        showError('This email is invalid.')
-        return;
-      }
-
-      showError('')
-      if(value === account.email) {
-        return;
-      }
-      setLoading(true)
-      editAccount(value, 'email').then((data) => {
-        if(data.data['status'] === 'error') {
-          toast.error(data.data['message'], {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-          });
-        } else {
-          toast.success('Success! Your email was edited.', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-          });
-
-
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailRegex.test(value)) {
+            showError('This email is invalid.');
+            return;
         }
-        setLoading(false)
-        mutate()
-      }).catch(() => {
-        toast.error('An unexcepted error happend. Please contact one of our support team.', {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-        setLoading(false)
-      })
-    }, 500)
-  const changeUsername = debounce((value: string) => {
-    if(value === '') {
-      showError2('Can\'t use a empty username.')
-      return;
-    }
 
-    showError2('')
-    if(value === account.name) {
-      return;
-    }
-    setLoading(true)
-    editAccount(value, 'name').then((data) => {
-      if(data.data['status'] === 'error') {
-        toast.error(data.data['message'], {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-      } else {
-        toast.success('Success! Your username was edited.', {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-
-
-      }
-      setLoading(false)
-      mutate()
-    }).catch(() => {
-      toast.error('An unexcepted error happend. Please contact one of our support team.', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-      });
-      setLoading(false)
-    })
-  }, 500)
-  return (
-        <section className='my-4 rounded-lg' >
-            <h2 className='text-2xl my-4 text-center'>Edit your address information</h2>
-                <div>
-            <label className="label">
-            <span className="label-text">Your Email</span>
-          </label>
-            <input id="email"
-              name="email"
-              defaultValue={account.email}
-              type="email"
-              disabled={loading}
-
-              placeholder="exemple@exemple.com"
-              onChange={(e) => changeEmail(e.target.value)}
-              required
-              className="input input-bordered w-full mr-4" />
-              <label className="label">
-                <span className='text-red-500'>{error}</span>
-              </label>
-              </div>
-          <div>
-            <label className="label">
-              <span className="label-text">Username</span>
-            </label>
-            <input id="name"
-                   name="name"
-                   defaultValue={account.name}
-                   type="name"
-                   disabled={loading}
-
-                   placeholder="Bagou450"
-                   onChange={(e) => changeUsername(e.target.value)}
-                   required
-                   className="input input-bordered w-full mr-4" />
-            <label className="label">
-              <span className='text-red-500'>{error2}</span>
-            </label>
-          </div>
-        <div className={'grid grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-x-2 md:gap-y-0'}>
-
-          <Discord account={account}/>
-          <Google account={account}/>
-          <Github account={account}/>
-        </div>
-        </section>
-    )
-}
-
-function Discord({account}: {account: Account}) {
-  const discord = account.discord;
-  const [loading, setLoading] = useState(false);
-  const { mutate } = useSWR(
-    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
-    fetcher
-  );
-  const discordLink = (() => {
-    setLoading(true);
-    linkOauth('discord').then((data) => {
-      window.location.href = data.data.data.url
-
-    })
-  })
-  const discordUnlink = (() => {
-    setLoading(true);
-    deleteOauth('discord').then((data) => {
-        if(data.data['status'] === 'success') {
-          toast.success(`You have unlinked your Discord account successfully!`, {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-          });
-          mutate();
-          setLoading(false);
-        } else {
-          toast.error(`Error: ${data.data['message']}`, {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-          });
-          mutate();
-          setLoading(false);
+        showError('');
+        if(value === account.email) {
+            return;
         }
-    })
-  })
-  return (
-    <div>
-    <h2 className='text-2xl my-4 text-center'>{discord.status ? "Your Discord account" : "Link your Discord Account"}</h2>
-  <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
-    {discord.status ?
-      (<div className={'mx-auto'}>
+        setLoading(true);
+        editAccount(value, 'email').then((data) => {
+            if(data.data['status'] === 'error') {
+                toast.error(data.data['message'], {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+            } else {
+                toast.success('Success! Your email was edited.', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
 
-        <div>
-          <div className="avatar">
-            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img alt={'Discord avatar'} src={discord.data.avatar} />
-            </div>
-          </div>
-        </div>
 
-
-        <div>
-          <h2 className={'mt-2'}>{discord.data.username}{discord.data.discriminator !== '0' && `#${discord.data.discriminator}`}</h2>
-
-          <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => discordUnlink()}>Unlink Discord account</button>
-        </div>
-      </div>
-      )
-      :
-      <div className={'mx-auto'}>
-        <button className="btn-neutral btn-outline btn border-0 mt-4" disabled={loading} onClick={() => discordLink()}>Link Discord account</button>
-      </div>
-
-    }
-      </div>
-
-    </div>
-  )
-}
-
-function Google({account}: {account: Account}) {
-  const google = account.google
-  const [loading, setLoading] = useState(false);
-  const { mutate } = useSWR(
-    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
-    fetcher
-  );
-  const googleLink = (() => {
-    setLoading(true);
-    linkOauth('google').then((data) => {
-      window.location.href = data.data.data.url
-
-    })
-  })
-  const googleUnlink = (() => {
-    setLoading(true);
-    deleteOauth('google').then((data) => {
-      if(data.data['status'] === 'success') {
-        toast.success(`You have unlinked your Google account successfully!`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+            }
+            setLoading(false);
+            mutate();
+        }).catch(() => {
+            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+            setLoading(false);
         });
-        mutate();
-        setLoading(false);
-      } else {
-        toast.error(`Error: ${data.data['message']}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-        });
-        mutate();
-        setLoading(false);
-      }
-    })
-  })
-  return (
-    <div>
-      <h2 className='text-2xl my-4 text-center'>{google.status ? "Your Google account" : "Link your Google Account"}</h2>
-      <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
-        {google.status ?
-          (<div className={'mx-auto'}>
+    }, 500);
+    const changeUsername = debounce((value: string) => {
+        if(value === '') {
+            showError2('Can\'t use a empty username.');
+            return;
+        }
 
-              <div>
-                <div className="avatar">
-                  <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img alt={'Google Avatar'} src={google.data.avatar} />
-                  </div>
+        showError2('');
+        if(value === account.name) {
+            return;
+        }
+        setLoading(true);
+        editAccount(value, 'name').then((data) => {
+            if(data.data['status'] === 'error') {
+                toast.error(data.data['message'], {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+            } else {
+                toast.success('Success! Your username was edited.', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+
+
+            }
+            setLoading(false);
+            mutate();
+        }).catch(() => {
+            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+            setLoading(false);
+        });
+    }, 500);
+    return (
+        <div className="px-4 py-6 sm:p-8">
+            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="sm:col-span-4">
+                    <label htmlFor="website" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
+                Email
+                    </label>
+                    <div className="mt-2">
+                        <div className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg450-logo sm:max-w-md`}>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                onChange={(e) => changeEmail(e.target.value)}
+                                required
+                                defaultValue={account.email}
+                                className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
+                                placeholder="mail.exemple.com"
+                            />
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-
-              <div>
-                <h2 className={'mt-2'}>{google.data.username}</h2>
-
-                <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => googleUnlink()}>Unlink Google account</button>
-              </div>
+                <div className="col-span-full">
+                    <label htmlFor="website" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
+                Username
+                    </label>
+                    <div className="mt-2">
+                        <div className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg450-logo sm:max-w-md`}>
+                            <input
+                                type='text'
+                                name='username'
+                                id='username'
+                                onChange={(e) => changeUsername(e.target.value)}
+                                defaultValue={account.name}
+                                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Micheal"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-          )
-          :
-          <div className={'mx-auto'}>
-            <button className="btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => googleLink()}>Link Google account</button>
-          </div>
 
-        }
-      </div>
+        </div>
 
-    </div>
-  )
+    );
 }
 
-function Github({account}: {account: Account}) {
-  const github = account.github;
-  const [loading, setLoading] = useState(false);
-  const { mutate } = useSWR(
-    `https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true`,
-    fetcher
-  );
-  const githubLink = (() => {
-    setLoading(true);
-    linkOauth('github').then((data) => {
-      window.location.href = data.data.data.url
+export function Discord({account}: {account: Account}) {
+    const discord = account.discord;
+    const {dark} = useDark();
+    const [loading, setLoading] = useState(false);
+    const { mutate } = useSWR(
+        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        fetcher
+    );
+    const discordLink = (() => {
+        setLoading(true);
+        linkOauth('discord').then((data) => {
+            window.location.href = data.data.data.url;
 
-    })
-  })
-  const githubUnlink = (() => {
-    setLoading(true);
-    deleteOauth('github').then((data) => {
-      if(data.data['status'] === 'success') {
-        toast.success(`You have unlinked your Github account successfully!`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
         });
-        mutate();
-        setLoading(false);
-      } else {
-        toast.error(`Error: ${data.data['message']}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+    });
+    const discordUnlink = (() => {
+        setLoading(true);
+        deleteOauth('discord').then((data) => {
+            if(data.data['status'] === 'success') {
+                toast.success('You have unlinked your Discord account successfully!', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            } else {
+                toast.error(`Error: ${data.data['message']}`, {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            }
         });
-        mutate();
-        setLoading(false);
-      }
-    })
-  })
-  return (
-    <div>
-      <h2 className='text-2xl my-4 text-center'>{github.status ? "Your Github account" : "Link your Github Account"}</h2>
-      <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
-        {github.status ?
-          (<div className={'mx-auto'}>
+    });
+    return (
+        <div>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{discord.status ? 'Your Discord account' : 'Link your Discord Account'}</h2>
+            <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
+                {discord.status ?
+                    (<div className={'mx-auto'}>
 
-              <div>
-                <div className="avatar">
-                  <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img alt={'Github Avatar'} src={github.data.avatar} />
-                  </div>
-                </div>
-              </div>
+                        <div>
+                            <div className="avatar">
+                                <img alt={'Discord avatar'}  className="inline-block h-24 w-24 rounded-full" src={discord.data.avatar} />
+                            </div>
+                        </div>
 
 
-              <div>
-                <h2 className={'mt-2'}>{github.data.username} {github.data.plan === 'pro' && <span className="badge badge-secondary badge-outline mr-2">Pro</span>}</h2>
+                        <div>
+                            <h2 className={`${dark ? 'text-slate-300' : 'text-black'} my-2`}>{discord.data.username}{discord.data.discriminator !== '0' && `#${discord.data.discriminator}`}</h2>
+                            <button
+                                type="button"
+                                disabled={loading}
+                                onClick={() => discordLink()}
+                                className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Unlink Discord account
+                            </button>
+                        </div>
+                    </div>
+                    )
+                    :
+                    <div className={'mx-auto'}>
+                        <button
+                            type="button"
+                            disabled={loading}
+                            onClick={() => discordLink()}
+                            className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Link Discord account
+                        </button>
+                    </div>
 
-                <button className="btn btn-outline btn-error border-0 mt-4" disabled={loading} onClick={() => githubUnlink()}>Unlink Github account</button>
-              </div>
+                }
             </div>
-          )
-          :
-          <div className={'mx-auto'}>
-            <button className="btn-outline btn-neutral btn border-0 mt-4" disabled={loading} onClick={() => githubLink()}>Link Github account</button>
-          </div>
 
-        }
-      </div>
+        </div>
+    );
+}
 
-    </div>
-  )
+export function Google({account}: {account: Account}) {
+    const google = account.google;
+    const [loading, setLoading] = useState(false);
+    const {dark} = useDark();
+    const { mutate } = useSWR(
+        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        fetcher
+    );
+    const googleLink = (() => {
+        setLoading(true);
+        linkOauth('google').then((data) => {
+            window.location.href = data.data.data.url;
+
+        });
+    });
+    const googleUnlink = (() => {
+        setLoading(true);
+        deleteOauth('google').then((data) => {
+            if(data.data['status'] === 'success') {
+                toast.success('You have unlinked your Google account successfully!', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            } else {
+                toast.error(`Error: ${data.data['message']}`, {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            }
+        });
+    });
+    return (
+        <div>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{google.status ? 'Your Google account' : 'Link your Google Account'}</h2>
+            <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
+                {google.status ?
+                    (<div className={'mx-auto'}>
+
+                        <div>
+                            <div className="avatar">
+                                <img alt={'Google Avatar'} className="inline-block h-24 w-24 rounded-full" src={google.data.avatar} />
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <h2 className={`${dark ? 'text-slate-300' : 'text-black'} my-2`}>{google.data.username}</h2>
+                            <button
+                                type="button"
+                                disabled={loading}
+                                onClick={() => googleUnlink()}
+                                className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Unlink Google account
+                            </button>
+                        </div>
+                    </div>
+                    )
+                    :
+                    <div className={'mx-auto'}>
+                        <button
+                            type="button"
+                            disabled={loading}
+                            onClick={() => googleLink()}
+                            className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Link Google account
+                        </button>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    );
+}
+
+export function Github({account}: {account: Account}) {
+    const github = account.github;
+    const {dark} = useDark();
+    const [loading, setLoading] = useState(false);
+    const { mutate } = useSWR(
+        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        fetcher
+    );
+    const githubLink = (() => {
+        setLoading(true);
+        linkOauth('github').then((data) => {
+            window.location.href = data.data.data.url;
+
+        });
+    });
+    const githubUnlink = (() => {
+        setLoading(true);
+        deleteOauth('github').then((data) => {
+            if(data.data['status'] === 'success') {
+                toast.success('You have unlinked your Github account successfully!', {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            } else {
+                toast.error(`Error: ${data.data['message']}`, {
+                    position: 'bottom-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: dark ? 'dark' : 'light',
+                });
+                mutate();
+                setLoading(false);
+            }
+        });
+    });
+    return (
+        <div>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{github.status ? 'Your Github account' : 'Link your Github Account'}</h2>
+            <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
+                {github.status ?
+                    (<div className={'mx-auto'}>
+
+                        <div>
+                            <div className="avatar">
+                                <img alt={'Github Avatar'} className="inline-block h-24 w-24 rounded-full" src={github.data.avatar} />
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <h2 className={`${dark ? 'text-slate-300' : 'text-black'} my-2`}>{github.data.username} {github.data.plan === 'pro' &&       <span className={`${dark ? 'bg-bg450-logodisabled text-white ring-bg450-logohover' : 'bg-purple-50 text-purple-700 ring-purple-700/10'} inline-flex items-center rounded-md  px-2 py-1 text-xs font-medium  ring-1 ring-inset `}>Pro</span>}</h2>
+                            <button
+                                type="button"
+                                disabled={loading}
+                                onClick={() => githubUnlink()}
+                                className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Unlink Github account
+                            </button>
+                        </div>
+                    </div>
+                    )
+                    :
+                    <div className={'mx-auto'}>
+                        <button
+                            type="button"
+                            disabled={loading}
+                            onClick={() => githubLink()}
+                            className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Link Github account
+                        </button>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    );
 }
