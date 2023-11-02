@@ -201,8 +201,8 @@ export default function AccountRouter() {
                                                                         to={`/account${route.link}`}
                                                                         className={classNames(
                                                                             active === `/account${route.link}`
-                                                                                ? dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600'
-                                                                                : dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50',
+                                                                                ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
+                                                                                : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                                         )}
                                                                     >
@@ -225,8 +225,8 @@ export default function AccountRouter() {
                                                                         to={`/account${route.link}`}
                                                                         className={classNames(
                                                                             active === `/account${route.link}`
-                                                                                ? dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600'
-                                                                                : dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50',
+                                                                                ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
+                                                                                : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                                         )}
                                                                     >
@@ -300,8 +300,8 @@ export default function AccountRouter() {
                                                         to={`/account${route.link}`}
                                                         className={classNames(
                                                             active === `/account${route.link}`
-                                                                ? dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600'
-                                                                : dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50',
+                                                                ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
+                                                                : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                         )}
                                                     >
@@ -324,8 +324,8 @@ export default function AccountRouter() {
                                                         to={`/account${route.link}`}
                                                         className={classNames(
                                                             active === `/account${route.link}`
-                                                                ? dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600'
-                                                                : dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50',
+                                                                ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
+                                                                : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                         )}
                                                     >
@@ -479,7 +479,7 @@ export default function AccountRouter() {
                     </div>
 
 
-                    <main className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} py-10 bg-gray-50`}>
+                    <main className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} py-10`}>
                         <div className='px-4 sm:px-6 lg:px-8'>
                             <Suspense fallback={<Loading />}>
                                 <Routes>

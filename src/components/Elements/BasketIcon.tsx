@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import createOrder from '../../api/shop/createOrder';
 import { toast } from 'react-toastify';
 import { Dialog, Transition } from '@headlessui/react';
@@ -274,8 +273,7 @@ export default function BasketIcon() {
                 </Dialog>
             </Transition.Root>
 
-            <motion.div initial={{ opacity: 0, scale: 0 }} layout transition={{ duration: 0.25, delay: 0.5 }} animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}>
+            <div>
                 <div className="relative">
                     <button
                         onClick={() => {
@@ -290,7 +288,7 @@ export default function BasketIcon() {
 
 
 
-            </motion.div>
+            </div>
         </div>
     );
 }

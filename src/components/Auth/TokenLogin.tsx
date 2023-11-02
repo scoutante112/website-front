@@ -6,16 +6,19 @@ import tokenLogin from '../../api/auth/tokenLogin';
 import { toast } from 'react-toastify';
 import Loading from '../Elements/Loading';
 import { config } from '../../config/config';
+import { useDark } from '../../App';
 
-const TokenLogin = () => {
+export default function TokenLogin() {
     const { token } = useParams();
     const navigate = useNavigate();
+    const {dark} = useDark();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
         fetcher
     );
     if(!token) {
-        return navigate('/');
+        navigate('/');
+        return <></>;
     }
     useEffect(() => {
         tokenLogin(token).then((data) => {
@@ -44,7 +47,8 @@ const TokenLogin = () => {
                     theme: dark ? 'dark' : 'light',
                 });
                 mutate();
-                return navigate('/');
+                navigate('/')
+                return <></>;
             }
         });
     }, []);
@@ -53,4 +57,3 @@ const TokenLogin = () => {
     );
 };
 
-export default TokenLogin;

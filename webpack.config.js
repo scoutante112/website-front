@@ -13,7 +13,7 @@ const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 require('dotenv').config()
 
-const isProduction = false;
+const isProduction = true;
 
 module.exports = {
   devtool: 'source-map',
@@ -41,18 +41,10 @@ module.exports = {
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
     }),
     isProduction && new LoadablePlugin(),
-    isProduction && new BundleAnalyzerPlugin({
-      analyzerMode: 'json',
-      generateStatsFile: true,
-      statsOptions: {
-        source: false,
-        chunks: false,
-        modules: false,
-        chunksSort: 'size',
-        assetsSort: 'size',
-        excludeAssets: [/hot-update/, /runtime~.+[.]js/],
-      },
-      statsFilename: 'stats.json',
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: 'report.html',
+      openAnalyzer: !isProduction,
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html'

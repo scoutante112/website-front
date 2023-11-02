@@ -1,37 +1,32 @@
-import React, { Suspense, useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
-import { XMarkIcon } from '@heroicons/react/20/solid';
-
 import Loading from './Elements/Loading';
 import Footer from './Elements/Footer';
-import NotFoundPage from './NotFoundPage';
-import Products from './Products';
-import NewsContainer from './News/NewsContainer';
-import Licenses from './Licenses';
-import Contact from './Contact';
-import Login from './Auth/Login';
-import TokenLogin from './Auth/TokenLogin';
-import OauthCallback from './Auth/OauthCallback';
-import BlogsContainer from './Admin/Blogs/BlogsContainer';
-import UsersContainer from './Admin/Users/UsersContainer';
-import ProductsContainer from './Admin/Products/ProductsContainer';
-import LicensesContainer from './Admin/Licenses/LicensesContainer';
-import Product from './Products/Product';
-import NewsCard from './News/NewsCard';
-import OrdersCallback from './Products/OrdersCallback';
-import TosContainer from './TosContainer';
-import PpContainer from './PpContainer';
-import LmContainer from './LmContainer';
-import RpContainer from './RpContainer';
 import Home from './Home';
-import useSWR from 'swr';
-import { config } from '../config/config';
-import { fetcher } from '../api/http';
 import Discount from './Elements/Discount';
 import { useDark } from '../App';
 import AddPasskey from './Auth/AddPasskey';
 
+const NotFoundPage = lazy(() => import('./NotFoundPage'));
+const Products = lazy(() => import('./Products'));
+const NewsContainer = lazy(() => import('./News/NewsContainer'));
+const Licenses = lazy(() => import('./Licenses'));
+const Contact = lazy(() => import('./Contact'));
+const Login = lazy(() => import('./Auth/Login'));
+const TokenLogin = lazy(() => import('./Auth/TokenLogin'));
+const OauthCallback = lazy(() => import('./Auth/OauthCallback'));
+const BlogsContainer = lazy(() => import('./Admin/Blogs/BlogsContainer'));
+const UsersContainer = lazy(() => import('./Admin/Users/UsersContainer'));
+const ProductsContainer = lazy(() => import('./Admin/Products/ProductsContainer'));
+const LicensesContainer = lazy(() => import('./Admin/Licenses/LicensesContainer'));
+const Product = lazy(() => import('./Products/Product'));
+const NewsCard = lazy(() => import('./News/NewsCard'));
+const OrdersCallback = lazy(() => import('./Products/OrdersCallback'));
+const TosContainer = lazy(() => import('./TosContainer'));
+const PpContainer = lazy(() => import('./PpContainer'));
+const LmContainer = lazy(() => import('./LmContainer'));
+const RpContainer = lazy(() => import('./RpContainer'));
 
 export const MainNavRoutes = [
     {
@@ -176,16 +171,16 @@ export default function MainRouter() {
                     <Routes>
 
                         {MainNavRoutes.map((routes, key) => (
-                            <Route key={key} path={routes.link} element={routes.component} />
+                            <Route key={key} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
                         ))}
                         {AuthRoutes.map((routes, key) => (
-                            <Route key={key + 500} path={routes.link} element={routes.component} />
+                            <Route key={key + 500} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
                         ))}
                         {AdminRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={routes.component} />
+                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
                         ))}
                         {OthersRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={routes.component} />
+                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
                         ))}
                        
                         <Route path={'*'} element={<NotFoundPage />} />

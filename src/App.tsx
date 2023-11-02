@@ -5,15 +5,14 @@ import GlobalStylesheet from './assets/css/GlobalStylesheet';
 import 'react-toastify/dist/ReactToastify.min.css';
 import LazyLoad from 'react-lazyload';
 import { ToastContainer } from 'react-toastify';
-import AccountRouter from './components/Account/AccountRouter';
 import MainRouter from './components/MainRouter';
 import CookieConsent from 'react-cookie-consent';
 import Cookies from 'js-cookie';
 
 
 const Loading = lazy(() => import('./components/Elements/Loading'));
-
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+const AccountRouter = lazy(() => import('./components/Account/AccountRouter'));
 
 
 

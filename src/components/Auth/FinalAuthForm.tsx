@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import createOption from '../../api/auth/passkeys/createOption';
 import {
@@ -16,10 +16,13 @@ import { config } from '../../config/config';
 import { fetcher } from '../../api/http';
 import { useDark } from '../../App';
 import verificationPasskey from '../../api/auth/passkeys/verificationPasskey';
+import { Dialog, Transition } from '@headlessui/react';
+import AskCode from './AskCode';
 
 export default function FinalAuthForm({email}: {email: string}) {
     const [loading, setLoading] = useState<boolean>(false);
     const {dark} = useDark();
+    const [openModal, setOpenModal] = useState<boolean>(false);
     const navigate = useNavigate();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
@@ -121,7 +124,8 @@ export default function FinalAuthForm({email}: {email: string}) {
                                 theme: dark ? 'dark' : 'light',
                             });
                         }
-                        verificationPasskey(credential, email).then((data: any) => {
+                        verificationPasskey(credential, email).then(() => {
+                            setOpenModal(true);
                             toast.success('Please check your email to complete the Passkey addition process.', {
                                 position: 'bottom-right',
                                 autoClose: 5000,
@@ -243,6 +247,22 @@ export default function FinalAuthForm({email}: {email: string}) {
     };
     return (
         <>
+            <Transition.Root show={openModal} as={Fragment}>
+                <Dialog as="div" className="relative z-10" onClose={() => setOpenModal(true)} >
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-100"
+                    >
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    </Transition.Child>
+                    <AskCode setOpenModal={setOpenModal} email={email}/>
+                </Dialog>
+            </Transition.Root>
             <div className='sm:mx-auto sm:w-full sm:max-w-md'>
 
                 <h1 className={`${dark ? 'text-slate-200' : 'text-white'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>

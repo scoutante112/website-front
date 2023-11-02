@@ -10,6 +10,7 @@ import { fetcher } from '../../../../api/http';
 import Loading from '../../../Elements/Loading';
 import { config } from '../../../../config/config';
 import { useDark } from '../../../../App';
+import Field from '../../../Elements/Form/Field';
 
 const form = object({
     society: string().nullable(),
@@ -206,92 +207,43 @@ export default function EditAccountInfosForm({
                         <span>{error}</span>
                     </div>
                 </div>
-                <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-3">
-                        <label htmlFor="first-name" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                First name
+                <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+                    <Field className='sm:col-span-3' name={'First name'} id={'firstname'} type={'text'} required
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.firstname ? data.data.firstname : ''} />
+                    <Field className='sm:col-span-3' name={'Last name'} id={'lastname'} type={'text'} required
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.lastname ? data.data.lastname : ''} />
+                    <Field className='col-span-full' name={'Society'} id={'society'} type={'text'}
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.society ? data.data.society : ''} />
+                    <div className=' sm:col-span-3'>
+                        <label htmlFor='country'
+                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
+                            Country
                         </label>
-                        <div className="mt-2">
-                            <input
-                                id="firstname"
-                                name="firstname"
-                                type="text"
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                required
-                                defaultValue={data.data.firstname ? data.data.firstname : ''}
-                                autoComplete="given-name"
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="sm:col-span-3">
-                        <label htmlFor="last-name" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                Last name
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                autoComplete="family-name"
-                                id="lastname"
-                                name="lastname"
-                                type="text"
-                                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                required
-                                defaultValue={data.data.lastname ? data.data.lastname : ''}
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-span-full">
-                        <div className="flex justify-between">
-                            <label htmlFor="street-address"  className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                        Society
-                            </label>
-                            <span className="text-sm leading-6 text-gray-500" id="society-optional">
-          Optional
-                            </span>
-                        </div>
-
-                        <div className="mt-2">
-                            <input
-                                id="society"
-                                name="society"
-                                type="text"
-                                defaultValue={data.data.society}
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
-                    <div className=" sm:col-span-3">
-                        <label htmlFor="country" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                Country
-                        </label>
-                        <div className="mt-2">
+                        <div className='mt-2'>
                             <CountryDropdown
-                                id="country"
-                                name="country"
+                                id='country'
+                                name='country'
                                 value={country}
                                 onChange={handleCountryChange}
                                 disabled={loading}
                                 className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
 
                             />
-                           
+
                         </div>
                     </div>
-                    <div className="sm:col-span-3">
-                        <label htmlFor="region" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                      State / Province
+                    <div className='sm:col-span-3'>
+                        <label htmlFor='region'
+                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
+                            State / Province
                         </label>
-                        <div className="mt-2">
+                        <div className='mt-2'>
                             <RegionDropdown
-                                id="region"
-                                name="region"
+                                id='region'
+                                name='region'
                                 country={country}
                                 value={region}
                                 onChange={handleRegionChange}
@@ -300,72 +252,25 @@ export default function EditAccountInfosForm({
                             />
                         </div>
                     </div>
-                    <div className="col-span-full">
-                        <label htmlFor="street-address" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                Street address
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                type="text"
-                                name="address"
-                                id="address"
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                required
-                                defaultValue={data.data.address ? data.data.address : ''}
-                                autoComplete="street-address"
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
-                  
-                
-                    <div className="sm:col-span-3 sm:col-start-1">
-                        <label htmlFor="city" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                City
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                type="text"
-                                name="city"
-                                id="city"
-                                defaultValue={data.data.city ? data.data.city : ''}
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                autoComplete="address-level2"
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
-
-
-
-                    <div className="sm:col-span-3">
-                        <label htmlFor="postalcode" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                ZIP / Postal code
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                type="text"
-                                name="postalcode"
-                                id="postalcode"
-                                defaultValue={data.data.postal_code ? data.data.postal_code : ''}
-                                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                                onChange={formik.handleChange}
-                                disabled={loading}
-                                autoComplete="postal-code"
-                                className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            />
-                        </div>
-                    </div>
+                    <Field className='sm:col-span-2' name={'Street address'} id={'address'} type={'text'} required
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.address ? data.data.address : ''} />
+                    <Field className='sm:col-span-2' name={'City'} id={'city'} type={'text'} required
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.city ? data.data.city : ''} />
+                    <Field className='sm:col-span-2' name={'ZIP / Postal code'} id={'postalcode'} type={'text'} required
+                        onChange={formik.handleChange} disabled={loading}
+                        defaultValue={data.data.postal_code ? data.data.postal_code : ''} />
                 </div>
             </div>
-            <div className={`${dark ? 'border-b450-logo' : 'border-gray-900/10'} flex items-center justify-end gap-x-6 border-t px-4 py-4 sm:px-8`}>
-                <button type="button" className={`${dark ? 'text-slate-300' : 'text-gray-900'} text-sm font-semibold leading-6`}>
-      Cancel
+            <div
+                className={`${dark ? 'border-b450-logo' : 'border-gray-900/10'} flex items-center justify-end gap-x-6 border-t px-4 py-4 sm:px-8`}>
+                <button type='button'
+                    className={`${dark ? 'text-slate-300' : 'text-gray-900'} text-sm font-semibold leading-6`}>
+                    Cancel
                 </button>
                 <button
-                    type="submit"
+                    type='submit'
                     disabled={
                         loading || formik.errors.postalcode
                             ? true

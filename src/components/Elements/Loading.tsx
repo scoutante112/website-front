@@ -1,21 +1,16 @@
-import { motion } from 'framer-motion';
-import React, { Suspense } from 'react';
-import LazyLoad from 'react-lazyload';
+import React from 'react';
 import { useDark } from '../../App';
 
 export default function Loading() {
-    const {dark} = useDark();
+    const { dark } = useDark();
     return (
-        <div className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} h-screen mx-auto text-center cursor-wait`}>
-
-            <LazyLoad><Suspense fallback={<></>}><motion.img
+        <div className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} h-screen flex flex-col justify-center items-center`}>
+            <img
                 src="https://cdn.bagou450.com/assets/img/bg5.webp"
-                className={'h-44 w-44 mx-auto'}
+                className="h-44 w-44 animate-spin-slow"
                 alt="Logo"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-            /></Suspense></LazyLoad>
-            <p className={'text-2xl'}>Loading....</p>
+            />
+            <p className="text-2xl mt-4">Loading...</p>
         </div>
     );
 }

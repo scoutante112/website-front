@@ -9,6 +9,7 @@ import linkOauth from '../../../../api/account/linkOauth';
 import deleteOauth from '../../../../api/account/deleteOauth';
 import { config } from '../../../../config/config';
 import { useDark } from '../../../../App';
+import Field from '../../../Elements/Form/Field';
 
 type DiscordUser = {
   avatar: string;
@@ -168,44 +169,8 @@ export default function EditAccountForm({account}: {account: Account}) {
     return (
         <div className="px-4 py-6 sm:p-8">
             <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-4">
-                    <label htmlFor="website" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                Email
-                    </label>
-                    <div className="mt-2">
-                        <div className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg450-logo sm:max-w-md`}>
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                onChange={(e) => changeEmail(e.target.value)}
-                                required
-                                defaultValue={account.email}
-                                className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
-                                placeholder="mail.exemple.com"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-span-full">
-                    <label htmlFor="website" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                Username
-                    </label>
-                    <div className="mt-2">
-                        <div className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg450-logo sm:max-w-md`}>
-                            <input
-                                type='text'
-                                name='username'
-                                id='username'
-                                onChange={(e) => changeUsername(e.target.value)}
-                                defaultValue={account.name}
-                                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                placeholder="Micheal"
-                            />
-                        </div>
-                    </div>
-                </div>
+                <Field className="sm:col-span-4" name={'Email'} id={'email'} type={'email'} placeholder="mail.exemple.com" required onChange={(e: { target: { value: string; }; }) => changeEmail(e.target.value)} defaultValue={account.email}/>
+                <Field className="sm:col-span-4" name={'Username'} id={'username'} type={'text'} placeholder="Micheal" required onChange={(e: { target: { value: string; }; }) => changeUsername(e.target.value)} defaultValue={account.name}/>
             </div>
 
         </div>

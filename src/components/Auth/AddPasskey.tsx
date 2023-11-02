@@ -6,17 +6,20 @@ import useSWR from 'swr';
 import { config } from '../../config/config';
 import { fetcher } from '../../api/http';
 import { toast } from 'react-toastify';
+import { useDark } from '../../App';
 
 
 export default function AddPasskey() {
     const { token } = useParams();
     const navigate = useNavigate();
+    const {dark} = useDark();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
         fetcher
     );
     if(!token) {
-        return navigate('/');
+        navigate('/');
+        return <></>;
     }
     useEffect(() => {
         addPasskey(token).then((data) => {
