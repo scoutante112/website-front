@@ -1,7 +1,6 @@
 import tw from 'twin.macro';
 import { createGlobalStyle } from 'styled-components';
-import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
+
 
 export default createGlobalStyle`
     html {
@@ -61,7 +60,17 @@ export default createGlobalStyle`
         background: transparent;
     }
     .ql {
+        #lightbox > div:nth-child(-n+2) {
+            ${tw`hidden lg:inline-flex`}
+        }
+        #lightbox > div:nth-child(3) {
+            ${tw`flex-grow-0 mx-auto lg:flex-grow lg:mx-0`}
+        }
+        dl.grid-Faq {
+            ${tw`grid gap-x-6 gap-y-6  md:gap-y-8 md:grid-cols-2 md:gap-x-8 lg:gap-y-16 lg:grid-cols-3 lg:gap-x-16`}
+        }
         .dark-content {
+            
 ${tw`text-slate-200`}
       blockquote {
         ${tw`bg-bg450-inputdark`}
@@ -84,6 +93,7 @@ ${tw`text-slate-200`}
             }
         }
         .light-content {
+           
             ${tw`text-black`}
       blockquote {
         ${tw`bg-neutral`}

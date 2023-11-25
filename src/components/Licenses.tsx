@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { CheckIcon } from '@heroicons/react/24/solid';
 import { useDark } from '../App';
+import { Helmet } from 'react-helmet';
 
 const form = object({
     userid: string().required('This field is required')
@@ -51,6 +52,13 @@ export default function Licenses() {
     const [license, setLicense] = useState<boolean>(false);
     return (
         <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+            <Helmet>
+                <meta name='description' content={'Visit Bagou450\'s Licenses page to conveniently access your product license keys. Ensure seamless access to your purchased software and enjoy our products hassle-free.'} />
+
+                <meta name="twitter:description" content={'Visit Bagou450\'s Licenses page to conveniently access your product license keys. Ensure seamless access to your purchased software and enjoy our products hassle-free.'} />
+
+                <meta property="og:description" content={'Visit Bagou450\'s Licenses page to conveniently access your product license keys. Ensure seamless access to your purchased software and enjoy our products hassle-free.'} />
+            </Helmet>
             <div className="text-center py-4">
                 <ToastContainer />
 

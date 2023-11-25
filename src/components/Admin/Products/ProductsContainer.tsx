@@ -17,8 +17,11 @@ export interface Product {
   tab: boolean;
   tabroute: string | null;
   new: boolean;
+  isWings: boolean;
   version: number;
   hide: boolean;
+  category: string;
+  slug: string;
   extension: boolean;
   extension_product: number | null;
   created_at: string;

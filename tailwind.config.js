@@ -12,7 +12,7 @@ module.exports = {
                     content: '##d8dde5' // neutral-content
                 },
                 bg450: {
-                    logo: '#1d63d2',
+                    logo: '#1F53B7',
                     logohover: '#2272f2',
                     logodisabled: '#154ba1',
                     dark: '#192231',

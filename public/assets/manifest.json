@@ -1,7 +1,9 @@
 {
-  "main.js": "auto/bundle.0c662e7bcf38f35ca3b9.js",
-  "bundle.js": "auto/bundle.db0e2c9503365a510db8.js",
+  "main.js": "auto/bundle.4e1c9a3b0ec446b74f02.js",
+  "bundle.js": "auto/bundle.802d825bed4979cbe158.js",
   "loadable-stats.json": "auto/loadable-stats.json",
+  "sitemap.xml": "auto/sitemap.xml",
   "index.html": "auto/index.html",
-  "bundle.js.map": "auto/bundle.db0e2c9503365a510db8.js.map"
+  "sitemap.xml.gz": "auto/sitemap.xml.gz",
+  "bundle.js.map": "auto/bundle.802d825bed4979cbe158.js.map"
 }

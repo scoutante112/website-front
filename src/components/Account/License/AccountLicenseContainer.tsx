@@ -148,7 +148,6 @@ export default function AccountLicenseContainer() {
         );
     }
     document.title = 'Bagou450 - My license';
-    console.log(page);
     return (
         <>
 

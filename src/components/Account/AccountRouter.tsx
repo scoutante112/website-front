@@ -180,7 +180,7 @@ export default function AccountRouter() {
                                         </div>
                                     </Transition.Child>
                                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                                    <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'} flex grow flex-col gap-y-5 overflow-y-auto  px-6 pb-4`}>
                                         <div className="flex h-16 shrink-0 items-center">
                                             <NavLink to={'/'}>
                                                 <img
@@ -415,11 +415,7 @@ export default function AccountRouter() {
                                             <span className='sr-only'>Open user menu</span>
                                             <img
                                                 className='h-8 w-8 rounded-full bg-gray-50'
-                                                src={`https://www.gravatar.com/avatar/${md5(myaccount.email)})}?d=404`}
-                                                onError={({ currentTarget }) => {
-                                                    currentTarget.onerror = null;
-                                                    currentTarget.src = `https://ui-avatars.com/api/?background=042049&color=5271ff&name=${data.data.name}`;
-                                                }}
+                                                src={`https://www.gravatar.com/avatar/${md5(data.data.email)}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/${data.data.name}/128/042049/5271ff`}
                                                 alt={`${myaccount.name} Avatar`}
                                             />
                                             <span className='my-auto hidden lg:flex lg:items-center'>

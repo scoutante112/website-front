@@ -6,7 +6,7 @@ export default function GetStarted() {
         <section
             id="getstarted"
             aria-label="Features for running your books"
-            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-[#2763d8]"
+            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo"
         >
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

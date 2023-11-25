@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDark } from '../App';
-import Features1 from './Elements/Home/Features1';
-import GetStarted from './Elements/Home/GetStarted';
 import TrustedBy from './Elements/Home/TrustedBy';
+import Loading from './Elements/Loading';
+const Features1 = lazy(() => import('./Elements/Home/Features1'));
+const Features2 = lazy(() => import('./Elements/Home/Features2'));
+const GetStarted = lazy(() => import('./Elements/Home/GetStarted'));
 
 export default function Home() {
 
@@ -43,12 +45,12 @@ export default function Home() {
                             <h1 className={`${dark ? 'text-white' : 'text-gray-900'} text-4xl font-bold tracking-tight sm:text-6xl`}>
                                 Unleashing the Pterodactyl Potential
                             </h1>
-                            <p className={`${dark ? 'text-gray-400' : 'text-gray-600'} mt-6 text-lg leading-8`}>
+                            <h2 className={`${dark ? 'text-gray-400' : 'text-gray-600'} mt-6 text-lg leading-8`}>
                                 Harness the power of our premium Pterodactyl addons, tailored for performance and reliability. Web
                                 solutions and
                                 server configurations also available.
-                            </p>
-                            <div className="mt-10 flex items-center justify-center gap-x-6">
+                            </h2>
+                            <div className="mt-24 lg:mt-10 flex items-center justify-center gap-x-6">
                                 <NavLink
                                     to={'/products'}
                                     className="rounded-md bg-bg450-logo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -66,9 +68,16 @@ export default function Home() {
                                 <img
                                     src="https://cdn.bagou450.com/assets/img/addons/mcversions/computer/1.webp"
                                     alt="Pterodactyl addons presentation image"
-                                    width={2432}
-                                    height={1442}
-                                    className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                                    width={1920}
+                                    height={1080}
+                                    className="hidden lg:block rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
+                                />
+                                <img
+                                    src="https://cdn.bagou450.com/assets/img/addons/mcversions/mobile/1.webp"
+                                    alt="Pterodactyl addons presentation image"
+                                    width={630}
+                                    height={994}
+                                    className=" lg:hidden rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
                                 />
                             </div>
                         </div>
@@ -88,8 +97,18 @@ export default function Home() {
                 </div>
             </div>
             <TrustedBy/>
-            <Features1/>
-            <GetStarted/>
+            <Suspense fallback={<Loading/>}>
+                <Features1/>
+            </Suspense>
+            <Suspense fallback={<Loading/>}>
+
+                <Features2/>
+            </Suspense>
+            <Suspense fallback={<Loading/>}>
+
+                <GetStarted/>
+            </Suspense>
+
         </div>
     );
 }

@@ -1268,6 +1268,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@chatra/chatra@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@chatra/chatra/-/chatra-1.0.3.tgz#65f63ff68c5c6a2343186af8eae596676bd84040"
+  integrity sha512-/XAKbm9M9q0hSuqssaPD09vTcdFzfbq8uPMBreKxgVujZAKjshmbd4KOsmctQzD+x0qYXlEU4hFVwFYId/GgJg==
+
 "@codemirror/language@^6.0.0":
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/@codemirror/language/-/language-6.8.0.tgz#f2d7eea6b338c25593d800f2293b062d9f9856db"
@@ -2662,6 +2667,13 @@
   resolved "https://registry.yarnpkg.com/@types/debounce/-/debounce-1.2.1.tgz#79b65710bc8b6d44094d286aecf38e44f9627852"
   integrity sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==
 
+"@types/dompurify@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-3.0.5.tgz#02069a2fcb89a163bacf1a788f73cb415dd75cb7"
+  integrity sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==
+  dependencies:
+    "@types/trusted-types" "*"
+
 "@types/domutils@*":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@types/domutils/-/domutils-1.7.4.tgz#bb5f1807673e295782614b0a383b4dc1ecd2af97"
@@ -2896,6 +2908,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.5.tgz#9dc0a5cb1ccce4f7a731660935ab70b9c00a5d69"
   integrity sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==
 
+"@types/node@^14.14.28":
+  version "14.18.63"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
+  integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -2988,6 +3005,13 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
+"@types/sax@^1.2.1":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@types/sax/-/sax-1.2.6.tgz#6e563455034014db5ab9e24a929404cf9b43adc3"
+  integrity sha512-A1mpYCYu1aHFayy8XKN57ebXeAbh9oQIZ1wXcno6b1ESUAfMBDMx7mf/QGlYwcMRaFryh9YBuH03i/3FlPGDkQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/scheduler@*":
   version "0.16.3"
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.3.tgz#cef09e3ec9af1d63d2a6cc5b383a737e24e6dcf5"
@@ -3071,6 +3095,11 @@
   integrity sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==
   dependencies:
     "@types/jest" "*"
+
+"@types/trusted-types@*":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.6.tgz#d12451beaeb9c3838f12024580dc500b7e88b0ad"
+  integrity sha512-HYtNooPvUY9WAVRBr4u+4Qa9fYD1ze2IUlAD3HoA6oehn1taGwBx3Oa52U4mTslTS+GAExKpaFu39Y5xUEwfjg==
 
 "@types/trusted-types@^2.0.2":
   version "2.0.3"
@@ -3719,7 +3748,7 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-arg@^5.0.2:
+arg@^5.0.0, arg@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/arg/-/arg-5.0.2.tgz#c81433cc427c92c4dcf4865142dbca6f15acd59c"
   integrity sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==
@@ -5898,6 +5927,11 @@ domhandler@^4.0.0, domhandler@^4.2.0, domhandler@^4.3.1:
   integrity sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==
   dependencies:
     domelementtype "^2.2.0"
+
+dompurify@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.0.6.tgz#925ebd576d54a9531b5d76f0a5bef32548351dae"
+  integrity sha512-ilkD8YEnnGh1zJ240uJsW7AzE+2qpbOUYjacomn3AvJ6J4JhKGSZ2nh4wUIXPZrEPppaCLx5jFe8T89Rk8tQ7w==
 
 domutils@^1.5.1, domutils@^1.7.0:
   version "1.7.0"
@@ -12523,6 +12557,11 @@ react-fast-compare@^3.1.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
+react-ga4@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-ga4/-/react-ga4-2.1.0.tgz#56601f59d95c08466ebd6edfbf8dede55c4678f9"
+  integrity sha512-ZKS7PGNFqqMd3PJ6+C2Jtz/o1iU9ggiy8Y8nUeksgVuvNISbmrQtJiZNvC/TjDsqD0QlU5Wkgs7i+w9+OjHhhQ==
+
 react-google-button@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/react-google-button/-/react-google-button-0.7.2.tgz#5bb2bcb0d54e36da3cd3b712a6fac4f9209b764c"
@@ -13141,6 +13180,11 @@ sass-loader@^13.3.2:
   dependencies:
     neo-async "^2.6.2"
 
+sax@^1.2.4:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.3.0.tgz#a5dbe77db3be05c9d1ee7785dbd3ea9de51593d0"
+  integrity sha512-0s+oAmw9zLl1V1cS9BtZN7JAd0cW5e0QH4W3LWEK6a4LaLEA2OTpGYWDY+6XasBLtz6wkm3u1xRw95mRuJ59WA==
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -13421,6 +13465,25 @@ sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
+
+sitemap-webpack-plugin@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sitemap-webpack-plugin/-/sitemap-webpack-plugin-1.1.1.tgz#884b779b6cbe3a0a3def845506f6ac1f33b3e12f"
+  integrity sha512-ViKO1uIe7oUMJdjXX098eNRn/Yp04dajC2bmODXhy6qvmYtbBfauGQrir72u/WdMxIpOP0q5y07hyvB10py+OA==
+  dependencies:
+    schema-utils "^3.0.0"
+    sitemap "^6.0.0"
+    webpack-sources "^1.4.3"
+
+sitemap@^6.0.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-6.4.0.tgz#b4bc4edf36de742405a7572bc3e467ba484b852e"
+  integrity sha512-DoPKNc2/apQZTUnfiOONWctwq7s6dZVspxAZe2VPMNtoqNq7HgXRvlRnbIpKjf+8+piQdWncwcy+YhhTGY5USQ==
+  dependencies:
+    "@types/node" "^14.14.28"
+    "@types/sax" "^1.2.1"
+    arg "^5.0.0"
+    sax "^1.2.4"
 
 slash@^1.0.0:
   version "1.0.0"

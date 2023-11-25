@@ -10,6 +10,7 @@ const form = object({
     email: string().required('You need to enter a email/username.'),
 });
 export default function LoginForm({setIsRegistred, setEmail}: {setIsRegistred: React.Dispatch<React.SetStateAction<boolean>>, setEmail: React.Dispatch<React.SetStateAction<string>>}) {
+
     const [loading, setLoading] = useState<boolean>(false);
     const {dark} = useDark();
 
@@ -63,9 +64,9 @@ export default function LoginForm({setIsRegistred, setEmail}: {setIsRegistred: R
 
                     <div className="sm:mx-auto sm:w-full sm:max-w-md">
 
-                        <h2 className={`${dark ? 'text-slate-200' : 'text-black'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>
-                                Sign in to your account
-                        </h2>
+                        <h1 className={`${dark ? 'text-slate-200' : 'text-black'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>
+                            <strong>Sign in to your account</strong>
+                        </h1>
                     </div>
                     <form className="space-y-6" action="#" method="POST" onSubmit={formik.handleSubmit}>
                         <div>

@@ -6,8 +6,8 @@ export default function TrustedBy() {
     const {dark} = useDark();
     return (
         <div className={'pb-24 sm:pb-32'}>
-            <p className={`${dark ? 'text-slate-400' : 'text-slate-900'} text-lg font-display text-base text-center`}>
-                Trusted by these six companies so far
+            <p className={`${dark ? 'text-slate-400' : 'text-slate-900'} text-lg font-display text-center`}>
+                Trusted by these companies
             </p>
             <ul
                 role="list"
@@ -17,36 +17,26 @@ export default function TrustedBy() {
                     [
                         {
                             name: 'Ozlaloc',
-                            logo: 'https://cdn.bagou450.com/assets/img/trustus/ozlaloc.webp',
+                            logo: 'https://cdn.bagou450.com/assets/img/trustus/ozlaloc.svg',
                             link: 'https://ozlaloc.fr'
                         },
                         {
                             name: 'ServerEasy',
-                            logo: 'https://cdn.bagou450.com/assets/img/trustus/ServerEasy.webp',
+                            logo: 'https://cdn.bagou450.com/assets/img/trustus/ServerEasy.svg',
                             link: 'https://servereasy.it'
                         },
                         {
                             name: 'CapriceHost',
-                            logo: 'https://cdn.bagou450.com/assets/img/trustus/capricehost.webp',
+                            logo: 'https://cdn.bagou450.com/assets/img/trustus/CapriceHost.svg',
                             link: 'https://capricehost.com'
                         },
                     ],
                     [
                         {
                             name: 'OnPowered',
-                            logo: 'https://cdn.bagou450.com/assets/img/trustus/powered.webp',
+                            logo: 'https://cdn.bagou450.com/assets/img/trustus/powered.svg',
                             link: 'https://onpowered.net'
-                        },
-                        {
-                            name: 'Laravel',
-                            logo: 'https://salient.tailwindui.com/_next/static/media/laravel.7deed17e.svg',
-                            link: 'https://capricehost.com'
-                        },
-                        {
-                            name: 'Statamic',
-                            logo: 'https://salient.tailwindui.com/_next/static/media/statamic.6da5ebfb.svg',
-                            link: 'https://capricehost.com'
-                        },
+                        }
                     ],
                 ].map((group, groupIndex) => (
                     <li key={groupIndex}>
@@ -57,9 +47,15 @@ export default function TrustedBy() {
                             {group.map((company) => (
 
                                 <li key={company.name} className='flex'>
-                                    <a href={company.link} rel={'noreferrer'} target={'_blank'}>
-                                        <img src={company.logo} alt={company.name} />
+                                    <a href={company.link} rel={'noreferrer'} target={'_blank'}
+                                        aria-label={company.link}>
+
+                                        <svg className='h-32 w-32'>
+                                            <image className='h-32 w-32'
+                                                xlinkHref={company.logo} src={`${company.logo.slice(0, company.logo.length-3)}.png`}/>
+                                        </svg>
                                     </a>
+
                                 </li>
 
                             ))}

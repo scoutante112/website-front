@@ -156,7 +156,6 @@ export default function OrdersCallback() {
                         </thead>
                         <tbody>
                             {data.data.order.products.map((item: any, index: number) => {
-                                console.log(item);
                                 return (
                                     <tr className="hover w-full" key={index}>
                                         <td><div className={'flex w-full gap-x-2'}><img src={`${config.privateiconlink}${item.icon}`} alt={item.name} className={'h-16 w-16'}/><div className={'my-auto'}>{item.name}</div></div></td>

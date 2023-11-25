@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import Pagination from '../Elements/Pagination';
 import { useDark } from '../../App';
+import { Helmet } from 'react-helmet';
 
 interface categorie {
   id: number;
@@ -27,6 +28,8 @@ interface blog {
 }
 
 export default function NewsContainer() {
+    document.title = 'Bagou450 - Blog';
+
     const {dark} = useDark();
     const [search, setSearch] = useState<string>('');
     const [category, setCategory] = useState<string>('');
@@ -41,8 +44,15 @@ export default function NewsContainer() {
         }
         return (
             <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+                <Helmet>
+                    <meta name='description' content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+
+                    <meta name="twitter:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+
+                    <meta property="og:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+                </Helmet>
                 <h1 className={'text-center text-4xl mt-4 mb-2'}>News</h1>
-                <div className={'text-center grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mb-4'}>
+                <div className={' mx-2 text-center grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mb-4'}>
                     <input type="text" placeholder="Search a product" defaultValue={search} className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
                     <select className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => setCategory(e.target.value)}>
                         <option disabled selected>Select category</option>
@@ -63,9 +73,16 @@ export default function NewsContainer() {
     }, 500);
     return (
         <section className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} `}>
-            <h1 className={`${dark ? 'text-slate-200' : 'text-black'} text-center text-4xl pt-4 pb-2`}>News</h1>
+            <Helmet>
+                <meta name='description' content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+
+                <meta name="twitter:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+
+                <meta property="og:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
+            </Helmet>
+            <h1 className={`${dark ? 'text-slate-200' : 'text-black'} text-center text-4xl pt-4 pb-2`}>Blog</h1>
             <div className="flex">
-                <div className={'mx-auto flex gap-x-2'}>
+                <div className={' mx-2 mx-auto flex gap-x-2'}>
                     <input
                         type="text"
                         placeholder="Search a product"
@@ -109,7 +126,7 @@ function NewsCard({blog}: {blog: blog}) {
     const [imageError, setImageError] = useState(false);
     const {dark} = useDark();
     return (
-        <Link to={`/news/${blog.id}`}>
+        <Link to={`/blog/${blog.id}`}>
             <div className="card card-compact hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 min-h-full">
                 <figure className={'px-4 pt-4'}>
                     <LazyLoad>

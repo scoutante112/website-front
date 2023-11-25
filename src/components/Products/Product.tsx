@@ -13,8 +13,11 @@ import 'react-quill/dist/quill.snow.css';
 import '../Admin/Blogs/toolBar.scss';
 import Lightbox, { SlideImage } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import { CheckCircleIcon, CogIcon, StarIcon } from '@heroicons/react/24/solid';
+import { CheckBadgeIcon, CheckCircleIcon, CogIcon, StarIcon } from '@heroicons/react/24/solid';
 import { useDark } from '../../App';
+import { Helmet } from 'react-helmet';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import {sanitize} from 'dompurify';
 
 
 export default function Product() {
@@ -24,11 +27,9 @@ export default function Product() {
     }, []);
     const { id } = useParams();
     const navigate = useNavigate();
-
     if(!id) {
         navigate('/');
     }
-    document.title = 'Bagou450 - Product';
     const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}`, fetcher);
     const [basket, setBasket] = useState<basketItem[]>();
     const [inBasket, setInBasket] = useState<boolean>(false);
@@ -46,9 +47,7 @@ export default function Product() {
         setImages(imageUrls);
 
     };
-    React.useEffect(() => {
-        console.log(index);
-    }, [index]);
+
     React.useEffect(() => {
         if(data && (!error || !isLoading)) {
 
@@ -63,10 +62,11 @@ export default function Product() {
             return;
         }
         const basketArray: basketItem[] = JSON.parse(storedBasket);
-        setInBasket(basketArray.some((basketelement: basketItem) => basketelement.id.toString() === id));
+        setInBasket(basketArray.some((basketelement: basketItem) => basketelement.longId.toString() === id));
         setBasket(basketArray);
 
     };
+
     useEffect(() => {
         handleLocalStorageChange();
         window.addEventListener('basket', handleLocalStorageChange);
@@ -80,11 +80,23 @@ export default function Product() {
     }
     if(data.status === 'error') {
         if(data.message === 'No product found') {
-            navigate('/');
+            toast.error('The referenced product is currently non-existent.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+            return navigate('/');
         }
     }
 
     const addon = data.data;
+
+
     const downloadProduct = () => {
         setLoading(true);
         toast.info('Please wait during the generation of the file...', {
@@ -97,9 +109,9 @@ export default function Product() {
             progress: undefined,
             theme: dark ? 'dark' : 'light',
         });
-        if (id != null) {
-            getDownloadOneLink(id).then((data) => {
-                fetch(`${config.privateapilink}${data.data.data}?product=${id}`, {
+        if (addon.id != null) {
+            getDownloadOneLink(addon.id).then((data) => {
+                fetch(`${config.privateapilink}${data.data.data}?product=${addon.id}`, {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                         Accept: 'application/json',
@@ -152,7 +164,6 @@ export default function Product() {
     };
 
     const addBasket = () => {
-        console.log('test');
         const elements = localStorage.getItem('basket');
 
         if(elements) {
@@ -161,7 +172,7 @@ export default function Product() {
         } else {
             setBasket([]);
         }
-        const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag, icon: addon.icon };
+        const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag, icon: `${config.iconlink}${addon.icon}`, longId: id };
         if(!basket || !basket.length) {
             localStorage.setItem('basket', JSON.stringify([newItem]));
             window.dispatchEvent(new Event('basket'));
@@ -189,7 +200,7 @@ export default function Product() {
 
         return findParentWithId(node.parent, id);
     };
-    const transformImg = (node: { name: string; attribs: any; parent: any }, index: any) => {
+    const transformImg = (node: { name: string; attribs: any; parent: any }) => {
         const lightboxParent = findParentWithId(node.parent, 'lightbox');
 
         if (node.name === 'img' && lightboxParent && lightboxParent.name === 'div') {
@@ -207,7 +218,16 @@ export default function Product() {
     document.title = 'Bagou450 - ' + addon.name;
     return (
         <section className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+            <Helmet>
+                <meta name='description' content={addon.tag} />
 
+                <meta name='twitter:description' content={addon.tag} />
+                <meta name='twitter:title' content={'Bagou450 addon - Pterodactyl ' + addon.name} />
+
+                <meta property='og:description' content={addon.tag} />
+                <meta name='twitter:title' content={'Bagou450 addon - Pterodactyl ' + addon.name} />
+
+            </Helmet>
             <main className="mx-auto px-4 pb-4 pt-14 sm:px-6 sm:pb-6 sm:pt-16 lg:max-w-7xl lg:px-8">
                 {dark && (
                     <div
@@ -231,6 +251,8 @@ export default function Product() {
                             <img
                                 src={`${config.iconlink}${addon.icon}`}
                                 alt={addon.name}
+                                height={'500px'}
+                                width={'500px'}
                                 className="object-cover object-center"
                                 onError={(e) => {
                                     e.target.src = 'https://i0.wp.com/nigoun.fr/wp-content/uploads/2022/04/placeholder.png?ssl=1';
@@ -244,42 +266,57 @@ export default function Product() {
                         className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
                         <div className="flex flex-col-reverse">
                             <div className="mt-4">
-                                <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-2xl font-bold tracking-tight sm:text-3xl`}>{addon.name}</h1>
+                                <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-2xl font-bold tracking-tight sm:text-3xl`}><strong>{addon.name}</strong></h1>
 
                                 <h2 id="information-heading" className="sr-only">
                                     Pterodactyl addon product information
                                 </h2>
                                 <p className="mt-2 text-sm text-gray-500">
-                                    Version {addon.version}
+                                    Version {addon.version}{`${addon.version}`.length === 1 && '.0'}
                                 </p>
                                 <p className="mt-2 text-sm text-gray-500">
-                                    <dl className="mx-auto grid grid-cols-1 gap-px lg:grid-cols-2 gap-x-2">
-                                        <div className={`${dark ? 'bg-bg450-inputdark' : 'bg-white'} overflow-hidden rounded-lg px-4 py-5 sm:p-6 shadow-lg`}>
-                                            <dt className="truncate text-sm font-medium text-gray-500 flex gap-x-2">
+                                    <dl className='mx-auto grid grid-cols-1 gap-px lg:grid-cols-2 gap-x-2 gap-y-2'>
+                                        <div
+                                            className={`${dark ? 'bg-bg450-inputdark' : 'bg-white'} overflow-hidden rounded-lg px-4 py-5 sm:p-6 shadow-lg`}>
+                                            <dt className='truncate text-sm font-medium text-gray-500 flex gap-x-2'>
+                                                <CheckCircleIcon className={'h-6 w-6  text-indigo-700 '} /> Compatible
+                                            </dt>
+                                            <dd className='mt-1 text-3xl font-semibold tracking-tight text-indigo-700'>1.X</dd>
+                                        </div>
+                                        <div
+                                            className={`${dark ? 'bg-bg450-inputdark' : 'bg-white'} overflow-hidden rounded-lg px-4 py-5 sm:p-6 shadow-lg`}>
+                                            <dt className='truncate text-sm font-medium text-gray-500 flex gap-x-2'>
+                                                {addon.isWings ?
+                                                    <ExclamationTriangleIcon
+                                                        className={'h-6 w-6  text-yellow-700'} />
+                                                    :
+                                                    <CheckBadgeIcon className={'h-6 w-6  text-green-700'} />
+                                                }
+                                                 Wings
+                                                Modification
+                                            </dt>
+                                            <dd className={`mt-1 text-xl font-semibold tracking-tight ${addon.isWings ? 'text-yellow-700' : 'text-green-700'}`}>{!addon.isWings ? 'No wings modification required' : 'You need to edit wings!'}</dd>
+                                        </div>
+                                        <div
+                                            className={`${dark ? 'bg-bg450-inputdark' : 'bg-white'} lg:col-span-2 overflow-hidden rounded-lg px-4 py-5 sm:p-6 shadow-lg`}>
+                                            <dt className='truncate text-sm font-medium text-gray-500 flex gap-x-2'>
                                                 <CogIcon
                                                     className={`h-6 w-6 ${addon.autoinstaller ? 'text-green-500' : 'text-red-500'}`} />Auto
                                                 Installer
                                             </dt>
                                             <dd className={`mt-1 text-3xl font-semibold tracking-tight text-gray-900  ${addon.autoinstaller ? 'text-green-500' : 'text-red-500'}`}>{addon.autoinstaller ? 'Available' : 'N/A'}</dd>
                                         </div>
-                                        <div
-                                            className={`${dark ? 'bg-bg450-inputdark' : 'bg-white'} overflow-hidden rounded-lg px-4 py-5 sm:p-6 shadow-lg`}>
-                                            <dt className='truncate text-sm font-medium text-gray-500 flex gap-x-2'>
-                                                <CheckCircleIcon className={'h-6 w-6  text-indigo-700 '} /> Compatible
-                                            </dt>
-                                            <dd className="mt-1 text-3xl font-semibold tracking-tight text-indigo-700">1.X</dd>
-                                        </div>
                                     </dl>
                                 </p>
                             </div>
 
                             <div>
-                                <h3 className="sr-only">Reviews</h3>
-                                <div className="flex items-center">
+                                <h3 className='sr-only'>Reviews</h3>
+                                <div className='flex items-center'>
                                     {[0, 1, 2, 3, 4].map((_, key) => (
                                         <StarIcon
                                             className={'text-yellow-400 h-5 w-5 flex-shrink-0'}
-                                            aria-hidden="true"
+                                            aria-hidden='true'
                                             key={key}
                                         />
                                     ))}
@@ -287,7 +324,7 @@ export default function Product() {
                             </div>
                         </div>
 
-                        <p className="mt-6 text-gray-500">{addon.tag}</p>
+                        <p className='mt-6 text-gray-500'>{addon.tag}</p>
 
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                             <button
@@ -331,7 +368,7 @@ export default function Product() {
 
                 <section className='my-4 ql w-full h-full overflow-y-auto'>
                     <div className={dark ? 'dark-content' : 'light-content'}>
-                        {ReactHtmlParser(addon.description.replaceAll('rel="noopener noreferrer" target="_blank"', ''), {
+                        {ReactHtmlParser(sanitize(addon.description.replaceAll('rel="noopener noreferrer" target="_blank"', '')), {
                             transform: transformImg,
                         })}
                     </div>

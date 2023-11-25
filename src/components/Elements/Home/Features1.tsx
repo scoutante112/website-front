@@ -8,24 +8,32 @@ const features = [
         description:
             'Effortlessly switch between Minecraft versions and modpacks directly from the panel, with real-time fetching, extensive compatibility, and seamless integration.',
         image: 'https://cdn.bagou450.com/assets/img/addons/mcversions/computer/1.webp',
+        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcversions/mobile/1.webp',
+
     },
     {
         title: 'Minecraft Plugins installer',
         description:
             'Instantly install a vast range of Minecraft plugins from SpigotMc, DevBukkit, PolyMart, and more, all directly from your panel with guaranteed uptime and compatibility.',
         image: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/computer/1.webp',
+        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/mobile/1.webp',
+
     },
     {
         title: 'Artifacts Changer',
         description:
             'Easily update your FiveM artifacts with a single click, ensuring synchronized TxAdmin updates and real-time fetching from CFX servers.',
         image: 'https://cdn.bagou450.com/assets/img/addons/artifacts/computer/1.webp',
+        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/artifacts/mobile/1.webp',
+
     },
     {
         title: 'Cloud Servers',
         description:
             'Empower your users to create their own servers with adjustable resources, seamlessly integrated with WHMCS and compatible across all Pterodactyl themes.',
         image: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/computer/1.webp',
+        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/mobile/1.webp',
+
     },
 ];
 export default function Features1() {
@@ -50,7 +58,7 @@ export default function Features1() {
         <section
             id="features"
             aria-label="Features for running your books"
-            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-[#2763d8]"
+            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo"
         >
             {/*<img
                     className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -91,20 +99,22 @@ export default function Features1() {
                                                     : 'hover:bg-white/10 lg:hover:bg-white/5',
                                             )}
                                         >
-                                            <h3>
-                                                <Tab
-                                                    className={clsx(
-                                                        'font-display text-lg ui-not-focus-visible:outline-none',
-                                                        selectedIndex === featureIndex
-                                                            ? 'text-blue-600 lg:text-white'
-                                                            : 'text-blue-100 hover:text-white lg:text-white',
-                                                    )}
-                                                >
+
+                                            <Tab
+                                                className={clsx(
+                                                    'font-display text-lg ui-not-focus-visible:outline-none',
+                                                    selectedIndex === featureIndex
+                                                        ? 'text-blue-600 lg:text-white'
+                                                        : 'text-blue-100 hover:text-white lg:text-white',
+                                                )}
+                                            >
+                                                <h3>
                                                     <span
-                                                        className="absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none" />
+                                                        className='absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none' />
                                                     {feature.title}
-                                                </Tab>
-                                            </h3>
+                                                </h3>
+                                            </Tab>
+
                                             <p
                                                 className={clsx(
                                                     'mt-2 hidden text-sm lg:block',
@@ -130,12 +140,24 @@ export default function Features1() {
                                             </p>
                                         </div>
                                         <div
-                                            className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                                            className="mt-20 overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
                                             <img
-                                                className="w-full"
+                                                loading={'lazy'}
+                                                className="hidden md:block w-full"
+                                                width={1920}
+                                                height={1080}
                                                 src={feature.image}
-                                                alt=""
+                                                alt={feature.title}
                                                 sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
+                                            />
+                                            <img
+                                                loading={'lazy'}
+                                                className=" md:hidden w-full"
+                                                width={630}
+                                                height={994}
+                                                src={feature.imagemobile}
+                                                alt={feature.title}
+                                                sizes="(min-width: 640px) 100vw, 45rem"
                                             />
                                         </div>
                                     </Tab.Panel>

@@ -9,6 +9,7 @@ import '../Admin/Blogs/toolBar.scss';
 import moment from 'moment';
 import { Helmet } from 'react-helmet';
 import { useDark } from '../../App';
+import {sanitize} from 'dompurify';
 
 interface news {
   id: number;
@@ -50,6 +51,8 @@ export default function NewsCard() {
     if(!news) {
         return <Loading/>;
     }
+    document.title = `Bagou450 - ${news.title}`;
+
     return (
         <>
             <Helmet>
@@ -58,7 +61,7 @@ export default function NewsCard() {
             <h1 className={`${dark ? 'text-slate-300' : 'text-black'} text-center text-4xl mt-4`}>{news.title} <span className={'text-2xl opacity-60'}>by {news.author}</span> <span className={'text-xl opacity-40'}>{moment(news.created_at).fromNow()}</span></h1>
             <h2 className={`${dark ? 'text-slate-300' : 'text-black'} text-center text-black text-2xl mt-4 opacity-80`}>{news.slug}</h2>
             <section className={'mx-8 my-8 ql'}>
-                {ReactHtmlParser(news.content)}
+                {ReactHtmlParser(sanitize(news.content))}
 
             </section>
 

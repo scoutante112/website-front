@@ -63,9 +63,9 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
 
                     <div className="sm:mx-auto sm:w-full sm:max-w-md">
 
-                        <h2 className={`${dark ? 'text-slate-200' : 'text-black'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>
-                            Create an account
-                        </h2>
+                        <h1 className={`${dark ? 'text-slate-200' : 'text-black'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>
+                            <strong>Create an account</strong>
+                        </h1>
                     </div>
                     <form className='space-y-6' action='#' method='POST' onSubmit={formik.handleSubmit}>
                         <div>

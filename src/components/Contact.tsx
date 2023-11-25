@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import sendcontact from '../api/sendcontact';
 import { useDark } from '../App';
+import { Helmet } from 'react-helmet';
 
 const form = object({
     firstname: string().required('You need to enter your first name.'),
@@ -16,6 +17,8 @@ const form = object({
     society: string().optional(),
 });
 export default function Contact() {
+    document.title = 'Bagou450 - Contact';
+
     const [loading, setLoading] = useState<boolean>(false);
     const {dark} = useDark();
     const formik = useFormik({
@@ -88,10 +91,16 @@ export default function Contact() {
 
     return (
         <>
+            <Helmet>
+                <meta name='description' content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
 
+                <meta name="twitter:description" content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
+
+                <meta property="og:description" content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
+            </Helmet>
             <div className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} relative isolate h-screen`}>
                 <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 h-screen">
-                    <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48 h-screen">
+                    <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48 lg:h-screen">
                         <div className='mx-auto max-w-xl lg:mx-0 lg:max-w-lg'>
                             <div
                                 className={`${dark ? 'bg-bg450-lessdark' : 'bg-gray-100'} absolute inset-y-0 left-0 -z-10 w-full overflow-hidden ring-1 ring-gray-900/10 lg:w-1/2`}>
@@ -135,12 +144,12 @@ export default function Contact() {
                                 }
                             </div>
 
-                            <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-3xl font-bold tracking-tight`}>Contact Us</h2>
-                            <p className={`${dark ? 'text-slate-300' : 'text-gray-600'} mt-6 text-lg leading-8`}>
+                            <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-3xl font-bold tracking-tight`}>Contact Us</h1>
+                            <h2 className={`${dark ? 'text-slate-300' : 'text-gray-600'} mt-6 text-lg leading-8`}>
                                 Do you have any questions or need assistance? <br />Don&apos;t hesitate to get in touch
                                 with
                                 our dedicated support team.
-                            </p>
+                            </h2>
                             <dl className='mt-10 space-y-4 text-base leading-7 text-gray-600'>
                                 <div className='flex gap-x-4'>
                                     <dt className='flex-none'>
@@ -183,7 +192,7 @@ export default function Contact() {
                         </div>
                     </div>
                     <form action="#" method="POST" onSubmit={formik.handleSubmit}
-                        className='px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48'>
+                        className='px-6 pb-24 pt-12 sm:pb-32 lg:px-8 lg:py-48'>
                         <div className='mx-auto max-w-xl lg:mr-0 lg:max-w-lg'>
                             <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
                                 <div>

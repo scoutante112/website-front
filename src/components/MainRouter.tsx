@@ -6,7 +6,6 @@ import Footer from './Elements/Footer';
 import Home from './Home';
 import Discount from './Elements/Discount';
 import { useDark } from '../App';
-import AddPasskey from './Auth/AddPasskey';
 
 const NotFoundPage = lazy(() => import('./NotFoundPage'));
 const Products = lazy(() => import('./Products'));
@@ -27,6 +26,7 @@ const TosContainer = lazy(() => import('./TosContainer'));
 const PpContainer = lazy(() => import('./PpContainer'));
 const LmContainer = lazy(() => import('./LmContainer'));
 const RpContainer = lazy(() => import('./RpContainer'));
+const AddPasskey = lazy(() => import('./Auth/AddPasskey'));
 
 export const MainNavRoutes = [
     {
@@ -35,13 +35,13 @@ export const MainNavRoutes = [
         component: <Home />
     },
     {
-        name: 'Products',
+        name: 'products',
         link: '/products',
         component: <Products />
     },
     {
-        name: 'news',
-        link: '/news',
+        name: 'blog',
+        link: '/blog',
         component: <NewsContainer />
     },
     {
@@ -109,7 +109,7 @@ export const OthersRoutes = [
     },
     {
         name: 'new',
-        link: '/news/:id',
+        link: '/blog/:id',
         component: <NewsCard />
     },
     {
@@ -145,9 +145,7 @@ export default function MainRouter() {
         <>
 
             <div className={`navbar ${dark ? 'border-b-2 border-bg450-logo' : 'border-b-2 border-white'}`}>
-                <Suspense fallback={<Loading />}>
                     <NavBar/>
-                </Suspense>
 
             </div>
             <Suspense fallback={<Loading />}>
@@ -158,7 +156,7 @@ export default function MainRouter() {
 
             {/*<div className="alert alert-warning shadow-lg">
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+              <svg xmlns="https://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none"
                    viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -169,7 +167,6 @@ export default function MainRouter() {
             <div>
                 <Suspense fallback={<Loading />}>
                     <Routes>
-
                         {MainNavRoutes.map((routes, key) => (
                             <Route key={key} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
                         ))}
@@ -187,14 +184,12 @@ export default function MainRouter() {
                     </Routes>
                 </Suspense>
             </div>
-            {window.location.pathname !== '/contact' &&
             <Suspense fallback={<Loading />} >
-                <div className={dark ? 'border-t-2 border-bg450-logo' : 'border-t-2 border-white'}>
+                <div className={dark ? 'border-t-2 border-bg450-logo mt-auto    ' : 'border-t-2 border-white mt-auto'}>
                     <Footer/>
                     <p className={`${dark ? 'bg-bg450-dark text-gray-300' : 'bg-white'} text-center pb-2  w-full`}>© 2022 - 2023 Bagou450. All Rights Reserved.</p>
                 </div>
             </Suspense>
-            }
 
 
         </>

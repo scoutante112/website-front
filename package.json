@@ -5,6 +5,7 @@
   "dependencies": {
     "@bbob/preset-react": "^2.9.0",
     "@bbob/react": "^2.9.0",
+    "@chatra/chatra": "^1.0.3",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^5.0.5",
@@ -20,6 +21,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/blueimp-md5": "^2.18.0",
     "@types/debounce": "^1.2.1",
+    "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.3",
     "@types/js-beautify": "^1.14.0",
     "@types/js-cookie": "^3.0.3",
@@ -43,6 +45,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "country-list": "^2.3.0",
     "debounce": "^1.2.1",
+    "dompurify": "^3.0.6",
     "dotenv": "^16.0.0",
     "formik": "^2.2.9",
     "framer-motion": "^10.15.0",
@@ -68,6 +71,7 @@
     "react-cookie-consent": "^9.0.0",
     "react-country-region-selector": "^3.6.1",
     "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
     "react-google-button": "^0.7.2",
     "react-gravatar": "^2.6.3",
     "react-helmet": "^6.1.0",
@@ -82,6 +86,7 @@
     "react-toastify": "^9.1.2",
     "remark-breaks": "^3.0.3",
     "sass-loader": "^13.3.2",
+    "sitemap-webpack-plugin": "^1.1.1",
     "styled-components": "^6.0.3",
     "swr": "^2.1.2",
     "twin.macro": "^3.3.0",
@@ -100,7 +105,7 @@
   "scripts": {
     "watch": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --watch --progress",
     "serve": "cross-env NODE_ENV=development ./node_modules/.bin/webpack serve",
-    "build": "rm -rf public/assets/bundle* && webpack --mode production"
+    "build": "rm -rf public/assets/bundle* public/assets/*.gz public/assets/*.xml && webpack --mode production"
   },
   "eslintConfig": {
     "extends": [

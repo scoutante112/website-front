@@ -48,7 +48,6 @@ export default function NewsContainer() {
             <Loading/>
         );
     }
-    console.log(blogs);
     return (
         <section className={'mx-8 my-4'}>
 

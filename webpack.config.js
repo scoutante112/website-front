@@ -11,9 +11,55 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const glob = require('glob');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default; // Assurez-vous d'importer la version par défaut
+
 require('dotenv').config()
 
-const isProduction = true;
+const url = 'https://privatewebsite.bagou450.com'
+const urls = [
+  { path: '/', priority: 1.0 },
+  { path: '/products', priority: 0.99 },
+  { path: '/blog', priority: 0.8 },
+  { path: '/licenses', priority: 0.8 },
+  { path: '/contact', priority: 0.7 },
+  { path: '/login', priority: 0.2 },
+  { path: '/tos', priority: 0.2 },
+  { path: '/pp', priority: 0.2 },
+  { path: '/rp', priority: 0.2 },
+  { path: '/lm', priority: 0.2 },
+  { path: '/product/phpmyadmin-button', priority: 0.75 },
+  { path: '/product/auto-update', priority: 0.75 },
+  { path: '/product/txadmin-button', priority: 0.75 },
+  { path: '/product/minecraft-mods-installer', priority: 0.75 },
+  { path: '/product/txadmin-auto-setup', priority: 0.75 },
+  { path: '/product/artifacts-changer', priority: 0.75 },
+  { path: '/product/fivem-gamebuild-changer', priority: 0.75 },
+  { path: '/product/fivem-resources-manager', priority: 0.75 },
+  { path: '/product/minecraft-server-icon-changer', priority: 0.75 },
+  { path: '/product/server-banip-firewall', priority: 0.75 },
+  { path: '/product/server-importer-lite', priority: 0.75 },
+  { path: '/product/minecraft-versions-changer', priority: 0.75 },
+  { path: '/product/minecraft-bedrock-version-changer', priority: 0.75 },
+  { path: '/product/minecraft-versions-changer-bundle', priority: 0.75 },
+  { path: '/product/fivem-addons-bundle', priority: 0.75 },
+  { path: '/product/minecraft-plugins-installer', priority: 0.75 },
+  { path: '/product/minecraft-modpacks-installer', priority: 0.75 },
+  { path: '/product/egg-name-before-server-name', priority: 0.75 },
+  { path: '/product/server-limiter', priority: 0.75 },
+  { path: '/product/minecraft-addons-pack', priority: 0.75 },
+  { path: '/product/fivem-mysql-connexion-string-injector', priority: 0.75 },
+  { path: '/product/pacman-during-installation-suspension', priority: 0.75 },
+  { path: '/product/server-splitter', priority: 0.75 },
+  { path: '/product/minecraft-jar-checker', priority: 0.75 },
+  { path: '/product/server-importer-pro', priority: 0.75 },
+  { path: '/product/minecraft-template-downloader', priority: 0.75 },
+  { path: '/product/cloud-servers', priority: 0.75 },
+  { path: '/product/user-avatar-changer', priority: 0.75 },
+  { path: '/product/console-message-editor', priority: 0.75 },
+  { path: '/product/fivem-cache-remover', priority: 0.75 },
+];
+
+const isProduction = process.env.environement === 'production';
 
 module.exports = {
   devtool: 'source-map',
@@ -22,6 +68,7 @@ module.exports = {
     ignored: /node_modules/,
   },
   performance: {
+    maxAssetSize: 25000,
     hints: false
   },
   entry: './src/index.tsx',
@@ -34,8 +81,11 @@ module.exports = {
     isProduction &&  new BrotliPlugin(),
     isProduction && new WebpackManifestPlugin(),
     isProduction && new ImageminWebpWebpackPlugin(),
+
     new Dotenv(),
-    isProduction && new CompressionPlugin(),
+    isProduction && new CompressionPlugin({
+      exclude: /sitemap\.xml$/
+    }),
     isProduction && new LodashModuleReplacementPlugin(),
     isProduction && new PurgeCSSPlugin({
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
@@ -46,13 +96,26 @@ module.exports = {
       reportFilename: 'report.html',
       openAnalyzer: !isProduction,
     }),
+    new SitemapWebpackPlugin({
+      base: url,
+      paths: urls,
+      options: {
+        filename: 'sitemap.xml',
+        lastmod: true
+      },
+
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html'
-    })
+    }),
+
   ].filter(Boolean),
   devServer: {
     static: {
       directory: path.resolve(__dirname, "./public/assets")
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
     },
     historyApiFallback: true,
     hot: true

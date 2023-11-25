@@ -40,7 +40,6 @@ export default function AccountOrderContainer() {
     }
 
     document.title = 'Bagou450 - My orders';
-    console.log(data);
     return (
         <>
 
@@ -324,6 +323,8 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     Download invoice
                 </button>
                 <br />
+
+                {order['status'] === 'complete' &&
                 <button
                     className="inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
                     onClick={() => downloadProduct()}
@@ -331,6 +332,8 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                 >
                     Download product{order.products.length > 1 && 's'}
                 </button>
+
+                }
             </td>
         </tr>
 

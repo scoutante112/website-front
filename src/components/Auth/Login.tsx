@@ -10,12 +10,14 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import FinalAuthForm from './FinalAuthForm';
 import { useDark } from '../../App';
+import { Helmet } from 'react-helmet';
 
 
 export default function Login() {
     const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
     const [Isregistred, setIsRegistred] = useState<boolean>(true);
     const {dark} = useDark();
+    document.title = Isregistred ? 'Bagou450 - Login' : 'Bagou450 - Register';
 
     const [email, setEmail] = useState<string>('');
     const { data, error, isLoading } = useSWR(
@@ -32,7 +34,13 @@ export default function Login() {
     document.title = 'Bagou450 - Sign In';
     return (
         <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+            <Helmet>
+                <meta name='description' content={'Access Bagou450\'s combined Login and Registration page to create an account or sign in securely. Join our community and unlock exclusive features and benefits.'} />
 
+                <meta name="twitter:description" content={'Access Bagou450\'s combined Login and Registration page to create an account or sign in securely. Join our community and unlock exclusive features and benefits.'} />
+
+                <meta property="og:description" content={'Access Bagou450\'s combined Login and Registration page to create an account or sign in securely. Join our community and unlock exclusive features and benefits.'} />
+            </Helmet>
             <section className='py-4 text-center mx-auto'>
                 {Isregistred && email === '' ?
                     <LoginForm setEmail={setEmail} setIsRegistred={setIsRegistred}/>
