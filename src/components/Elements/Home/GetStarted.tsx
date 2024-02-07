@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -30,5 +32,5 @@ export default function GetStarted() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

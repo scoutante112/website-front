@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
 import React from 'react';
 import { useDark } from '../../../App';
 
@@ -64,5 +66,5 @@ export default function TrustedBy() {
                 ))}
             </ul>
         </div>
-    )
+    );
 }
