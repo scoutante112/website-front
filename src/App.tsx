@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 const CookiesBanner = lazy(() => import('./components/Elements/CookiesBanner'));
 const Loading = lazy(() => import('./components/Elements/Loading'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
-const AccountRouter = lazy(() => import('./components/Account/AccountRouter'));
+import AccountRouter from './components/Account/AccountRouter';
 
 
 
@@ -32,7 +32,7 @@ declare global {
     }
 }
 export const loadScript = () => {
-    if(window.chatwootSDK) {
+   /* if(window.chatwootSDK) {
         return;
     }
     const g = document.createElement('script');
@@ -46,7 +46,7 @@ export const loadScript = () => {
             websiteToken: 'zruKdBbZgYCnzPFz7EmExMyo',
             baseUrl: 'https://chat.bagou450.com',
         });
-    };
+    };*/
 };
 
 export const loadGA4 = async () => {
@@ -100,17 +100,11 @@ function App() {
 
 
                 <div className={dark ? 'min-h-screen bg-bg450-dark' : 'min-h-screen bg-white'}>
-                    <Suspense fallback={<Loading />}>
                         <Routes>
-                            <Route path={'/account/*'} element={<Suspense fallback={<Loading />}>
-                                <AccountRouter />
-                            </Suspense>} />
-                            <Route path={'/*'} element={<Suspense fallback={<Loading />}>
-                                <MainRouter />
-                            </Suspense>} />
-                            <Route path={'*'} element={<NotFoundPage />} />
+                            <Route path={'/account/*'} element={<Suspense fallback={<Loading/>}> <AccountRouter/></Suspense>} />
+                            <Route path={'/*'} element={<Suspense fallback={<Loading/>}> <MainRouter/> </Suspense>}/>
+                            <Route path={'*'} element={<NotFoundPage/>}/>
                         </Routes>
-                    </Suspense>
                 </div>
                 {!cookieConsent && <Suspense fallback={<></>}><CookiesBanner setCookieConsent={setCookieConsent}/></Suspense>}
             </Router>

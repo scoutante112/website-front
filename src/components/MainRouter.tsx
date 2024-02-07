@@ -6,6 +6,9 @@ import Footer from './Elements/Footer';
 import Home from './Home';
 import Discount from './Elements/Discount';
 import { useDark } from '../App';
+import AutoInstallerContainer from './Admin/AutoInstaller/AutoInstallerContainer';
+import AutoInstallerNew from './Admin/AutoInstaller/AutoInstallerNew';
+import AutoInstallerEdit from './Admin/AutoInstaller/AutoInstallerEdit';
 
 const NotFoundPage = lazy(() => import('./NotFoundPage'));
 const Products = lazy(() => import('./Products'));
@@ -98,7 +101,8 @@ export const AdminRoutes = [
         name: 'licenses',
         link: '/admin/licenses',
         component: <LicensesContainer />
-    },
+    }
+
 ];
 
 export const OthersRoutes = [
@@ -137,6 +141,7 @@ export const OthersRoutes = [
         link: '/rp',
         component: <RpContainer />
     }
+
 ];
 
 export default function MainRouter() {
@@ -145,7 +150,7 @@ export default function MainRouter() {
         <>
 
             <div className={`navbar ${dark ? 'border-b-2 border-bg450-logo' : 'border-b-2 border-white'}`}>
-                    <NavBar/>
+                <NavBar/>
 
             </div>
             <Suspense fallback={<Loading />}>
@@ -165,24 +170,22 @@ export default function MainRouter() {
             </div>
           </div>*/}
             <div>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {MainNavRoutes.map((routes, key) => (
-                            <Route key={key} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
-                        ))}
-                        {AuthRoutes.map((routes, key) => (
-                            <Route key={key + 500} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
-                        ))}
-                        {AdminRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
-                        ))}
-                        {OthersRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
-                        ))}
+                <Routes>
+                    {MainNavRoutes.map((routes, key) => (
+                        <Route key={key} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                    ))}
+                    {AuthRoutes.map((routes, key) => (
+                        <Route key={key + 500} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                    ))}
+                    {AdminRoutes.map((routes, key) => (
+                        <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                    ))}
+                    {OthersRoutes.map((routes, key) => (
+                        <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                    ))}
                        
-                        <Route path={'*'} element={<NotFoundPage />} />
-                    </Routes>
-                </Suspense>
+                    <Route path={'*'} element={<NotFoundPage />} />
+                </Routes>
             </div>
             <Suspense fallback={<Loading />} >
                 <div className={dark ? 'border-t-2 border-bg450-logo mt-auto    ' : 'border-t-2 border-white mt-auto'}>

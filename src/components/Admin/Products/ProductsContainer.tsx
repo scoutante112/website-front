@@ -41,7 +41,7 @@ export interface Product {
   stripe_price_id: string;
   recurrent: boolean;
 }
-interface ProductResponse {
+export interface ProductResponse {
   data: Product[];
   total: number;
 }

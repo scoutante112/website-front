@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import md5 from 'blueimp-md5';
@@ -37,5 +39,5 @@ export default function AccountMenu({data, mutate}: {data: any, mutate: any}) {
             })} className={'block px-4 py-2 text-sm text-red-700 ml-auto my-auto'}>Logout</NavLink>
 
         </div>
-    )
+    );
 }

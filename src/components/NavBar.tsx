@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
@@ -27,24 +27,22 @@ export default function NavBar() {
         fetcher
     );
 
+    useEffect(() => {
+        if(data && !error && !isLoading && window.location.pathname === '/licenses') {
+            navigate('/login');
+            toast.error('You need to be logged for see this page.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+        }
+    }, [data]);
 
-    if (!data || (error || isLoading)) {
-        return <></>;
-    }
-    const logged = data.status;
-    if(window.location.pathname === '/licenses' && !logged) {
-        navigate('/login');
-        toast.error('You need to be logged for see this page.', {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: dark ? 'dark' : 'light',
-        });
-    }
 
     return (
         <Disclosure as="header" className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow-md w-full z-5`}>
@@ -95,17 +93,17 @@ export default function NavBar() {
                             {/* Pc Profile dropdown */}
                             <div className='flex relative px-2 lg:px-0 justify-end gap-x-6 my-auto'>
 
-                                {logged ? (
+                                {(data && !error && !isLoading && data.status) ? (
                                     <Suspense fallback={<Loading/>}>
                                         <LoggedMenu data={data} mutate={mutate}/>
                                     </Suspense>
-                                ) : <div>
+                                ) : ( <div>
                                     <NavLink title='Login and Register Button' className={`${dark ? 'text-white' : 'text-gray-600'} hidden xl:block hover:opacity-50 duration-200 px-2`} to={'/login'}>
                                         <UserIcon className={'h-6 w-6 opacity-75'} />
                                     </NavLink>
 
                                 </div>
-                                }
+                                )}
                                 <BasketIcon />
                                 <DarkModeIcon/>
                             </div>
@@ -136,7 +134,7 @@ export default function NavBar() {
                             ))}
                         </div>
                         <div className="border-t border-gray-700">
-                            {logged ? (
+                            {data && !error && !isLoading && data.status  ? (
                                 <AccountMenu data={data} mutate={mutate}/>
                             ) : <div>
                                 <NavLink className={`${dark ? 'text-white' : 'text-black'} hover:opacity-75 duration-200 px-2 flex py-4`}

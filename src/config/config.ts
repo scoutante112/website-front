@@ -1,6 +1,6 @@
 export const config = {
-    apilink: 'https://privateapi.bagou450.com/api/client/web',
-    privateapilink: 'https://privateapi.bagou450.com/api/client/web',
-    iconlink: 'https://privateapi.bagou450.com',
-    privateiconlink: 'https://privateapi.bagou450.com'
+    apilink: 'http://localhost:81/api/client/web',
+    privateapilink: 'http://localhost:81/api/client/web',
+    iconlink: 'http://localhost:81',
+    privateiconlink: 'http://localhost:81'
 };

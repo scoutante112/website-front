@@ -4,13 +4,13 @@ import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
     ArrowLongLeftIcon, BellIcon, ChevronDownIcon,
-    ClipboardIcon,
+    ClipboardIcon, CogIcon,
     HomeIcon, MagnifyingGlassIcon,
     ShoppingBagIcon,
     TicketIcon, UserCircleIcon,
 } from '@heroicons/react/24/solid';
 import NotFoundPage from '../NotFoundPage';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
+import { Bars3Icon, DocumentTextIcon, TagIcon, UserGroupIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { BiRightArrow } from 'react-icons/bi';
 import useSWR from 'swr';
 import { config } from '../../config/config';
@@ -26,6 +26,9 @@ import ProductsContainer from '../Admin/Products/ProductsContainer';
 import LicensesContainer from '../Admin/Licenses/LicensesContainer';
 import DarkModeIcon from '../Elements/DarkModeIcon';
 import { useDark } from '../../App';
+import AutoInstallerNew from '../Admin/AutoInstaller/AutoInstallerNew';
+import AutoInstallerEdit from '../Admin/AutoInstaller/AutoInstallerEdit';
+import AutoInstallerContainer from '../Admin/AutoInstaller/AutoInstallerContainer';
 
 const AccountContainer = lazy(() => import('./Manager/AccountContainer'));
 const AccountLicenseContainer = lazy(() => import('./License/AccountLicenseContainer'));
@@ -90,20 +93,37 @@ export const AdminRoutes: RouteItem[] = [
         name: 'users',
         link: '/admin/users',
         component: <UsersContainer />,
-        icon: ClipboardIcon
+        icon: UserGroupIcon
     },
     {
         name: 'products',
         link: '/admin/products',
         component: <ProductsContainer />,
-        icon: ClipboardIcon
+        icon: TagIcon
     },
+
     {
         name: 'licenses',
         link: '/admin/licenses',
         component: <LicensesContainer />,
-        icon: ClipboardIcon
+        icon: DocumentTextIcon
     },
+    {
+        name: 'autoinstaller',
+        link: '/admin/autoinstaller',
+        component: <AutoInstallerContainer />,
+        icon: CogIcon
+    },
+    {
+        name: 'autoinstallerNew',
+        link: '/admin/autoinstaller/new',
+        component: <AutoInstallerNew />
+    },
+    {
+        name: 'autoinstallerEdit',
+        link: '/autoinstaller/:element',
+        component: <AutoInstallerEdit />
+    }
 ];
 
 
@@ -122,6 +142,9 @@ export default function AccountRouter() {
     );
     if (!data || (error || isLoading)) {
         return <></>;
+    }
+    if(!data.status) {
+        navigate('/');
     }
     const myaccount: Acc = {
         role: data.data.role,
@@ -279,7 +302,7 @@ export default function AccountRouter() {
                 </Transition.Root>
 
                 {/* Static sidebar for desktop */}
-                <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+                <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-72 lg:flex-col">
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} flex grow flex-col gap-y-5 overflow-y-auto border-r px-6 pb-4`}>
                         <NavLink to={'/'} className="flex h-16 shrink-0 items-center">
@@ -477,7 +500,6 @@ export default function AccountRouter() {
 
                     <main className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} py-10`}>
                         <div className='px-4 sm:px-6 lg:px-8'>
-                            <Suspense fallback={<Loading />}>
                                 <Routes>
 
 
@@ -490,7 +512,6 @@ export default function AccountRouter() {
                                     <Route path={'*'} element={<NotFoundPage />} />
 
                                 </Routes>
-                            </Suspense>
                         </div>
                     </main>
                 </div>

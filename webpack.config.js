@@ -94,7 +94,7 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: 'report.html',
-      openAnalyzer: !isProduction,
+      openAnalyzer: false,
     }),
     new SitemapWebpackPlugin({
       base: url,

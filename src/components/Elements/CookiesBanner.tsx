@@ -11,7 +11,7 @@ export default function CookiesBanner({setCookieConsent}: {setCookieConsent: Rea
     };
     return (
         <div
-            className="fixed bottom-0 left-0 right-0 bg-bg450-logo p-4"
+            className="fixed bottom-0 left-0 right-0 bg-bg450-logo p-4 z-50"
             aria-label="Cookie consent banner"
         >
             <div className="flex justify-between items-center">
@@ -27,5 +27,5 @@ export default function CookiesBanner({setCookieConsent}: {setCookieConsent: Rea
                 </button>
             </div>
         </div>
-    )
+    );
 }
