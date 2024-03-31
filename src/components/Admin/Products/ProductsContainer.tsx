@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
 import Loading from '../../Elements/Loading';
-import NavBarAccount from '../../Account/NavBarAccount';
-import { debounce } from 'debounce';
 import Pagination from '../../Elements/Pagination';
 import 'react-quill/dist/quill.snow.css';
 import EditProductButton, { Description } from './EditProductButton';
@@ -42,7 +40,7 @@ export interface Product {
   recurrent: boolean;
   descriptions: Description[];
 }
-export interface ProductResponse {
+interface ProductResponse {
   data: Product[];
   total: number;
 }
@@ -65,12 +63,12 @@ export default function ProductsContainer() {
                         <h1 className='text-base font-semibold leading-6 text-gray-900'>Products</h1>
                         <p className='mt-2 text-sm text-gray-700'>
                             You are on the <strong
-                            className='font-semibold text-gray-900'>products</strong> page.
+                                className='font-semibold text-gray-900'>products</strong> page.
                             You can here see and manage all products.
                         </p>
                     </div>
                     <div className='mt-4 sm:ml-16 sm:mt-0 sm:flex-none'>
-                        <NewProductButton/>
+                        <NewProductButton page={page} perpage={perpage} search={search}/>
 
                     </div>
 
@@ -80,29 +78,29 @@ export default function ProductsContainer() {
                 <table className='min-w-full divide-y divide-gray-300 text-black'>
                     {/* head */}
                     <thead>
-                    <tr>
-                        <th scope='col'
-                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                        <tr>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
                             Id
-                        </th>
-                        <th scope='col'
-                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
                             Name
-                        </th>
-                        <th scope='col'
-                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
                             Tag
-                        </th>
-                        <th scope='col'
-                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
                             Admin
-                        </th>
+                            </th>
 
-                        <th scope='col'
-                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
                             Version
-                        </th>
-                        <th scope='col'
+                            </th>
+                            <th scope='col'
                                 className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900  table-cell'>
                             Licensed
                             </th>

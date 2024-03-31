@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import React from 'react';
 import moment from 'moment/moment';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Ticket } from './TicketContainer';

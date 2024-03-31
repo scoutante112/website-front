@@ -8,6 +8,11 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:react/recommended'
     ],
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
     overrides: [
         {
             env: {
@@ -31,5 +36,7 @@ module.exports = {
         quotes: ['error', 'single'],
         '@typescript-eslint/no-explicit-any': ['off'],
         semi: ['error', 'always'],
+        'react/react-in-jsx-scope': 'off'
+
     },
 };

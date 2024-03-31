@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -17,7 +17,7 @@ import 'ace-builds/src-noconflict/ext-language_tools';
 import { useDark } from '../../../App';
 export default function NewProductButton({page, perpage, search}: {page: number; perpage: number, search: string}) {
     const [loading, setLoading] = useState(false);
-    const {mutate} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+    const {mutate} = useSWR(`${config.privateapilink}/admin/products?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
     const {dark} = useDark();
     const [isLicensed, setLicensed] = useState<boolean>(true);
     const [isNew, setNew] = useState<boolean>(true);
@@ -58,8 +58,8 @@ export default function NewProductButton({page, perpage, search}: {page: number;
         description: '<div class="flex flex-col w-full">\n' +
       '    <h4 class="ql-align-center">The Pterodactyl addon "Minecraft mods installer" allow you to download Minecraft mods from CurseForge and Modrinth website.</h4>\n' +
       '    <div class="divider mx-6">Functionalities</div>\n' +
-      '    <div class="grid h-20 card rounded-box place-items-center grid grid-cols-1 md:grid-cols-3 gap-x-2 gap-y-2 mx-8">\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '    <div class="h-20 card rounded-box place-items-center grid grid-cols-1 md:grid-cols-3 gap-x-2 gap-y-2 mx-8">\n' +
+      '        <div class="card bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -69,7 +69,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>Mods are automatically downloaded to the "mods" folder</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -79,7 +79,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>You can retrieve the list of mod versions to install a specific version</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -89,7 +89,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>A built-in cache system is incorporated into the addon to ensure 100% uptime, providing seamless access to CurseForge and Modrinth servers in the event of any issues</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -100,7 +100,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '            </div>\n' +
       '        </div>\n' +
       '\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -111,7 +111,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>This addons work on Pterodactyl 1.X and work also on all themes</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -121,7 +121,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>You can install this addon without any modifications to your existing nodes. It streamlines the process and does not require manual editing for each addons installation</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -131,7 +131,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>This addon utilizes our API to optimize server load and cache storage, significantly reducing the need for code edits. Additionally, it enables you to conveniently check for new addon versions directly from the panel</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1  shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
@@ -141,7 +141,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
       '                <p>We regularly provide updates to ensure the addon remains up-to-date and to add new functionalities. Rest assured, this addon will remain fully compatible with future versions of Pterodactyl, including Pterodactyl 2.X</p>\n' +
       '            </div>\n' +
       '        </div>\n' +
-      '        <div class="card w-96 bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 h-full shadow-xl h-full w-full">\n' +
+      '        <div class="card  bg-neutral hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 shadow-xl h-full w-full">\n' +
       '            <div class="card-body">\n' +
       '                <h2 class="card-title">\n' +
       '                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +

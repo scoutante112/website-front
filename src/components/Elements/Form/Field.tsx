@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import React from 'react';
 import { useDark } from '../../../App';
 
 export default function Field({name, id, type, onChange, defaultValue, className, placeholder, required, disabled}: { name: string, id: string, type: string, onChange: any; defaultValue?: string, className?: string, placeholder?: string, required?: boolean, disabled?: boolean }) {
