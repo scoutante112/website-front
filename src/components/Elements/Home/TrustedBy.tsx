@@ -1,13 +1,16 @@
 import React from 'react';
 import { useDark } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 
 export default function TrustedBy() {
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     return (
         <div className={'pb-24 sm:pb-32'}>
             <p className={`${dark ? 'text-slate-400' : 'text-slate-900'} text-lg font-display text-center`}>
-                Trusted by these companies
+                {t('trustedby')}
             </p>
             <ul
                 role="list"

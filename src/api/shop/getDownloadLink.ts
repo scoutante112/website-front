@@ -2,7 +2,7 @@ import { config } from '../../config/config';
 import http from '../http';
 
 
-const getDownloadLink = (order: number): Promise<any> => {
+const getDownloadLink = (order: string): Promise<any> => {
     return new Promise((resolve, reject) => {
         http
             .get(`${config.privateapilink}/orders/downloadlink/${order}`)

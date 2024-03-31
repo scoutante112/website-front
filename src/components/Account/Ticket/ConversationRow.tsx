@@ -9,6 +9,7 @@ import Markdown from 'marked-react';
 import { Account } from '../Manager/Forms/EditAccountForm';
 import { config } from '../../../config/config';
 import { useDark } from '../../../App';
+import ButtonSpin from '../../Elements/ButtonSpin';
 
 export interface Message {
   message: string;
@@ -35,7 +36,7 @@ export interface MessagesRequest {
 
 export default function ConversationRow({id,account,page, open}: {id: string, account: Account, page: number, open: boolean}) {
     const {dark} = useDark();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
     const {data, error, isLoading, mutate } = useSWR<MessagesRequest>(
         `${config.privateapilink}/tickets/${id}/messages?page=${page}&perPage=10`,
@@ -52,6 +53,7 @@ export default function ConversationRow({id,account,page, open}: {id: string, ac
         if(!id) {
             return;
         }
+        setLoading(true);
         addMessage(id, message, account, []).then((data) => {
             data = data.data;
             setLoading(false);
@@ -105,14 +107,15 @@ export default function ConversationRow({id,account,page, open}: {id: string, ac
 
                     <div className="flex items-start my-2" key={index}>
                         <div className="mr-2">
-                            <img alt={'User Avatar'} className={'rounded-full h-10 w-10'} src={`https://ui-avatars.com/api/?background=042049&color=5271ff&name=${message.first_name[0]}${message.last_name[0]}`} />
+                            <img alt={'User Avatar'} className={'rounded-full h-10 w-10'} src={`https://ui-avatars.com/api/?background=042049&color=5271ff&name=${message.first_name ? message.first_name[0] : 'U'}${message.last_name ? message.last_name[0] : 'u'}`} />
                         </div>
                         <div>
                             <h4 className={`${dark ? 'text-slate-400' : 'text-black'} font-bold`}>
-                                {message.role && (
+                                {message.role ? (
                                     <div className={`${dark ? 'bg-bg450-logo text-white' : 'bg-blue-50 text-blue-700'} mr-2 inline-flex items-center rounded-md  px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-blue-700/10`}>Support</div>
-                                )}
-                                {message.first_name} {message.last_name}
+                                ): <></>}
+
+                                {message.first_name ? message.first_name : 'Undefined'} {message.last_name ? message.last_name : 'user'}
                                 <time className="text-xs opacity-50 mx-1">{moment(message.created_at).fromNow()}</time>
                             </h4>
                             <div className="mt-1 text-black">
@@ -136,7 +139,7 @@ export default function ConversationRow({id,account,page, open}: {id: string, ac
             {data.data.totalPage === page && open &&
         <div className={'mt-4 mx-4'}>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <div className="mt-2">
                     <textarea
                         rows={4}
@@ -149,7 +152,7 @@ export default function ConversationRow({id,account,page, open}: {id: string, ac
                     />
                 </div>
                 <div className={'flex justify-end'}>
-                    <button         className={`${loading && 'opacity-50'} mt-2 rounded-md bg-bg450-logo px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled`} type={'submit'} disabled={loading}>Send message</button>
+                    <button         className={`${loading && 'opacity-50'} mt-2 rounded-md bg-bg450-logo px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled`} type={'submit'} disabled={loading}>{loading ? <ButtonSpin/> : 'Send message'}</button>
 
                 </div>
             </form>

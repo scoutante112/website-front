@@ -14,10 +14,11 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/ext-language_tools';
+import { useDark } from '../../../App';
 export default function NewProductButton({page, perpage, search}: {page: number; perpage: number, search: string}) {
     const [loading, setLoading] = useState(false);
     const {mutate} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
-
+    const {dark} = useDark();
     const [isLicensed, setLicensed] = useState<boolean>(true);
     const [isNew, setNew] = useState<boolean>(true);
     const [isAutoInstaller, setAutoInstaller] = useState<boolean>(true);
@@ -25,6 +26,8 @@ export default function NewProductButton({page, perpage, search}: {page: number;
     const [isRecurrent, setRecurrent] = useState<boolean>(false);
     const [isHidded, setHide] = useState<boolean>(false);
     const [isExtension, setExtension] = useState<boolean>(false);
+    const [isWings, setWings] = useState<boolean>(false);
+
     const [open, setOpen] = useState<boolean>(false);
     const [logo, setLogo] = useState<File | null>(null);
     const [zip, setZip] = useState<File | null>(null);
@@ -34,6 +37,9 @@ export default function NewProductButton({page, perpage, search}: {page: number;
         tabroute: string().nullable(),
         version: number().required(),
         sxcname: string().nullable(),
+        slug: string().required(),
+        category: string().required(),
+
         bbb_id: number().nullable(),
         tag: string().required(),
         description: string().required(),
@@ -45,6 +51,8 @@ export default function NewProductButton({page, perpage, search}: {page: number;
         name: '',
         tabroute: '',
         version: 1.0,
+        category: 'minecraft',
+        slug: '',
         bbb_id: 0,
         tag: '',
         description: '<div class="flex flex-col w-full">\n' +
@@ -261,7 +269,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
             if(!zip || getFileExtension(zip.name) !== 'zip') {
                 return;
             }
-            createProduct(values.name, values.tag, values.version, values.price, values.sxcname, values.bbb_id, values.link, isLicensed, isNew, isAutoInstaller, isRecurrent, isTab, values.tabroute, values.description, isHidded, logo, zip, isExtension, values.extensionProduct).then((data) => {
+            createProduct(values.name, values.tag, values.version, values.price, values.sxcname, values.bbb_id, values.link, isLicensed, isNew, isAutoInstaller, isRecurrent, isTab, values.tabroute, values.description, isHidded, logo, zip, isExtension, values.slug, isWings, values.category, values.extensionProduct).then((data) => {
                 if (data.data['status'] === 'error') {
                     toast.error(data.data['message'], {
                         position: 'bottom-right',
@@ -354,7 +362,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='name'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    Name
+                                                                Name
                                                             </label>
                                                         </div>
                                                         <input
@@ -370,7 +378,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='tag'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    Tag
+                                                                Tag
                                                             </label>
                                                         </div>
                                                         <input
@@ -386,7 +394,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='version'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    Version
+                                                                Version
                                                             </label>
                                                         </div>
                                                         <input
@@ -402,7 +410,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='price'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    Price
+                                                                Price
                                                             </label>
                                                         </div>
                                                         <input
@@ -419,7 +427,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='sxcName'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    SxcName
+                                                                SxcName
                                                             </label>
                                                         </div>
                                                         <input
@@ -436,7 +444,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='bbb_id'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    BBB id
+                                                                BBB id
                                                             </label>
                                                         </div>
                                                         <input
@@ -453,7 +461,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                             <label htmlFor='link'
                                                                 onClick={() => navigator.clipboard.writeText('[{"name":"ssx","link":""},{"name":"pm","link":""},{"name":"bbb","link":""}]')}
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                    Link
+                                                                Link
                                                             </label>
                                                         </div>
                                                         <input
@@ -466,6 +474,43 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         />
                                                     </div>
 
+                                                </div>
+                                                <div className={'mt-10 grid md:grid-cols-2 w-full gap-x-2'}>
+
+                                                    <div className='form-control w-full max-w-xs'>
+                                                        <div>
+                                                            <label htmlFor='slug'
+                                                                className=' block text-sm font-medium leading-6 text-gray-900'>
+                                                                Slug
+                                                            </label>
+                                                        </div>
+                                                        <input
+                                                            type='text'
+                                                            name='slug'
+                                                            defaultValue={''}
+                                                            onChange={formik.handleChange}
+                                                            disabled={loading}
+                                                            id='slug'
+                                                            className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                                        />
+                                                    </div>
+                                                    <div className='form-control w-full max-w-xs'>
+                                                        <div>
+                                                            <label htmlFor='category'
+                                                                className=' block text-sm font-medium leading-6 text-gray-900'>
+                                                                Category
+                                                            </label>
+                                                        </div>
+                                                        <input
+                                                            type='text'
+                                                            name='category'
+                                                            defaultValue={'minecraft'}
+                                                            onChange={formik.handleChange}
+                                                            disabled={loading}
+                                                            id='category'
+                                                            className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                                        />
+                                                    </div>
                                                 </div>
                                                 <div className={'mt-10 grid md:grid-cols-4 w-full'}>
                                                     <div className='relative flex items-start'>
@@ -484,7 +529,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='licensed'
                                                                 className='font-medium text-gray-900'>
-                                    Licensed
+                                                                Licensed
                                                             </label>
 
                                                         </div>
@@ -505,7 +550,28 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='new'
                                                                 className='font-medium text-gray-900'>
-                                    New
+                                                                New
+                                                            </label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div className='relative flex items-start'>
+                                                        <div className='flex h-6 items-center'>
+                                                            <input
+                                                                id='isWings'
+                                                                aria-describedby='comments-description'
+                                                                name='isWings'
+                                                                type='checkbox'
+                                                                onChange={() => setWings(!isWings)}
+                                                                disabled={loading}
+                                                                defaultChecked={isWings}
+                                                                className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                                                            />
+                                                        </div>
+                                                        <div className='ml-3 text-sm leading-6'>
+                                                            <label htmlFor='new'
+                                                                className='font-medium text-gray-900'>
+                                                                Wings
                                                             </label>
 
                                                         </div>
@@ -526,7 +592,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='autoinstaller'
                                                                 className='font-medium text-gray-900'>
-                                    AutoInstaller
+                                                                AutoInstaller
                                                             </label>
 
                                                         </div>
@@ -547,7 +613,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='recurrent'
                                                                 className='font-medium text-gray-900'>
-                                    Recurrent
+                                                                Recurrent
                                                             </label>
 
                                                         </div>
@@ -568,7 +634,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='hidded'
                                                                 className='font-medium text-gray-900'>
-                                    Hidded
+                                                                Hidded
                                                             </label>
 
                                                         </div>
@@ -589,7 +655,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='tab'
                                                                 className='font-medium text-gray-900'>
-                                    Tab
+                                                                Tab
                                                             </label>
 
                                                         </div>
@@ -610,7 +676,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div className='ml-3 text-sm leading-6'>
                                                             <label htmlFor='extension'
                                                                 className='font-medium text-gray-900'>
-                                    Extension
+                                                                Extension
                                                             </label>
 
                                                         </div>
@@ -621,7 +687,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                         <div>
                                                             <label htmlFor='extensionProduct'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                      Extension product Id
+                                                                Extension product Id
                                                             </label>
                                                         </div>
                                                         <input
@@ -637,7 +703,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                     <div>
                                                         <label htmlFor='link'
                                                             className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                  Tab Route
+                                                            Tab Route
                                                         </label>
                                                     </div>
                                                     <input
@@ -654,7 +720,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
 
                                                     <label htmlFor='zip'
                                                         className='block text-sm font-medium leading-6 text-gray-900'>
-                                Zip
+                                                        Zip
                                                     </label>
                                                     <div
                                                         className='mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10'>
@@ -690,7 +756,7 @@ export default function NewProductButton({page, perpage, search}: {page: number;
 
                                                     <label htmlFor='logo'
                                                         className='block text-sm font-medium leading-6 text-gray-900'>
-                                Icon
+                                                        Icon
                                                     </label>
                                                     <div
                                                         className='mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10'>
@@ -724,66 +790,66 @@ export default function NewProductButton({page, perpage, search}: {page: number;
                                                 </div>
 
                                                 {(logo !== null || zip !== null) &&
-                                <div className='w-full col-span-2 my-10'>
+                                                    <div className='w-full col-span-2 my-10'>
 
-                                    <table className='min-w-full divide-y divide-gray-300 border-2'>
+                                                        <table className='min-w-full divide-y divide-gray-300 border-2'>
 
-                                        <thead className='bg-gray-50'>
-                                            <tr>
-                                                <th scope='col'
-                                                    className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6'>
-                                        Name
-                                                </th>
-                                                <th scope='col'
-                                                    className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
-                                        Size
-                                                </th>
-                                                <th scope='col'
-                                                    className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
-                                        Extension
-                                                </th>
-                                            </tr>
-                                        </thead>
+                                                            <thead className='bg-gray-50'>
+                                                                <tr>
+                                                                    <th scope='col'
+                                                                        className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6'>
+                                                                    Name
+                                                                    </th>
+                                                                    <th scope='col'
+                                                                        className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
+                                                                    Size
+                                                                    </th>
+                                                                    <th scope='col'
+                                                                        className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
+                                                                    Extension
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
 
-                                        <tbody
-                                            className='divide-y divide-gray-200 bg-white border-2 my-4'>
-                                            {logo !== null && logo && (
-                                                <tr key={logo.name}>
-                                                    <td className='border-1 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
-                                                        {logo.name.slice(0, 40)}
-                                                    </td>
-                                                    <td
-                                                        className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${
-                                                            getBackgroundColor(logo.size)
-                                                        }`}
-                                                    >
-                                                        {formatFileSize(logo.size)}
-                                                    </td>
-                                                    <td className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${getFileExtension(logo.name) !== 'webp' ? 'text-white bg-red-500' : 'bg-green-500'}`}>
-                                                        {getFileExtension(logo.name)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            {zip !== null && zip && (
-                                                <tr key={zip.name}>
-                                                    <td className='border-1 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
-                                                        {zip.name.slice(0, 40)}
-                                                    </td>
-                                                    <td
-                                                        className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${
-                                                            getBackgroundColor(zip.size)
-                                                        }`}
-                                                    >
-                                                        {formatFileSize(zip.size)}
-                                                    </td>
-                                                    <td className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${getFileExtension(zip.name) !== 'zip' ? 'text-white bg-red-500' : 'bg-green-500'}`}>
-                                                        {getFileExtension(zip.name)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                            <tbody
+                                                                className='divide-y divide-gray-200 bg-white border-2 my-4'>
+                                                                {logo !== null && logo && (
+                                                                    <tr key={logo.name}>
+                                                                        <td className='border-1 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
+                                                                            {logo.name.slice(0, 40)}
+                                                                        </td>
+                                                                        <td
+                                                                            className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${
+                                                                                getBackgroundColor(logo.size)
+                                                                            }`}
+                                                                        >
+                                                                            {formatFileSize(logo.size)}
+                                                                        </td>
+                                                                        <td className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${getFileExtension(logo.name) !== 'webp' ? 'text-white bg-red-500' : 'bg-green-500'}`}>
+                                                                            {getFileExtension(logo.name)}
+                                                                        </td>
+                                                                    </tr>
+                                                                )}
+                                                                {zip !== null && zip && (
+                                                                    <tr key={zip.name}>
+                                                                        <td className='border-1 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
+                                                                            {zip.name.slice(0, 40)}
+                                                                        </td>
+                                                                        <td
+                                                                            className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${
+                                                                                getBackgroundColor(zip.size)
+                                                                            }`}
+                                                                        >
+                                                                            {formatFileSize(zip.size)}
+                                                                        </td>
+                                                                        <td className={`border-1 whitespace-nowrap px-3 py-4 text-sm text-gray-500 ${getFileExtension(zip.name) !== 'zip' ? 'text-white bg-red-500' : 'bg-green-500'}`}>
+                                                                            {getFileExtension(zip.name)}
+                                                                        </td>
+                                                                    </tr>
+                                                                )}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 }
 
                                                 <AceEditor

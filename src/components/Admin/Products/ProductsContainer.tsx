@@ -7,7 +7,7 @@ import NavBarAccount from '../../Account/NavBarAccount';
 import { debounce } from 'debounce';
 import Pagination from '../../Elements/Pagination';
 import 'react-quill/dist/quill.snow.css';
-import EditProductButton from './EditProductButton';
+import EditProductButton, { Description } from './EditProductButton';
 import NewProductButton from './NewProductButton';
 
 
@@ -40,6 +40,7 @@ export interface Product {
   stripe_id: string;
   stripe_price_id: string;
   recurrent: boolean;
+  descriptions: Description[];
 }
 interface ProductResponse {
   data: Product[];

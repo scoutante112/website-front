@@ -16,7 +16,7 @@
     Header always append X-Frame-Options "SAMEORIGIN"
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     Header set X-Content-Type-Options "nosniff"
-    Header set Content-Security-Policy "default-src 'self' *.github.com *.tailwindui.co *.tailwindui.com *.chatra.io *.wp.com *.bagou450.com *.w3.org *.wp.com *.b450.eu *.youtube.com *.google-analytics.com *.googletagmanager.com *.gstatic.com *.googleapis.com *.ui-avatars.com 'unsafe-inline'; img-src 'self' *.wp.com *.bagou450.com *.gravatar.com *.ui-avatars.com data:"
+    Header set Content-Security-Policy "default-src 'self' *.googletagmanager.com *.githubusercontent.com *.ipapi.co *.discordapp.com *.placehold.co *.googleusercontent.com *.github.com *.tailwindui.co *.tailwindui.com *.chatra.io *.wp.com *.bagou450.com *.w3.org *.wp.com *.b450.eu *.youtube.com *.google-analytics.com *.googletagmanager.com *.gstatic.com *.googleapis.com *.ui-avatars.com 'unsafe-inline'; connect-src 'self' *.placehold.co *.googletagmanager.com *.githubusercontent.com *.ipapi.co *.discordapp.com *.googleusercontent.com *.github.com *.tailwindui.co *.tailwindui.com *.chatra.io *.wp.com *.bagou450.com *.w3.org *.wp.com *.b450.eu *.youtube.com *.google-analytics.com *.googletagmanager.com *.gstatic.com *.googleapis.com *.ui-avatars.com *.ipapi.co https://ipapi.co/json/; img-src 'self' *.wp.com *.bagou450.com *.gravatar.com *.ui-avatars.com *.githubusercontent.com *.placehold.co *.ipapi.co *.discordapp.com ui-avatars.com *.googleusercontent.com *.googletagmanager.com *.github.com data:"
 </IfModule>
 
 <IfModule mod_expires.c>

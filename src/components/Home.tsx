@@ -6,10 +6,14 @@ import Loading from './Elements/Loading';
 const Features1 = lazy(() => import('./Elements/Home/Features1'));
 const Features2 = lazy(() => import('./Elements/Home/Features2'));
 const GetStarted = lazy(() => import('./Elements/Home/GetStarted'));
+import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
 
 export default function Home() {
-
     const {dark} = useDark();
+    const { t } = useTranslation();
+    document.title = `Bagou450 | ${t('home.pageTitle')}`;
+    const lang = Cookies.get('lang') || navigator.language.split('-')[0];
 
     function scrollToFeatures(event: any) {
         event.preventDefault();
@@ -26,7 +30,7 @@ export default function Home() {
     return (
         <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
 
-            <div className="relative isolate pt-8">
+            <div className=" pt-8">
                 <div
                     className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none"
                     aria-hidden="true"
@@ -43,22 +47,23 @@ export default function Home() {
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h1 className={`${dark ? 'text-white' : 'text-gray-900'} text-4xl font-bold tracking-tight sm:text-6xl`}>
-                                Unleashing the Pterodactyl Potential
+                                <strong>{t('home.title')}</strong>
                             </h1>
                             <h2 className={`${dark ? 'text-gray-400' : 'text-gray-600'} mt-6 text-lg leading-8`}>
-                                Harness the power of our premium Pterodactyl addons, tailored for performance and reliability. Web
-                                solutions and
-                                server configurations also available.
+                                {t('home.subtitle')}
                             </h2>
                             <div className="mt-24 lg:mt-10 flex items-center justify-center gap-x-6">
                                 <NavLink
-                                    to={'/products'}
+                                    onClick={() => {
+                                        window.scrollTo(0, 0);
+                                    }}
+                                    to={`/${lang}/products/pterodactyl/addons`}
                                     className="rounded-md bg-bg450-logo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    Explore Our Pterodactyl Addons
+                                    {t('home.button1')}
                                 </NavLink>
-                                <a href={'/#features'} className={`text-sm font-semibold leading-6 ${dark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-900 hover:text-gray-700'}`} onClick={scrollToFeatures}>
-                                    Learn more <span aria-hidden="true">→</span>
+                                <a href={'#features'} className={`text-sm font-semibold leading-6 ${dark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-900 hover:text-gray-700'}`} onClick={scrollToFeatures}>
+                                    {t('home.button2')} <span aria-hidden="true">→</span>
                                 </a>
                             </div>
                         </div>

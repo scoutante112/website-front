@@ -25,15 +25,16 @@ export default function Product() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    const { id } = useParams();
+    const { id,defaultcat } = useParams();
+    const lang = Cookies.get('lang');
+
     const navigate = useNavigate();
     if(!id) {
         navigate('/');
     }
-    const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}`, fetcher);
+    const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}&lang=${lang}`, fetcher);
     const [basket, setBasket] = useState<basketItem[]>();
     const [inBasket, setInBasket] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(false);
     const [index, setIndex] = React.useState(-1);
     const [images, setImages] = useState<SlideImage[]>([]);
 
@@ -90,15 +91,18 @@ export default function Product() {
                 progress: undefined,
                 theme: dark ? 'dark' : 'light',
             });
-            return navigate('/');
+            window.location.href = '/';
+            return <></>;
         }
     }
 
     const addon = data.data;
-
+    if(addon.category.toLowerCase() !== defaultcat?.toLowerCase()) {
+        navigate(`/product/pterodactyl/addons/${addon.category.toLowerCase()}/${addon.slug}`);
+        return <></>;
+    }
 
     const downloadProduct = () => {
-        setLoading(true);
         toast.info('Please wait during the generation of the file...', {
             position: 'bottom-right',
             autoClose: 5000,
@@ -158,9 +162,6 @@ export default function Product() {
 
             });
         }
-
-        setLoading(false);
-
     };
 
     const addBasket = () => {
@@ -172,7 +173,7 @@ export default function Product() {
         } else {
             setBasket([]);
         }
-        const newItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag, icon: `${config.iconlink}${addon.icon}`, longId: id };
+        const newItem: basketItem = { id: addon.id, name: addon.name, price: addon.price, tag: addon.tag, icon: `${config.iconlink}${addon.icon}`, longId: (id ?? '0') };
         if(!basket || !basket.length) {
             localStorage.setItem('basket', JSON.stringify([newItem]));
             window.dispatchEvent(new Event('basket'));
@@ -255,7 +256,7 @@ export default function Product() {
                                 width={'500px'}
                                 className="object-cover object-center"
                                 onError={(e) => {
-                                    e.target.src = 'https://i0.wp.com/nigoun.fr/wp-content/uploads/2022/04/placeholder.png?ssl=1';
+                                    (e.target as HTMLImageElement).src = 'https://i0.wp.com/nigoun.fr/wp-content/uploads/2022/04/placeholder.png?ssl=1';
                                 }}
                             />
                         </div>
@@ -268,9 +269,9 @@ export default function Product() {
                             <div className="mt-4">
                                 <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-2xl font-bold tracking-tight sm:text-3xl`}><strong>{addon.name}</strong></h1>
 
-                                <h2 id="information-heading" className="sr-only">
+                                <p id="information-heading" className="sr-only">
                                     Pterodactyl addon product information
-                                </h2>
+                                </p>
                                 <p className="mt-2 text-sm text-gray-500">
                                     Version {addon.version}{`${addon.version}`.length === 1 && '.0'}
                                 </p>
@@ -324,7 +325,7 @@ export default function Product() {
                             </div>
                         </div>
 
-                        <p className='mt-6 text-gray-500'>{addon.tag}</p>
+                        <h2 className='mt-6 text-gray-500'>{addon.tag}</h2>
 
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                             <button

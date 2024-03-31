@@ -139,7 +139,7 @@ export default function AskCode({setOpenModal, email}: {setOpenModal: React.Disp
                                 <ExclamationTriangleIcon className="h-6 w-6 text-yellow-600" aria-hidden="true" />
                             </div>
                             <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                                <Dialog.Title as="h3" className={`text-base font-semibold leading-6 ${dark ? 'text-slate-200' : 'text-gray-900'}`}>
                                 Add a new PassKey
                                 </Dialog.Title>
                                 <div className="mt-2">

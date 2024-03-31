@@ -7,7 +7,6 @@ import {
     parseCreationOptionsFromJSON,
     parseRequestOptionsFromJSON,
 } from '@github/webauthn-json/browser-ponyfill';
-import addPasskey from '../../api/auth/passkeys/addPasskey';
 import { toast } from 'react-toastify';
 import login from '../../api/auth/login';
 import usePasskey from '../../api/auth/passkeys/usePassKey';
@@ -47,7 +46,6 @@ export default function FinalAuthForm({email}: {email: string}) {
                     return;
                 }
                 const options = data.data.data;
-
                 if (data.data.isKey) {
                     await get(
                         parseRequestOptionsFromJSON({
@@ -150,7 +148,8 @@ export default function FinalAuthForm({email}: {email: string}) {
                                 theme: dark ? 'dark' : 'light',
                             });
                         });
-                    }).catch(() => {
+                    }).catch((e) => {
+                        console.error(e)
                         toast.error('An unexpected error occurred. You used the correct key? Code: BagAuth-022', {
                             position: 'bottom-right',
                             autoClose: 5000,

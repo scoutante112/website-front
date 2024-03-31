@@ -12,7 +12,8 @@ export interface basketItem {
   name: string,
   price: number,
   icon: string;
-  tag: string
+  tag: string;
+  longId: string;
 }
 export default function BasketIcon() {
     const [basket, setBasket] = useState<basketItem[]>();

@@ -10,6 +10,7 @@ import getInvoiceDownloadLink from '../../../api/shop/getInvoiceDownloadLink';
 import Loading from '../../Elements/Loading';
 import { NavContext } from '../AccountRouter';
 import { useDark } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 
 interface OrderItem {
@@ -24,6 +25,7 @@ interface OrderItem {
 export default function AccountOrderContainer() {
     const [page, setPage] = useState<number>(1);
     const {dark} = useDark();
+    const { t } = useTranslation();
 
     const { data, error, isLoading } = useSWR(
         `${config.privateapilink}/orders?page=${page}`,
@@ -38,8 +40,7 @@ export default function AccountOrderContainer() {
     if (!data || (error || isLoading)) {
         return <Loading/>;
     }
-
-    document.title = 'Bagou450 - My orders';
+    document.title = `Bagou450 - ${t('account.order.title')}`;
     return (
         <>
 
@@ -47,11 +48,11 @@ export default function AccountOrderContainer() {
 
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                        <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Orders</h1>
+                        <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>{t('account.order.title')}</h1>
                         <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
-                            You are on the <strong
-                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>orders</strong> page.
-                            You can here see all your orders.
+                            {t('account.utils.youare')} <strong
+                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.order.title').toLowerCase()}</strong> {t('account.utils.page')}.
+                            {t('account.order.description')}
                         </p>
                     </div>
                 </div>
@@ -62,35 +63,35 @@ export default function AccountOrderContainer() {
                             <tr>
                                 <th scope='col'
                                     className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
-                                Id
+                                    {t('account.order.col1')}
                                 </th>
                                 <th scope='col'
                                     className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
 
-                                Product
+                                    {t('account.order.col2')}
                                 </th>
                                 <th scope='col'
                                     className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
 
-                                Status
+                                    {t('account.order.col3')}
                                 </th>
                                 <th scope='col'
                                     className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
 
-                                Price
+                                    {t('account.order.col4')}
                                 </th>
                                 <th scope='col'
                                     className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
 
-                                Transaction Id
+                                    {t('account.order.col5')}
                                 </th>
                                 <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
-                                    <span className='sr-only'>Select</span>
+                                    <span className='sr-only'>{t('account.order.col6')} </span>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {data.data.orders.map((order: OrderItem, planIdx: number) => (
+                            {data.data && data.data.orders && data.data.orders.length > 0 && data.data.orders.map((order: OrderItem, planIdx: number) => (
                                 <OrderRow order={order} index={planIdx} key={planIdx}/>
                             ))}
                         </tbody>
@@ -103,9 +104,9 @@ export default function AccountOrderContainer() {
             >
                 <div className='hidden sm:block'>
                     <p className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-sm `}>
-                        Showing <span className='font-medium'>{page * 10 - 10}</span> to <span
-                            className='font-medium'>{page * 10}</span> of{' '}
-                        <span className='font-medium'>{data.data.total}</span> results
+                        {t('account.utils.pagination.show')}  <span className='font-medium'>{page * 10 - 10}</span> {t('account.utils.pagination.to')}  <span
+                            className='font-medium'>{page * 10}</span> {t('account.utils.pagination.of')} {' '}
+                        <span className='font-medium'>{data.data ? data.data.total : '0'}</span> {t('account.utils.pagination.result')}
                     </p>
                 </div>
                 <div className='flex flex-1 justify-between sm:justify-end'>
@@ -114,14 +115,14 @@ export default function AccountOrderContainer() {
                         disabled={page < 2}
                         className={`${page < 2 && 'opacity-50'} relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
                     >
-                        Previous
+                        {t('account.utils.pagination.previous')}
                     </button>
                     <button
                         onClick={() => setPage(page+1)}
-                        disabled={page*10 >= data.data.total}
-                        className={`${page*10 >= data.data.total && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
+                        disabled={page*10 >= data.data ? data.data.total : 0}
+                        className={`${page*10 >= data.data ? data.data.total : 0 && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
                     >
-                        Next
+                        {t('account.utils.pagination.next')}
                     </button>
                 </div>
             </nav>
@@ -134,9 +135,11 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
     const [loading, setLoading] = useState<boolean>(false);
     const orderid = order.order_id;
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     const downloadProduct = () => {
         setLoading(true);
-        toast.info('Please wait during the generation of the file...', {
+        toast.info(t('account.order.row.toast.1'), {
             position: 'bottom-right',
             autoClose: 5000,
             hideProgressBar: false,
@@ -156,7 +159,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                 }
             }).then(response => response.blob()).then(blob => {
                 if(blob.type === 'application/json') {
-                    return toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                    return toast.error(t('account.utils.errormessage'), {
                         position: 'bottom-right',
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -179,7 +182,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                 if (link.parentNode) {
                     link.parentNode.removeChild(link);
                 }
-                toast.success('Your file is now downloaded!', {
+                toast.success(t('account.order.row.toast.2'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -190,7 +193,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     theme: dark ? 'dark' : 'light',
                 });
             }).catch(() => {
-                toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                toast.error(t('account.utils.errormessage'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -204,7 +207,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
             });
 
         }).catch(() => {
-            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+            toast.error(t('account.utils.errormessage'), {
                 position: 'bottom-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -233,7 +236,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
             }).then(response => response.blob()).then(blob => {
                 // Téléchargement du fichier blob
                 if(blob.type === 'application/json') {
-                    return toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                    return toast.error(t('account.utils.errormessage'), {
                         position: 'bottom-right',
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -253,7 +256,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                 if (link.parentNode) {
                     link.parentNode.removeChild(link);
                 }
-                toast.success('Your invoice is now downloaded!', {
+                toast.success(t('account.order.row.toast.3'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -264,7 +267,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     theme: dark ? 'dark' : 'light',
                 });
             }).catch(() => {
-                toast.error('An unexcepted error happend. Please contact one of our support team.', {
+                toast.error(t('account.utils.errormessage'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -300,7 +303,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200 hidden px-3 py-3.5 text-sm lg:table-cell`}
                 onClick={() => {
                     navigator.clipboard.writeText(order.stripe_id);
-                    toast.success('Transaction id copied to clipboard.', {
+                    toast.success(t('account.order.row.toast.4'), {
                         position: 'bottom-right',
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -320,7 +323,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     onClick={() => downloadInvoice()}
                     disabled={loading}
                 >
-                    Download invoice
+                    {t('account.order.row.button.1')}
                 </button>
                 <br />
 
@@ -330,7 +333,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     onClick={() => downloadProduct()}
                     disabled={loading}
                 >
-                    Download product{order.products.length > 1 && 's'}
+                    {t('account.order.row.button.2')}{order.products.length > 1 && 's'}
                 </button>
 
                 }

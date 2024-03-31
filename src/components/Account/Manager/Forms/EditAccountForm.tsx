@@ -10,6 +10,7 @@ import deleteOauth from '../../../../api/account/deleteOauth';
 import { config } from '../../../../config/config';
 import { useDark } from '../../../../App';
 import Field from '../../../Elements/Form/Field';
+import { useTranslation } from 'react-i18next';
 
 type DiscordUser = {
   avatar: string;
@@ -42,9 +43,10 @@ type GithubAcc = {
 export type Account = {
   email: string;
   name: string;
-  role: boolean;
+  role: number;
   discord: DiscordAcc;
   google: GoogleAcc;
+  newsletter: boolean;
   github: GithubAcc;
 }
 
@@ -55,6 +57,8 @@ export default function EditAccountForm({account}: {account: Account}) {
     const [error, showError] = useState<string>();
     const [error2, showError2] = useState<string>();
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
         fetcher
@@ -62,7 +66,7 @@ export default function EditAccountForm({account}: {account: Account}) {
     const changeEmail = debounce((value: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!emailRegex.test(value)) {
-            showError('This email is invalid.');
+            showError(t('account.form1.error.email'));
             return;
         }
 
@@ -84,7 +88,7 @@ export default function EditAccountForm({account}: {account: Account}) {
                     theme: dark ? 'dark' : 'light',
                 });
             } else {
-                toast.success('Success! Your email was edited.', {
+                toast.success(t('account.form1.toast1'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -100,7 +104,7 @@ export default function EditAccountForm({account}: {account: Account}) {
             setLoading(false);
             mutate();
         }).catch(() => {
-            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+            toast.error(t('account.utils.errormessage'), {
                 position: 'bottom-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -115,7 +119,7 @@ export default function EditAccountForm({account}: {account: Account}) {
     }, 500);
     const changeUsername = debounce((value: string) => {
         if(value === '') {
-            showError2('Can\'t use a empty username.');
+            showError2(t('account.form1.error.username'));
             return;
         }
 
@@ -137,7 +141,7 @@ export default function EditAccountForm({account}: {account: Account}) {
                     theme: dark ? 'dark' : 'light',
                 });
             } else {
-                toast.success('Success! Your username was edited.', {
+                toast.success(t('account.form1.toast2'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -153,7 +157,7 @@ export default function EditAccountForm({account}: {account: Account}) {
             setLoading(false);
             mutate();
         }).catch(() => {
-            toast.error('An unexcepted error happend. Please contact one of our support team.', {
+            toast.error(t('account.utils.errormessage'), {
                 position: 'bottom-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -181,11 +185,14 @@ export default function EditAccountForm({account}: {account: Account}) {
 export function Discord({account}: {account: Account}) {
     const discord = account.discord;
     const {dark} = useDark();
+
     const [loading, setLoading] = useState(false);
     const { mutate } = useSWR(
-        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
         fetcher
     );
+    const { t } = useTranslation();
+
     const discordLink = (() => {
         setLoading(true);
         linkOauth('discord').then((data) => {
@@ -197,7 +204,7 @@ export function Discord({account}: {account: Account}) {
         setLoading(true);
         deleteOauth('discord').then((data) => {
             if(data.data['status'] === 'success') {
-                toast.success('You have unlinked your Discord account successfully!', {
+                toast.success(`${t('account.form1.utils.unlink1')} Discord ${t('account.form1.utils.unlink2')}!`, {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -227,7 +234,7 @@ export function Discord({account}: {account: Account}) {
     });
     return (
         <div>
-            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{discord.status ? 'Your Discord account' : 'Link your Discord Account'}</h2>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{discord.status ? t('account.form1.discord.title1') : t('account.form1.discord.title2') }</h2>
             <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
                 {discord.status ?
                     (<div className={'mx-auto'}>
@@ -247,7 +254,7 @@ export function Discord({account}: {account: Account}) {
                                 onClick={() => discordLink()}
                                 className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Unlink Discord account
+                                {t('account.form1.discord.unlink')}
                             </button>
                         </div>
                     </div>
@@ -260,7 +267,7 @@ export function Discord({account}: {account: Account}) {
                             onClick={() => discordLink()}
                             className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Link Discord account
+                            {t('account.form1.discord.link')}
                         </button>
                     </div>
 
@@ -276,9 +283,11 @@ export function Google({account}: {account: Account}) {
     const [loading, setLoading] = useState(false);
     const {dark} = useDark();
     const { mutate } = useSWR(
-        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
         fetcher
     );
+    const { t } = useTranslation();
+
     const googleLink = (() => {
         setLoading(true);
         linkOauth('google').then((data) => {
@@ -290,7 +299,7 @@ export function Google({account}: {account: Account}) {
         setLoading(true);
         deleteOauth('google').then((data) => {
             if(data.data['status'] === 'success') {
-                toast.success('You have unlinked your Google account successfully!', {
+                toast.success(`${t('account.form1.utils.unlink1')} Google ${t('account.form1.utils.unlink2')}!`, {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -320,7 +329,7 @@ export function Google({account}: {account: Account}) {
     });
     return (
         <div>
-            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{google.status ? 'Your Google account' : 'Link your Google Account'}</h2>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{google.status ? t('account.form1.google.title1') : t('account.form1.google.title2') }</h2>
             <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
                 {google.status ?
                     (<div className={'mx-auto'}>
@@ -340,7 +349,7 @@ export function Google({account}: {account: Account}) {
                                 onClick={() => googleUnlink()}
                                 className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Unlink Google account
+                                {t('account.form1.google.unlink')}
                             </button>
                         </div>
                     </div>
@@ -353,7 +362,7 @@ export function Google({account}: {account: Account}) {
                             onClick={() => googleLink()}
                             className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Link Google account
+                            {t('account.form1.google.link')}
                         </button>
                     </div>
 
@@ -369,7 +378,7 @@ export function Github({account}: {account: Account}) {
     const {dark} = useDark();
     const [loading, setLoading] = useState(false);
     const { mutate } = useSWR(
-        'https://beta-api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
         fetcher
     );
     const githubLink = (() => {
@@ -379,11 +388,13 @@ export function Github({account}: {account: Account}) {
 
         });
     });
+    const { t } = useTranslation();
+
     const githubUnlink = (() => {
         setLoading(true);
         deleteOauth('github').then((data) => {
             if(data.data['status'] === 'success') {
-                toast.success('You have unlinked your Github account successfully!', {
+                toast.success(`${t('account.form1.utils.unlink1')} Github ${t('account.form1.utils.unlink2')}!`, {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -413,7 +424,7 @@ export function Github({account}: {account: Account}) {
     });
     return (
         <div>
-            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{github.status ? 'Your Github account' : 'Link your Github Account'}</h2>
+            <h2 className={`${dark ? 'text-slate-200' : 'text-black'} text-2xl my-4 text-center`}>{github.status ? t('account.form1.github.title1') : t('account.form1.github.title2')}</h2>
             <div className={'mx-auto text-center mt-4 flex space-x-8 w-full'}>
                 {github.status ?
                     (<div className={'mx-auto'}>
@@ -433,7 +444,7 @@ export function Github({account}: {account: Account}) {
                                 onClick={() => githubUnlink()}
                                 className="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Unlink Github account
+                                {t('account.form1.github.unlink')}
                             </button>
                         </div>
                     </div>
@@ -446,7 +457,7 @@ export function Github({account}: {account: Account}) {
                             onClick={() => githubLink()}
                             className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Link Github account
+                            {t('account.form1.github.link')}
                         </button>
                     </div>
 

@@ -19,6 +19,7 @@ import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import { formatFileSize, getBackgroundColor, getFileExtension } from '../../../utils/Image';
+import { useDark } from '../../../App';
 
 export default function BlogsContainer() {
     const [category, setCategory] = useState<boolean>(false);
@@ -85,7 +86,7 @@ interface category {
     slug: string;
 }
 const CreateNewsForm = ({newsOpen, setNewsOpen}: {newsOpen: boolean, setNewsOpen: (value: React.SetStateAction<boolean>) => void}) => {
-
+    const dark = useDark();
     const [loading, setLoading] = useState<boolean>(false);
     const {data: categories, error: error2, isLoading: isLoading2} = useSWR(`${config.privateapilink}/categories`, fetcher);
 
@@ -107,17 +108,6 @@ const CreateNewsForm = ({newsOpen, setNewsOpen}: {newsOpen: boolean, setNewsOpen
         initialValues: { title: '', category: -1, tags: '', slug: '', data: '', pictures: [] },
         validationSchema: form,
         onSubmit: (values) => {
-
-            toast.error('Error: Need to select a category', {
-                position: 'bottom-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: dark ? 'dark' : 'light',
-            });
             setLoading(true);
             const tag = values.tags.split(',');
             createNews(values.title, values.category, tag, values.slug, values.data, values.pictures).then((data) => {
@@ -267,8 +257,8 @@ const CreateNewsForm = ({newsOpen, setNewsOpen}: {newsOpen: boolean, setNewsOpen
                                                             </label>
                                                         </div>
                                                         <select
-                                                            id='title'
-                                                            name='title'
+                                                            id='category'
+                                                            name='category'
                                                             onChange={(e) => formik.setFieldValue('category', e.target.value)}
                                                             className='mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
                                                         >

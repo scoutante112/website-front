@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://privatewebsite.bagou450.com/sitemap.xml
+Sitemap: https://bagou450.com/sitemap.xml

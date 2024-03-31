@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { debounce } from 'debounce';
 import Pagination from '../../Elements/Pagination';
 import 'react-quill/dist/quill.snow.css';
-import resetLicense from '../../../api/admin/licenses/resetLicense';
+import resetLicense from '../../../api/licenses/resetLicense';
 import blacklistLicense from '../../../api/admin/licenses/blacklistLicense';
 import deleteNews from '../../../api/admin/blogs/deleteNews';
 
@@ -149,7 +149,7 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
                 theme: dark ? 'dark' : 'light',
             });
             setLoading(false);
-        });
+        });b
     };
     return (
         <tr key={index}>

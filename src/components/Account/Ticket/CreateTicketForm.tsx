@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import createTicket from '../../../api/account/tickets/createTicket';
 import { toast } from 'react-toastify';
 import { useDark } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 function formatFileSize(sizeInBytes: number) {
     const sizes = ['B', 'KB', 'MB'];
@@ -18,17 +19,18 @@ function formatFileSize(sizeInBytes: number) {
 }
 
 export default function CreateTicketForm({ setOpen, mutate, account }) {
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string>('');
     const [checked, setChecked] = useState<boolean>(false);
     const {dark} = useDark();
     const [licenseChecked, setLicenseChecked] = useState<boolean>(false);
     const form = object({
-        subject: string().required('The subject can\'t be empty.').min(16, 'The subject should have a minimum length of 16 characters').max(64, 'The subject should have a maximum length of 64 characters.'),
-        message: string().required('The message can\'t be empty').min(64, 'The message should have a minimum length of 64 characters'),
+        subject: string().required(t('account.ticket.container.form.obj.subject.1')).min(16, t('account.ticket.container.form.obj.subject.2')).max(64, t('account.ticket.container.form.obj.subject.3')),
+        message: string().required(t('account.ticket.container.form.obj.message.1')).min(64, t('account.ticket.container.form.obj.message.2')),
         license: string().nullable(),
         attachments: array().of(mixed()).nullable(),
-        logs_url: string().nullable('').url('Logs need to be a url!')
+        logs_url: string().nullable('').url(t('account.ticket.container.form.obj.logs'))
     });
 
     const formik = useFormik({
@@ -39,21 +41,21 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
             values.attachments.map((file: any) => {
                 setError('');
                 if(file.size > 8388608) {
-                    setError('Error: File size should be less than 8MB');
+                    setError(t('account.ticket.container.form.error.1'));
                     setLoading(false);
                     return null;
                 }
                 return null;
             });
             if((!values.license && !licenseChecked) || (!values.logs_url && !checked)) {
-                setError('Error: All checkbox need to be checked');
+                setError(t('account.ticket.container.form.error.2'));
                 setLoading(false);
                 return null;
             }
             createTicket(values.subject, values.message, account, values.license, values.attachments, values.logs_url).then((data) => {
 
                 if(data.data.status === 'error') {
-                    setError(`Error: ${data.data.message}`);
+                    setError(`${t('account.utils.error')}: ${data.data.message}`);
                     setLoading(false);
                     return null;
                 }
@@ -68,7 +70,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                     textarea.value = '';
                 });
                 setLoading(false);
-                toast.success('Ticket created successfully.', {
+                toast.success(t('account.ticket.container.form.toast.1'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -81,7 +83,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                 setOpen(false);
             }).catch((e) => {
 
-                setError(`Error: ${e.response.data.message}`);
+                setError(`${t('account.utils.error')}: ${e.response.data.message}`);
                 setLoading(false);
 
             });
@@ -90,13 +92,13 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
     return (
         <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow sm:rounded-lg mt-4`}>
             <div className="px-4 py-5 sm:p-6">
-                <h3 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Create a ticket</h3>
+                <h3 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}> {t('account.ticket.container.form.title')}</h3>
 
                 <form onSubmit={formik.handleSubmit} className="mt-5 sm:items-center">
 
                     <div className="w-full sm:max-w-xs my-2">
                         <label htmlFor="subject"  className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                            Subject
+                            {t('account.ticket.container.form.fields.1')}
                         </label>
                         <input
                             type="text"
@@ -110,7 +112,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                     </div>
                     <div className="w-full my-2">
                         <label htmlFor="comment" className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                            Your message
+                            {t('account.ticket.container.form.fields.2')}
                         </label>
                         <div className="mt-2">
                             <textarea
@@ -127,8 +129,8 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                     <div className={'flex justify-between my-2 gap-x-2'}>
                         <div className="w-full sm:max-w-xs ">
                             <label htmlFor="subject"   className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                                License/Order <span className={`${dark ? 'bg-bg450-logohover text-white' : 'bg-gray-50 text-gray-600'} my-2 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10`}>
-        Optional
+                                {t('account.ticket.container.form.fields.3')} <span className={`${dark ? 'bg-bg450-logohover text-white' : 'bg-gray-50 text-gray-600'} my-2 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10`}>
+        {t('account.ticket.container.form.fields.4')}
                                 </span>
                             </label>
                             <input
@@ -142,9 +144,9 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                         </div>
                         <div className="w-full sm:max-w-xs">
                             <label htmlFor="subject"  className={`${dark ? 'text-slate-300' : 'text-gray-900'} my-2 block text-sm font-medium leading-6`}>
-                                Logs Url <span
+                                {t('account.ticket.container.form.fields.5')}  <span
                                 className={`${dark ? 'bg-bg450-logohover text-white' : 'bg-gray-50 text-gray-600'}inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10`}>
-        Optional
+        {t('account.ticket.container.form.fields.4')}
                                 </span>
                             </label>
                             <input
@@ -160,10 +162,10 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
 
                     <div className="col-span-full my-2">
                         <label htmlFor="cover-photo"  className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                            Add documents{' '}
+                            {t('account.ticket.container.form.fields.6')} {' '}
                             <span
                                 className={`${dark ? 'bg-bg450-logohover text-white' : 'bg-gray-50 text-gray-600'} my-2 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10`}>
-    Optional
+    {t('account.ticket.container.form.fields.4')}
                             </span>
                         </label>
                         <div
@@ -188,7 +190,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                                     htmlFor="file-upload"
                                     className={`${dark ? 'text-bg450-logo hover:text-bg450-logohover' : 'text-indigo-600 hover:text-indigo-500'} relative cursor-pointer rounded-md font-semibold focus-within:outline-none focus-within:ring-2 focus-within:ring-bg450-logo focus-within:ring-offset-2 `}
                                 >
-                                    <span>Upload a file</span>
+                                    <span>{t('account.ticket.container.form.fields.7')}</span>
                                     <input
                                         id="file-upload"
                                         name="file-upload"
@@ -202,7 +204,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                                         }}
                                     />
                                 </label>
-                                <p className="pl-1 my-auto">or drag and drop</p>
+                                <p className="pl-1 my-auto">{t('account.ticket.container.form.fields.8')} </p>
                             </div>
 
                         </div>
@@ -254,10 +256,10 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                                     </div>
                                     <div className="ml-3 text-sm leading-6 lg:flex gap-x-2" onClick={() => setChecked(!checked)}>
                                         <label htmlFor="comments" className={`${dark ? 'text-slate-200' : 'text-gray-900'} font-medium`} >
-                                            No logs
+                                            {t('account.ticket.container.form.fields.9')}
                                         </label>
                                         <p id="comments-description" className={`${dark ? 'text-slate-300' : 'text-gray-500'} my-auto`} >
-                                            I acknowledge that not providing logs may limit the assistance I receive in most cases.
+                                            {t('account.ticket.container.form.fields.10')}
                                         </p>
                                     </div>
                                 </div>
@@ -279,10 +281,10 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                                     </div>
                                     <div className="ml-3 text-sm leading-6 lg:flex gap-x-2" onClick={() => setLicenseChecked(!licenseChecked)}>
                                         <label htmlFor="comments" className={`${dark ? 'text-slate-200' : 'text-gray-900'} font-medium`} >
-                                            No license/order
+                                            {t('account.ticket.container.form.fields.11')}
                                         </label>{' '}
                                         <p id="comments-description" className={`${dark ? 'text-slate-300' : 'text-gray-500'} my-auto`} >
-                                            I acknowledge that not providing order/license may limit the assistance I receive in most cases.
+                                            {t('account.ticket.container.form.fields.12')}
                                         </p>
                                     </div>
                                 </div>
@@ -296,7 +298,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                                     <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
                                 </div>
                                 <div className="ml-3 ">
-                                    <h3 className="text-sm font-medium text-red-800">There were {Object.keys(formik.errors).length} errors with your submission</h3>
+                                    <h3 className="text-sm font-medium text-red-800">{t('account.ticket.container.form.fields.13')} {Object.keys(formik.errors).length} {t('account.ticket.container.form.fields.14')}</h3>
                                     <div className="mt-2 text-sm text-red-700">
                                         <ul role="list" className="list-disc space-y-1 pl-5">
                                             {Object.values(formik.errors).map((error, index) => (
@@ -330,7 +332,7 @@ export default function CreateTicketForm({ setOpen, mutate, account }) {
                             disabled={loading}
                             className={'rounded-md bg-bg450-logo px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled'}
                         >
-                            Save
+                            {t('account.ticket.container.form.fields.15')}
                         </button>
                     </div>
 

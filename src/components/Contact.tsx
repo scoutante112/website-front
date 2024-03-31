@@ -7,18 +7,20 @@ import { toast } from 'react-toastify';
 import sendcontact from '../api/sendcontact';
 import { useDark } from '../App';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 
-const form = object({
-    firstname: string().required('You need to enter your first name.'),
-    lastname: string().required('You need to enter your last name.'),
-    email: string().required('You need to enter your email.'),
-    message: string().required('You need to enter a message.'),
-    phonenumber: string().optional(),
-    society: string().optional(),
-});
+
 export default function Contact() {
-    document.title = 'Bagou450 - Contact';
-
+    const { t } = useTranslation();
+    document.title = `Bagou450 | ${t('contact.title')}`;
+    const form = object({
+        firstname: string().required(t('contact.form.verification.firstname')),
+        lastname: string().required(t('contact.form.verification.lastname')),
+        email: string().required(t('contact.form.verification.email')),
+        message: string().required(t('contact.form.verification.message')),
+        phonenumber: string().optional(),
+        society: string().optional(),
+    });
     const [loading, setLoading] = useState<boolean>(false);
     const {dark} = useDark();
     const formik = useFormik({
@@ -27,7 +29,7 @@ export default function Contact() {
         onSubmit: (values) => {
             setLoading(true);
             if([values.firstname,values.lastname,values.email,values.message].includes('')) {
-                toast.error('You need to fill all required field!', {
+                toast.error(t('contact.toast.error1'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -48,9 +50,9 @@ export default function Contact() {
             if(values.phonenumber !== '') {
                 phonenumber = values.phonenumber;
             }
-            sendcontact(values.firstname,values.lastname,values.email,values.message,society,phonenumber).then((data) => {
+            sendcontact(values.firstname,values.lastname,values.email,values.message,society ? society : '',phonenumber ? phonenumber : '').then((data) => {
                 if(data.data.status === 'success') {
-                    return toast.success('Your message has been successfully sent. A member of our team will get in touch with you shortly.', {
+                    return toast.success(t('contact.toast.success'), {
                         position: 'bottom-right',
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -61,7 +63,7 @@ export default function Contact() {
                         theme: dark ? 'dark' : 'light',
                     });
                 }
-                toast.error('An unexpected error occurred. Please contact an administrator. Code: BagAuth-001', {
+                toast.error(t('contact.toast.error2'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -74,7 +76,7 @@ export default function Contact() {
                 return setLoading(false);
             }).catch((e) => {
                 console.error(e);
-                toast.error('An unexpected error occurred. Please contact an administrator. Code: BagAuth-001', {
+                toast.error(t('contact.toast.error2'), {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -92,14 +94,14 @@ export default function Contact() {
     return (
         <>
             <Helmet>
-                <meta name='description' content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
+                <meta name='description' content={t('contact.description')} />
 
-                <meta name="twitter:description" content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
+                <meta name="twitter:description" content={t('contact.description')} />
 
-                <meta property="og:description" content={'Have questions or need assistance? Contact Bagou450\'s support team at +33 (0)6 51 97 50 31 / +1 603-600-3503 or email contact@bagou450.com.'} />
+                <meta property="og:description" content={t('contact.description')} />
             </Helmet>
-            <div className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} relative isolate h-screen`}>
-                <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 h-screen">
+            <div className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} lg:relative lg:isolate lg:h-screen`}>
+                <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:h-screen">
                     <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48 lg:h-screen">
                         <div className='mx-auto max-w-xl lg:mx-0 lg:max-w-lg'>
                             <div
@@ -144,11 +146,10 @@ export default function Contact() {
                                 }
                             </div>
 
-                            <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-3xl font-bold tracking-tight`}>Contact Us</h1>
+                            <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-3xl font-bold tracking-tight`}><strong>{t('contact.title')}</strong></h1>
                             <h2 className={`${dark ? 'text-slate-300' : 'text-gray-600'} mt-6 text-lg leading-8`}>
-                                Do you have any questions or need assistance? <br />Don&apos;t hesitate to get in touch
-                                with
-                                our dedicated support team.
+                                {t('contact.subtitle1')} <br />
+                                {t('contact.subtitle2')}
                             </h2>
                             <dl className='mt-10 space-y-4 text-base leading-7 text-gray-600'>
                                 <div className='flex gap-x-4'>
@@ -159,7 +160,7 @@ export default function Contact() {
                                     <dd>
                                         <a href={'https://maps.app.goo.gl/VXDEzSbwpMxVtqvm8'} target={'_blank'}
                                             rel="noreferrer"
-                                        className={dark ? 'text-slate-400' : 'text-gray-700'}
+                                            className={dark ? 'text-slate-400' : 'text-gray-700'}
                                         > 2 rue des orchidées
                                             <br />
                                             35450 Dourdain, France</a>
@@ -198,7 +199,7 @@ export default function Contact() {
                                 <div>
                                     <label htmlFor='firstname'
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        First name
+                                        {t('contact.form.firstname')}
                                     </label>
                                     <div className='mt-2.5'>
                                         <input
@@ -214,7 +215,7 @@ export default function Contact() {
                                 <div>
                                     <label htmlFor="lastname"
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        Last name
+                                        {t('contact.form.lastname')}
                                     </label>
                                     <div className="mt-2.5">
                                         <input
@@ -230,7 +231,7 @@ export default function Contact() {
                                 <div className="sm:col-span-2">
                                     <label htmlFor="society"
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        Society (Optional)
+                                        {t('contact.form.company')}
                                     </label>
                                     <div className="mt-2.5">
                                         <input
@@ -247,7 +248,7 @@ export default function Contact() {
                                 <div>
                                     <label htmlFor="email"
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        Email
+                                        {t('contact.form.email')}
                                     </label>
                                     <div className="mt-2.5">
                                         <input
@@ -264,7 +265,7 @@ export default function Contact() {
                                 <div>
                                     <label htmlFor="phonenumber"
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        Phone number (Optional)
+                                        {t('contact.form.phone')}
                                     </label>
                                     <div className="mt-2.5">
                                         <input
@@ -280,7 +281,7 @@ export default function Contact() {
                                 <div className="sm:col-span-2">
                                     <label htmlFor="message"
                                         className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
-                                        Message
+                                        {t('contact.form.message')}
                                     </label>
                                     <div className="mt-2.5">
                                         <textarea
@@ -300,7 +301,7 @@ export default function Contact() {
                                     disabled={loading}
                                     onClick={() => {
                                         if (formik.errors.firstname || formik.errors.lastname || formik.errors.message || formik.errors.email) {
-                                            toast.error('You need to fill all required field!', {
+                                            toast.error(t('contact.toast.error1.'), {
                                                 position: 'bottom-right',
                                                 autoClose: 5000,
                                                 hideProgressBar: false,
@@ -314,7 +315,7 @@ export default function Contact() {
                                     }}
                                     className={` rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${loading ? 'bg-b450-logodisabled' : 'bg-bg450-logo'}`}
                                 >
-                                    Send message
+                                    {t('contact.form.button')}
                                 </button>
                             </div>
                             

@@ -1,11 +1,11 @@
-import React, { ElementType, createContext, Fragment, lazy, Suspense, useState } from 'react';
+import React, { ElementType, createContext, Fragment, lazy, Suspense, useState, useEffect } from 'react';
 import Loading from '../Elements/Loading';
 import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
-    ArrowLongLeftIcon, BellIcon, ChevronDownIcon,
+    ArrowLongLeftIcon, ChevronDownIcon,
     ClipboardIcon,
-    HomeIcon, MagnifyingGlassIcon,
+    HomeIcon,
     ShoppingBagIcon,
     TicketIcon, UserCircleIcon,
 } from '@heroicons/react/24/solid';
@@ -26,7 +26,6 @@ import ProductsContainer from '../Admin/Products/ProductsContainer';
 import LicensesContainer from '../Admin/Licenses/LicensesContainer';
 import DarkModeIcon from '../Elements/DarkModeIcon';
 import { useDark } from '../../App';
-
 const AccountContainer = lazy(() => import('./Manager/AccountContainer'));
 const AccountLicenseContainer = lazy(() => import('./License/AccountLicenseContainer'));
 const AccountOrderContainer = lazy(() => import('./Order/AccountOrderContainer'));
@@ -110,9 +109,8 @@ export const AdminRoutes: RouteItem[] = [
 export default function AccountRouter() {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
     const [active, setActive] = useState<string>('');
-    const [admin, setAdmin] = useState<boolean>(window.location.pathname.startsWith('/account/admin'));
+    const [admin, setAdmin] = useState<boolean>(window.location.pathname.substr(3).startsWith('/account/admin'));
     const {dark} = useDark();
-    const navigate = useNavigate();
 
     const infos = true;
 
@@ -123,6 +121,11 @@ export default function AccountRouter() {
     if (!data || (error || isLoading)) {
         return <></>;
     }
+    useEffect(() => {
+        if(!data.status) {
+            window.location.href = '/';
+        }
+    }, [data]);
     const myaccount: Acc = {
         role: data.data.role,
         name: data.data.name,
@@ -132,9 +135,13 @@ export default function AccountRouter() {
         github: data.data.github
     };
 
-    if(!myaccount.role) {
+    if(myaccount.role !== 1) {
+        if(window.location.pathname.startsWith('/admin')) {
+            window.location.href = '/';
+        }
         setAdmin(false);
     }
+
     return (
         <NavContext.Provider value={{ active, setActive }}>
             <div>
@@ -182,13 +189,13 @@ export default function AccountRouter() {
                                     {/* Sidebar component, swap this element with another sidebar if you like */}
                                     <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'} flex grow flex-col gap-y-5 overflow-y-auto  px-6 pb-4`}>
                                         <div className="flex h-16 shrink-0 items-center">
-                                            <NavLink to={'/'}>
+                                            <a href={'/'}>
                                                 <img
                                                     className="h-8 w-auto"
                                                     src="https://cdn.bagou450.com/assets/img/logo_full_colored.webp"
                                                     alt="Bagou450"
                                                 />
-                                            </NavLink>
+                                            </a>
                                         </div>
                                         <nav className="flex flex-1 flex-col">
                                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -200,7 +207,7 @@ export default function AccountRouter() {
                                                                     <NavLink
                                                                         to={`/account${route.link}`}
                                                                         className={classNames(
-                                                                            active === `/account${route.link}`
+                                                                            window.location.pathname.substr(3) === `/account${route.link}`
                                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
@@ -208,7 +215,7 @@ export default function AccountRouter() {
                                                                     >
                                                                         <route.icon
                                                                             className={classNames(
-                                                                                active === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
                                                                                 'h-6 w-6 shrink-0'
                                                                             )}
                                                                             aria-hidden="true"
@@ -224,7 +231,7 @@ export default function AccountRouter() {
                                                                     <NavLink
                                                                         to={`/account${route.link}`}
                                                                         className={classNames(
-                                                                            active === `/account${route.link}`
+                                                                            window.location.pathname.substr(3)  === `/account${route.link}`
                                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
@@ -232,7 +239,7 @@ export default function AccountRouter() {
                                                                     >
                                                                         <route.icon
                                                                             className={classNames(
-                                                                                active === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
                                                                                 'h-6 w-6 shrink-0'
                                                                             )}
                                                                             aria-hidden="true"
@@ -244,7 +251,7 @@ export default function AccountRouter() {
                                                         ))}
                                                     </ul>
                                                 </li>
-                                                {myaccount.role &&
+                                                {myaccount.role ?
                                                     <li className="mt-auto">
                                                         <button onClick={() => setAdmin(!admin)} className="w-full group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-blue-600">
                                                             <UserCircleIcon
@@ -254,19 +261,19 @@ export default function AccountRouter() {
                                                             {admin ? 'Return to user View' : 'Go to admin view'}
                                                         </button>
                                                     </li>
-                                                }
+                                               : <></> }
                                                 <li className="mt-auto">
 
-                                                    <NavLink
-                                                        to="/"
-                                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                                                    <a
+                                                        href="/"
+                                                        className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}  group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}
                                                     >
                                                         <BiRightArrow
-                                                            className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600"
+                                                            className={`h-6 w-6 shrink-0 ${dark ? 'text-slate-200' : 'text-gray-400'} group-hover:text-blue-600`}
                                                             aria-hidden="true"
                                                         />
-                                                        Back the the shop
-                                                    </NavLink>
+                                                        Back to the shop
+                                                    </a>
                                                 </li>
 
                                             </ul>
@@ -279,7 +286,7 @@ export default function AccountRouter() {
                 </Transition.Root>
 
                 {/* Static sidebar for desktop */}
-                <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+                <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-72 lg:flex-col">
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} flex grow flex-col gap-y-5 overflow-y-auto border-r px-6 pb-4`}>
                         <NavLink to={'/'} className="flex h-16 shrink-0 items-center">
@@ -299,7 +306,7 @@ export default function AccountRouter() {
                                                     <NavLink
                                                         to={`/account${route.link}`}
                                                         className={classNames(
-                                                            active === `/account${route.link}`
+                                                            window.location.pathname.substr(3)  === `/account${route.link}`
                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
@@ -307,7 +314,7 @@ export default function AccountRouter() {
                                                     >
                                                         <route.icon
                                                             className={classNames(
-                                                                active === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
                                                                 'h-6 w-6 shrink-0'
                                                             )}
                                                             aria-hidden="true"
@@ -323,7 +330,7 @@ export default function AccountRouter() {
                                                     <NavLink
                                                         to={`/account${route.link}`}
                                                         className={classNames(
-                                                            active === `/account${route.link}`
+                                                            window.location.pathname.substr(3)  === `/account${route.link}`
                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
@@ -331,7 +338,7 @@ export default function AccountRouter() {
                                                     >
                                                         <route.icon
                                                             className={classNames(
-                                                                active === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
                                                                 'h-6 w-6 shrink-0'
                                                             )}
                                                             aria-hidden="true"
@@ -361,7 +368,7 @@ export default function AccountRouter() {
                                         className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'} group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}
                                     >
                                         <ArrowLongLeftIcon
-                                            className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600"
+                                            className={`h-6 w-6 shrink-0`}
                                             aria-hidden="true"
                                         />
                                         Back to the shop
@@ -373,7 +380,7 @@ export default function AccountRouter() {
                 </div>
                 <div className="lg:pl-72">
                     <div className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8`}>
-                        <button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(true)}>
+                        <button type="button" className={`-m-2.5 p-2.5 ${dark ? 'text-white' : 'text-gray-700'} lg:hidden`} onClick={() => setSidebarOpen(true)}>
                             <span className="sr-only">Open sidebar</span>
                             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                         </button>
@@ -382,23 +389,7 @@ export default function AccountRouter() {
                         <div className={`${dark ? 'bg-b450-dark' : 'bg-gray-200'} h-6 w-px lg:hidden`} aria-hidden="true" />
 
                         <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                            <form className="relative flex flex-1" action="#" method="GET">
-                                <label htmlFor="search-field" className="sr-only">
-                                    Search
-                                </label>
-                                <MagnifyingGlassIcon
-                                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'} pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400`}
-                                    aria-hidden="true"
-                                />
-                                <input
-                                    id="search-field"
-                                    className={`${dark ? 'text-slate-300 placeholder:text-slate-400' : 'text-gray-900 placeholder:text-gray-400'} block h-full w-full border-0 py-0 pl-8 pr-0 focus:ring-0 sm:text-sm`}
-                                    placeholder="Search..."
-                                    style={dark ? {backgroundColor: '#192231'} : {backgroundColor: '#FFFFFF'}}
-                                    name="search"
-                                />
 
-                            </form>
                             <div className='flex items-center gap-x-4 lg:gap-x-6'>
 
                                 <DarkModeIcon/>
@@ -484,7 +475,7 @@ export default function AccountRouter() {
                                     {routesList.map((route: RouteItem, key: number) => (
                                         <Route key={key} path={route.link} element={route.component} />
                                     ))}
-                                    {admin && AdminRoutes.map((route: RouteItem, key: number) => (
+                                    {myaccount.role === 1 && AdminRoutes.map((route: RouteItem, key: number) => (
                                         <Route key={key} path={route.link} element={route.component} />
                                     ))}
                                     <Route path={'*'} element={<NotFoundPage />} />

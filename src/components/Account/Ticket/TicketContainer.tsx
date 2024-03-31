@@ -16,6 +16,7 @@ import { ArrowDownCircleIcon } from '@heroicons/react/24/outline';
 import CreateTicketForm from './CreateTicketForm';
 import TicketRow from './TicketRow';
 import { useDark } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 export interface Ticket {
   created_at: string;
@@ -36,34 +37,36 @@ interface Sort {
     subname: string;
 }
 
-const sortType: Sort[] = [
-    {
-        name: 'Status',
-        value: 'status',
-        subname: ''
-    },
-    {
-        name: 'Modified',
-        value: 'asc_modified',
-        subname: 'Ascending'
-    },
-    {
-        name: 'Modified',
-        value: 'desc_modified',
-        subname: 'Descending'
-    },
-    {
-        name: 'Created',
-        value: 'asc_created',
-        subname: 'Ascending'
-    },
-    {
-        name: 'Created',
-        value: 'desc_created',
-        subname: 'Descending'
-    },
-];
 export default function TicketContainer() {
+    const { t } = useTranslation();
+    const sortType: Sort[] = [
+        {
+            name: t('account.ticket.container.status.1'),
+            value: 'status',
+            subname: ''
+        },
+        {
+            name: t('account.ticket.container.status.2'),
+            value: 'asc_modified',
+            subname: t('account.ticket.container.status.3')
+        },
+        {
+            name: t('account.ticket.container.status.2'),
+            value: 'desc_modified',
+            subname: t('account.ticket.container.status.4')
+        },
+        {
+            name: t('account.ticket.container.status.5'),
+            value: 'asc_created',
+            subname: t('account.ticket.container.status.3')
+        },
+        {
+            name: t('account.ticket.container.status.5'),
+            value: 'desc_created',
+            subname: t('account.ticket.container.status.4')
+        },
+    ];
+    document.title = `Bagou450 - ${t('account.ticket.container.title')}`;
 
     const [sort, setSort] = useState<string>('status');
     const [page, setPage] = useState<number>(1);
@@ -71,8 +74,6 @@ export default function TicketContainer() {
     const {dark} = useDark();
     const [open, setOpen] = useState<boolean>(false);
 
-    const [isHovered, setIsHovered] = useState(false);
-    const navigate = useNavigate();
     const { setActive } = useContext(NavContext);
     useEffect(() => {
         setActive(window.location.pathname);
@@ -90,6 +91,9 @@ export default function TicketContainer() {
     if ((!data || (error3 || isLoading)) || (!data2 || (error2 || isLoading2))) {
 
         if(data2) {
+            if (!data2.status) {
+                return <></>;
+            }
             return (
                 <>
                     <section >
@@ -98,12 +102,12 @@ export default function TicketContainer() {
 
                             <div className='sm:flex sm:items-center'>
                                 <div className='sm:flex-auto'>
-                                    <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Tickets</h1>
+                                    <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>{t('account.ticket.container.title')}</h1>
                                     <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
 
-                                        You are on the <strong
-                                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>tickets</strong> page.
-                                        You can here see all your support tickets.
+                                        {t('account.utils.youare')} <strong
+                                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.ticket.container.title').toLowerCase()}</strong> {t('account.utils.page')}
+                                        {t('account.ticket.container.desc')}
                                     </p>
                                 </div>
 
@@ -113,7 +117,7 @@ export default function TicketContainer() {
                                         onClick={() => setOpen(!open)}
                                         className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
                                     >
-                                        New ticket
+                                        {t('account.ticket.container.button.1')}
                                         <ArrowDownCircleIcon
                                             className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
                                                 open ? 'rotate-180' : 'rotate-0'
@@ -131,7 +135,7 @@ export default function TicketContainer() {
                             <div className="mt-10 w-full mb-2 grid grid-cols-3 lg:grid-cols-4 gap-x-2">
                                 <div className={' lg:col-span-3'}>
                                     <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                                        Search
+                                        {t('account.utils.search')}
                                     </label>
                                     <input
                                         type="text"
@@ -139,7 +143,7 @@ export default function TicketContainer() {
                                         id="search"
                                         onChange={(e) => searchValue(e.target.value)}
                                         className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full  rounded-md border-0 py-1.5 shadow-sm ring-1 ring-insetfocus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                                        placeholder="Search here"
+                                        placeholder={t('account.utils.search').toUpperCase()}
                                     />
                                 </div>
                                 <Listbox value={sort} onChange={setSort}>
@@ -222,10 +226,12 @@ export default function TicketContainer() {
         }
         return <Loading />;
     }
+    if (!data2.status) {
+        return <></>;
+    }
     const account: Account = data2.data;
 
 
-    document.title = 'Bagou450 - My Tickets';
     const searchValue = debounce((value: string) => {
         setSearch(value);
         setPage(1);
@@ -240,9 +246,9 @@ export default function TicketContainer() {
                             <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Tickets</h1>
                             <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
 
-                                You are on the <strong
-                                    className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>tickets</strong> page.
-                                You can here see all your support tickets.
+                                {t('account.utils.youare')} <strong
+                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.ticket.container.title').toLowerCase()}</strong> {t('account.utils.page')}
+                                {t('account.ticket.container.desc')}
                             </p>
                         </div>
 
@@ -252,7 +258,7 @@ export default function TicketContainer() {
                                 onClick={() => setOpen(!open)}
                                 className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
                             >
-                                New ticket
+                                {t('account.ticket.container.button.1')}
                                 <ArrowDownCircleIcon
                                     className={`mx-2 h-5 w-5 my-auto transform transition-transform ${
                                         open ? 'rotate-180' : 'rotate-0'
@@ -270,7 +276,7 @@ export default function TicketContainer() {
                     <div className="mt-10 w-full mb-2 grid grid-cols-3 lg:grid-cols-4 gap-x-2">
                         <div className={' lg:col-span-3'}>
                             <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6`}>
-                            Search
+                                {t('account.utils.search')}
                             </label>
                             <input
                                 type="text"
@@ -278,7 +284,7 @@ export default function TicketContainer() {
                                 id="search"
                                 onChange={(e) => searchValue(e.target.value)}
                                 className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full  rounded-md border-0 py-1.5 shadow-sm ring-1 ring-insetfocus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                                placeholder="Search here"
+                                placeholder={t('account.utils.search').toUpperCase()}
                             />
                         </div>
                         <Listbox value={sort} onChange={setSort}>
@@ -358,51 +364,52 @@ export default function TicketContainer() {
                                 <thead>
                                     <tr>
                                         <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold hidden lg:table-cell sm:pl-6`}>
-                                        Id
+                                            {t('account.ticket.container.table.1')}
                                         </th>
                                         <th
                                             scope="col"
                                             className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
                                         >
-                                        Name
+                                            {t('account.ticket.container.table.2')}
                                         </th>
                                         <th
                                             scope="col"
                                             className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}
                                         >
-                                        Priority
+                                            {t('account.ticket.container.table.3')}
                                         </th>
                                         <th
                                             scope="col"
                                             className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
                                         >
-                                        Status
+                                            {t('account.ticket.container.table.4')}
                                         </th>
                                         <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}>
-                                        Last Update
+                                            {t('account.ticket.container.table.5')}
                                         </th>
                                         <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'}  relative py-3.5 pl-3 pr-4 sm:pr-6 hidden lg:table-cell`}>
-                                            <span className="sr-only">Select</span>
+                                            <span className="sr-only">{t('account.ticket.container.table.6')}</span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {data.data.data.map((ticket: Ticket, key: React.Key | null | undefined) => (
-                                        <TicketRow ticket={ticket}/>
+                                        <TicketRow ticket={ticket} key={key}/>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
 
                         :
-                        <p className={'text-center text-black opacity-80'}>No tickets matching these parameters were found for this account.</p>
+                        <p className={`text-center ${dark ? 'text-slate-200' : 'text-black'} opacity-80`}>{t('account.ticket.container.table.7')}</p>
                     }
                     <div className={'flex w-full max-w-7xl mx-auto'}>
                         {page > 1 &&
-              <p className={'btn btn-primary btn-outline my-4 '} onClick={() => {window.scrollTo(0, 0); setPage(page - 1);}}>Previous page</p>
+              <p className={`relative inline-flex items-center mt-2 rounded-md bg-indigo-600 px-1.5 py-1 text-white ${isLoading || isLoading2 && 'opacity-50'}  hover:bg-indigo-500 focus:z-10`} onClick={() => {window.scrollTo(0, 0); setPage(page - 1);}}>{t('account.utils.pagination.previous')}</p>
                         }
                         {page < data.data.last_page &&
-              <p className={'btn btn-primary btn-outline my-4 text-right ml-auto'} onClick={() => {window.scrollTo(0, 0); setPage(page + 1);}}>Next page</p>
+              <p                                 className={`relative ml-auto mt-2 inline-flex items-center rounded-md bg-indigo-600 px-1.5 py-1 text-white ${isLoading || isLoading2 && 'opacity-50'}  hover:bg-indigo-500 focus:z-10`}
+                  onClick={() => {window.scrollTo(0, 0); setPage(page + 1);}}>{t('account.utils.pagination.next')}</p>
                         }
                     </div>
                 </div>

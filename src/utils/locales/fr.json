@@ -1,0 +1,594 @@
+{
+  "navbar": {
+    "login": "Connexion ou Inscription",
+    "routes": {
+      "home": "Accueil",
+      "products": "Produits",
+      "blog": "Blog",
+      "licenses": "Licences",
+      "contact": "Contact",
+      "about": "À Propos",
+      "pterodactyl": "Pterodactyl"
+    }
+  },
+  "home": {
+    "pageTitle": "Accueil",
+    "title": "Libérer le potentiel de Pterodactyl",
+    "subtitle": "Exploitez la puissance de nos addons Pterodactyl premium, conçus pour la performance et la fiabilité. Solutions web et configurations de serveur également disponibles.",
+    "button1": "Explorez nos addons Pterodactyl",
+    "button2": "En savoir plus"
+  },
+  "trustedby": "Ces entreprises nous font confiance",
+  "features1": {
+    "title": "Addons Pterodactyl Redéfinis.",
+    "subtitle": "Intégration transparente pour l'hébergement de vos jeux et sites web. Qualité, vitesse et fiabilité avant tout.",
+    "feature1": {
+      "title": "Changeur de Versions Minecraft",
+      "description": "Changez sans effort entre les versions et les modpacks Minecraft directement depuis le panel, avec une récupération en temps réel, une compatibilité étendue et une intégration transparente."
+    },
+    "feature2": {
+      "title": "Installateur de Plugins Minecraft",
+      "description": "Installez instantanément une vaste gamme de plugins Minecraft depuis SpigotMc, DevBukkit, PolyMart, et plus encore, directement depuis votre panel avec une disponibilité et une compatibilité garanties."
+    },
+    "feature3": {
+      "title": "Changeur d'Artifacts",
+      "description": "Mettez à jour facilement vos artifacts FiveM en un seul clic, assurant des mises à jour synchronisées de TxAdmin et une récupération en temps réel depuis les serveurs CFX."
+    },
+    "feature4": {
+      "title": "Serveurs Cloud",
+      "description": "Donnez à vos utilisateurs le pouvoir de créer leurs propres serveurs avec des ressources ajustables, intégrés de manière transparente avec WHMCS et compatibles avec tous les thèmes Pterodactyl."
+    }
+  },
+  "features2": {
+    "title": "Contrôle Facile avec les addons de Bagou450.",
+    "subtitle": "Nos addons rendent tout plus simple pour vous.",
+    "feature1": {
+      "title": "Centre de Contrôle Bagou",
+      "summary": "Gestion Centralisée des Produits et du Support.",
+      "description": "Gérez les versions de vos produits, les licences et les paramètres directement depuis une interface conviviale. Restez informé des contacts de support et du statut des serveurs Bagou450, tout en un seul endroit."
+    },
+    "feature2": {
+      "title": "Installateur Automatique",
+      "summary": "Installation des Addons en une Commande.",
+      "description": "Utilisez notre installateur automatique intuitif pour configurer nos produits sur votre panel sans effort. Il suffit de saisir votre licence, et l'installateur s'occupe des ajustements et des ajouts de fichiers pour vous."
+    },
+    "feature3": {
+      "title": "Tableau de Bord Simple",
+      "summary": "Gestion Unifiée des Commandes, Licences et Tickets.",
+      "description": "Naviguez à travers un tableau de bord convivial pour superviser vos commandes, licences et tickets. De plus, accédez et téléchargez vos produits facilement."
+    }
+  },
+  "getstarted": {
+    "title": "Prêt à Améliorer Votre Expérience Pterodactyl ?",
+    "subtitle": "Explorez notre gamme d'outils et d'addons conçus pour rehausser votre gestion de Pterodactyl. Plongez dans une interface plus rationalisée, efficace et conviviale.",
+    "button": "Commencez Maintenant !"
+  },
+  "products": {
+    "pageTitle": "Addons Pterodactyl",
+    "title": "Nos addons Pterodactyl",
+    "subtitle": {
+      "all": "Découvrez la gamme premium d'addons Pterodactyl de Bagou450, parfaite pour améliorer vos expériences de jeu Minecraft et FiveM. Choisissez notre service d'installation expert pour une configuration sans effort.",
+      "bundles": "Découvrez le confort ultime avec les packs d'addons Pterodactyl de Bagou450. Obtenez un ensemble complet d'outils pour Minecraft, FiveM et la gestion de serveurs dans un seul package.",
+      "minecraft": "Améliorez vos serveurs Minecraft avec les addons Pterodactyl de Bagou450. Installez facilement des plugins et changez de versions pour un jeu optimal.",
+      "fivem": "Révolutionnez vos serveurs FiveM avec les addons Pterodactyl de Bagou450. Changez d'artifacts sans effort et automatisez la configuration de TxAdmin pour une gestion supérieure.",
+      "management": "Améliorez la gestion des serveurs avec les addons Pterodactyl de Bagou450. Implémentez des pare-feux robustes et une division efficace des serveurs pour un contrôle et une sécurité accrus.",
+      "miscellaneous": "Personnalisez vos serveurs avec les addons Pterodactyl uniques de Bagou450. Customisez des avatars et éditez les messages de la console pour une expérience de serveur sur mesure."
+    },
+    "search": "Rechercher un produit",
+    "category": {
+      "select": "Sélectionner une catégorie",
+      "all": "Toutes les catégories",
+      "management": "Gestion",
+      "miscellaneous": "Divers",
+      "bundles": "Packs"
+    }
+  },
+  "blog": {
+    "title": "Actualités",
+    "search": "Rechercher un article",
+    "select": "Sélectionner une catégorie"
+  },
+  "cookies": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience sur notre site.",
+    "button": "Accepter"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle1": "Vous avez des questions ou besoin d'assistance ?",
+    "subtitle2": "N'hésitez pas à prendre contact avec notre équipe de support dédiée.",
+    "form": {
+      "firstname": "Prénom",
+      "lastname": "Nom",
+      "company": "Société (Facultatif)",
+      "email": "Email",
+      "phone": "Numéro de téléphone (Facultatif)",
+      "message": "Message",
+      "button": "Envoyer le message",
+      "verification": {
+        "firstname": "Vous devez entrer votre prénom.",
+        "lastname": "Vous devez entrer votre nom.",
+        "email": "Vous devez entrer votre email.",
+        "message": "Vous devez entrer un message."
+      }
+    },
+    "toast": {
+      "success": "Votre message a été envoyé avec succès. Un membre de notre équipe prendra contact avec vous prochainement.",
+      "error1": "Vous devez remplir tous les champs requis !",
+      "error2": "Une erreur inattendue est survenue. Veuillez contacter un administrateur. Code : BagAuth-001"
+    },
+    "description": "Vous avez des questions ou besoin d'assistance ? Contactez l'équipe de support de Bagou450 au +33 (0)6 51 97 50 31 / +1 603-600-3503 ou par email à contact@bagou450.com."
+  },
+  "about": {
+    "title": "À propos de nous",
+    "description": "Découvrez Bagou450, l'expert en addons Pterodactyl pour l'efficacité des serveurs de jeux. Fondée en 2016, nous sommes spécialisés dans les solutions de qualité supérieure et abordables pour les serveurs Minecraft et FiveM, améliorant les expériences de jeu dans le monde entier. En savoir plus sur notre mission et nos produits innovants.",
+    "blockquote": "“Chez Bagou450, notre mission est de fournir des addons et des services Pterodactyl de premier ordre et de la plus haute qualité à des prix raisonnables. L'excellence et l'abordabilité dans chaque offre sont notre engagement envers vous.”",
+    "ceo": "Directeur chez Bagou450",
+    "content": {
+      "title": "Libérez la puissance de Pterodactyl avec Bagou450",
+      "subtitle1": "Maximisez l'efficacité de votre serveur",
+      "description1": "Chez Bagou450, nous reconnaissons l'importance vitale d'une gestion efficace des serveurs pour les entreprises d'hébergement de serveurs de jeux. Nos addons Pterodactyl premium sont conçus pour améliorer les performances des serveurs Minecraft et FiveM, dotant les services d'hébergement d'opérations plus fluides et robustes pour une expérience de jeu améliorée.",
+      "subtitle2": "Un meilleur flux de travail avec les addons Bagou450",
+      "description2": "Nous nous concentrons sur la fourniture de solutions qui redéfinissent votre expérience de jeu et de gestion de serveur :",
+      "list1": {
+        "title": "Installation facile.",
+        "description": "Nos addons Pterodactyl sont conçus pour une intégration sans effort. Mettez-vous en route rapidement avec des processus d'installation conviviaux, garantissant une configuration fluide et efficace pour vos serveurs."
+      },
+      "list2": {
+        "title": "Tarification abordable.",
+        "description": "Expérimentez la puissance des addons premium à des prix raisonnables. Nous croyons en fournissant de la qualité sans compromis, rendant la gestion avancée des serveurs accessible à chaque passionné de jeux."
+      },
+      "list3": {
+        "title": "Performance puissante.",
+        "description": "Élevez vos serveurs avec les capacités robustes de nos addons. Conçus pour la performance, nos addons assurent que vos serveurs fonctionnent à leur apogée, offrant une expérience de jeu inégalée."
+      },
+      "sub-description": "Notre équipe chez Bagou450 est dédiée à fournir des solutions de haute qualité et innovantes à des prix raisonnables. Nous croyons en créant un équilibre entre qualité et abordabilité, assurant que nos services sont accessibles à chaque passionné de jeux."
+    },
+    "stats": {
+      "founded": "Fondée",
+      "products": "Produits",
+      "customers": "Clients",
+      "servers": "Serveurs"
+    }
+  },
+  "footer": {
+    "sysadmin": "Fournit des services de Sysadmin depuis 2016.",
+    "addons": "Fournit des addons Pterodactyl depuis 2020.",
+    "legal": {
+      "title": "Légal",
+      "terms": "Conditions d'Utilisation",
+      "privacy": "Politique de Confidentialité",
+      "refund": "Politique de Remboursement",
+      "legal": "Mentions Légales"
+    },
+    "products": {
+      "title": "Nos addons Pterodactyl",
+      "changer": "Changeur de versions Minecraft",
+      "plugins": "Installateur de plugins Minecraft",
+      "mods": "Installateur de Mods Minecraft",
+      "cloud": "Serveurs Cloud",
+      "artifacts": "Changeur d'Artifacts FiveM"
+    },
+    "support": {
+      "title": "Support & Ressources",
+      "support": "Centre de Support",
+      "knowledge": "Base de connaissances",
+      "status": "Statut des Serveurs",
+      "haste": "Service de Paste",
+      "plik": "Service d'upload de fichiers"
+    },
+    "about": {
+      "title": "À propos de nous",
+      "bbb": "BuiltByBit",
+      "blog": "Blog",
+      "youtube": "Chaîne Youtube",
+      "hosting": "Hébergement Web"
+    },
+    "rights": "Tous droits réservés.",
+    "affiliated": "Ce site n'est pas affilié à Mojang, Microsoft, FiveM, ou Rockstar Games."
+  },
+  "legalmention": {
+    "title": "Mention Légale",
+    "description": "Découvrez la page de Mention Légale de Bagou450 pour des informations légales importantes sur notre société. Restez informé de notre statut légal et de nos obligations.",
+    "subtitle1": "Informations sur la société :",
+    "name": "Nom de la société :",
+    "form": "Forme juridique : Société à Responsabilité Limitée (sans précision supplémentaire)",
+    "siret": "SIRET du siège social :",
+    "office": "Siège Social",
+    "subtitle2": "Directeur",
+    "directorname": "NOM DU DIRECTEUR :",
+    "birth": "Date de naissance :",
+    "subtitle3": "Contact",
+    "postal": "Adresse Postale :",
+    "email": "Adresse Email :",
+    "subtitle4": "Hébergement du site web",
+    "webhost": "Le site web est hébergé par Infomaniak Network SA. Les Acacias, Genève, Suisse.",
+    "subtitle5": "Propriété Intellectuelle",
+    "intellectual": "Tous les droits de propriété intellectuelle liés au contenu et au design de ce site web sont la propriété de BAGOU450."
+  },
+  "tos": {
+    "title": "Conditions d'utilisation",
+    "translate": "Ces conditions ont été traduites depuis l'anglais. Veuillez changer la langue du site pour consulter la version originale.",
+    "description": "Consultez les Conditions d'Utilisation de Bagou450 pour comprendre les règles régissant l'utilisation des produits et services, en vous assurant de la connaissance de vos droits et devoirs.",
+    "overview": {
+      "title": "APERÇU",
+      "description": "Ce site web est exploité par Bagou450. Tout au long du site, les termes « nous », « notre » et « nos » font référence à Bagou450. Bagou450 propose ce site web, incluant toutes les informations, outils et services disponibles depuis ce site à vous, l'utilisateur, sous réserve de votre acceptation de tous les termes, conditions, politiques et avis énoncés ici. En visitant notre site et/ou en achetant quelque chose chez nous, vous participez à notre « Service » et acceptez d'être lié par les termes et conditions suivants (« Conditions d'Utilisation », « Conditions »), y compris ceux des termes et conditions supplémentaires et des politiques référencés ici et/ou accessibles par hyperlien. Ces Conditions d'Utilisation s'appliquent à tous les utilisateurs du site, y compris sans limitation les utilisateurs qui sont des navigateurs, des fournisseurs, des clients, des commerçants, et/ou des contributeurs de contenu. Veuillez lire attentivement ces Conditions d'Utilisation avant d'accéder ou d'utiliser notre site web. En accédant ou en utilisant une partie du site, vous acceptez d'être lié par ces Conditions d'Utilisation. Si vous n'acceptez pas tous les termes et conditions de cet accord, alors vous ne pouvez pas accéder au site web ni utiliser aucun service. Si ces Conditions d'Utilisation sont considérées comme une offre, l'acceptation est expressément limitée à ces Conditions d'Utilisation. Toute nouvelle fonctionnalité ou outil ajouté au magasin actuel sera également soumis aux Conditions d'Utilisation. Vous pouvez consulter la version la plus récente des Conditions d'Utilisation à tout moment sur cette page. Nous nous réservons le droit de mettre à jour, changer ou remplacer toute partie de ces Conditions d'Utilisation en publiant des mises à jour et/ou des changements sur notre site web. Il vous incombe de vérifier cette page périodiquement pour les changements. Votre utilisation continue ou votre accès au site web suite à la publication de tout changement constitue l'acceptation de ces changements."
+    },
+    "section1": {
+      "title": "SECTION 1 – CONDITIONS DU MAGASIN EN LIGNE",
+      "description": "En acceptant ces Conditions de Service, vous déclarez avoir au moins l'âge de la majorité dans votre état ou province de résidence, ou être la majorité dans votre état ou province de résidence et avoir donné votre consentement pour permettre à vos dépendants mineurs d'utiliser ce site. Vous ne pouvez pas utiliser nos produits à des fins illégales ou non autorisées, ni enfreindre les lois de votre juridiction (y compris, mais sans s'y limiter, les lois sur le droit d'auteur) lors de l'utilisation du Service. Vous ne devez pas transmettre de vers ou de virus, ou tout code de nature destructive. Une violation de l'une des conditions entraînera une résiliation immédiate de vos Services."
+    },
+    "section2": {
+      "title": "SECTION 2 – CONDITIONS GÉNÉRALES",
+      "description": "Nous nous réservons le droit de refuser le Service à quiconque, pour quelque raison que ce soit, à tout moment. Vous comprenez que votre contenu (à l'exception des informations de carte de crédit, licenses ainsi que les mots de passe) peut être transféré sans chiffrement et impliquer (a) des transmissions sur divers réseaux; et (b) des modifications pour se conformer et s'adapter aux exigences techniques des réseaux ou appareils de connexion. Les informations de carte de crédit, licenses et mots de passe sont toujours chiffrées lors du transfert sur les réseaux. Vous acceptez de ne pas reproduire, dupliquer, copier, vendre, revendre ou exploiter une partie du Service, l'utilisation du Service ou l'accès au Service, ni aucun contact sur le site Web par lequel le Service est fourni, sans notre autorisation écrite expresse. Les titres utilisés dans cet accord sont inclus pour des raisons de commodité uniquement et ne limiteront pas ou n'affecteront autrement ces Conditions."
+    },
+    "section3": {
+      "title": "SECTION 3 – PRÉCISION, EXHAUSTIVITÉ ET PONCTUALITÉ DES INFORMATIONS",
+      "description": "Nous ne sommes pas responsables si les informations disponibles sur ce site ne sont pas exactes, complètes ou à jour. Le matériel sur ce site est fourni à titre d'information générale uniquement et ne doit pas être utilisé comme seul fondement pour prendre des décisions sans consulter des sources d'information principales, plus précises, plus complètes ou plus opportunes. Toute confiance accordée au matériel sur ce site se fait à vos propres risques. Ce site peut contenir certaines informations historiques. Les informations historiques ne sont pas nécessairement actuelles et sont fournies uniquement à titre de référence. Nous nous réservons le droit de modifier le contenu de ce site à tout moment, mais nous n'avons aucune obligation de mettre à jour les informations sur notre site. Vous acceptez qu'il est de votre responsabilité de surveiller les changements sur notre site."
+    },
+    "section4": {
+      "title": "SECTION 4 – MODIFICATIONS DU SERVICE ET DES PRIX",
+      "description": "Les prix de nos produits sont sujets à changement sans préavis. Nous nous réservons le droit de modifier ou d'interrompre le Service (ou toute partie ou contenu de celui-ci) sans préavis, à tout moment. Nous ne serons pas responsables envers vous ou envers un tiers pour toute modification, changement de prix, suspension ou interruption du Service."
+    },
+    "section5": {
+      "title": "SECTION 5 – PRODUITS OU SERVICES",
+      "description": "Certains produits ou services peuvent être disponibles exclusivement en ligne sur le site Web. Ces produits ou services peuvent avoir des quantités limitées et sont sujets à retour ou échange uniquement selon notre Politique de Remboursement: Nous avons fait tout notre possible pour afficher aussi précisément que possible les couleurs et images de nos produits apparaissant dans le magasin. Nous ne pouvons garantir que l'affichage des couleurs sur votre moniteur d'ordinateur sera précis. Nous nous réservons le droit, mais ne sommes pas obligés, de limiter la vente de nos produits ou services à toute personne, région géographique ou juridiction. Nous pouvons exercer ce droit au cas par cas. Nous nous réservons le droit de limiter les quantités de tout produit ou service que nous proposons. Toutes les descriptions de produits ou tarifs de produits sont sujets à changement à tout moment sans préavis, à la seule discrétion de notre part. Nous nous réservons le droit de discontinuer tout produit à tout moment. Toute offre de tout produit ou service faite sur ce site est nulle là où elle est interdite. Nous ne garantissons pas que la qualité de nos produits, services, informations ou autres matériels achetés ou obtenus par vous répondra à vos attentes, ni que toute erreur dans le service sera corrigée."
+    },
+    "section6": {
+      "title": "SECTION 6 – PRÉCISION DES INFORMATIONS DE FACTURATION ET DE COMPTE",
+      "description": "Nous nous réservons le droit de refuser toute commande que vous passez chez nous. Nous pouvons, à notre seule discrétion, limiter ou annuler les quantités achetées par personne, par foyer ou par commande. Ces restrictions peuvent inclure des commandes passées par ou sous le même compte client, la même carte de crédit, et/ou des commandes utilisant la même adresse de facturation et/ou de livraison. En cas de modification ou d'annulation d'une commande, nous pouvons tenter de vous en informer en contactant l'adresse e-mail et/ou l'adresse de facturation/numéro de téléphone fournie au moment de la commande. Nous nous réservons le droit de limiter ou d'interdire les commandes qui, à notre seule appréciation, semblent être passées par des revendeurs ou des distributeurs. Vous acceptez de fournir des informations de facturation et de compte exactes, complètes et à jour pour toutes les achats effectués dans notre magasin. Vous acceptez de mettre rapidement à jour votre compte et vos autres informations, y compris votre adresse e-mail et les numéros de carte de crédit et dates d'expiration, afin que nous puissions finaliser vos transactions et vous contacter si nécessaire. Pour plus de détails, veuillez consulter notre Politique de Remboursement."
+    },
+    "section7": {
+      "title": "SECTION 7 – OUTILS OPTIONNELS",
+      "description": "Nous pouvons vous fournir l'accès à des outils tiers sur lesquels nous n'avons ni surveillance ni contrôle ni contribution. Vous reconnaissez et acceptez que nous donnions accès à de tels outils 'tels quels' et 'selon disponibilité' sans aucune garantie, représentation ou condition d'aucune sorte et sans aucun aval. Nous n'aurons aucune responsabilité découlant de votre utilisation d'outils optionnels de tiers. Tout usage que vous faites des outils optionnels offerts sur le site se fait entièrement à vos propres risques et discrétion et vous devez vous assurer que vous êtes familier et approuvez les conditions auxquelles les outils sont fournis par le ou les fournisseurs tiers concernés. Nous pouvons également, à l'avenir, offrir de nouveaux services et/ou fonctionnalités via le site Web (y compris la sortie de nouveaux outils et ressources). De telles nouvelles fonctionnalités et/ou services seront également soumis à ces Conditions de Service."
+    },
+    "section8": {
+      "title": "SECTION 8 – LIENS VERS DES TIERS",
+      "description": "Certains contenus, produits et services disponibles via notre Service peuvent inclure des matériaux provenant de tiers. Les liens vers des tiers sur ce site peuvent vous rediriger vers des sites Web tiers qui ne sont pas affiliés à nous. Nous ne sommes pas responsables de l'examen ou de l'évaluation du contenu ou de l'exactitude et nous ne garantissons pas et n'aurons aucune responsabilité ou obligation pour tout matériel ou site Web tiers, ou pour tout autre matériel, produit ou service de tiers. Nous ne sommes pas responsables de tout dommage ou préjudice lié à l'achat ou à l'utilisation de biens, services, ressources, contenus ou de toute autre transaction effectuée en relation avec des sites Web tiers. Veuillez examiner attentivement les politiques et pratiques des tiers et assurez-vous de les comprendre avant de procéder à une transaction. Les plaintes, réclamations, préoccupations ou questions concernant les produits tiers doivent être adressées au tiers."
+    },
+    "section9": {
+      "title": "SECTION 9 – COMMENTAIRES DES UTILISATEURS, RETOURS ET AUTRES SOUMISSIONS",
+      "description": "Si, à notre demande, vous envoyez certaines soumissions spécifiques (par exemple des participations à des concours) ou sans demande de notre part, vous envoyez des idées créatives, des suggestions, des propositions, des plans ou d'autres matériaux, que ce soit en ligne, par e-mail, par courrier postal ou autrement (collectivement, les 'commentaires'), vous acceptez que nous puissions, à tout moment, sans restriction, éditer, copier, publier, distribuer, traduire et utiliser autrement, dans n'importe quel médium, tous les commentaires que vous nous transmettez. Nous ne sommes pas et ne serons pas tenus (1) de maintenir la confidentialité de tous les commentaires; (2) de payer une compensation pour tous les commentaires; ou (3) de répondre à tous les commentaires. Nous pouvons, mais n'avons aucune obligation de, surveiller, éditer ou supprimer du contenu que nous jugeons, à notre seule discrétion, illégal, offensant, menaçant, diffamatoire, pornographique, obscène ou autrement répréhensible ou violant les droits de propriété intellectuelle d'une partie ou ces Conditions de Service. Vous acceptez que vos commentaires ne violeront aucun droit de tiers, y compris les droits d'auteur, de marque, de confidentialité, de personnalité ou tout autre droit personnel ou de propriété. Vous acceptez en outre que vos commentaires ne contiendront aucun matériel diffamatoire ou autrement illégal, abusif ou obscène, ou ne contiendront aucun virus informatique ou autre logiciel malveillant pouvant affecter de quelque manière que ce soit le fonctionnement du Service ou de tout site Web associé. Vous ne pouvez pas utiliser une fausse adresse e-mail, prétendre être quelqu'un d'autre que vous-même, ou autrement nous induire en erreur, nous ou des tiers, quant à l'origine de tout commentaire. Vous êtes seul responsable de tous les commentaires que vous faites et de leur exactitude. Nous n'assumons aucune responsabilité et n'aurons aucune responsabilité pour tous les commentaires publiés par vous ou par un tiers."
+    },
+    "section10": {
+      "title": "SECTION 10 – INFORMATIONS PERSONNELLES",
+      "description": "Votre soumission d'informations personnelles à travers le magasin est régie par notre Politique de Confidentialité."
+    },
+    "section11": {
+      "title": "SECTION 11 – ERREURS, INEXACTITUDES ET OMISSIONS",
+      "description": "Il peut arriver que, de temps à autre, il y ait des informations sur notre site ou dans le Service qui contiennent des erreurs typographiques, des inexactitudes ou des omissions pouvant concerner les descriptions de produits, les prix, les promotions, les offres, les frais d'expédition des produits, les délais de transit et la disponibilité. Nous nous réservons le droit de corriger toute erreur, inexactitude ou omission, et de modifier ou de mettre à jour les informations ou d'annuler des commandes si des informations dans le Service ou sur tout site Web associé sont inexactes à tout moment et ce sans préavis (y compris après que vous ayez passé votre commande). Nous ne nous engageons pas à mettre à jour, à modifier ou à clarifier les informations dans le Service ou sur tout site Web associé, y compris, sans limitation, les informations de tarification, sauf si la loi l'exige. Aucune date de mise à jour ou de rafraîchissement spécifiée appliquée dans le Service ou sur tout site Web associé ne doit être interprétée comme indiquant que toutes les informations dans le Service ou sur tout site Web associé ont été modifiées ou mises à jour."
+    },
+    "section12": {
+      "title": "SECTION 12 – UTILISATIONS INTERDITES",
+      "description": "En plus d'autres interdictions énoncées dans les Conditions de Service, il vous est interdit d'utiliser le site ou son contenu: (a) à des fins illégales; (b) pour solliciter autrui à commettre ou à participer à des actes illégaux; (c) pour enfreindre toute réglementation internationale, fédérale, provinciale ou étatique, règle, loi, ou ordonnance locale; (d) pour violer ou porter atteinte à nos droits de propriété intellectuelle ou aux droits de propriété intellectuelle d'autrui; (e) pour harceler, abuser, insulter, nuire, diffamer, calomnier, dénigrer, intimider, ou discriminer en fonction du sexe, de l'orientation sexuelle, de la religion, de l'ethnicité, de la race, de l'âge, de l'origine nationale, ou du handicap; (f) pour soumettre des informations fausses ou trompeuses; (g) pour télécharger ou transmettre des virus ou tout autre type de code malveillant qui pourrait affecter de quelque manière que ce soit la fonctionnalité ou le fonctionnement du Service ou de tout site Web associé, d'autres sites Web, ou Internet; (h) pour collecter ou suivre les informations personnelles d'autrui; (i) pour faire du spam, du hameçonnage, du détournement, du prétexte, de l'exploration de données, du crawling, ou du scraping; (j) à des fins obscènes ou immorales; ou (k) pour interférer avec ou contourner les fonctionnalités de sécurité du Service ou de tout site Web associé, d'autres sites Web, ou Internet. Nous nous réservons le droit de mettre fin à votre utilisation du Service ou de tout site Web associé pour avoir enfreint l'une des utilisations interdites."
+    },
+    "section13": {
+      "title": "SECTION 13 – EXONÉRATION DES GARANTIES",
+      "description": "Nous ne garantissons, ne représentons ni ne garantissons que votre utilisation de notre Service sera ininterrompue, ponctuelle, sécurisée ou exempte d'erreurs. Nous ne garantissons pas que les résultats pouvant être obtenus de l'utilisation du Service seront exacts ou fiables. Vous acceptez que de temps à autre nous puissions retirer le Service pour des périodes indéfinies ou annuler le Service à tout moment, sans vous en informer. Vous convenez expressément que votre utilisation du Service est à vos propres risques. Le Service et tous les produits et services qui vous sont livrés par le biais du Service sont (sauf indication expresse de notre part) fournis 'tels quels' et 'selon disponibilité' pour votre utilisation, sans aucune représentation, garanties ou conditions d'aucune sorte, explicites ou implicites, y compris toutes les garanties ou conditions implicites de qualité marchande, de qualité marchande, d'adéquation à un usage particulier, de durabilité, de titre, et de non-violation. En aucun cas, Bagou450, nos directeurs, officiers, employés, affiliés, agents, contractants, stagiaires, fournisseurs, prestataires de services ou concédants de licence ne seront responsables de tout dommage, perte, réclamation, ou de tout dommage direct, indirect, accessoire, punitif, spécial, ou consécutif de quelque nature que ce soit, y compris, sans limitation, les bénéfices perdus, les revenus perdus, les économies perdues, la perte de données, les coûts de remplacement, ou tout dommage similaire, que ce soit basé sur un contrat, un délit (y compris la négligence), une responsabilité stricte ou autrement, résultant de votre utilisation de l'un des Services ou de tout produit acquis utilisant le Service, ou pour toute autre réclamation liée de quelque manière que ce soit à votre utilisation du Service ou de tout produit, y compris, mais sans s'y limiter, toute erreur ou omission dans tout contenu, ou tout dommage ou perte de quelque nature que ce soit résultant de l'utilisation du Service ou de tout contenu (ou produit) affiché, transmis, ou autrement rendu disponible via le Service, même si nous avons été informés de leur possibilité. Étant donné que certains États ou juridictions n'autorisent pas l'exclusion ou la limitation de responsabilité pour les dommages consécutifs ou accessoires, dans ces États ou juridictions, notre responsabilité sera limitée dans la mesure maximale permise par la loi."
+    },
+    "section14": {
+      "title": "SECTION 14 – INDEMNISATION",
+      "description": "Vous acceptez d'indemniser, de défendre et de dégager de toute responsabilité Bagou450 et notre société mère, filiales, affiliés, partenaires, officiers, directeurs, agents, contractants, concédants de licence, fournisseurs de services, sous-traitants, fournisseurs, stagiaires et employés, contre toute réclamation ou demande, y compris les frais d'avocat raisonnables, faite par un tiers en raison de ou découlant de votre violation de ces Conditions de Service ou des documents qu'elles incorporent par référence, ou de votre violation de toute loi ou des droits d'un tiers."
+    },
+    "section15": {
+      "title": "SECTION 15 – DIVISIBILITÉ",
+      "description": "Dans le cas où une disposition des présentes Conditions de Service serait jugée illégale, nulle ou inapplicable, ladite disposition sera néanmoins applicable dans toute la mesure permise par la loi applicable, et la portion inapplicable sera réputée être séparée des présentes Conditions de Service, cette détermination n'affectera pas la validité et l'applicabilité des autres dispositions restantes."
+    },
+    "section16": {
+      "title": "SECTION 16 – RÉSILIATION",
+      "description": "Les obligations et responsabilités des parties contractées avant la date de résiliation survivront à la résiliation du présent accord à toutes fins utiles. Les présentes Conditions de Service sont en vigueur sauf et jusqu'à résiliation par vous ou par nous. Vous pouvez résilier ces Conditions de Service à tout moment en nous informant que vous ne souhaitez plus utiliser nos Services, ou lorsque vous cessez d'utiliser notre site. Si, à notre seule discrétion, vous ne respectez pas une quelconque disposition des présentes Conditions de Service, nous pouvons également résilier cet accord à tout moment sans préavis et vous resterez responsable de tous les montants dus jusqu'à la date de résiliation; et/ou nous pourrons vous refuser l'accès à nos Services (ou à une partie de ceux-ci)."
+    },
+    "section17": {
+      "title": "SECTION 17 – ACCORD INTÉGRAL",
+      "description": "Le fait que nous n'exercions pas ou n'appliquions pas un droit ou une disposition des présentes Conditions de Service ne constitue pas une renonciation à ce droit ou à cette disposition. Les présentes Conditions de Service et toutes les politiques ou règles d'exploitation publiées par nous sur ce site ou concernant le Service constituent l'accord complet et la compréhension entre vous et nous et régissent votre utilisation du Service, remplaçant tout accord antérieur ou contemporain, communications et propositions, qu'ils soient oraux ou écrits, entre vous et nous (y compris, mais sans s'y limiter, toute version antérieure des Conditions de Service). Toutes ambiguïtés dans l'interprétation des présentes Conditions de Service ne seront pas interprétées contre la partie rédactrice."
+    },
+    "section18": {
+      "title": "SECTION 18 – DROIT APPLICABLE",
+      "description": "Les présentes Conditions de Service et tout accord distinct par lequel nous vous fournissons des Services seront régis et interprétés conformément aux lois françaises."
+    },
+    "section19": {
+      "title": "SECTION 19 – MODIFICATIONS DES CONDITIONS DE SERVICE",
+      "description": "Vous pouvez consulter la version la plus récente des Conditions de Service à tout moment sur cette page. Nous nous réservons le droit, à notre seule discrétion, de mettre à jour, de modifier ou de remplacer toute partie de ces Conditions de Service en publiant les mises à jour et les changements sur notre site Web. Il est de votre responsabilité de vérifier périodiquement notre site Web pour les changements. Votre utilisation continue de notre site Web ou du Service après la publication de toute modification des présentes Conditions de Service constitue votre acceptation de ces changements."
+    },
+    "section20": {
+      "title": "SECTION 20 – INFORMATIONS DE CONTACT",
+      "description": "Les questions concernant les Conditions de Service doivent nous être envoyées à l'adresse contact@bagou450.com."
+    }
+  },
+  "refund": {
+    "title": "Politique de Remboursement",
+    "description": "Consultez la Politique de Remboursement de Bagou450 pour comprendre nos directives en matière de remboursements et de retours. Nous nous efforçons de garantir votre satisfaction avec nos produits et services.",
+    "overview": "Nous avons une politique de remboursement de 14 jours, ce qui signifie que vous disposez de 14 jours après réception de votre article pour demander un remboursement. Si votre produit n'a pas de système de licence, vous acceptez de mettre fin à votre droit de rétractation dès la livraison de votre commande. Notez que la livraison de votre commande se fait automatiquement dans les 120 secondes suivant le paiement. Si votre produit a un système de licence, vous acceptez de mettre fin à votre droit de rétractation après la première utilisation de la licence. Veuillez noter que tout problème d'installation ou de configuration du produit, ainsi que les problèmes de compatibilité avec d'autres équipements, ne sont pas considérés comme des motifs de remboursement. Vous pouvez toujours nous contacter pour toute question de retour à contact@bagou450.com.",
+    "problems": {
+      "title": "Dommages et problèmes",
+      "description": "Veuillez inspecter votre commande dès réception et nous contacter immédiatement si l'article est défectueux, endommagé ou si vous recevez le mauvais article, afin que nous puissions évaluer le problème et le résoudre."
+    },
+    "exceptions": {
+      "title": "Exceptions / articles non retournables",
+      "description": "Certains types d'articles ne peuvent pas être retournés, tels que les produits non licenciés. Veuillez nous contacter si vous avez des questions ou des préoccupations concernant votre article spécifique. Malheureusement, nous ne pouvons pas accepter les retours d'articles en solde ou de cartes-cadeaux."
+    },
+    "europe": {
+      "title": "Période de réflexion de 14 jours pour l'Union européenne",
+      "description": "Nonobstant ce qui précède, si les marchandises sont expédiées au sein de l'Union européenne, vous avez le droit d'annuler ou de retourner votre commande dans les 14 jours, pour quelque raison que ce soit et sans justification. Comme ci-dessus, votre article doit être inutilisé, . Vous aurez également besoin du reçu ou de la preuve d'achat. Veuillez noter que si votre produit n'a pas de système de licence, vous acceptez de mettre fin à votre droit de rétractation dès la livraison de votre commande. Notez que la livraison de votre commande se fait automatiquement dans les 120 secondes suivant le paiement. Veuillez noter que si votre produit a un système de licence, vous acceptez de mettre fin à votre droit de rétractation après la première utilisation de la licence."
+    },
+    "request": {
+      "title": "Demande de remboursement",
+      "description": "Pour toutes demandes de remboursement, une lettre recommandée doit être rédigée et envoyée à l'adresse suivante : “02 rue des orchidées, 35450, Dourdain, Bretagne, France” pour: BAGOU450"
+    },
+    "refunds": {
+      "title": "Remboursements",
+      "description": "Nous vous informerons dès réception et inspection de votre retour, et vous ferons savoir si le remboursement a été approuvé ou non. Si approuvé, vous serez automatiquement remboursé sur votre mode de paiement d'origine dans les 10 jours ouvrables. Gardez à l'esprit que votre banque ou votre société de carte de crédit peut prendre un certain temps pour traiter et afficher également le remboursement. Si plus de 15 jours ouvrables se sont écoulés depuis que nous avons approuvé votre retour, veuillez nous contacter à contact@bagou450.com."
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "description": "Explorez la Politique de Confidentialité de Bagou450 pour découvrir comment nous traitons vos informations personnelles et protégeons votre vie privée. Nous nous engageons à protéger vos données.",
+    "section1": {
+      "title": "Qui nous sommes",
+      "description": "Nous sommes Bagou450, une société française. Notre adresse de site Web est : https://bagou450.com."
+    },
+    "section2": {
+      "title": "Commentaires",
+      "description": "Lorsque les visiteurs laissent des commentaires sur le site, nous collectons les données affichées dans le formulaire de commentaires, ainsi que l'adresse IP du visiteur et la chaîne d'agent utilisateur du navigateur pour aider à la détection des spams. Une chaîne anonymisée créée à partir de votre adresse e-mail (également appelée hash) peut être fournie au service Gravatar pour voir si vous l'utilisez. La politique de confidentialité du service Gravatar est disponible ici : https://automattic.com/privacy/. Après approbation de votre commentaire, votre photo de profil est visible du public dans le contexte de votre commentaire."
+    },
+    "section3": {
+      "title": "Médias",
+      "description": "Si vous téléchargez des images sur le site Web, vous devez éviter de télécharger des images contenant des données de localisation intégrées (EXIF GPS). Les visiteurs du site Web peuvent télécharger et extraire toutes les données de localisation à partir des images sur le site Web."
+    },
+    "section4": {
+      "title": "Cookies",
+      "description": "Si vous laissez un commentaire sur notre site, vous pouvez choisir d'enregistrer votre nom, votre adresse e-mail et votre site Web dans des cookies. Ceux-ci sont pour votre commodité afin que vous n'ayez pas à remplir à nouveau vos coordonnées lorsque vous laissez un autre commentaire. Ces cookies durent un an. Si vous visitez notre page de connexion, nous placerons un cookie temporaire pour déterminer si votre navigateur accepte les cookies. Ce cookie ne contient aucune donnée personnelle et est supprimé lorsque vous fermez votre navigateur. Lorsque vous vous connectez, nous mettrons également en place plusieurs cookies pour enregistrer vos informations de connexion et vos choix d'affichage à l'écran. Les cookies de connexion durent deux jours et les cookies d'options d'écran durent un an. Si vous sélectionnez \"Se souvenir de moi\", votre connexion persistera pendant deux semaines. Si vous vous déconnectez de votre compte, les cookies de connexion seront supprimés. Si vous modifiez ou publiez un article, un cookie supplémentaire sera enregistré dans votre navigateur. Ce cookie ne comprend aucune donnée personnelle et indique simplement l'ID de l'article que vous venez de modifier. Il expire après 1 jour."
+    },
+    "section5": {
+      "title": "Contenu embarqué depuis d'autres sites",
+      "description": "Les articles de ce site peuvent inclure du contenu intégré (par exemple des vidéos, des images, des articles, etc.). Le contenu intégré depuis d'autres sites se comporte de la même manière que si le visiteur avait visité cet autre site. Ces sites Web peuvent collecter des données vous concernant, utiliser des cookies, intégrer un suivi tiers supplémentaire et surveiller votre interaction avec ce contenu intégré, y compris le suivi de votre interaction avec le contenu intégré si vous avez un compte et êtes connecté à ce site Web."
+    },
+    "section6": {
+      "title": "Avec qui nous partageons vos données",
+      "description": "Si vous demandez une réinitialisation de mot de passe, votre adresse IP sera incluse dans l'e-mail de réinitialisation. Nous pouvons également fournir votre adresse e-mail à des entreprises tierces pour le bon fonctionnement de notre site. Nous pouvons également fournir votre adresse e-mail et d'autres informations personnelles vous concernant dans le cadre d'une enquête légale vous concernant."
+    },
+    "section7": {
+      "title": "Combien de temps nous conservons vos données",
+      "description": "Si vous laissez un commentaire, le commentaire et ses métadonnées sont conservés indéfiniment. Cela nous permet de reconnaître et d'approuver automatiquement tout commentaire de suivi au lieu de les maintenir dans une file d'attente de modération. Pour les utilisateurs qui s'inscrivent sur notre site Web (le cas échéant), nous stockons également les informations personnelles qu'ils fournissent dans leur profil d'utilisateur. Tous les utilisateurs peuvent voir, modifier ou supprimer leurs informations personnelles à tout moment. Les administrateurs du site Web peuvent également voir et modifier ces informations. Les licences de vos produits étant liées à une adresse IP, nous enregistrons également cette dernière de manière cryptée sur nos serveurs."
+    },
+    "section8": {
+      "title": "Vos droits sur vos données",
+      "description": "Si vous avez un compte sur ce site, ou avez laissé des commentaires, vous pouvez demander à recevoir un fichier exporté des données personnelles que nous détenons vous concernant, y compris toutes les données que vous nous avez fournies. Vous pouvez également demander que nous effacions toutes les données personnelles que nous détenons vous concernant. Cela n'inclut pas les données que nous sommes obligés de conserver pour des raisons administratives, légales ou de sécurité."
+    }
+  },
+  "account": {
+    "license": {
+      "title": "Licences",
+      "desc": "Vous pouvez ici voir et gérer toutes vos licences.",
+      "button1": "Ajouter une licence",
+      "addform": {
+        "title": "Ajouter une licence",
+        "desc": "Lier une licence à votre compte",
+        "obj1": "Vous devez entrer une licence.",
+        "toast1": "Licence ajoutée avec succès."
+      },
+      "tab": {
+        "col1": "Produit",
+        "col2": "Licence",
+        "col3": "Utilisation",
+        "col4": "Ip",
+        "col5": "Version",
+        "col6": "Sélectionner"
+      },
+      "row": {
+        "button1": "Réinitialiser",
+        "button2": "Acheter de l'utilisation",
+        "button3": "Copier la licence",
+        "toast1": "La licence a été réinitialisée avec succès.",
+        "toast2": "Licence copiée dans le presse-papiers."
+      }
+    },
+    "utils": {
+      "add": "Ajouter",
+      "search": "Rechercher",
+      "youare": "Vous êtes sur la page ",
+      "page": ".",
+      "pagination": {
+        "show": "Affichage de",
+        "to": "à",
+        "of": "sur",
+        "result": "résultats",
+        "previous": "Précédent",
+        "next": "Suivant"
+      },
+      "errormessage": "Une erreur inattendue s'est produite. Veuillez contacter l'un de nos membres de l'équipe d'assistance.",
+      "error": "Erreur"
+    },
+    "oauthcall": {
+      "toast1": "Vous avez lié votre",
+      "toast2": "compte avec succès. Félicitations !"
+    },
+    "form1": {
+      "error": {
+        "email": "Cet email est invalide",
+        "username": "Impossible d'utiliser un nom d'utilisateur vide"
+      },
+      "toast": {
+        "1": "Succès ! Votre email a été modifié.",
+        "2": "Succès ! Votre nom d'utilisateur a été modifié."
+      },
+      "utils": {
+        "unlink1": "Vous avez dissocié votre compte",
+        "unlink2": "avec succès"
+      },
+      "discord": {
+        "title1": "Votre compte Discord",
+        "title2": "Liez votre compte Discord",
+        "unlink": "Dissocier le compte Discord",
+        "link": "Lier le compte Discord"
+      },
+      "google": {
+        "title1": "Votre compte Google",
+        "title2": "Liez votre compte Google",
+        "unlink": "Dissocier le compte Google",
+        "link": "Lier le compte Google"
+      },
+      "github": {
+        "title1": "Votre compte Github",
+        "title2": "Liez votre compte Github",
+        "unlink": "Dissocier le compte Github",
+        "link": "Lier le compte Github"
+      }
+    },
+    "form2": {
+      "error1": "Vous devez sélectionner un État / Région",
+      "error2": "Vous devez sélectionner un Pays",
+      "toast": {
+        "1": "Succès ! Vos informations ont été modifiées."
+      },
+      "field": {
+        "firstname": "Prénom",
+        "lastname": "Nom de famille",
+        "company": "Société",
+        "country": "Pays",
+        "region": "État / Province",
+        "street": "Adresse",
+        "city": "Ville",
+        "zip": "Code postal",
+        "button1": "Annuler",
+        "save": "Sauvegarder"
+      }
+    },
+    "form3": {
+      "toast1": "Succès ! Vos préférences d'email ont été modifiées.",
+      "title": "Notifications par email",
+      "desc": "Recevez des notifications lorsqu'une nouvelle mise à jour est disponible ou lorsque nous publions un nouvel article sur notre blog."
+    },
+    "container": {
+      "title": "Mon compte",
+      "box1": {
+        "title": "Profil",
+        "desc": "Utilisez une adresse permanente où vous pouvez recevoir du courrier. Le nom d'utilisateur peut être affiché publiquement."
+      },
+      "box2": {
+        "title": "Informations personnelles",
+        "desc": "Utilisez une adresse correcte. Ces informations ne seront pas affichées publiquement"
+      },
+      "box3": {
+        "title": "Compte connecté",
+        "desc": "Vous pouvez ici connecter un compte externe à votre compte Bagou450."
+      },
+      "box4": {
+        "title": "Préférences de courriel",
+        "desc": "Nous vous envoyons un courriel pour chaque nouvelle mise à jour de produit et pour toute nouvelle liée à Pterodactyl ou Bagou450."
+      }
+    },
+    "order": {
+      "title": "Commandes",
+      "description": "Vous pouvez voir ici toutes vos commandes.",
+      "col1": "Id",
+      "col2": "Produit",
+      "col3": "Statut",
+      "col4": "Prix",
+      "col5": "Numéro de transaction",
+      "col6": "Sélectionner",
+      "row": {
+        "toast": {
+          "1": "Veuillez attendre pendant la génération du fichier...",
+          "2": "Votre fichier est maintenant téléchargé",
+          "3": "Votre facture est maintenant téléchargée !",
+          "4": "Id de transaction copié dans le presse-papiers."
+        },
+        "button": {
+          "1": "Télécharger la facture",
+          "2": "Télécharger le produit"
+        }
+      }
+    },
+    "ticket": {
+      "view": {
+        "toast": {
+          "1": "Statut du ticket modifié avec succès.",
+          "2": "Copié dans le presse-papiers !"
+        },
+        "open": "Ouvrir le ticket",
+        "close": "Fermer le ticket",
+        "info": {
+          "1": "Statut",
+          "2": "Priorité",
+          "3": "URL des logs",
+          "4": "Aucun log fourni",
+          "5": "Numéro de licence/commande",
+          "6": "Aucun numéro de licence ou de commande fourni",
+          "7": "Création",
+          "8": "Dernière mise à jour"
+        },
+        "attachments": {
+          "toast": "Votre fichier est maintenant téléchargé !",
+          "1": "Pièces jointes",
+          "2": "Aucune pièce jointe trouvée."
+        }
+      },
+      "container": {
+        "row": {
+          "1": "Fermé",
+          "2": "Répondu par le support",
+          "3": "Répondu par le client",
+          "4": "Voir"
+        },
+        "status": {
+          "1": "Statut",
+          "2": "Modifié",
+          "3": "Ascendant",
+          "4": "Descendant",
+          "5": "Créé"
+        },
+        "title": "Tickets",
+        "desc": "Vous pouvez voir ici tous vos tickets de support.",
+        "button": {
+          "1": "Nouveau ticket"
+        },
+        "table": {
+          "1": "Id",
+          "2": "Nom",
+          "3": "Priorité",
+          "4": "Statut",
+          "5": "Dernière mise à jour",
+          "6": "Sélectionner",
+          "7": "Aucun ticket correspondant à ces paramètres n'a été trouvé pour ce compte."
+        },
+        "form": {
+          "title": "Création d'une demande de support",
+          "obj": {
+            "subject": {
+              "1": "Le sujet ne peut pas être vide.",
+              "2": "Le sujet doit avoir une longueur minimale de 16 caractères",
+              "3": "Le sujet doit avoir une longueur maximale de 64 caractères."
+            },
+            "message": {
+              "1": "Le message ne peut pas être vide",
+              "2": "Le message doit avoir une longueur minimale de 64 caractères",
+              "logs": "Les logs doivent être une URL !"
+            }
+          },
+          "error": {
+            "1": "Erreur : La taille du fichier doit être inférieure à 8 Mo",
+            "2": "Erreur : Toutes les cases à cocher doivent être cochées"
+          },
+          "toast": "Ticket créé avec succès.",
+          "fields": {
+            "1": "Sujet",
+            "2": "Votre message",
+            "3": "Numéro de licence/commande",
+            "4": "Facultatif",
+            "5": "URL des logs",
+            "6": "Ajouter des documents",
+            "7": "Téléverser un fichier",
+            "8": "ou glisser et déposer",
+            "9": "Pas de logs",
+            "10": "Je reconnais que ne pas fournir de logs peut limiter l'assistance que je reçois dans la plupart des cas.",
+            "11": "Pas de numéro de licence ou de commande",
+            "12": "Je reconnais que ne pas fournir de numéro de commande/licence peut limiter l'assistance que je reçois dans la plupart des cas.",
+            "13": "Il y avait",
+            "14": "des erreurs dans votre soumission",
+            "15": "Enregistrer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,9 @@ import Footer from './Elements/Footer';
 import Home from './Home';
 import Discount from './Elements/Discount';
 import { useDark } from '../App';
+import { changeLanguage } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 
 const NotFoundPage = lazy(() => import('./NotFoundPage'));
 const Products = lazy(() => import('./Products'));
@@ -27,131 +30,150 @@ const PpContainer = lazy(() => import('./PpContainer'));
 const LmContainer = lazy(() => import('./LmContainer'));
 const RpContainer = lazy(() => import('./RpContainer'));
 const AddPasskey = lazy(() => import('./Auth/AddPasskey'));
+const About = lazy(() => import('./About'));
 
 export const MainNavRoutes = [
     {
         name: 'home',
         link: '/',
-        component: <Home />
+        component: <Home />,
     },
     {
-        name: 'products',
-        link: '/products',
-        component: <Products />
+        name: 'pterodactyl',
+        link: '/products/pterodactyl/addons',
+        dropdown: true,
+        dropdownContent: [
+            {
+                name: 'products',
+                link: '/products/pterodactyl/addons',
+                component: <Products />,
+            },
+            {
+                name: 'licenses',
+                link: '/licenses',
+                component: <Licenses />,
+            },
+        ]
     },
     {
         name: 'blog',
         link: '/blog',
-        component: <NewsContainer />
-    },
-    {
-        name: 'licenses',
-        link: '/licenses',
-        component: <Licenses />
+        component: <NewsContainer />,
     },
     {
         name: 'contact',
         link: '/contact',
-        component: <Contact />
-    }
+        component: <Contact />,
+    },
+    {
+        name: 'about',
+        link: '/about',
+        component: <About />,
+    },
 ];
 export const AuthRoutes = [
     {
         name: 'login',
         link: '/login',
-        component: <Login />
+        component: <Login />,
     },
     {
         name: 'logintoken',
         link: '/login/token/:token',
-        component: <TokenLogin />
+        component: <TokenLogin />,
     },
     {
         name: 'addpasskey',
         link: '/login/addkey/:token',
-        component: <AddPasskey />
+        component: <AddPasskey />,
     },
     {
         name: 'oauthcallback',
         link: '/login/callback',
-        component: <OauthCallback />
-    }
+        component: <OauthCallback />,
+    },
 ];
 
 export const AdminRoutes = [
     {
         name: 'blogs',
         link: '/admin/blogs',
-        component: <BlogsContainer />
+        component: <BlogsContainer />,
     },
     {
         name: 'users',
         link: '/admin/users',
-        component: <UsersContainer />
+        component: <UsersContainer />,
     },
     {
         name: 'products',
         link: '/admin/products',
-        component: <ProductsContainer />
+        component: <ProductsContainer />,
     },
     {
         name: 'licenses',
         link: '/admin/licenses',
-        component: <LicensesContainer />
+        component: <LicensesContainer />,
     },
 ];
 
 export const OthersRoutes = [
     {
         name: 'products',
-        link: '/product/:id',
-        component: <Product />
+        link: '/product/pterodactyl/addons/:defaultcat/:id',
+        component: <Product />,
+    },
+    {
+        name: 'products',
+        link: '/products/pterodactyl/addons/:defaultcat',
+        component: <Products />,
     },
     {
         name: 'new',
         link: '/blog/:id',
-        component: <NewsCard />
+        component: <NewsCard />,
     },
     {
         name: 'order',
         link: '/order/:id',
-        component: <OrdersCallback />
+        component: <OrdersCallback />,
     },
     {
         name: 'tos',
         link: '/tos',
-        component: <TosContainer />
+        component: <TosContainer />,
     },
     {
         name: 'pp',
         link: '/pp',
-        component: <PpContainer />
+        component: <PpContainer />,
     },
     {
         name: 'lm',
         link: '/lm',
-        component: <LmContainer />
+        component: <LmContainer />,
     },
     {
         name: 'rp',
         link: '/rp',
-        component: <RpContainer />
-    }
+        component: <RpContainer />,
+    },
 ];
 
 export default function MainRouter() {
-    const {dark} = useDark();
+    const { dark } = useDark();
+    const lang = window.location.pathname.split('/')[1];
+    changeLanguage(lang);
     return (
         <>
 
             <div className={`navbar ${dark ? 'border-b-2 border-bg450-logo' : 'border-b-2 border-white'}`}>
-                    <NavBar/>
+                <NavBar />
 
             </div>
             <Suspense fallback={<Loading />}>
-                <Discount/>
+                <Discount />
             </Suspense>
-
 
 
             {/*<div className="alert alert-warning shadow-lg">
@@ -167,27 +189,42 @@ export default function MainRouter() {
             <div>
                 <Suspense fallback={<Loading />}>
                     <Routes>
-                        {MainNavRoutes.map((routes, key) => (
-                            <Route key={key} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
-                        ))}
+
+                        {MainNavRoutes.map((routes, key) => {
+                            if(!routes.dropdown) {
+                                return (
+                                    <Route key={key} path={routes.link}
+                                        element={<Suspense fallback={<Loading />}>{routes.component}</Suspense>} />
+                                );
+                            } else {
+                                return (
+                                    routes.dropdownContent.map((route) => (
+                                        <Route key={key} path={route.link}
+                                            element={<Suspense fallback={<Loading />}>{route.component}</Suspense>} />  
+                                    )));
+                            }
+                        })}
                         {AuthRoutes.map((routes, key) => (
-                            <Route key={key + 500} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                            <Route key={key + 500} path={routes.link}
+                                element={<Suspense fallback={<Loading />}>{routes.component}</Suspense>} />
                         ))}
                         {AdminRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                            <Route key={key + 1000} path={routes.link}
+                                element={<Suspense fallback={<Loading />}>{routes.component}</Suspense>} />
                         ))}
                         {OthersRoutes.map((routes, key) => (
-                            <Route key={key + 1000} path={routes.link} element={<Suspense fallback={<Loading/>}>{routes.component}</Suspense>} />
+                            <Route key={key + 1000} path={routes.link}
+                                element={<Suspense fallback={<Loading />}>{routes.component}</Suspense>} />
                         ))}
-                       
+
                         <Route path={'*'} element={<NotFoundPage />} />
                     </Routes>
                 </Suspense>
             </div>
-            <Suspense fallback={<Loading />} >
+            <Suspense fallback={<Loading />}>
                 <div className={dark ? 'border-t-2 border-bg450-logo mt-auto    ' : 'border-t-2 border-white mt-auto'}>
-                    <Footer/>
-                    <p className={`${dark ? 'bg-bg450-dark text-gray-300' : 'bg-white'} text-center pb-2  w-full`}>© 2022 - 2023 Bagou450. All Rights Reserved.</p>
+                    <Footer />
+
                 </div>
             </Suspense>
 

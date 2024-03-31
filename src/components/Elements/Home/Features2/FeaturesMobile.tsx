@@ -3,40 +3,38 @@ import { useDark } from '../../../../App';
 import { CommandLineIcon, WrenchIcon } from '@heroicons/react/24/outline';
 import { CogIcon } from '@heroicons/react/24/solid';
 import { Feature2, FeatureM } from '../Features2';
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function FeaturesMobile() {
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     const features2: Array<Feature2> = [
         {
-            name: 'Bagou Center',
-            summary: 'Centralized Product and Support Management.',
-            description:
-                'Manage your product versions, licenses, and settings directly from a user-friendly interface. Stay updated on support contacts and Bagou450 server status, all from one place.',
+            name: t('features2.feature1.title'),
+            summary: t('features2.feature1.summary'),
+            description: t('features2.feature1.description'),
             image: 'https://cdn.bagou450.com/assets/img/presentation/bagoucenter.webp',
             height: '939',
             width: '1920',
             icon: CommandLineIcon
         },
         {
-            name: 'Auto Installer',
-            summary:
-                'One-command Addon Installation.',
-            description:
-                'Use our intuitive auto installer to seamlessly set up our products on your panel. Just key in your license, and the installer takes care of file adjustments and additions for you.',
-            image: 'https://cdn.bagou450.com/assets/img/presentation/autoinstaller.webp',
+            name: t('features2.feature2.title'),
+            summary: t('features2.feature2.summary'),
+            description: t('features2.feature2.description'),
+            image: dark ? 'https://cdn.bagou450.com/assets/img/presentation/autoinstaller_dark.webp' : 'https://cdn.bagou450.com/assets/img/presentation/autoinstaller_light.webp',
             height: '964',
             width: '1920',
             icon: CogIcon
         },
         {
-            name: 'Simple dashboard',
-            summary:
-                'Unified Management for Orders, Licenses, and Tickets.',
-            description:
-                'Navigate through a user-friendly dashboard to oversee your orders, licenses, and tickets. Additionally, access and download your products with ease.',
-            image: !dark ? 'https://cdn.bagou450.com/assets/img/presentation/dashboard_dark.webp' : 'https://cdn.bagou450.com/assets/img/presentation/dashboard_white.webp',
+            name: t('features2.feature3.title'),
+            summary: t('features2.feature3.summary'),
+            description: t('features2.feature3.description'),
+            image: dark ? 'https://cdn.bagou450.com/assets/img/presentation/dashboard_dark.webp' : 'https://cdn.bagou450.com/assets/img/presentation/dashboard_white.webp',
             height: '939',
             width: '1920',
             icon: WrenchIcon

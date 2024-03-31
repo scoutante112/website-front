@@ -16,6 +16,7 @@ const OauthCallback = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type');
     const code = urlParams.get('code');
+
     const {data, error, isLoading} = useSWR(`${config.privateapilink}/auth/oauthloginCallback?token=${code}&type=${type}`, fetcher);
     if(!data || (error || isLoading)) {
         return <Loading/>;

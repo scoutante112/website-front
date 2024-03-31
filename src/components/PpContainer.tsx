@@ -2,77 +2,81 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useDark } from '../App';
+import { useTranslation } from 'react-i18next';
 
 export default function PpContainer() {
     const {dark} = useDark();
-    document.title = 'Bagou450 - Privacy Policy';
-
+    const { t } = useTranslation();
+    const en = window.location.pathname.startsWith('/en');
+    document.title = `Bagou450 | ${t('privacy.title')}`;
     return (
         <section className="mx-4 md:mx-16">
             <Helmet>
-                <meta name='description' content={'Explore Bagou450\'s Privacy Policy to learn how we handle your personal information and protect your privacy. We are committed to safeguarding your data.'} />
+                <meta name='description' content={t('privacy.description')} />
 
-                <meta name="twitter:description" content={'Explore Bagou450\'s Privacy Policy to learn how we handle your personal information and protect your privacy. We are committed to safeguarding your data.'} />
+                <meta name="twitter:description" content={t('privacy.description')} />
 
-                <meta property="og:description" content={'Explore Bagou450\'s Privacy Policy to learn how we handle your personal information and protect your privacy. We are committed to safeguarding your data.'} />
+                <meta property="og:description" content={t('privacy.description')} />
             </Helmet>
-            <h1 className={`text-4xl text-center ${dark ? 'text-white' : 'text-black'}`}><strong>Privacy Policy</strong></h1>
+            <h1 className={`text-4xl text-center ${dark ? 'text-white' : 'text-black'}`}>
+                <strong>{t('privacy.title')}</strong></h1>
+
+            {!en ? (
+                <h2 className={`text-xl text-center opacity-60 ${dark ? 'text-white' : 'text-black'}`}>{t('tos.translate')}</h2>) : null}
+
             <div className="my-8">
-                <h2 className={`text-2xl font-bold ${dark ? 'text-white' : 'text-black'}`}>Who we are</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>We are Bagou450 a French society. Our website address is: <Link to={'/'} className={'link link-primary'}>https://bagou450.com</Link>.</p>
+                <h2 className={`text-2xl font-bold ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section1.title')}</h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section1.description')}</p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>Comments</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor’s IP address and browser user agent string to help spam detection.
-
-          An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section2.title')}</h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section2.description')}</p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>Media</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section3.title')}</h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section3.description')}
                 </p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>Cookies</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.
-
-          If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.
-
-          When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select “Remember Me”, your login will persist for two weeks. If you log out of your account, the login cookies will be removed.
-
-          If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section4.title')}</h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section4.description')}
                 </p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>Embedded content from other websites</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.
-
-          These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section5.title')}
+                </h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section5.description')}
                 </p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>Who we share your data with</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>If you request a password reset, your IP address will be included in the reset email. We may also provide your email address to third party companies for the proper functioning of our site. We may also provide your email address and other personal information about you in connection with a legal investigation of you.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>{t('privacy.section6.title')}</h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section6.description')}
                 </p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>How long we retain your data</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.
-
-          For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time. Website administrators can also see and edit that information.
-          The licenses of your products being linked to an IP address, we also save the latter in an encrypted manner on our servers.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section7.title')}
+                </h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section7.description')}
                 </p>
             </div>
             <div className="my-8">
 
-               <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>What rights you have over your data</h2>
-                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}>  If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.
+                <h2 className={`font-bold text-xl my-4 ${dark ? 'text-white' : 'text-black'}`}>
+                    {t('privacy.section8.title')}
+                </h2>
+                <p className={`my-4 ${dark ? 'text-white' : 'text-black'}`}> {t('privacy.section8.description')}
                 </p>
             </div>
 

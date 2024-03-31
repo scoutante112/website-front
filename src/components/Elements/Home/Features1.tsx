@@ -1,41 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-const features = [
-    {
-        title: 'Minecraft Versions changer',
-        description:
-            'Effortlessly switch between Minecraft versions and modpacks directly from the panel, with real-time fetching, extensive compatibility, and seamless integration.',
-        image: 'https://cdn.bagou450.com/assets/img/addons/mcversions/computer/1.webp',
-        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcversions/mobile/1.webp',
 
-    },
-    {
-        title: 'Minecraft Plugins installer',
-        description:
-            'Instantly install a vast range of Minecraft plugins from SpigotMc, DevBukkit, PolyMart, and more, all directly from your panel with guaranteed uptime and compatibility.',
-        image: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/computer/1.webp',
-        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/mobile/1.webp',
-
-    },
-    {
-        title: 'Artifacts Changer',
-        description:
-            'Easily update your FiveM artifacts with a single click, ensuring synchronized TxAdmin updates and real-time fetching from CFX servers.',
-        image: 'https://cdn.bagou450.com/assets/img/addons/artifacts/computer/1.webp',
-        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/artifacts/mobile/1.webp',
-
-    },
-    {
-        title: 'Cloud Servers',
-        description:
-            'Empower your users to create their own servers with adjustable resources, seamlessly integrated with WHMCS and compatible across all Pterodactyl themes.',
-        image: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/computer/1.webp',
-        imagemobile: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/mobile/1.webp',
-
-    },
-];
 export default function Features1() {
     const [tabOrientation, setTabOrientation] = useState<'horizontal' | 'vertical'>(
         'horizontal',
@@ -54,6 +22,38 @@ export default function Features1() {
             lgMediaQuery.removeEventListener('change', onMediaQueryChange);
         };
     }, []);
+    const { t } = useTranslation();
+
+    const features = [
+        {
+            title: t('features1.feature1.title'),
+            description: t('features1.feature1.description'),
+            image: 'https://cdn.bagou450.com/assets/img/addons/mcversions/computer/1.webp',
+            imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcversions/mobile/1.webp',
+
+        },
+        {
+            title: t('features1.feature2.title'),
+            description: t('features1.feature2.description'),
+            image: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/computer/1.webp',
+            imagemobile: 'https://cdn.bagou450.com/assets/img/addons/mcplugins/mobile/1.webp',
+
+        },
+        {
+            title: t('features1.feature3.title'),
+            description: t('features1.feature3.description'),
+            image: 'https://cdn.bagou450.com/assets/img/addons/artifacts/computer/1.webp',
+            imagemobile: 'https://cdn.bagou450.com/assets/img/addons/artifacts/mobile/1.webp',
+
+        },
+        {
+            title: t('features1.feature4.title'),
+            description: t('features1.feature4.description'),
+            image: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/computer/1.webp',
+            imagemobile: 'https://cdn.bagou450.com/assets/img/addons/cloudservers/mobile/1.webp',
+
+        },
+    ];
     return (
         <section
             id="features"
@@ -70,12 +70,10 @@ export default function Features1() {
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
                     <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-                        Pterodactyl Addons Redefined.
+                        {t('features1.title')}
                     </h2>
                     <p className='mt-6 text-lg tracking-tight text-blue-100'>
-                        Seamless integration for your game hosting and websites. Quality, speed, and reliability at
-                        the
-                        forefront.
+                        {t('features1.subtitle')}
                     </p>
                 </div>
                 <Tab.Group
@@ -88,7 +86,7 @@ export default function Features1() {
                             <div
                                 className="-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5">
                                 <Tab.List
-                                    className="relative z-10 flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
+                                    className="relative flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
                                     {features.map((feature, featureIndex) => (
                                         <div
                                             key={feature.title}

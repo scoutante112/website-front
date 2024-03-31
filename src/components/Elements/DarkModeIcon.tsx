@@ -16,7 +16,7 @@ export default function DarkModeIcon()  {
     };
     if(dark) {
         return (
-            <div className="relative my-auto">
+            <div className="relative">
                 <button
                     onClick={toggleDarkTheme}
                     title={'Enable white mode'}
@@ -31,7 +31,7 @@ export default function DarkModeIcon()  {
         );
     }
     return (
-        <div className="relative my-auto">
+        <div className="relative">
             <button
                 onClick={toggleDarkTheme}
                 title={'Enable Dark mode'}

@@ -15,10 +15,15 @@ const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default; // Assur
 
 require('dotenv').config()
 
-const url = 'https://privatewebsite.bagou450.com'
+const url = 'https://bagou450.com'
 const urls = [
   { path: '/', priority: 1.0 },
-  { path: '/products', priority: 0.99 },
+  { path: '/products/pterodactyl/addons/minecraft', priority: 0.99 },
+  { path: '/products/pterodactyl/addons/fivem', priority: 0.99 },
+  { path: '/products/pterodactyl/addons/management', priority: 0.99 },
+  { path: '/products/pterodactyl/addons/miscellaneous', priority: 0.99 },
+  { path: '/products/pterodactyl/addons/bundles', priority: 0.99 },
+  { path: '/products/pterodactyl/addons', priority: 0.99 },
   { path: '/blog', priority: 0.8 },
   { path: '/licenses', priority: 0.8 },
   { path: '/contact', priority: 0.7 },
@@ -27,42 +32,44 @@ const urls = [
   { path: '/pp', priority: 0.2 },
   { path: '/rp', priority: 0.2 },
   { path: '/lm', priority: 0.2 },
-  { path: '/product/phpmyadmin-button', priority: 0.75 },
-  { path: '/product/auto-update', priority: 0.75 },
-  { path: '/product/txadmin-button', priority: 0.75 },
-  { path: '/product/minecraft-mods-installer', priority: 0.75 },
-  { path: '/product/txadmin-auto-setup', priority: 0.75 },
-  { path: '/product/artifacts-changer', priority: 0.75 },
-  { path: '/product/fivem-gamebuild-changer', priority: 0.75 },
-  { path: '/product/fivem-resources-manager', priority: 0.75 },
-  { path: '/product/minecraft-server-icon-changer', priority: 0.75 },
-  { path: '/product/server-banip-firewall', priority: 0.75 },
-  { path: '/product/server-importer-lite', priority: 0.75 },
-  { path: '/product/minecraft-versions-changer', priority: 0.75 },
-  { path: '/product/minecraft-bedrock-version-changer', priority: 0.75 },
-  { path: '/product/minecraft-versions-changer-bundle', priority: 0.75 },
-  { path: '/product/fivem-addons-bundle', priority: 0.75 },
-  { path: '/product/minecraft-plugins-installer', priority: 0.75 },
-  { path: '/product/minecraft-modpacks-installer', priority: 0.75 },
-  { path: '/product/egg-name-before-server-name', priority: 0.75 },
-  { path: '/product/server-limiter', priority: 0.75 },
-  { path: '/product/minecraft-addons-pack', priority: 0.75 },
-  { path: '/product/fivem-mysql-connexion-string-injector', priority: 0.75 },
-  { path: '/product/pacman-during-installation-suspension', priority: 0.75 },
-  { path: '/product/server-splitter', priority: 0.75 },
-  { path: '/product/minecraft-jar-checker', priority: 0.75 },
-  { path: '/product/server-importer-pro', priority: 0.75 },
-  { path: '/product/minecraft-template-downloader', priority: 0.75 },
-  { path: '/product/cloud-servers', priority: 0.75 },
-  { path: '/product/user-avatar-changer', priority: 0.75 },
-  { path: '/product/console-message-editor', priority: 0.75 },
-  { path: '/product/fivem-cache-remover', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/phpmyadmin-button', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/auto-update', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/txadmin-button', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-mods-installer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/txadmin-auto-setup', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/artifacts-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/fivem-gamebuild-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/fivem-resources-manager', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/fivem-cache-remover', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-server-icon-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/server-banip-firewall', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-versions-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-bedrock-version-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/bundles/minecraft-versions-changer-bundle', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/bundles/fivem-addons-bundle', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-plugins-installer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-modpacks-installer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-template-downloader', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/fivem/fivem-mysql-connexion-string-injector', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/minecraft/minecraft-jar-checker', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/bundles/minecraft-addons-pack', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/server-importer-pro', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/server-importer-lite', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/egg-name-before-server-name', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/server-limiter', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/pacman-during-installation-suspension', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/server-splitter', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/management/cloud-servers', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/user-avatar-changer', priority: 0.75 },
+  { path: '/product/pterodactyl/addons/miscellaneous/console-message-editor', priority: 0.75 },
+
+  { path: '/blog/introducing-bagou450-new-haste-service', priority: 0.66 }
 ];
 
-const isProduction = process.env.environement === 'production';
+const isProduction = false;
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: isProduction ? 'source-map': 'eval-source-map',
   mode: process.env.environement,
   watchOptions: {
     ignored: /node_modules/,
@@ -91,11 +98,11 @@ module.exports = {
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
     }),
     isProduction && new LoadablePlugin(),
-    new BundleAnalyzerPlugin({
+    /*!isProduction && new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: 'report.html',
       openAnalyzer: !isProduction,
-    }),
+    }),*/
     new SitemapWebpackPlugin({
       base: url,
       paths: urls,

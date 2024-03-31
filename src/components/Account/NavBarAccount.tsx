@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetcher } from '../../api/http';
 import useSWR from 'swr';
 import Loading from '../Elements/Loading';
@@ -13,21 +13,17 @@ export default function NavBarAccount(tab: tabs) {
     const [admin, showAdmin] = useState<boolean>(location.pathname.startsWith('/admin/'));
     const navigation = useNavigate();
 
-    const { data, error, mutate, isLoading } = useSWR(
+    const { data, error, isLoading } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
         fetcher
     );
     if (!data || (error || isLoading)) {
         return <Loading/>;
     }
-    const logged = data.status;
-    if(!logged) {
-        mutate();
-        navigation('/login');
+    if(!data.status) {
+        return <></>;
     }
-    if(location.pathname.startsWith('/admin') && !data.data.role) {
-        navigation('/');
-    }
+
     return (
         <>      <h1 className='text-4xl my-4 text-center'>Hello, {!data || (error || isLoading) ? 'User' : data.data.name[0].toUpperCase() + data.data.name.slice(1, data.data.name.length)}</h1>
             <section className='mx-auto text-center'>
@@ -103,10 +99,7 @@ Products
                         <></>
                     } 
                 </ul>
-                {admin &&
-    <h1 className='text-center text-red-500 text-xl font-semibold'>ADMINISTRATOR MODE</h1>    
-  
-                }
+
             </section>
 
         </>

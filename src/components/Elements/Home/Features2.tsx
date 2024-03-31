@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { useDark } from '../../../App';
 import clsx from 'clsx';
 import Loading from '../Loading';
+import { useTranslation } from 'react-i18next';
 
 const FeaturesDesktop = lazy(() => import('./Features2/FeaturesDesktop'));
 const FeaturesMobile = lazy(() => import('./Features2/FeaturesMobile'));
@@ -20,6 +21,8 @@ export interface Feature2 {
 
 export default function Features2() {
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     return (
         <section
             id="secondary-features"
@@ -29,10 +32,10 @@ export default function Features2() {
             <div className={'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'}>
                 <div className="mx-auto max-w-2xl md:text-center">
                     <h2 className={`${dark ? 'text-slate-400' : 'text-slate-900'} font-display text-3xl tracking-tight sm:text-4xl`}>
-                        Easy Control with Bagou450 Tools.
+                        {t('features2.title')}
                     </h2>
                     <h3 className={`${dark ? 'text-slate-500' : 'text-slate-700'} mt-4 text-lg tracking-tight`}>
-                        Our addons make everything simpler for you.
+                        {t('features2.subtitle')}
                     </h3>
                 </div>
                 <Suspense fallback={<Loading/>}>

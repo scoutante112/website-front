@@ -9,6 +9,7 @@ import LazyLoad from 'react-lazyload';
 import Pagination from '../Elements/Pagination';
 import { useDark } from '../../App';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 
 interface categorie {
   id: number;
@@ -28,7 +29,9 @@ interface blog {
 }
 
 export default function NewsContainer() {
-    document.title = 'Bagou450 - Blog';
+    const { t } = useTranslation();
+
+    document.title = `Bagou450 - ${t('blog.title')}`;
 
     const {dark} = useDark();
     const [search, setSearch] = useState<string>('');
@@ -43,7 +46,8 @@ export default function NewsContainer() {
             return <Loading/>;
         }
         return (
-            <div className={dark ? 'bg-bg450-lessdark' : 'bg-white'}>
+            <section className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} `}>
+                
                 <Helmet>
                     <meta name='description' content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
 
@@ -51,19 +55,32 @@ export default function NewsContainer() {
 
                     <meta property="og:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
                 </Helmet>
-                <h1 className={'text-center text-4xl mt-4 mb-2'}>News</h1>
-                <div className={' mx-2 text-center grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mb-4'}>
-                    <input type="text" placeholder="Search a product" defaultValue={search} className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => searchValue(e.target.value)} />
-                    <select className="block w-full rounded-md border-0 py-1.5 text-gray-900 mx-auto shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 max-w-xs mb-4 " onChange={(e) => setCategory(e.target.value)}>
-                        <option disabled selected>Select category</option>
-                        {categories.data.map((categorie: categorie, index: number) => {
-                            return   <option key={index} value={categorie.id}>{categorie.name}</option>;
-                        })}
-                    </select>
+                <h1 className={`${dark ? 'text-slate-200' : 'text-black'} text-center text-4xl pt-4 pb-2`}><strong>Blog</strong></h1>
+                <div className="flex">
+                    <div className={'mx-auto flex gap-x-2'}>
+                        <input
+                            type="text"
+                            placeholder="Search for product"
+                            defaultValue={search}
+                            className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
+                            onChange={(e) => searchValue(e.target.value)}
+                        />
+                        <select
+                            className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option disabled selected>Select category</option>
+                            {categories.data.map((categorie: categorie, index: number) => (
+                                <option key={index} value={categorie.id}>
+                                    {categorie.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 <Loading/>
 
-            </div>
+            </section>
         );
     }
     const searchValue = debounce((value: string) => {
@@ -80,12 +97,12 @@ export default function NewsContainer() {
 
                 <meta property="og:description" content={'Stay up-to-date with the latest news and insights in the world of Pterodactyl hosting and gaming. Explore Bagou450\'s blog for valuable information and updates.'} />
             </Helmet>
-            <h1 className={`${dark ? 'text-slate-200' : 'text-black'} text-center text-4xl pt-4 pb-2`}>Blog</h1>
+            <h1 className={`${dark ? 'text-slate-200' : 'text-black'} text-center text-4xl pt-4 pb-2`}><strong>{t('blog.title')}</strong></h1>
             <div className="flex">
-                <div className={' mx-2 mx-auto flex gap-x-2'}>
+                <div className={'mx-auto flex gap-x-2'}>
                     <input
                         type="text"
-                        placeholder="Search a product"
+                        placeholder={t('blog.search')}
                         defaultValue={search}
                         className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
                         onChange={(e) => searchValue(e.target.value)}
@@ -94,7 +111,7 @@ export default function NewsContainer() {
                         className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
                         onChange={(e) => setCategory(e.target.value)}
                     >
-                        <option disabled selected>Select category</option>
+                        <option disabled selected>{t('blog.select')}</option>
                         {categories.data.map((categorie: categorie, index: number) => (
                             <option key={index} value={categorie.id}>
                                 {categorie.name}
@@ -126,12 +143,12 @@ function NewsCard({blog}: {blog: blog}) {
     const [imageError, setImageError] = useState(false);
     const {dark} = useDark();
     return (
-        <Link to={`/blog/${blog.id}`}>
+        <Link to={`/blog/${blog.slug}`}>
             <div className="card card-compact hover:bg-base-200 transition-all duration-200 hover:-translate-y-1 min-h-full">
                 <figure className={'px-4 pt-4'}>
                     <LazyLoad>
                         <img
-                            src={imageError ? 'https://placehold.co/800x418' : 'https://beta-api.bagou450.com' + JSON.parse(blog.pictures)[0]}
+                            src={imageError ? 'https://placehold.co/800x418' : 'https://api.bagou450.com' + JSON.parse(blog.pictures)[0]}
                             alt={blog.title + ' picture'}
                             className='border-base-content bg-base-300 rounded-lg border border-opacity-5'
                             onError={() => setImageError(true)}
@@ -142,8 +159,6 @@ function NewsCard({blog}: {blog: blog}) {
                 <div >
                     <h2 className={`${dark ? 'text-slate-300' : 'text-black'} text-center`}>{blog.title}
                     </h2>
-                    <p className={`${dark ? 'text-slate-300' : 'text-black'} text-xs opacity-60 text-center`}>{blog.slug}
-                    </p>
                 </div>
             </div>
 

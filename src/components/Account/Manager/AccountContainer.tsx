@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
 import EditAccountForm, { Account as Acc, Discord, Github, Google } from './Forms/EditAccountForm';
@@ -8,6 +7,8 @@ import { fetcher } from '../../../api/http';
 import { config } from '../../../config/config';
 import { NavContext } from '../AccountRouter';
 import { useDark } from '../../../App';
+import EditNewsAccoutInfosForm from './Forms/EditNewsAccoutInfosForm';
+import { useTranslation } from 'react-i18next';
 
 
 export type Account = {
@@ -17,6 +18,8 @@ export type Account = {
 }
 export default function AccountContainer() {
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     const { setActive } = useContext(NavContext);
     useEffect(() => {
         setActive(window.location.pathname);
@@ -30,54 +33,75 @@ export default function AccountContainer() {
     if (!data || (error || isLoading)) {
         return <></>;
     }
+    if (!data.status) {
+        return <></>;
+    }
+
     const myaccount: Acc = {
         email: data.data.email,
         name: data.data.name,
         role: data.data.role,
         discord: data.data.discord,
         github: data.data.github,
+        newsletter: data.data.newsletter,
         google: data.data.google
     };
-    document.title = 'Bagou450 - My account';
+    document.title = `Bagou450 - ${t('account.container.title')}`;
     return (
-    
+
         <div className={'space-y-10 divide-y divide-gray-900/10'}>
             <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
                 <div className="px-4 sm:px-0">
-                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>Profile</h2>
+                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box1.title')}</h2>
                     <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>
-                        Use a permanent address where you can receive mail. The username can be displayed publicly.
+                        {t('account.container.box1.desc')}
                     </p>
                 </div>
 
-                <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'}  shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}>
-                    <EditAccountForm account={myaccount}/>
+                <div
+                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'}  shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}>
+                    <EditAccountForm account={myaccount} />
 
                 </div>
             </div>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
                 <div className="px-4 sm:px-0">
-                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>Personal Information</h2>
-                    <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>Use a correct address. These informations are not going to be displayed publicly</p>
+                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box2.title')}</h2>
+                    <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>{t('account.container.box2.desc')}</p>
                 </div>
-                <EditAccountInfosForm/>
+                <EditAccountInfosForm />
             </div>
             <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
                 <div className="px-4 sm:px-0">
-                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>Connected Account</h2>
-                    <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>You can here connect external account to your Bagou450 account.</p>
+                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box3.title')}</h2>
+                    <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>{t('account.container.box3.desc')}</p>
                 </div>
-                <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}>
+                <div
+                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'} shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}>
                     <div className={'grid grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-x-2 md:gap-y-0 px-4 py-6 sm:p-8'}>
-                        <Discord account={myaccount}/>
-                        <Google account={myaccount}/>
-                        <Github account={myaccount}/>
+                        <Discord account={myaccount} />
+                        <Google account={myaccount} />
+                        <Github account={myaccount} />
                     </div>
                 </div>
 
             </div>
 
+            <div className='grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3'>
+                <div className='px-4 sm:px-0'>
+                    <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box4.title')}</h2>
+                    <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>
+                        {t('account.container.box4.desc')}
+                    </p>
+                </div>
+
+                <div
+                    className={`${dark ? 'bg-bg450-dark' : 'bg-white'}  shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}>
+                    <EditNewsAccoutInfosForm account={myaccount} />
+
+                </div>
+            </div>
             {/*<div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
                 <div className="px-4 sm:px-0">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
@@ -199,6 +223,6 @@ export default function AccountContainer() {
                 </form>
             </div>*/}
         </div>
-    
+
     );
 }

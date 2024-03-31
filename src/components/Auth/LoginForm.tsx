@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { DiscordButton, GitHubButtonClick, GoogleButtonClick } from './Login';
+import { DiscordButton, GitHubButtonClick, GoogleButtonClick, PatreonButtonClick } from './Login';
 import isAccount from '../../api/auth/isAccount';
 import { useDark } from '../../App';
 
@@ -115,6 +115,7 @@ export default function LoginForm({setIsRegistred, setEmail}: {setIsRegistred: R
                             <DiscordButton/>
                             <GoogleButtonClick/>
                             <GitHubButtonClick/>
+                            <PatreonButtonClick/>
                         </div>
                     </div>
                 </div>

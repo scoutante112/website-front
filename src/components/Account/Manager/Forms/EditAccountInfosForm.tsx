@@ -11,6 +11,7 @@ import Loading from '../../../Elements/Loading';
 import { config } from '../../../../config/config';
 import { useDark } from '../../../../App';
 import Field from '../../../Elements/Form/Field';
+import { useTranslation } from 'react-i18next';
 
 const form = object({
     society: string().nullable(),
@@ -31,6 +32,8 @@ export default function EditAccountInfosForm({
     const [region, setRegion] = useState('');
     const [error, setError] = useState('');
     const {dark} = useDark();
+    const { t } = useTranslation();
+
     const {
         data,
         error: erros,
@@ -103,12 +106,12 @@ export default function EditAccountInfosForm({
         onSubmit: (values) => {
             setLoading(true);
             if (region === '' || !region) {
-                setError('You need to select a State/Region');
+                setError(t('account.form2.error1'));
                 setLoading(false);
                 return;
             }
             if (country === '' || !country) {
-                setError('You need to select a Country');
+                setError(t('account.form2.error2'));
                 setLoading(false);
                 return;
             }
@@ -138,7 +141,7 @@ export default function EditAccountInfosForm({
                         setLoading(false);
                     } else {
                         mutate();
-                        toast.success('Success! Your informations was edited.', {
+                        toast.success(t('account.form2.toast.1'), {
                             position: 'bottom-right',
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -157,7 +160,7 @@ export default function EditAccountInfosForm({
                 })
                 .catch(() => {
                     toast.error(
-                        'An unexcepted error happend. Please contact one of our support team.',
+                        t('account.utils.errormessage'),
                         {
                             position: 'bottom-right',
                             autoClose: 5000,
@@ -208,19 +211,19 @@ export default function EditAccountInfosForm({
                     </div>
                 </div>
                 <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-                    <Field className='sm:col-span-3' name={'First name'} id={'firstname'} type={'text'} required
+                    <Field className='sm:col-span-3' name={t('account.form2.field.firstname')} id={'firstname'} type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.firstname ? data.data.firstname : ''} />
-                    <Field className='sm:col-span-3' name={'Last name'} id={'lastname'} type={'text'} required
+                    <Field className='sm:col-span-3' name={t('account.form2.field.lastname')} id={'lastname'} type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.lastname ? data.data.lastname : ''} />
-                    <Field className='col-span-full' name={'Society'} id={'society'} type={'text'}
+                    <Field className='col-span-full' name={t('account.form2.field.company')} id={'society'} type={'text'}
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.society ? data.data.society : ''} />
                     <div className=' sm:col-span-3'>
                         <label htmlFor='country'
                             className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                            Country
+                            {t('account.form2.field.country')}
                         </label>
                         <div className='mt-2'>
                             <CountryDropdown
@@ -238,7 +241,7 @@ export default function EditAccountInfosForm({
                     <div className='sm:col-span-3'>
                         <label htmlFor='region'
                             className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
-                            State / Province
+                            {t('account.form2.field.region')}
                         </label>
                         <div className='mt-2'>
                             <RegionDropdown
@@ -252,13 +255,13 @@ export default function EditAccountInfosForm({
                             />
                         </div>
                     </div>
-                    <Field className='sm:col-span-2' name={'Street address'} id={'address'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.street')} id={'address'} type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.address ? data.data.address : ''} />
-                    <Field className='sm:col-span-2' name={'City'} id={'city'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.city')} id={'city'} type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.city ? data.data.city : ''} />
-                    <Field className='sm:col-span-2' name={'ZIP / Postal code'} id={'postalcode'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.zip')} id={'postalcode'} type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.postal_code ? data.data.postal_code : ''} />
                 </div>
@@ -267,7 +270,7 @@ export default function EditAccountInfosForm({
                 className={`${dark ? 'border-b450-logo' : 'border-gray-900/10'} flex items-center justify-end gap-x-6 border-t px-4 py-4 sm:px-8`}>
                 <button type='button'
                     className={`${dark ? 'text-slate-300' : 'text-gray-900'} text-sm font-semibold leading-6`}>
-                    Cancel
+                    {t('account.form2.field.button1')}
                 </button>
                 <button
                     type='submit'
@@ -284,7 +287,7 @@ export default function EditAccountInfosForm({
                     }
                     className="rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled"
                 >
-      Save
+                    {t('account.form2.field.save')}
                 </button>
             </div>
         </form>
