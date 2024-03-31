@@ -4,7 +4,6 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useDark } from '../../App';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
-import isAccount from '../../api/auth/isAccount';
 import { toast } from 'react-toastify';
 import addPasskey from '../../api/auth/passkeys/addPasskey';
 import { useNavigate } from 'react-router-dom';

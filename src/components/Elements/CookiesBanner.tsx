@@ -28,5 +28,5 @@ export default function CookiesBanner({setCookieConsent}: {setCookieConsent: Rea
                 </button>
             </div>
         </div>
-    )
+    );
 }

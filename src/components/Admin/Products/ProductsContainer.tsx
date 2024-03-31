@@ -42,7 +42,7 @@ export interface Product {
   recurrent: boolean;
   descriptions: Description[];
 }
-interface ProductResponse {
+export interface ProductResponse {
   data: Product[];
   total: number;
 }
