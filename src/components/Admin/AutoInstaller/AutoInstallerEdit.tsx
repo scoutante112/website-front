@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'preact/compat';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Installer } from './AutoInstallerContainer';
 import { useFormik } from 'formik';
@@ -23,7 +23,7 @@ interface InstallerUniqueResponse {
 //
 //
 //
-//ADD THEME LISTING
+//ADD THEME LISTING FOR AUTOINSTALLR
 //
 //
 //
@@ -68,7 +68,7 @@ export default function AutoInstallerEdit() {
         },
         onSubmit: (values: Installer) => {
             setLoading(true);
-            editAutoInstaller(values.id, values.name, values.type, values.where, values.content, values.version, values.theme_id, values.product_id).then((data) => {
+            editAutoInstaller(values.id ?? 0, values.name, values.type, values.where, values.content, values.version, values.theme_id, values.product_id).then((data) => {
                 console.log(data);
                 mutate();
             }).catch((e) => {
@@ -91,7 +91,7 @@ export default function AutoInstallerEdit() {
                             className='mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0'>
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='name'
-                                    className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
+                                       className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
                                     Name
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -113,7 +113,7 @@ export default function AutoInstallerEdit() {
 
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='where'
-                                    className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
+                                       className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
                                     Where
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -134,7 +134,7 @@ export default function AutoInstallerEdit() {
                             </div>
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='version'
-                                    className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
+                                       className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'>
                                     Version
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -167,7 +167,7 @@ export default function AutoInstallerEdit() {
                                                     <span
                                                         className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
                                                         <ChevronUpDownIcon className='h-5 w-5 text-gray-400'
-                                                            aria-hidden='true' />
+                                                                           aria-hidden='true' />
                                                     </span>
                                                 </Listbox.Button>
 
@@ -206,7 +206,7 @@ export default function AutoInstallerEdit() {
                                                                                 )}
                                                                             >
                                                                                 <CheckIcon className='h-5 w-5'
-                                                                                    aria-hidden='true' />
+                                                                                           aria-hidden='true' />
                                                                             </span>
                                                                         ) : null}
                                                                     </>
@@ -234,7 +234,7 @@ export default function AutoInstallerEdit() {
                                                     <span
                                                         className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
                                                         <ChevronUpDownIcon className='h-5 w-5 text-gray-400'
-                                                            aria-hidden='true' />
+                                                                           aria-hidden='true' />
                                                     </span>
                                                 </Listbox.Button>
 
@@ -273,7 +273,7 @@ export default function AutoInstallerEdit() {
                                                                                 )}
                                                                             >
                                                                                 <CheckIcon className='h-5 w-5'
-                                                                                    aria-hidden='true' />
+                                                                                           aria-hidden='true' />
                                                                             </span>
                                                                         ) : null}
                                                                     </>

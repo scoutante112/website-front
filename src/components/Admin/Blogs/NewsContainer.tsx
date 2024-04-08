@@ -1,4 +1,6 @@
-import React, { Fragment, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { Fragment, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -17,22 +19,24 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/ext-language_tools';
+import { useDark } from '../../../App';
 
 interface category {
-  id: number;
-  name: string;
-  slug: string;
+    id: number;
+    name: string;
+    slug: string;
 }
+
 interface blog {
-  id: number;
-  author: string;
-  tags: string;
-  title: string;
-  category_id: number;
-  views: number;
-  slug: string;
-  pictures: string;
-  content: string;
+    id: number;
+    author: string;
+    tags: string;
+    title: string;
+    category_id: number;
+    views: number;
+    slug: string;
+    pictures: string;
+    content: string;
 }
 
 export default function NewsContainer() {
@@ -40,12 +44,20 @@ export default function NewsContainer() {
     const [category, setCategory] = useState<string>('');
     const [page, setPage] = useState<number>(1);
 
-    const {data: blogs, error, isLoading} = useSWR(`${config.privateapilink}/blogs?search${search}&category=${category}&${page}`, fetcher);
-    const {data: categories, error: error2, isLoading: isLoading2} = useSWR(`${config.privateapilink}/categories`, fetcher);
+    const {
+        data: blogs,
+        error,
+        isLoading,
+    } = useSWR(`${config.privateapilink}/blogs?search${search}&category=${category}&${page}`, fetcher);
+    const {
+        data: categories,
+        error: error2,
+        isLoading: isLoading2,
+    } = useSWR(`${config.privateapilink}/categories`, fetcher);
 
-    if((!blogs || (error || isLoading)) || (!categories || (error2 || isLoading2))) {
+    if ((!blogs || (error || isLoading)) || (!categories || (error2 || isLoading2))) {
         return (
-            <Loading/>
+            <Loading />
         );
     }
     return (
@@ -63,7 +75,7 @@ export default function NewsContainer() {
                             type='text'
                             name='search'
                             onChange={debounce((e) => {
-                                setSearch(e.target.value);
+                                setSearch(e.target ? (e.target as HTMLInputElement).value : '');
                             }, 500)}
                             id='search'
                             defaultValue={search}
@@ -79,7 +91,10 @@ export default function NewsContainer() {
                     <select
                         id='category'
                         name='cacategory'
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e: Event) => {
+                            const target = e.target as HTMLInputElement;
+                            setCategory(target ? target.value : '');
+                        }}
                         className='mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     >
                         {categories.data.map((category: category, index: number) => {
@@ -152,14 +167,14 @@ export default function NewsContainer() {
                 </div>
                 <div className='flex flex-1 justify-between sm:justify-end'>
                     <button
-                        onClick={() => setPage(page-1)}
+                        onClick={() => setPage(page - 1)}
                         disabled={page === 1}
                         className='relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0'
                     >
                         Previous
                     </button>
                     <button
-                        onClick={() => setPage(page+1)}
+                        onClick={() => setPage(page + 1)}
                         disabled={blogs.totalPage <= page}
                         className='relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0'
                     >
@@ -217,7 +232,9 @@ const EditNews = ({ newsOpen, setNewsOpen, blog, categories }: {
     newsOpen: boolean,
     setNewsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     blog: blog,
-    categories: any}) => {
+    categories: any
+}) => {
+    const { dark } = useDark();
     const [loading, setLoading] = useState<boolean>(false);
 
     const form = object({
@@ -305,41 +322,41 @@ const EditNews = ({ newsOpen, setNewsOpen, blog, categories }: {
                 setLoading(false);
 
             });
-        }
+        },
     });
     return (
         <Transition.Root show={newsOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setNewsOpen}>
-                <div className="fixed inset-0" />
+            <Dialog as='div' className='relative z-10' onClose={setNewsOpen}>
+                <div className='fixed inset-0' />
 
-                <div className="fixed inset-0 overflow-hidden">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+                <div className='fixed inset-0 overflow-hidden'>
+                    <div className='absolute inset-0 overflow-hidden'>
+                        <div className='pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16'>
                             <Transition.Child
                                 as={Fragment}
-                                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                                enterFrom="translate-x-full"
-                                enterTo="translate-x-0"
-                                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                                leaveFrom="translate-x-0"
-                                leaveTo="translate-x-full"
+                                enter='transform transition ease-in-out duration-500 sm:duration-700'
+                                enterFrom='translate-x-full'
+                                enterTo='translate-x-0'
+                                leave='transform transition ease-in-out duration-500 sm:duration-700'
+                                leaveFrom='translate-x-0'
+                                leaveTo='translate-x-full'
                             >
-                                <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
-                                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                                        <div className="px-4 sm:px-6">
-                                            <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-black font-semibold leading-6">
+                                <Dialog.Panel className='pointer-events-auto w-screen max-w-2xl'>
+                                    <div className='flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl'>
+                                        <div className='px-4 sm:px-6'>
+                                            <div className='flex items-start justify-between'>
+                                                <Dialog.Title className='text-black font-semibold leading-6'>
                                                     Create news
                                                 </Dialog.Title>
-                                                <div className="ml-3 flex h-7 items-center">
+                                                <div className='ml-3 flex h-7 items-center'>
                                                     <button
-                                                        type="button"
-                                                        className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                        type='button'
+                                                        className='relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                                         onClick={() => setNewsOpen(false)}
                                                     >
-                                                        <span className="absolute -inset-2.5" />
-                                                        <span className="sr-only">Close panel</span>
-                                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                        <span className='absolute -inset-2.5' />
+                                                        <span className='sr-only'>Close panel</span>
+                                                        <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                                                     </button>
                                                 </div>
                                             </div>
@@ -413,7 +430,7 @@ const EditNews = ({ newsOpen, setNewsOpen, blog, categories }: {
                                                             id='category'
                                                             name='category'
                                                             defaultValue={blog.category_id}
-                                                            onChange={(e) => formik.setFieldValue('category', e.target.value)}
+                                                            onChange={(e) => formik.setFieldValue('category', e.target ? (e.target as HTMLInputElement).value : '')}
                                                             className='mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
                                                         >
                                                             <option disabled selected>Select category</option>

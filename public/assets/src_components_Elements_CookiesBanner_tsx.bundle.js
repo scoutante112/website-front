@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (globalThis["webpackChunknewwebsite"] = globalThis["webpackChunknewwebsite"] || []).push([["src_components_Elements_CookiesBanner_tsx"],{
 
 /***/ "./src/components/Elements/CookiesBanner.tsx":
@@ -7,41 +15,8 @@
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CookiesBanner)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/preact/compat/dist/compat.module.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../App */ "./src/App.tsx");
-
-
-
-function CookiesBanner({
-  setCookieConsent
-}) {
-  const acceptCookies = function () {
-    js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].set('CookieConsent', 'true');
-    setCookieConsent(true);
-    (0,_App__WEBPACK_IMPORTED_MODULE_2__.loadScript)();
-    (0,_App__WEBPACK_IMPORTED_MODULE_2__.loadGA4)();
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", {
-    className: "fixed bottom-0 left-0 right-0 bg-bg450-logo p-4 z-50",
-    "aria-label": "Cookie consent banner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", {
-    className: "flex justify-between items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", {
-    className: "text-white",
-    role: "alert"
-  }, "We use cookies to improve your experience on our site."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("button", {
-    onClick: acceptCookies,
-    className: "bg-white text-slate-900 px-4 py-2 rounded hover:bg-blue-50",
-    "aria-label": "Accept cookies"
-  }, "Accept")));
-}
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ CookiesBanner)\n/* harmony export */ });\n/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ \"./node_modules/js-cookie/dist/js.cookie.mjs\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../App */ \"./src/App.tsx\");\n/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-i18next */ \"./node_modules/react-i18next/dist/es/index.js\");\n/* harmony import */ var preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! preact/jsx-runtime */ \"./node_modules/preact/jsx-runtime/dist/jsxRuntime.module.js\");\n\n\n\n\n\nfunction CookiesBanner({\n  setCookieConsent\n}) {\n  const acceptCookies = function () {\n    js_cookie__WEBPACK_IMPORTED_MODULE_0__[\"default\"].set('CookieConsent', 'true');\n    setCookieConsent(true);\n    (0,_App__WEBPACK_IMPORTED_MODULE_1__.loadScript)();\n    (0,_App__WEBPACK_IMPORTED_MODULE_1__.loadGA4)();\n  };\n  const {\n    t\n  } = (0,react_i18next__WEBPACK_IMPORTED_MODULE_2__.useTranslation)();\n  return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(\"div\", {\n    className: \"fixed bottom-0 left-0 right-0 bg-bg450-logo p-4 z-50\",\n    \"aria-label\": \"Cookie consent banner\",\n    children: (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(\"div\", {\n      className: \"flex justify-between items-center z-50\",\n      children: [(0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(\"p\", {\n        className: \"text-white\",\n        role: \"alert\",\n        children: t('cookies.message')\n      }), (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(\"button\", {\n        onClick: acceptCookies,\n        className: \"bg-white text-slate-900 px-4 py-2 rounded hover:bg-blue-50\",\n        \"aria-label\": t('cookies.button'),\n        children: t('cookies.button')\n      })]\n    })\n  });\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9FbGVtZW50cy9Db29raWVzQmFubmVyLnRzeCIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFnQztBQUNnQjtBQUNEO0FBQUE7QUFBQTtBQUVoQyxTQUFTUSxhQUFhQSxDQUFDO0VBQUVDO0FBRXhDLENBQUMsRUFBRTtFQUNDLE1BQU1DLGFBQWEsR0FBRyxTQUFBQSxDQUFBLEVBQU07SUFDeEJWLGlEQUFPLENBQUNXLEdBQUcsQ0FBQyxlQUFlLEVBQUUsTUFBTSxDQUFDO0lBQ3BDRixnQkFBZ0IsQ0FBQyxJQUFJLENBQUM7SUFDdEJQLGdEQUFVLENBQUMsQ0FBQztJQUNaRCw2Q0FBTyxDQUFDLENBQUM7RUFDYixDQUFDO0VBQ0QsTUFBTTtJQUFFVztFQUFFLENBQUMsR0FBR1QsNkRBQWMsQ0FBQyxDQUFDO0VBQzlCLE9BQ0lFLHVEQUFBO0lBQ0lRLFNBQVMsRUFBQyxzREFBc0Q7SUFDaEUsY0FBVyx1QkFBdUI7SUFBQUMsUUFBQSxFQUVsQ1Asd0RBQUE7TUFBS00sU0FBUyxFQUFDLHdDQUF3QztNQUFBQyxRQUFBLEdBQ25EVCx1REFBQTtRQUFHUSxTQUFTLEVBQUMsWUFBWTtRQUFDRSxJQUFJLEVBQUMsT0FBTztRQUFBRCxRQUFBLEVBQ2pDRixDQUFDLENBQUMsaUJBQWlCO01BQUMsQ0FDdEIsQ0FBQyxFQUNKUCx1REFBQTtRQUNJVyxPQUFPLEVBQUVOLGFBQWM7UUFDdkJHLFNBQVMsRUFBQyw0REFBNEQ7UUFDdEUsY0FBWUQsQ0FBQyxDQUFDLGdCQUFnQixDQUFFO1FBQUFFLFFBQUEsRUFDbENGLENBQUMsQ0FBQyxnQkFBZ0I7TUFBQyxDQUNiLENBQUM7SUFBQSxDQUNSO0VBQUMsQ0FDTCxDQUFDO0FBRWQiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9uZXd3ZWJzaXRlLy4vc3JjL2NvbXBvbmVudHMvRWxlbWVudHMvQ29va2llc0Jhbm5lci50c3g/ZDFhMyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQ29va2llcyBmcm9tICdqcy1jb29raWUnO1xuaW1wb3J0IHsgbG9hZEdBNCwgbG9hZFNjcmlwdCB9IGZyb20gJy4uLy4uL0FwcCc7XG5pbXBvcnQgeyB1c2VUcmFuc2xhdGlvbiB9IGZyb20gJ3JlYWN0LWkxOG5leHQnO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBDb29raWVzQmFubmVyKHsgc2V0Q29va2llQ29uc2VudCB9OiB7XG4gICAgc2V0Q29va2llQ29uc2VudDogUmVhY3QuRGlzcGF0Y2g8UmVhY3QuU2V0U3RhdGVBY3Rpb248Ym9vbGVhbj4+XG59KSB7XG4gICAgY29uc3QgYWNjZXB0Q29va2llcyA9ICgpID0+IHtcbiAgICAgICAgQ29va2llcy5zZXQoJ0Nvb2tpZUNvbnNlbnQnLCAndHJ1ZScpO1xuICAgICAgICBzZXRDb29raWVDb25zZW50KHRydWUpO1xuICAgICAgICBsb2FkU2NyaXB0KCk7XG4gICAgICAgIGxvYWRHQTQoKTtcbiAgICB9O1xuICAgIGNvbnN0IHsgdCB9ID0gdXNlVHJhbnNsYXRpb24oKTtcbiAgICByZXR1cm4gKFxuICAgICAgICA8ZGl2XG4gICAgICAgICAgICBjbGFzc05hbWU9J2ZpeGVkIGJvdHRvbS0wIGxlZnQtMCByaWdodC0wIGJnLWJnNDUwLWxvZ28gcC00IHotNTAnXG4gICAgICAgICAgICBhcmlhLWxhYmVsPSdDb29raWUgY29uc2VudCBiYW5uZXInXG4gICAgICAgID5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdmbGV4IGp1c3RpZnktYmV0d2VlbiBpdGVtcy1jZW50ZXIgei01MCc+XG4gICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSd0ZXh0LXdoaXRlJyByb2xlPSdhbGVydCc+XG4gICAgICAgICAgICAgICAgICAgIHt0KCdjb29raWVzLm1lc3NhZ2UnKX1cbiAgICAgICAgICAgICAgICA8L3A+XG4gICAgICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICAgICAgICBvbkNsaWNrPXthY2NlcHRDb29raWVzfVxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9J2JnLXdoaXRlIHRleHQtc2xhdGUtOTAwIHB4LTQgcHktMiByb3VuZGVkIGhvdmVyOmJnLWJsdWUtNTAnXG4gICAgICAgICAgICAgICAgICAgIGFyaWEtbGFiZWw9e3QoJ2Nvb2tpZXMuYnV0dG9uJyl9XG4gICAgICAgICAgICAgICAgPnt0KCdjb29raWVzLmJ1dHRvbicpfVxuICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICk7XG59Il0sIm5hbWVzIjpbIkNvb2tpZXMiLCJsb2FkR0E0IiwibG9hZFNjcmlwdCIsInVzZVRyYW5zbGF0aW9uIiwianN4IiwiX2pzeCIsImpzeHMiLCJfanN4cyIsIkNvb2tpZXNCYW5uZXIiLCJzZXRDb29raWVDb25zZW50IiwiYWNjZXB0Q29va2llcyIsInNldCIsInQiLCJjbGFzc05hbWUiLCJjaGlsZHJlbiIsInJvbGUiLCJvbkNsaWNrIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/components/Elements/CookiesBanner.tsx\n");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_components_Elements_CookiesBanner_tsx.bundle.js.map

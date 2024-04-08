@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -12,31 +11,38 @@ import 'react-quill/dist/quill.snow.css';
 import resetLicense from '../../../api/licenses/resetLicense';
 import blacklistLicense from '../../../api/admin/licenses/blacklistLicense';
 import deleteNews from '../../../api/admin/blogs/deleteNews';
+import { useDark } from '../../../App';
 
 
 export interface License {
-  blacklisted: boolean;
-  product_name: string;
-  ip: string[];
-  maxusage: number;
-  license: string;
-  usage: number;
-  version: string;
-  user_id: number;
-  order_id: number;
+    blacklisted: boolean;
+    product_name: string;
+    ip: string[];
+    maxusage: number;
+    license: string;
+    usage: number;
+    version: string;
+    user_id: number;
+    order_id: number;
 }
+
 interface LicenseResponse {
-  data: License[];
-  total: number;
+    data: License[];
+    total: number;
 }
 
 export default function LicensesContainer() {
     const [page, setPage] = useState<number>(1);
     const [perpage] = useState<number>(20);
     const [search, setSearch] = useState<string>('');
-    const {data, error, isLoading, mutate} = useSWR<LicenseResponse>(`${config.privateapilink}/admin/licenses?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
-    if(!data || (error || isLoading)) {
-        return <Loading/>;
+    const {
+        data,
+        error,
+        isLoading,
+        mutate,
+    } = useSWR<LicenseResponse>(`${config.privateapilink}/admin/licenses?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+    if (!data || (error || isLoading)) {
+        return <Loading />;
     }
     const searchValue = debounce((value: string) => {
         setSearch(value);
@@ -50,9 +56,9 @@ export default function LicensesContainer() {
                     <div className='sm:flex-auto'>
                         <h1 className='text-base font-semibold leading-6 text-gray-900'>Licenses</h1>
                         <p className='mt-2 text-sm text-gray-700'>
-                  You are on the <strong
-                                className='font-semibold text-gray-900'>licenses</strong> page.
-                  You can here see and manage all licenses
+                            You are on the <strong
+                            className='font-semibold text-gray-900'>licenses</strong> page.
+                            You can here see and manage all licenses
                         </p>
                     </div>
 
@@ -63,56 +69,57 @@ export default function LicensesContainer() {
                 <table className='min-w-full divide-y divide-gray-300 text-black'>
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>User
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Product
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Blacklisted
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Ip
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Usage
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>License
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Version
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>Order
-                            </th>
-                            <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
-                                <span className='sr-only'>Actions</span>
-                            </th>
-                        </tr>
+                    <tr>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>User
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Product
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Blacklisted
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Ip
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Usage
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>License
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>Version
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>Order
+                        </th>
+                        <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
+                            <span className='sr-only'>Actions</span>
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {data.data.map((license: License, index: number) => {
-                            return (
-                                <LicenseRow license={license} index={index} mutate={mutate}/>
-                            );
-                        })}
+                    {data.data.map((license: License, index: number) => {
+                        return (
+                            <LicenseRow license={license} index={index} mutate={mutate} />
+                        );
+                    })}
 
                     </tbody>
                 </table>
             </div>
             <div className={'text-center mt-2'}>
-                <Pagination totalPages={data.total} page={page} setPage={setPage}/>
+                <Pagination totalPages={data.total} page={page} setPage={setPage} />
 
             </div>
         </>
     );
 }
 
-function LicenseRow({license, index, mutate}: {license: License, index: number, mutate: any}) {
+function LicenseRow({ license, index, mutate }: { license: License, index: number, mutate: any }) {
     const [loading, setLoading] = useState<boolean>(false);
+    const { dark } = useDark();
     const resettheLicense = () => {
         setLoading(true);
         resetLicense(license.license).then(() => {
@@ -148,8 +155,9 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
                 progress: undefined,
                 theme: dark ? 'dark' : 'light',
             });
+            console.error(e)
             setLoading(false);
-        });b
+        });
     };
     return (
         <tr key={index}>
@@ -167,7 +175,8 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
                 </ul>
             ) : 'No Usage'}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{license.usage}/{license.maxusage}</td>
-            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell' title={license.license}
+            <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'
+                title={license.license}
                 onClick={() => navigator.clipboard.writeText(license.license)}>{license.license.length > 40 ? `${license.license.slice(0, 40)}...` : license.license}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{license.version}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{license.order_id}</td>
@@ -188,8 +197,8 @@ function LicenseRow({license, index, mutate}: {license: License, index: number, 
                     </button>
                 </div>
             </td>
-  
+
         </tr>
     )
-    ;
+        ;
 }

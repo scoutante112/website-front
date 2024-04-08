@@ -1,4 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { Fragment, useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -12,72 +14,77 @@ import { debounce } from 'debounce';
 import Pagination from '../../Elements/Pagination';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import { useDark } from '../../../App';
 
 
 interface Discord {
-  id: number;
-  user_id: number;
-  discord_id: string;
-  username: string;
-  avatar: string;
-  discriminator: string;
-  email: string;
-  created_at: string;
-  updated_at: string;
+    id: number;
+    user_id: number;
+    discord_id: string;
+    username: string;
+    avatar: string;
+    discriminator: string;
+    email: string;
+    created_at: string;
+    updated_at: string;
 }
 
 interface Github {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  user_id: number;
-  username: string;
-  github_id: string;
-  avatar: string;
-  plan: string;
+    id: number;
+    created_at: string;
+    updated_at: string;
+    user_id: number;
+    username: string;
+    github_id: string;
+    avatar: string;
+    plan: string;
 }
 
 interface Google {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  user_id: number;
-  username: string;
-  google_id: string;
-  avatar: string;
+    id: number;
+    created_at: string;
+    updated_at: string;
+    user_id: number;
+    username: string;
+    google_id: string;
+    avatar: string;
 }
 
 interface User {
-  id: number;
-  name: string;
-  email: string;
-  email_verified_at: string | null;
-  created_at: string;
-  updated_at: string;
-  api_token: string | null;
-  society: string | null;
-  address: string;
-  city: string;
-  country: string;
-  region: string;
-  postal_code: string;
-  phone_number: string | null;
-  firstname: string;
-  lastname: string;
-  login_token: string | null;
-  role: number;
-  discord: Discord  | null;
-  github: Github  | null;
-  google: Google  | null;
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at: string | null;
+    created_at: string;
+    updated_at: string;
+    api_token: string | null;
+    society: string | null;
+    address: string;
+    city: string;
+    country: string;
+    region: string;
+    postal_code: string;
+    phone_number: string | null;
+    firstname: string;
+    lastname: string;
+    login_token: string | null;
+    role: number;
+    discord: Discord | null;
+    github: Github | null;
+    google: Google | null;
 }
 
 export default function UsersContainer() {
     const [page, setPage] = useState<number>(1);
     const [perpage] = useState<number>(20);
     const [search, setSearch] = useState<string>('');
-    const {data, error, isLoading} = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
-    if(!data || (error || isLoading)) {
-        return <Loading/>;
+    const {
+        data,
+        error,
+        isLoading,
+    } = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
+    if (!data || (error || isLoading)) {
+        return <Loading />;
     }
     const searchValue = debounce((value: string) => {
         setSearch(value);
@@ -91,12 +98,12 @@ export default function UsersContainer() {
                     <div className='sm:flex-auto'>
                         <h1 className='text-base font-semibold leading-6 text-gray-900'>Users</h1>
                         <p className='mt-2 text-sm text-gray-700'>
-                  You are on the <strong
-                                className='font-semibold text-gray-900'>users</strong> page.
-                  You can here see and manage all users
+                            You are on the <strong
+                            className='font-semibold text-gray-900'>users</strong> page.
+                            You can here see and manage all users
                         </p>
                     </div>
-             
+
 
                 </div>
             </div>
@@ -104,43 +111,43 @@ export default function UsersContainer() {
                 <table className='min-w-full divide-y divide-gray-300 text-black'>
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    Id
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    Username
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    First Name
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    Last Name
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    Email
-                            </th>
-                            <th scope='col'
-                                className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                    Discord
-                            </th>
-                            <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
-                                <span className='sr-only'>Actions</span>
-                            </th>
+                    <tr>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            Id
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            Username
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            First Name
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            Last Name
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            Email
+                        </th>
+                        <th scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
+                            Discord
+                        </th>
+                        <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
+                            <span className='sr-only'>Actions</span>
+                        </th>
 
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                        {data.data.map((user: User, index: number) => {
-                            return (
-                                <UserRow user={user} index={index} page={page} perpage={perpage} search={search} />
-                            );
-                        })}
+                    {data.data.map((user: User, index: number) => {
+                        return (
+                            <UserRow user={user} index={index} page={page} perpage={perpage} search={search} />
+                        );
+                    })}
                     </tbody>
                 </table>
             </div>
@@ -165,18 +172,18 @@ const form = object({
 });
 
 function UserRow({ user, index, page, perpage, search }: {
-  user: User,
-  index: number,
-  page: number;
-  perpage: number,
-  search: string
+    user: User,
+    index: number,
+    page: number;
+    perpage: number,
+    search: string
 }) {
     const [open, setOpen] = useState<boolean>(false);
     const { mutate } = useSWR(`${config.privateapilink}/admin/users?page=${page}&perpage=${perpage}&search=${search}`, fetcher);
 
     return (
         <tr key={index}>
-            <EditUserForm user={user} open={open} setOpen={setOpen} mutate={mutate}/>
+            <EditUserForm user={user} open={open} setOpen={setOpen} mutate={mutate} />
 
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{user.id}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{user.name}</td>
@@ -184,12 +191,13 @@ function UserRow({ user, index, page, perpage, search }: {
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{user.lastname}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{user.email}</td>
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'>{user.discord?.discord_id} ({user.discord?.username})</td>
-         
+
             <td className='border-t border-gray-200  px-3 py-3.5 text-sm text-gray-500 table-cell'
             >
                 <div className={'justify-end mx-2 grid grid-cols-1 md:grid-cols-2'}>
-                    <button                         className='flex rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative'
-                        onClick={() => { 
+                    <button
+                        className='flex rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative'
+                        onClick={() => {
                             setOpen(!open);
                         }}>Edit
                     </button>
@@ -199,21 +207,22 @@ function UserRow({ user, index, page, perpage, search }: {
     );
 }
 
-const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean, setOpen: any, mutate: any}) => {
+const EditUserForm = ({ user, open, setOpen, mutate }: { user: User, open: boolean, setOpen: any, mutate: any }) => {
+    const { dark } = useDark();
     const [country, setCountry] = useState('');
     const [region, setRegion] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
         async function fetchRegion(data: {
-      country_name: any;
-      data: {
-        country: React.SetStateAction<string>;
-        country_name: React.SetStateAction<string>;
-        region: React.SetStateAction<string>;
-        data: { region: string; };
-      };
-      region: any;
-    }) {
+            country_name: any;
+            data: {
+                country: React.SetStateAction<string>;
+                country_name: React.SetStateAction<string>;
+                region: React.SetStateAction<string>;
+                data: { region: string; };
+            };
+            region: any;
+        }) {
             const response = await fetch('https://ipapi.co/json/');
             const responseData = await response.json();
             setCountry(responseData.country_name && data.data.country === '' ? responseData.country_name : data.data.country !== '' ? data.data.country : '');
@@ -230,7 +239,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
             city: user.city ? user.city : '',
             postal_code: user.postal_code ? user.postal_code : '',
             lastname: user.lastname ? user.lastname : '',
-            firstname: user.firstname ? user.firstname : '' });
+            firstname: user.firstname ? user.firstname : '',
+        });
         setCountry(user.country);
         setRegion(user.region);
     }, []);
@@ -244,7 +254,18 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
     };
 
     const formik = useFormik({
-        initialValues: { name: '', email: '', society: '', address: '', city: '', postal_code: '', firstname: '', lastname: '', phone_number: '', role: '' },
+        initialValues: {
+            name: '',
+            email: '',
+            society: '',
+            address: '',
+            city: '',
+            postal_code: '',
+            firstname: '',
+            lastname: '',
+            phone_number: '',
+            role: '',
+        },
         validationSchema: form,
         onSubmit: (values) => {
             setLoading(true);
@@ -258,7 +279,7 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                 setLoading(false);
                 return;
             }
-            editUser(user.id, values.name,values.email, values.society, values.address, values.city, country, region, values.postal_code, values.phone_number, values.firstname, values.lastname, values.role).then((data) => {
+            editUser(user.id, values.name, values.email, values.society, values.address, values.city, country, region, values.postal_code, values.phone_number, values.firstname, values.lastname, values.role).then((data) => {
                 if (data.data['status'] === 'error') {
                     toast.error(data.data['message'], {
                         position: 'bottom-right',
@@ -301,41 +322,41 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                 });
                 setLoading(false);
             });
-        }
-    }); 
+        },
+    });
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
-                <div className="fixed inset-0" />
+            <Dialog as='div' className='relative z-10' onClose={setOpen}>
+                <div className='fixed inset-0' />
 
-                <div className="fixed inset-0 overflow-hidden">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+                <div className='fixed inset-0 overflow-hidden'>
+                    <div className='absolute inset-0 overflow-hidden'>
+                        <div className='pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16'>
                             <Transition.Child
                                 as={Fragment}
-                                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                                enterFrom="translate-x-full"
-                                enterTo="translate-x-0"
-                                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                                leaveFrom="translate-x-0"
-                                leaveTo="translate-x-full"
+                                enter='transform transition ease-in-out duration-500 sm:duration-700'
+                                enterFrom='translate-x-full'
+                                enterTo='translate-x-0'
+                                leave='transform transition ease-in-out duration-500 sm:duration-700'
+                                leaveFrom='translate-x-0'
+                                leaveTo='translate-x-full'
                             >
-                                <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
-                                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                                        <div className="px-4 sm:px-6">
-                                            <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-black font-semibold leading-6">
-                            Create news
+                                <Dialog.Panel className='pointer-events-auto w-screen max-w-2xl'>
+                                    <div className='flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl'>
+                                        <div className='px-4 sm:px-6'>
+                                            <div className='flex items-start justify-between'>
+                                                <Dialog.Title className='text-black font-semibold leading-6'>
+                                                    Create news
                                                 </Dialog.Title>
-                                                <div className="ml-3 flex h-7 items-center">
+                                                <div className='ml-3 flex h-7 items-center'>
                                                     <button
-                                                        type="button"
-                                                        className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                        type='button'
+                                                        className='relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                                         onClick={() => setOpen(false)}
                                                     >
-                                                        <span className="absolute -inset-2.5" />
-                                                        <span className="sr-only">Close panel</span>
-                                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                        <span className='absolute -inset-2.5' />
+                                                        <span className='sr-only'>Close panel</span>
+                                                        <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                                                     </button>
                                                 </div>
                                             </div>
@@ -343,12 +364,13 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                         <div className='relative mt-6 flex-1 px-4 sm:px-6'>
                                             <h3 className='font-bold text-black text-lg'>Create news:</h3>
 
-                                            <form onSubmit={formik.handleSubmit} className='grid md:grid-cols-2 gap-x-4'>
+                                            <form onSubmit={formik.handleSubmit}
+                                                  className='grid md:grid-cols-2 gap-x-4'>
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='title'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Society
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Society
                                                         </label>
                                                     </div>
                                                     <input
@@ -364,8 +386,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='city'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  City
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            City
                                                         </label>
                                                     </div>
                                                     <input
@@ -381,8 +403,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='address'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Address
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Address
                                                         </label>
                                                     </div>
                                                     <input
@@ -398,8 +420,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='postal_code'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Postal code
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Postal code
                                                         </label>
                                                     </div>
                                                     <input
@@ -416,8 +438,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='firstname'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Fist name
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Fist name
                                                         </label>
                                                     </div>
                                                     <input
@@ -433,8 +455,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='lastname'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Last name
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Last name
                                                         </label>
                                                     </div>
                                                     <input
@@ -449,8 +471,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
 
                                                     <label htmlFor='country'
-                                                        className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                Country
+                                                           className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                        Country
                                                     </label>
                                                     <CountryDropdown
                                                         id='country'
@@ -463,8 +485,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 </div>
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <label htmlFor='region'
-                                                        className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                State/Region
+                                                           className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                        State/Region
                                                     </label>
                                                     <RegionDropdown
                                                         id='region'
@@ -480,8 +502,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='name'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Username
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Username
                                                         </label>
                                                     </div>
                                                     <input
@@ -497,8 +519,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='email'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Email
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Email
                                                         </label>
                                                     </div>
                                                     <input
@@ -514,8 +536,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='phone_number'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Phone Number
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Phone Number
                                                         </label>
                                                     </div>
                                                     <input
@@ -531,8 +553,8 @@ const EditUserForm = ({user, open, setOpen, mutate}: {user: User, open: boolean,
                                                 <div className='mx-auto w-full max-w-sm'>
                                                     <div>
                                                         <label htmlFor='role'
-                                                            className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                  Role
+                                                               className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
+                                                            Role
                                                         </label>
                                                     </div>
                                                     <input

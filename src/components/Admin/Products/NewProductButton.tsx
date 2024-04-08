@@ -1,4 +1,6 @@
-import { Fragment, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { Fragment, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';

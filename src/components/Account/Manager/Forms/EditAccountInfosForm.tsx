@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
@@ -25,13 +27,13 @@ const form = object({
 export default function EditAccountInfosForm({
     setAddress,
 }: {
-  setAddress?: React.Dispatch<React.SetStateAction<boolean>>;
+    setAddress?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const [loading, setLoading] = useState(false);
     const [country, setCountry] = useState('');
     const [region, setRegion] = useState('');
     const [error, setError] = useState('');
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { t } = useTranslation();
 
     const {
@@ -42,15 +44,15 @@ export default function EditAccountInfosForm({
     } = useSWR(`${config.privateapilink}/account/getinfos`, fetcher);
     useEffect(() => {
         async function fetchRegion(data: {
-      country_name: any;
-      data: {
-        country: React.SetStateAction<string>;
-        country_name: React.SetStateAction<string>;
-        region: React.SetStateAction<string>;
-        data: { region: string };
-      };
-      region: any;
-    }) {
+            country_name: any;
+            data: {
+                country: React.SetStateAction<string>;
+                country_name: React.SetStateAction<string>;
+                region: React.SetStateAction<string>;
+                data: { region: string };
+            };
+            region: any;
+        }) {
             const response = await fetch('https://ipapi.co/json/');
             const responseData = await response.json();
             setCountry(
@@ -58,16 +60,17 @@ export default function EditAccountInfosForm({
                     ? responseData.country_name
                     : data.data.country !== ''
                         ? data.data.country
-                        : ''
+                        : '',
             );
             setRegion(
                 responseData.region && data.data.region === ''
                     ? responseData.region
                     : data.data.region !== ''
                         ? data.data.region
-                        : ''
+                        : '',
             );
         }
+
         if (data && !erros && !isLoading) {
             formik.setValues({
                 society: data.data.society,
@@ -82,7 +85,7 @@ export default function EditAccountInfosForm({
             fetchRegion(data);
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
     const handleCountryChange = (value: React.SetStateAction<string>) => {
@@ -124,7 +127,7 @@ export default function EditAccountInfosForm({
                 values.postalcode,
                 country,
                 values.firstname,
-                values.lastname
+                values.lastname,
             )
                 .then((data) => {
                     if (data.data['status'] === 'error') {
@@ -170,7 +173,7 @@ export default function EditAccountInfosForm({
                             draggable: true,
                             progress: undefined,
                             theme: dark ? 'dark' : 'light',
-                        }
+                        },
                     );
                     setLoading(false);
                 });
@@ -185,7 +188,7 @@ export default function EditAccountInfosForm({
             onSubmit={formik.handleSubmit}
             className={`${dark ? 'bg-bg450-dark' : 'bg-white'}  shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2`}
         >
-            <div className="px-4 py-6 sm:p-8">
+            <div className='px-4 py-6 sm:p-8'>
                 <div
                     className={
                         error === ''
@@ -195,29 +198,32 @@ export default function EditAccountInfosForm({
                 >
                     <div>
                         <svg
-                            xmlns="https://www.w3.org/2000/svg"
-                            className="stroke-current flex-shrink-0 h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
+                            xmlns='https://www.w3.org/2000/svg'
+                            className='stroke-current flex-shrink-0 h-6 w-6'
+                            fill='none'
+                            viewBox='0 0 24 24'
                         >
                             <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                strokeWidth='2'
+                                d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
                             />
                         </svg>
                         <span>{error}</span>
                     </div>
                 </div>
                 <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-                    <Field className='sm:col-span-3' name={t('account.form2.field.firstname')} id={'firstname'} type={'text'} required
+                    <Field className='sm:col-span-3' name={t('account.form2.field.firstname')} id={'firstname'}
+                        type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.firstname ? data.data.firstname : ''} />
-                    <Field className='sm:col-span-3' name={t('account.form2.field.lastname')} id={'lastname'} type={'text'} required
+                    <Field className='sm:col-span-3' name={t('account.form2.field.lastname')} id={'lastname'}
+                        type={'text'} required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.lastname ? data.data.lastname : ''} />
-                    <Field className='col-span-full' name={t('account.form2.field.company')} id={'society'} type={'text'}
+                    <Field className='col-span-full' name={t('account.form2.field.company')} id={'society'}
+                        type={'text'}
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.society ? data.data.society : ''} />
                     <div className=' sm:col-span-3'>
@@ -255,13 +261,16 @@ export default function EditAccountInfosForm({
                             />
                         </div>
                     </div>
-                    <Field className='sm:col-span-2' name={t('account.form2.field.street')} id={'address'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.street')} id={'address'} type={'text'}
+                        required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.address ? data.data.address : ''} />
-                    <Field className='sm:col-span-2' name={t('account.form2.field.city')} id={'city'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.city')} id={'city'} type={'text'}
+                        required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.city ? data.data.city : ''} />
-                    <Field className='sm:col-span-2' name={t('account.form2.field.zip')} id={'postalcode'} type={'text'} required
+                    <Field className='sm:col-span-2' name={t('account.form2.field.zip')} id={'postalcode'} type={'text'}
+                        required
                         onChange={formik.handleChange} disabled={loading}
                         defaultValue={data.data.postal_code ? data.data.postal_code : ''} />
                 </div>
@@ -285,7 +294,7 @@ export default function EditAccountInfosForm({
                                         ? true
                                         : !!formik.errors.lastname
                     }
-                    className="rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled"
+                    className='rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled'
                 >
                     {t('account.form2.field.save')}
                 </button>

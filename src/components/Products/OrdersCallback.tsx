@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'preact/compat';
 import useSWR from 'swr';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';

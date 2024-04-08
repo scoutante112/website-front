@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'preact/compat';
 import { useNavigate, useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import { fetcher } from '../../api/http';
@@ -11,18 +11,18 @@ import { useDark } from '../../App';
 export default function TokenLogin() {
     const { token } = useParams();
     const navigate = useNavigate();
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
-        fetcher
+        fetcher,
     );
-    if(!token) {
+    if (!token) {
         navigate('/');
         return <></>;
     }
     useEffect(() => {
         tokenLogin(token).then((data) => {
-            if(data.data['status'] === 'error') {
+            if (data.data['status'] === 'error') {
                 toast.error('Error. Can\'t get your account data with this token.', {
                     position: 'bottom-right',
                     autoClose: 5000,
@@ -47,13 +47,13 @@ export default function TokenLogin() {
                     theme: dark ? 'dark' : 'light',
                 });
                 mutate();
-                navigate('/')
+                navigate('/');
                 return <></>;
             }
         });
     }, []);
     return (
-        <Loading/>
+        <Loading />
     );
 };
 

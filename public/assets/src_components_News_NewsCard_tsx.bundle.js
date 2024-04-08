@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (globalThis["webpackChunknewwebsite"] = globalThis["webpackChunknewwebsite"] || []).push([["src_components_News_NewsCard_tsx"],{
 
 /***/ "./src/api/news/getNews.ts":
@@ -7,21 +15,7 @@
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/config */ "./src/config/config.ts");
-/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http */ "./src/api/http.ts");
-
-
-const getNews = function (id) {
-  return new Promise(function (resolve, reject) {
-    _http__WEBPACK_IMPORTED_MODULE_1__["default"].get(`${_config_config__WEBPACK_IMPORTED_MODULE_0__.config.privateapilink}/blogs/${id}`).then(function (data) {
-      return resolve(data);
-    }).catch(reject);
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getNews);
+eval("/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/config */ \"./src/config/config.ts\");\n/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http */ \"./src/api/http.ts\");\n\n\nconst getNews = function (id) {\n  return new Promise(function (resolve, reject) {\n    _http__WEBPACK_IMPORTED_MODULE_1__[\"default\"].get(`${_config_config__WEBPACK_IMPORTED_MODULE_0__.config.privateapilink}/blogs/${id}`).then(function (data) {\n      return resolve(data);\n    }).catch(reject);\n  });\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getNews);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL25ld3MvZ2V0TmV3cy50cyIsIm1hcHBpbmdzIjoiOzs7OztBQUE2QztBQUNsQjtBQUUzQixNQUFNRSxPQUFPLEdBQUcsU0FBQUEsQ0FBQ0MsRUFBVSxFQUFtQjtFQUM1QyxPQUFPLElBQUlDLE9BQU8sQ0FBQyxVQUFDQyxPQUFPLEVBQUVDLE1BQU0sRUFBSztJQUN0Q0wsNkNBQUksQ0FDRE0sR0FBRyxDQUFFLEdBQUVQLGtEQUFNLENBQUNRLGNBQWUsVUFBU0wsRUFBRyxFQUFDLENBQUMsQ0FDM0NNLElBQUksQ0FBQyxVQUFDQyxJQUFJO01BQUEsT0FBS0wsT0FBTyxDQUFDSyxJQUFJLENBQUM7SUFBQSxFQUFDLENBQzdCQyxLQUFLLENBQUNMLE1BQU0sQ0FBQztFQUNsQixDQUFDLENBQUM7QUFDSixDQUFDO0FBRUQsaUVBQWVKLE9BQU8iLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9uZXd3ZWJzaXRlLy4vc3JjL2FwaS9uZXdzL2dldE5ld3MudHM/MjdhNyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjb25maWcgfSBmcm9tICcuLi8uLi9jb25maWcvY29uZmlnJztcbmltcG9ydCBodHRwIGZyb20gJy4uL2h0dHAnO1xuXG5jb25zdCBnZXROZXdzID0gKGlkOiBzdHJpbmcpOiBQcm9taXNlPGFueT4gPT4ge1xuICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgIGh0dHBcbiAgICAgIC5nZXQoYCR7Y29uZmlnLnByaXZhdGVhcGlsaW5rfS9ibG9ncy8ke2lkfWApXG4gICAgICAudGhlbigoZGF0YSkgPT4gcmVzb2x2ZShkYXRhKSlcbiAgICAgIC5jYXRjaChyZWplY3QpO1xuICB9KTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IGdldE5ld3M7Il0sIm5hbWVzIjpbImNvbmZpZyIsImh0dHAiLCJnZXROZXdzIiwiaWQiLCJQcm9taXNlIiwicmVzb2x2ZSIsInJlamVjdCIsImdldCIsInByaXZhdGVhcGlsaW5rIiwidGhlbiIsImRhdGEiLCJjYXRjaCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/news/getNews.ts\n");
 
 /***/ }),
 
@@ -31,85 +25,8 @@ const getNews = function (id) {
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ NewsCard)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/preact/compat/dist/compat.module.js");
-/* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Elements/Loading */ "./src/components/Elements/Loading.tsx");
-/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _api_news_getNews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/news/getNews */ "./src/api/news/getNews.ts");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.mjs");
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
-/* harmony import */ var _Admin_Blogs_toolBar_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Admin/Blogs/toolBar.scss */ "./src/components/Admin/Blogs/toolBar.scss");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../App */ "./src/App.tsx");
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! dompurify */ "./node_modules/dompurify/dist/purify.js");
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_10__);
-
-
-
-
-
-
-
-
-
-
-
-
-function NewsCard() {
-  const [news, setNews] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const {
-    id
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useParams)();
-  const {
-    dark
-  } = (0,_App__WEBPACK_IMPORTED_MODULE_9__.useDark)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (id) {
-      (0,_api_news_getNews__WEBPACK_IMPORTED_MODULE_3__["default"])(id).then(function (data) {
-        if (data.data.status === 'success') {
-          setNews(data.data.data);
-          return;
-        }
-        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.error('Sorry a unexpected error occurred.', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: dark ? 'dark' : 'light'
-        });
-      });
-    }
-  }, []);
-  if (!news) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_Elements_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  }
-  document.title = `Bagou450 - ${news.title}`;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(react__WEBPACK_IMPORTED_MODULE_0__["default"].Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(react_helmet__WEBPACK_IMPORTED_MODULE_8__.Helmet, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("meta", {
-    name: "description",
-    content: `Tags: ${JSON.parse(news.tags).join(', ')}`
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("h1", {
-    className: `${dark ? 'text-slate-300' : 'text-black'} text-center text-4xl mt-4`
-  }, news.title, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("span", {
-    className: 'text-2xl opacity-60'
-  }, "by ", news.author), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("span", {
-    className: 'text-xl opacity-40'
-  }, moment__WEBPACK_IMPORTED_MODULE_7___default()(news.created_at).fromNow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("h2", {
-    className: `${dark ? 'text-slate-300' : 'text-black'} text-center text-black text-2xl mt-4 opacity-80`
-  }, news.slug), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("section", {
-    className: 'mx-8 my-8 ql'
-  }, (0,react_html_parser__WEBPACK_IMPORTED_MODULE_2__["default"])((0,dompurify__WEBPACK_IMPORTED_MODULE_10__.sanitize)(news.content))));
-}
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ NewsCard)\n/* harmony export */ });\n/* harmony import */ var preact_compat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact/compat */ \"./node_modules/preact/compat/dist/compat.module.js\");\n/* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Elements/Loading */ \"./src/components/Elements/Loading.tsx\");\n/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-html-parser */ \"./node_modules/react-html-parser/lib/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router/dist/index.js\");\n/* harmony import */ var _api_news_getNews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/news/getNews */ \"./src/api/news/getNews.ts\");\n/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify */ \"./node_modules/react-toastify/dist/react-toastify.esm.mjs\");\n/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ \"./node_modules/react-quill/dist/quill.snow.css\");\n/* harmony import */ var _Admin_Blogs_toolBar_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Admin/Blogs/toolBar.scss */ \"./src/components/Admin/Blogs/toolBar.scss\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ \"./node_modules/moment/moment.js\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-helmet */ \"./node_modules/react-helmet/es/Helmet.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../App */ \"./src/App.tsx\");\n/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! dompurify */ \"./node_modules/dompurify/dist/purify.js\");\n/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_10__);\n/* harmony import */ var preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! preact/jsx-runtime */ \"./node_modules/preact/jsx-runtime/dist/jsxRuntime.module.js\");\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfunction NewsCard() {\n  const [news, setNews] = (0,preact_compat__WEBPACK_IMPORTED_MODULE_0__.useState)();\n  const {\n    id\n  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useParams)();\n  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useNavigate)();\n  const {\n    dark\n  } = (0,_App__WEBPACK_IMPORTED_MODULE_9__.useDark)();\n  (0,preact_compat__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {\n    if (id) {\n      (0,_api_news_getNews__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(id).then(function (data) {\n        if (data.data.status === 'success') {\n          setNews(data.data.data);\n          return;\n        }\n        navigate('/');\n        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.error('Sorry a unexpected error occurred.', {\n          position: 'bottom-right',\n          autoClose: 5000,\n          hideProgressBar: false,\n          closeOnClick: true,\n          pauseOnHover: true,\n          draggable: true,\n          progress: undefined,\n          theme: dark ? 'dark' : 'light'\n        });\n      });\n    }\n  }, []);\n  if (!news) {\n    return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Elements_Loading__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {});\n  }\n  document.title = `Bagou450 - ${news.title}`;\n  return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {\n    children: [(0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_helmet__WEBPACK_IMPORTED_MODULE_8__.Helmet, {\n      children: (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(\"meta\", {\n        name: \"description\",\n        content: `Tags: ${JSON.parse(news.tags).join(', ')}`\n      })\n    }), (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(\"h1\", {\n      className: `${dark ? 'text-slate-300' : 'text-black'} text-center text-4xl mt-4`,\n      children: [news.title, \" \"]\n    }), (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(\"h2\", {\n      className: `${dark ? 'text-slate-300' : 'text-black'} text-center opacity-75`,\n      children: [(0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(\"span\", {\n        className: 'text-2xl opacity-60',\n        children: [\"by \", news.author]\n      }), (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(\"br\", {}), \" \", (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(\"span\", {\n        className: 'text-xl opacity-40',\n        children: moment__WEBPACK_IMPORTED_MODULE_7___default()(news.created_at).fromNow()\n      })]\n    }), (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(\"section\", {\n      className: `mx-8 lg:mx-24 xl:mx-32 2xl:mx-48 my-8 ql news rounded-lg p-4 text-justify ${dark ? 'bg-bg450-lessdark ' : 'bg-slate-50'}`,\n      children: (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(\"div\", {\n        className: dark ? 'dark-content' : 'white-content',\n        children: (0,react_html_parser__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,dompurify__WEBPACK_IMPORTED_MODULE_10__.sanitize)(news.content))\n      })\n    })]\n  });\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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QUFHLDZFQUE0RXZCLElBQUksR0FBRyxvQkFBb0IsR0FBRyxhQUFjLEVBQUU7TUFBQWdCLFFBQUEsRUFDM0kxQix3REFBQTtRQUFLaUMsU0FBUyxFQUFFdkIsSUFBSSxHQUFHLGNBQWMsR0FBRyxlQUFnQjtRQUFBZ0IsUUFBQSxFQUNuRHBDLDZEQUFlLENBQUNRLG9EQUFRLENBQUNRLElBQUksQ0FBQ3NCLE9BQU8sQ0FBQztNQUFDLENBQ3ZDO0lBQUMsQ0FDRCxDQUFDO0VBQUEsQ0FHWixDQUFDO0FBRVgiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9uZXd3ZWJzaXRlLy4vc3JjL2NvbXBvbmVudHMvTmV3cy9OZXdzQ2FyZC50c3g/NDc0NiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSAncHJlYWN0L2NvbXBhdCc7XG5pbXBvcnQgTG9hZGluZyBmcm9tICcuLi9FbGVtZW50cy9Mb2FkaW5nJztcbmltcG9ydCBSZWFjdEh0bWxQYXJzZXIgZnJvbSAncmVhY3QtaHRtbC1wYXJzZXInO1xuaW1wb3J0IHsgdXNlTmF2aWdhdGUsIHVzZVBhcmFtcyB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nO1xuaW1wb3J0IGdldE5ld3MgZnJvbSAnLi4vLi4vYXBpL25ld3MvZ2V0TmV3cyc7XG5pbXBvcnQgeyB0b2FzdCB9IGZyb20gJ3JlYWN0LXRvYXN0aWZ5JztcbmltcG9ydCAncmVhY3QtcXVpbGwvZGlzdC9xdWlsbC5zbm93LmNzcyc7XG5pbXBvcnQgJy4uL0FkbWluL0Jsb2dzL3Rvb2xCYXIuc2Nzcyc7XG5pbXBvcnQgbW9tZW50IGZyb20gJ21vbWVudCc7XG5pbXBvcnQgeyBIZWxtZXQgfSBmcm9tICdyZWFjdC1oZWxtZXQnO1xuaW1wb3J0IHsgdXNlRGFyayB9IGZyb20gJy4uLy4uL0FwcCc7XG5pbXBvcnQge3Nhbml0aXplfSBmcm9tICdkb21wdXJpZnknO1xuXG5pbnRlcmZhY2UgbmV3cyB7XG4gIGlkOiBudW1iZXI7XG4gIGF1dGhvcjogc3RyaW5nO1xuICB0YWdzOiBzdHJpbmc7XG4gIHRpdGxlOiBzdHJpbmc7XG4gIGNhdGVnb3J5X2lkOiBudW1iZXI7XG4gIHZpZXdzOiBudW1iZXI7XG4gIHNsdWc6IHN0cmluZztcbiAgcGljdHVyZXM6IHN0cmluZztcbiAgY29udGVudDogc3RyaW5nO1xuICBjcmVhdGVkX2F0OiBzdHJpbmc7XG59XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIE5ld3NDYXJkKCkge1xuICAgIGNvbnN0IFtuZXdzLCBzZXROZXdzXSA9IHVzZVN0YXRlPG5ld3M+KCk7XG4gICAgY29uc3QgeyBpZCB9ID0gdXNlUGFyYW1zKCk7XG4gICAgY29uc3QgbmF2aWdhdGUgPSB1c2VOYXZpZ2F0ZSgpO1xuICAgIGNvbnN0IHtkYXJrfSA9IHVzZURhcmsoKTtcbiAgICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgICAgICBpZihpZCkge1xuICAgICAgICAgICAgZ2V0TmV3cyhpZCkudGhlbigoZGF0YSkgPT4ge1xuICAgICAgICAgICAgICAgIGlmKGRhdGEuZGF0YS5zdGF0dXMgPT09ICdzdWNjZXNzJykge1xuICAgICAgICAgICAgICAgICAgICBzZXROZXdzKGRhdGEuZGF0YS5kYXRhKTtcbiAgICAgICAgICAgICAgICAgICAgcmV0dXJuO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICBuYXZpZ2F0ZSgnLycpO1xuICAgICAgICAgICAgICAgIHRvYXN0LmVycm9yKCdTb3JyeSBhIHVuZXhwZWN0ZWQgZXJyb3Igb2NjdXJyZWQuJywge1xuICAgICAgICAgICAgICAgICAgICBwb3NpdGlvbjogJ2JvdHRvbS1yaWdodCcsXG4gICAgICAgICAgICAgICAgICAgIGF1dG9DbG9zZTogNTAwMCxcbiAgICAgICAgICAgICAgICAgICAgaGlkZVByb2dyZXNzQmFyOiBmYWxzZSxcbiAgICAgICAgICAgICAgICAgICAgY2xvc2VPbkNsaWNrOiB0cnVlLFxuICAgICAgICAgICAgICAgICAgICBwYXVzZU9uSG92ZXI6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgIGRyYWdnYWJsZTogdHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgcHJvZ3Jlc3M6IHVuZGVmaW5lZCxcbiAgICAgICAgICAgICAgICAgICAgdGhlbWU6IGRhcmsgPyAnZGFyaycgOiAnbGlnaHQnLFxuICAgICAgICAgICAgICAgIH0pO1xuICAgICAgICAgICAgfSk7XG4gICAgICAgIH1cbiAgICB9LCBbXSk7XG4gICAgaWYoIW5ld3MpIHtcbiAgICAgICAgcmV0dXJuIDxMb2FkaW5nLz47XG4gICAgfVxuICAgIGRvY3VtZW50LnRpdGxlID0gYEJhZ291NDUwIC0gJHtuZXdzLnRpdGxlfWA7XG5cbiAgICByZXR1cm4gKFxuICAgICAgICA8PlxuICAgICAgICAgICAgPEhlbG1ldD5cbiAgICAgICAgICAgICAgICA8bWV0YSBuYW1lPVwiZGVzY3JpcHRpb25cIiBjb250ZW50PXtgVGFnczogJHtKU09OLnBhcnNlKG5ld3MudGFncykuam9pbignLCAnKX1gfSAvPlxuICAgICAgICAgICAgPC9IZWxtZXQ+XG4gICAgICAgICAgICA8aDEgY2xhc3NOYW1lPXtgJHtkYXJrID8gJ3RleHQtc2xhdGUtMzAwJyA6ICd0ZXh0LWJsYWNrJ30gdGV4dC1jZW50ZXIgdGV4dC00eGwgbXQtNGB9PntuZXdzLnRpdGxlfSA8L2gxPlxuICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT17YCR7ZGFyayA/ICd0ZXh0LXNsYXRlLTMwMCcgOiAndGV4dC1ibGFjayd9IHRleHQtY2VudGVyIG9wYWNpdHktNzVgfSA+PHNwYW4gY2xhc3NOYW1lPXsndGV4dC0yeGwgb3BhY2l0eS02MCd9PmJ5IHtuZXdzLmF1dGhvcn08L3NwYW4+PGJyLz4gPHNwYW5cbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9eyd0ZXh0LXhsIG9wYWNpdHktNDAnfT57bW9tZW50KG5ld3MuY3JlYXRlZF9hdCkuZnJvbU5vdygpfTwvc3Bhbj48L2gyPlxuICAgICAgICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPXtgbXgtOCBsZzpteC0yNCB4bDpteC0zMiAyeGw6bXgtNDggbXktOCBxbCBuZXdzIHJvdW5kZWQtbGcgcC00IHRleHQtanVzdGlmeSAke2RhcmsgPyAnYmctYmc0NTAtbGVzc2RhcmsgJyA6ICdiZy1zbGF0ZS01MCd9YH0+XG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2RhcmsgPyAnZGFyay1jb250ZW50JyA6ICd3aGl0ZS1jb250ZW50J30+XG4gICAgICAgICAgICAgICAgICAgIHtSZWFjdEh0bWxQYXJzZXIoc2FuaXRpemUobmV3cy5jb250ZW50KSl9XG4gICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cblxuICAgICAgICA8Lz5cbiAgICApO1xufSJdLCJuYW1lcyI6WyJ1c2VFZmZlY3QiLCJ1c2VTdGF0ZSIsIkxvYWRpbmciLCJSZWFjdEh0bWxQYXJzZXIiLCJ1c2VOYXZpZ2F0ZSIsInVzZVBhcmFtcyIsImdldE5ld3MiLCJ0b2FzdCIsIm1vbWVudCIsIkhlbG1ldCIsInVzZURhcmsiLCJzYW5pdGl6ZSIsImpzeCIsIl9qc3giLCJqc3hzIiwiX2pzeHMiLCJGcmFnbWVudCIsIl9GcmFnbWVudCIsIk5ld3NDYXJkIiwibmV3cyIsInNldE5ld3MiLCJpZCIsIm5hdmlnYXRlIiwiZGFyayIsInRoZW4iLCJkYXRhIiwic3RhdHVzIiwiZXJyb3IiLCJwb3NpdGlvbiIsImF1dG9DbG9zZSIsImhpZGVQcm9ncmVzc0JhciIsImNsb3NlT25DbGljayIsInBhdXNlT25Ib3ZlciIsImRyYWdnYWJsZSIsInByb2dyZXNzIiwidW5kZWZpbmVkIiwidGhlbWUiLCJkb2N1bWVudCIsInRpdGxlIiwiY2hpbGRyZW4iLCJuYW1lIiwiY29udGVudCIsIkpTT04iLCJwYXJzZSIsInRhZ3MiLCJqb2luIiwiY2xhc3NOYW1lIiwiYXV0aG9yIiwiY3JlYXRlZF9hdCIsImZyb21Ob3ciXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/News/NewsCard.tsx\n");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_components_News_NewsCard_tsx.bundle.js.map

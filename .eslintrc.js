@@ -31,12 +31,14 @@ module.exports = {
     },
     plugins: ['@typescript-eslint', 'react'],
     rules: {
+        '@typescript-eslint/no-unused-vars': ['error', { 'varsIgnorePattern': '^h$' }],
         indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
         '@typescript-eslint/no-explicit-any': ['off'],
         semi: ['error', 'always'],
-        'react/react-in-jsx-scope': 'off'
+        'react/react-in-jsx-scope': 'off',
+
 
     },
 };

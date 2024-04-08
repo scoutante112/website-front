@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { createElement, useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Elements/Loading';
@@ -35,7 +35,7 @@ export default function Product() {
     const { data, error, isLoading } = useSWR(`${config.privateapilink}/addons/getone?id=${id}&lang=${lang}`, fetcher);
     const [basket, setBasket] = useState<basketItem[]>();
     const [inBasket, setInBasket] = useState<boolean>(false);
-    const [index, setIndex] = React.useState(-1);
+    const [index, setIndex] = useState(-1);
     const [images, setImages] = useState<SlideImage[]>([]);
 
     const retrieveImages = () => {
@@ -49,7 +49,7 @@ export default function Product() {
 
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(data && (!error || !isLoading)) {
 
             retrieveImages();
@@ -207,7 +207,7 @@ export default function Product() {
         if (node.name === 'img' && lightboxParent && lightboxParent.name === 'div') {
             const { alt } = node.attribs;
             if (alt) {
-                return React.createElement('img', {
+                return createElement('img', {
                     ...node.attribs,
                     onClick: () => setIndex(parseInt(alt)),
                 });

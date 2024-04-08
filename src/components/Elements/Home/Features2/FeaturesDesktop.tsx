@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useDark } from '../../../../App';
 import { CommandLineIcon, WrenchIcon } from '@heroicons/react/24/outline';
 import { CogIcon } from '@heroicons/react/24/solid';

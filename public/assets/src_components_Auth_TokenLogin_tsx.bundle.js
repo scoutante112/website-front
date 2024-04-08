@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (globalThis["webpackChunknewwebsite"] = globalThis["webpackChunknewwebsite"] || []).push([["src_components_Auth_TokenLogin_tsx"],{
 
 /***/ "./src/api/auth/tokenLogin.ts":
@@ -7,23 +15,7 @@
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/config */ "./src/config/config.ts");
-/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http */ "./src/api/http.ts");
-
-
-const tokenLogin = function (token) {
-  return new Promise(function (resolve, reject) {
-    _http__WEBPACK_IMPORTED_MODULE_1__["default"].post(`${_config_config__WEBPACK_IMPORTED_MODULE_0__.config.privateapilink}/auth/tokenlogin`, {
-      token
-    }).then(function (data) {
-      return resolve(data);
-    }).catch(reject);
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tokenLogin);
+eval("/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/config */ \"./src/config/config.ts\");\n/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http */ \"./src/api/http.ts\");\n\n\nconst tokenLogin = function (token) {\n  return new Promise(function (resolve, reject) {\n    _http__WEBPACK_IMPORTED_MODULE_1__[\"default\"].post(`${_config_config__WEBPACK_IMPORTED_MODULE_0__.config.privateapilink}/auth/tokenlogin`, {\n      token\n    }).then(function (data) {\n      return resolve(data);\n    }).catch(reject);\n  });\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tokenLogin);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2F1dGgvdG9rZW5Mb2dpbi50cyIsIm1hcHBpbmdzIjoiOzs7OztBQUE2QztBQUNsQjtBQUczQixNQUFNRSxVQUFVLEdBQUcsU0FBQUEsQ0FBQ0MsS0FBYSxFQUFvQjtFQUNuRCxPQUFPLElBQUlDLE9BQU8sQ0FBTSxVQUFDQyxPQUFPLEVBQUVDLE1BQU0sRUFBSztJQUMzQ0wsNkNBQUksQ0FDRE0sSUFBSSxDQUFFLEdBQUVQLGtEQUFNLENBQUNRLGNBQWUsa0JBQWlCLEVBQUU7TUFBRUw7SUFBTSxDQUFDLENBQUMsQ0FDM0RNLElBQUksQ0FBQyxVQUFDQyxJQUFJO01BQUEsT0FBS0wsT0FBTyxDQUFDSyxJQUFJLENBQUM7SUFBQSxFQUFDLENBQzdCQyxLQUFLLENBQUNMLE1BQU0sQ0FBQztFQUNsQixDQUFDLENBQUM7QUFDSixDQUFDO0FBRUQsaUVBQWVKLFVBQVUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9uZXd3ZWJzaXRlLy4vc3JjL2FwaS9hdXRoL3Rva2VuTG9naW4udHM/ZWM0NSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjb25maWcgfSBmcm9tICcuLi8uLi9jb25maWcvY29uZmlnJztcbmltcG9ydCBodHRwIGZyb20gJy4uL2h0dHAnO1xuXG5cbmNvbnN0IHRva2VuTG9naW4gPSAodG9rZW46IHN0cmluZyApOiBQcm9taXNlPGFueT4gPT4ge1xuICByZXR1cm4gbmV3IFByb21pc2U8YW55PigocmVzb2x2ZSwgcmVqZWN0KSA9PiB7XG4gICAgaHR0cFxuICAgICAgLnBvc3QoYCR7Y29uZmlnLnByaXZhdGVhcGlsaW5rfS9hdXRoL3Rva2VubG9naW5gLCB7IHRva2VuIH0pXG4gICAgICAudGhlbigoZGF0YSkgPT4gcmVzb2x2ZShkYXRhKSlcbiAgICAgIC5jYXRjaChyZWplY3QpO1xuICB9KTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IHRva2VuTG9naW47Il0sIm5hbWVzIjpbImNvbmZpZyIsImh0dHAiLCJ0b2tlbkxvZ2luIiwidG9rZW4iLCJQcm9taXNlIiwicmVzb2x2ZSIsInJlamVjdCIsInBvc3QiLCJwcml2YXRlYXBpbGluayIsInRoZW4iLCJkYXRhIiwiY2F0Y2giXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/api/auth/tokenLogin.ts\n");
 
 /***/ }),
 
@@ -33,80 +25,8 @@ const tokenLogin = function (token) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TokenLogin)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/preact/compat/dist/compat.module.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var swr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swr */ "./node_modules/swr/core/dist/index.mjs");
-/* harmony import */ var _api_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/http */ "./src/api/http.ts");
-/* harmony import */ var _api_auth_tokenLogin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/auth/tokenLogin */ "./src/api/auth/tokenLogin.ts");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.mjs");
-/* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Elements/Loading */ "./src/components/Elements/Loading.tsx");
-/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config/config */ "./src/config/config.ts");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../App */ "./src/App.tsx");
-
-
-
-
-
-
-
-
-
-function TokenLogin() {
-  const {
-    token
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useParams)();
-  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
-  const {
-    dark
-  } = (0,_App__WEBPACK_IMPORTED_MODULE_7__.useDark)();
-  const {
-    mutate
-  } = (0,swr__WEBPACK_IMPORTED_MODULE_1__["default"])(`${_config_config__WEBPACK_IMPORTED_MODULE_6__.config.privateapilink}/auth/isLogged?infos=true`, _api_http__WEBPACK_IMPORTED_MODULE_2__.fetcher);
-  if (!token) {
-    navigate('/');
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(react__WEBPACK_IMPORTED_MODULE_0__["default"].Fragment, null);
-  }
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_api_auth_tokenLogin__WEBPACK_IMPORTED_MODULE_3__["default"])(token).then(function (data) {
-      if (data.data['status'] === 'error') {
-        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.error('Error. Can\'t get your account data with this token.', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: dark ? 'dark' : 'light'
-        });
-        return navigate('/');
-      } else {
-        document.cookie = `access_token=${data.data['data']['access_token']}; path=/; expires=${new Date(Date.now() + 6 * 60 * 60 * 1000).toUTCString()}`;
-        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.success('Success! Your are now logged.', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: dark ? 'dark' : 'light'
-        });
-        mutate();
-        navigate('/');
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(react__WEBPACK_IMPORTED_MODULE_0__["default"].Fragment, null);
-      }
-    });
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_Elements_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], null);
-}
-;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TokenLogin)\n/* harmony export */ });\n/* harmony import */ var preact_compat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact/compat */ \"./node_modules/preact/compat/dist/compat.module.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router/dist/index.js\");\n/* harmony import */ var swr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swr */ \"./node_modules/swr/core/dist/index.mjs\");\n/* harmony import */ var _api_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/http */ \"./src/api/http.ts\");\n/* harmony import */ var _api_auth_tokenLogin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/auth/tokenLogin */ \"./src/api/auth/tokenLogin.ts\");\n/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify */ \"./node_modules/react-toastify/dist/react-toastify.esm.mjs\");\n/* harmony import */ var _Elements_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Elements/Loading */ \"./src/components/Elements/Loading.tsx\");\n/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config/config */ \"./src/config/config.ts\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../App */ \"./src/App.tsx\");\n/* harmony import */ var preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! preact/jsx-runtime */ \"./node_modules/preact/jsx-runtime/dist/jsxRuntime.module.js\");\n\n\n\n\n\n\n\n\n\n\n\nfunction TokenLogin() {\n  const {\n    token\n  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useParams)();\n  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();\n  const {\n    dark\n  } = (0,_App__WEBPACK_IMPORTED_MODULE_7__.useDark)();\n  const {\n    mutate\n  } = (0,swr__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(`${_config_config__WEBPACK_IMPORTED_MODULE_6__.config.privateapilink}/auth/isLogged?infos=true`, _api_http__WEBPACK_IMPORTED_MODULE_2__.fetcher);\n  if (!token) {\n    navigate('/');\n    return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {});\n  }\n  (0,preact_compat__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {\n    (0,_api_auth_tokenLogin__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(token).then(function (data) {\n      if (data.data['status'] === 'error') {\n        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.error('Error. Can\\'t get your account data with this token.', {\n          position: 'bottom-right',\n          autoClose: 5000,\n          hideProgressBar: false,\n          closeOnClick: true,\n          pauseOnHover: true,\n          draggable: true,\n          progress: undefined,\n          theme: dark ? 'dark' : 'light'\n        });\n        return navigate('/');\n      } else {\n        document.cookie = `access_token=${data.data['data']['access_token']}; path=/; expires=${new Date(Date.now() + 6 * 60 * 60 * 1000).toUTCString()}`;\n        react_toastify__WEBPACK_IMPORTED_MODULE_4__.toast.success('Success! Your are now logged.', {\n          position: 'bottom-right',\n          autoClose: 5000,\n          hideProgressBar: false,\n          closeOnClick: true,\n          pauseOnHover: true,\n          draggable: true,\n          progress: undefined,\n          theme: dark ? 'dark' : 'light'\n        });\n        mutate();\n        navigate('/');\n        return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {});\n      }\n    });\n  }, []);\n  return (0,preact_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Elements_Loading__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {});\n}\n;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9BdXRoL1Rva2VuTG9naW4udHN4IiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7O0FBQTBDO0FBQ2dCO0FBQ2pDO0FBQ2dCO0FBQ1U7QUFDWjtBQUNHO0FBQ0c7QUFDVDtBQUFBO0FBQUE7QUFFckIsU0FBU2MsVUFBVUEsQ0FBQSxFQUFHO0VBQ2pDLE1BQU07SUFBRUM7RUFBTSxDQUFDLEdBQUdiLDJEQUFTLENBQUMsQ0FBQztFQUM3QixNQUFNYyxRQUFRLEdBQUdmLDZEQUFXLENBQUMsQ0FBQztFQUM5QixNQUFNO0lBQUVnQjtFQUFLLENBQUMsR0FBR1IsNkNBQU8sQ0FBQyxDQUFDO0VBQzFCLE1BQU07SUFBRVM7RUFBTyxDQUFDLEdBQUdmLCtDQUFNLENBQ3BCLEdBQUVLLGtEQUFNLENBQUNXLGNBQWUsMkJBQTBCLEVBQ25EZiw4Q0FDSixDQUFDO0VBQ0QsSUFBSSxDQUFDVyxLQUFLLEVBQUU7SUFDUkMsUUFBUSxDQUFDLEdBQUcsQ0FBQztJQUNiLE9BQU9ILHVEQUFBLENBQUFGLHdEQUFBLElBQUksQ0FBQztFQUNoQjtFQUNBWCx3REFBUyxDQUFDLFlBQU07SUFDWkssZ0VBQVUsQ0FBQ1UsS0FBSyxDQUFDLENBQUNLLElBQUksQ0FBQyxVQUFDQyxJQUFJLEVBQUs7TUFDN0IsSUFBSUEsSUFBSSxDQUFDQSxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssT0FBTyxFQUFFO1FBQ2pDZixpREFBSyxDQUFDZ0IsS0FBSyxDQUFDLHNEQUFzRCxFQUFFO1VBQ2hFQyxRQUFRLEVBQUUsY0FBYztVQUN4QkMsU0FBUyxFQUFFLElBQUk7VUFDZkMsZUFBZSxFQUFFLEtBQUs7VUFDdEJDLFlBQVksRUFBRSxJQUFJO1VBQ2xCQyxZQUFZLEVBQUUsSUFBSTtVQUNsQkMsU0FBUyxFQUFFLElBQUk7VUFDZkMsUUFBUSxFQUFFQyxTQUFTO1VBQ25CQyxLQUFLLEVBQUVkLElBQUksR0FBRyxNQUFNLEdBQUc7UUFDM0IsQ0FBQyxDQUFDO1FBQ0YsT0FBT0QsUUFBUSxDQUFDLEdBQUcsQ0FBQztNQUN4QixDQUFDLE1BQU07UUFDSGdCLFFBQVEsQ0FBQ0MsTUFBTSxHQUFJLGdCQUFlWixJQUFJLENBQUNBLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQyxjQUFjLENBQUUscUJBQW9CLElBQUlhLElBQUksQ0FBQ0EsSUFBSSxDQUFDQyxHQUFHLENBQUMsQ0FBQyxHQUFHLENBQUMsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLElBQUksQ0FBQyxDQUFDQyxXQUFXLENBQUMsQ0FBRSxFQUFDO1FBQ2pKOUIsaURBQUssQ0FBQytCLE9BQU8sQ0FBQywrQkFBK0IsRUFBRTtVQUMzQ2QsUUFBUSxFQUFFLGNBQWM7VUFDeEJDLFNBQVMsRUFBRSxJQUFJO1VBQ2ZDLGVBQWUsRUFBRSxLQUFLO1VBQ3RCQyxZQUFZLEVBQUUsSUFBSTtVQUNsQkMsWUFBWSxFQUFFLElBQUk7VUFDbEJDLFNBQVMsRUFBRSxJQUFJO1VBQ2ZDLFFBQVEsRUFBRUMsU0FBUztVQUNuQkMsS0FBSyxFQUFFZCxJQUFJLEdBQUcsTUFBTSxHQUFHO1FBQzNCLENBQUMsQ0FBQztRQUNGQyxNQUFNLENBQUMsQ0FBQztRQUNSRixRQUFRLENBQUMsR0FBRyxDQUFDO1FBQ2IsT0FBT0gsdURBQUEsQ0FBQUYsd0RBQUEsSUFBSSxDQUFDO01BQ2hCO0lBQ0osQ0FBQyxDQUFDO0VBQ04sQ0FBQyxFQUFFLEVBQUUsQ0FBQztFQUNOLE9BQ0lFLHVEQUFBLENBQUNOLHlEQUFPLElBQUUsQ0FBQztBQUVuQjtBQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV3d2Vic2l0ZS8uL3NyYy9jb21wb25lbnRzL0F1dGgvVG9rZW5Mb2dpbi50c3g/YmYzYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VFZmZlY3QgfSBmcm9tICdwcmVhY3QvY29tcGF0JztcbmltcG9ydCB7IHVzZU5hdmlnYXRlLCB1c2VQYXJhbXMgfSBmcm9tICdyZWFjdC1yb3V0ZXItZG9tJztcbmltcG9ydCB1c2VTV1IgZnJvbSAnc3dyJztcbmltcG9ydCB7IGZldGNoZXIgfSBmcm9tICcuLi8uLi9hcGkvaHR0cCc7XG5pbXBvcnQgdG9rZW5Mb2dpbiBmcm9tICcuLi8uLi9hcGkvYXV0aC90b2tlbkxvZ2luJztcbmltcG9ydCB7IHRvYXN0IH0gZnJvbSAncmVhY3QtdG9hc3RpZnknO1xuaW1wb3J0IExvYWRpbmcgZnJvbSAnLi4vRWxlbWVudHMvTG9hZGluZyc7XG5pbXBvcnQgeyBjb25maWcgfSBmcm9tICcuLi8uLi9jb25maWcvY29uZmlnJztcbmltcG9ydCB7IHVzZURhcmsgfSBmcm9tICcuLi8uLi9BcHAnO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBUb2tlbkxvZ2luKCkge1xuICAgIGNvbnN0IHsgdG9rZW4gfSA9IHVzZVBhcmFtcygpO1xuICAgIGNvbnN0IG5hdmlnYXRlID0gdXNlTmF2aWdhdGUoKTtcbiAgICBjb25zdCB7IGRhcmsgfSA9IHVzZURhcmsoKTtcbiAgICBjb25zdCB7IG11dGF0ZSB9ID0gdXNlU1dSKFxuICAgICAgICBgJHtjb25maWcucHJpdmF0ZWFwaWxpbmt9L2F1dGgvaXNMb2dnZWQ/aW5mb3M9dHJ1ZWAsXG4gICAgICAgIGZldGNoZXIsXG4gICAgKTtcbiAgICBpZiAoIXRva2VuKSB7XG4gICAgICAgIG5hdmlnYXRlKCcvJyk7XG4gICAgICAgIHJldHVybiA8PjwvPjtcbiAgICB9XG4gICAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICAgICAgdG9rZW5Mb2dpbih0b2tlbikudGhlbigoZGF0YSkgPT4ge1xuICAgICAgICAgICAgaWYgKGRhdGEuZGF0YVsnc3RhdHVzJ10gPT09ICdlcnJvcicpIHtcbiAgICAgICAgICAgICAgICB0b2FzdC5lcnJvcignRXJyb3IuIENhblxcJ3QgZ2V0IHlvdXIgYWNjb3VudCBkYXRhIHdpdGggdGhpcyB0b2tlbi4nLCB7XG4gICAgICAgICAgICAgICAgICAgIHBvc2l0aW9uOiAnYm90dG9tLXJpZ2h0JyxcbiAgICAgICAgICAgICAgICAgICAgYXV0b0Nsb3NlOiA1MDAwLFxuICAgICAgICAgICAgICAgICAgICBoaWRlUHJvZ3Jlc3NCYXI6IGZhbHNlLFxuICAgICAgICAgICAgICAgICAgICBjbG9zZU9uQ2xpY2s6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgIHBhdXNlT25Ib3ZlcjogdHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgZHJhZ2dhYmxlOiB0cnVlLFxuICAgICAgICAgICAgICAgICAgICBwcm9ncmVzczogdW5kZWZpbmVkLFxuICAgICAgICAgICAgICAgICAgICB0aGVtZTogZGFyayA/ICdkYXJrJyA6ICdsaWdodCcsXG4gICAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICAgICAgcmV0dXJuIG5hdmlnYXRlKCcvJyk7XG4gICAgICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgICAgICAgIGRvY3VtZW50LmNvb2tpZSA9IGBhY2Nlc3NfdG9rZW49JHtkYXRhLmRhdGFbJ2RhdGEnXVsnYWNjZXNzX3Rva2VuJ119OyBwYXRoPS87IGV4cGlyZXM9JHtuZXcgRGF0ZShEYXRlLm5vdygpICsgNiAqIDYwICogNjAgKiAxMDAwKS50b1VUQ1N0cmluZygpfWA7XG4gICAgICAgICAgICAgICAgdG9hc3Quc3VjY2VzcygnU3VjY2VzcyEgWW91ciBhcmUgbm93IGxvZ2dlZC4nLCB7XG4gICAgICAgICAgICAgICAgICAgIHBvc2l0aW9uOiAnYm90dG9tLXJpZ2h0JyxcbiAgICAgICAgICAgICAgICAgICAgYXV0b0Nsb3NlOiA1MDAwLFxuICAgICAgICAgICAgICAgICAgICBoaWRlUHJvZ3Jlc3NCYXI6IGZhbHNlLFxuICAgICAgICAgICAgICAgICAgICBjbG9zZU9uQ2xpY2s6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgIHBhdXNlT25Ib3ZlcjogdHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgZHJhZ2dhYmxlOiB0cnVlLFxuICAgICAgICAgICAgICAgICAgICBwcm9ncmVzczogdW5kZWZpbmVkLFxuICAgICAgICAgICAgICAgICAgICB0aGVtZTogZGFyayA/ICdkYXJrJyA6ICdsaWdodCcsXG4gICAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICAgICAgbXV0YXRlKCk7XG4gICAgICAgICAgICAgICAgbmF2aWdhdGUoJy8nKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gPD48Lz47XG4gICAgICAgICAgICB9XG4gICAgICAgIH0pO1xuICAgIH0sIFtdKTtcbiAgICByZXR1cm4gKFxuICAgICAgICA8TG9hZGluZyAvPlxuICAgICk7XG59O1xuXG4iXSwibmFtZXMiOlsidXNlRWZmZWN0IiwidXNlTmF2aWdhdGUiLCJ1c2VQYXJhbXMiLCJ1c2VTV1IiLCJmZXRjaGVyIiwidG9rZW5Mb2dpbiIsInRvYXN0IiwiTG9hZGluZyIsImNvbmZpZyIsInVzZURhcmsiLCJGcmFnbWVudCIsIl9GcmFnbWVudCIsImpzeCIsIl9qc3giLCJUb2tlbkxvZ2luIiwidG9rZW4iLCJuYXZpZ2F0ZSIsImRhcmsiLCJtdXRhdGUiLCJwcml2YXRlYXBpbGluayIsInRoZW4iLCJkYXRhIiwiZXJyb3IiLCJwb3NpdGlvbiIsImF1dG9DbG9zZSIsImhpZGVQcm9ncmVzc0JhciIsImNsb3NlT25DbGljayIsInBhdXNlT25Ib3ZlciIsImRyYWdnYWJsZSIsInByb2dyZXNzIiwidW5kZWZpbmVkIiwidGhlbWUiLCJkb2N1bWVudCIsImNvb2tpZSIsIkRhdGUiLCJub3ciLCJ0b1VUQ1N0cmluZyIsInN1Y2Nlc3MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Auth/TokenLogin.tsx\n");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_components_Auth_TokenLogin_tsx.bundle.js.map

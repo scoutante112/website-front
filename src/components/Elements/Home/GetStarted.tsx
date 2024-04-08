@@ -8,12 +8,12 @@ export default function GetStarted() {
 
     return (
         <section
-            id="getstarted"
-            aria-label="Features for running your books"
-            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo"
+            id='getstarted'
+            aria-label='Features for running your books'
+            className='relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo'
         >
 
-            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='max-w-2xl md:mx-auto md:text-center xl:max-w-none'>
                     <h2 className='font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl'>
                         {t('getstarted.title')}

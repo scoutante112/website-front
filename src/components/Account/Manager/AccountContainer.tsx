@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'preact/compat';
 import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
 import EditAccountForm, { Account as Acc, Discord, Github, Google } from './Forms/EditAccountForm';
@@ -12,12 +12,12 @@ import { useTranslation } from 'react-i18next';
 
 
 export type Account = {
-  email: string;
-  name: string;
-  role: boolean;
+    email: string;
+    name: string;
+    role: boolean;
 }
 export default function AccountContainer() {
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { t } = useTranslation();
 
     const { setActive } = useContext(NavContext);
@@ -28,7 +28,7 @@ export default function AccountContainer() {
 
     const { data, error, isLoading } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=${infos}`,
-        fetcher
+        fetcher,
     );
     if (!data || (error || isLoading)) {
         return <></>;
@@ -44,14 +44,14 @@ export default function AccountContainer() {
         discord: data.data.discord,
         github: data.data.github,
         newsletter: data.data.newsletter,
-        google: data.data.google
+        google: data.data.google,
     };
     document.title = `Bagou450 - ${t('account.container.title')}`;
     return (
 
         <div className={'space-y-10 divide-y divide-gray-900/10'}>
-            <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-                <div className="px-4 sm:px-0">
+            <div className='grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3'>
+                <div className='px-4 sm:px-0'>
                     <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box1.title')}</h2>
                     <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>
                         {t('account.container.box1.desc')}
@@ -65,15 +65,15 @@ export default function AccountContainer() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-                <div className="px-4 sm:px-0">
+            <div className='grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3'>
+                <div className='px-4 sm:px-0'>
                     <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box2.title')}</h2>
                     <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>{t('account.container.box2.desc')}</p>
                 </div>
                 <EditAccountInfosForm />
             </div>
-            <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-                <div className="px-4 sm:px-0">
+            <div className='grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3'>
+                <div className='px-4 sm:px-0'>
                     <h2 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-7`}>{t('account.container.box3.title')}</h2>
                     <p className={`${dark ? 'text-slate-400' : 'text-gray-600'} -1 text-sm leading-6`}>{t('account.container.box3.desc')}</p>
                 </div>

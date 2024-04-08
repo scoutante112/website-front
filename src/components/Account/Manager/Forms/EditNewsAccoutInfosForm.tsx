@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import useSWR from 'swr';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import debounce from 'lodash.debounce';
 import { fetcher } from '../../../../api/http';
 import { config } from '../../../../config/config';
 import { useDark } from '../../../../App';

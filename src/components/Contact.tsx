@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import { BuildingOffice2Icon, PhoneIcon } from '@heroicons/react/24/solid';
 import { EnvelopeIcon } from '@heroicons/react/20/solid';
 import { object, string } from 'yup';

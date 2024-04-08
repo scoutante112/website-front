@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import register from '../../api/auth/register';
 import { toast } from 'react-toastify';
 import { useDark } from '../../App';
+
 const form = object({
     email: string().email('This is not a valid email.').required('You need to enter a email.'),
     username: string()
@@ -11,11 +12,15 @@ const form = object({
         .max(32, 'The username needs to have fewer than 32 characters.')
         .required('You need to enter a username.'),
 });
-export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmail: React.Dispatch<React.SetStateAction<string>>, email: string, setIsRegistred: React.Dispatch<React.SetStateAction<boolean>>}) {
-    const {dark} = useDark();
+export default function RegisterForm({ setEmail, email, setIsRegistred }: {
+    setEmail: React.Dispatch<React.SetStateAction<string>>,
+    email: string,
+    setIsRegistred: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+    const { dark } = useDark();
     const [loading, setLoading] = useState<boolean>(false);
     const formik = useFormik({
-        initialValues: { email: email, username: email.split('@')[0]},
+        initialValues: { email: email, username: email.split('@')[0] },
         validationSchema: form,
         onSubmit: (values) => {
             setLoading(true);
@@ -50,18 +55,19 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
                 setLoading(false);
 
             });
-        }});
+        },
+    });
 
     return (
 
-        <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className='flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8'>
 
 
-            <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-[480px]">
+            <div className='mt-2 sm:mx-auto sm:w-full sm:max-w-[480px]'>
 
-                <div className=" px-6 pb-12 pt-4 sm:rounded-lg sm:px-12">
+                <div className=' px-6 pb-12 pt-4 sm:rounded-lg sm:px-12'>
 
-                    <div className="sm:mx-auto sm:w-full sm:max-w-md">
+                    <div className='sm:mx-auto sm:w-full sm:max-w-md'>
 
                         <h1 className={`${dark ? 'text-slate-200' : 'text-black'} mb-8 text-center text-2xl font-bold leading-9 tracking-tight`}>
                             <strong>Create an account</strong>
@@ -69,7 +75,8 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
                     </div>
                     <form className='space-y-6' action='#' method='POST' onSubmit={formik.handleSubmit}>
                         <div>
-                            <label htmlFor='email' className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
+                            <label htmlFor='email'
+                                   className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
                                 Email address
                             </label>
                             <div className='mt-2'>
@@ -86,7 +93,8 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
                             </div>
                         </div>
                         <div>
-                            <label htmlFor='username' className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
+                            <label htmlFor='username'
+                                   className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-bold`}>
                                 Username
                             </label>
                             <div className='mt-2'>
@@ -106,8 +114,8 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
                             <button
                                 type='submit'
                                 onClick={() => {
-                                    if(formik.errors.username) {
-                                        toast.error( formik.errors.username, {
+                                    if (formik.errors.username) {
+                                        toast.error(formik.errors.username, {
                                             position: 'bottom-right',
                                             autoClose: 5000,
                                             hideProgressBar: false,
@@ -118,8 +126,8 @@ export default function RegisterForm({setEmail, email, setIsRegistred}: {setEmai
                                             theme: dark ? 'dark' : 'light',
                                         });
                                     }
-                                    if(formik.errors.email) {
-                                        toast.error( formik.errors.email, {
+                                    if (formik.errors.email) {
+                                        toast.error(formik.errors.email, {
                                             position: 'bottom-right',
                                             autoClose: 5000,
                                             hideProgressBar: false,

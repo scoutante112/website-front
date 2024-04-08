@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../config/config';
 import { fetcher } from '../../api/http';
@@ -46,6 +46,7 @@ export default function NewsContainer() {
             return <Loading/>;
         }
         return (
+
             <section className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} `}>
                 
                 <Helmet>
@@ -63,11 +64,11 @@ export default function NewsContainer() {
                             placeholder="Search for product"
                             defaultValue={search}
                             className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
-                            onChange={(e) => searchValue(e.target.value)}
+                            onChange={(e) => searchValue(e.target ? (e.target as HTMLInputElement).value : '')}
                         />
                         <select
                             className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
-                            onChange={(e) => setCategory(e.target.value)}
+                            onChange={(e) => setCategory(e.target ? (e.target as HTMLInputElement).value : '')}
                         >
                             <option disabled selected>Select category</option>
                             {categories.data.map((categorie: categorie, index: number) => (
@@ -81,6 +82,7 @@ export default function NewsContainer() {
                 <Loading/>
 
             </section>
+
         );
     }
     const searchValue = debounce((value: string) => {
@@ -105,11 +107,11 @@ export default function NewsContainer() {
                         placeholder={t('blog.search')}
                         defaultValue={search}
                         className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
-                        onChange={(e) => searchValue(e.target.value)}
+                        onChange={(e) => searchValue(e.target ? (e.target as HTMLInputElement).value : '')}
                     />
                     <select
                         className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => setCategory(e.target ? (e.target as HTMLInputElement).value : '')}
                     >
                         <option disabled selected>{t('blog.select')}</option>
                         {categories.data.map((categorie: categorie, index: number) => (

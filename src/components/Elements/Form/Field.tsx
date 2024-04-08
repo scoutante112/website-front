@@ -1,7 +1,17 @@
 import { useDark } from '../../../App';
 
-export default function Field({name, id, type, onChange, defaultValue, className, placeholder, required, disabled}: { name: string, id: string, type: string, onChange: any; defaultValue?: string, className?: string, placeholder?: string, required?: boolean, disabled?: boolean }) {
-    const {dark} = useDark();
+export default function Field({ name, id, type, onChange, defaultValue, className, placeholder, required, disabled }: {
+    name: string,
+    id: string,
+    type: string,
+    onChange: any;
+    defaultValue?: string,
+    className?: string,
+    placeholder?: string,
+    required?: boolean,
+    disabled?: boolean
+}) {
+    const { dark } = useDark();
     const handleChange = (event: any) => {
         onChange(event);
     };
@@ -11,7 +21,7 @@ export default function Field({name, id, type, onChange, defaultValue, className
             {!required ?
                 <div className='flex justify-between'>
                     <label htmlFor='street-address'
-                        className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
+                           className={`${dark ? 'text-slate-200' : 'text-gray-900'} block text-sm font-medium leading-6 `}>
                         {name}
                     </label>
                     <span className='text-sm leading-6 text-gray-500' id='society-optional'>
@@ -20,7 +30,7 @@ export default function Field({name, id, type, onChange, defaultValue, className
                 </div>
                 :
                 <label htmlFor='email'
-                    className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-medium`}>
+                       className={`${dark ? 'text-slate-300' : 'text-gray-900'} block text-sm leading-6 font-medium`}>
                     {name}
                 </label>
             }

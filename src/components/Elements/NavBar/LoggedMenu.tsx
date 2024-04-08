@@ -1,4 +1,6 @@
-import React, { Fragment } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { Fragment } from 'preact/compat';
 import { Menu, Transition } from '@headlessui/react';
 import md5 from 'blueimp-md5';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +8,7 @@ import logout from '../../../api/auth/logout';
 import { toast } from 'react-toastify';
 import { useDark } from '../../../App';
 
-export default function LoggedMenu({data, mutate}: {data: any, mutate: any}) {
+export default function LoggedMenu({ data, mutate }: { data: any, mutate: any }) {
     const { dark } = useDark();
     const navigate = useNavigate();
 

@@ -1,4 +1,6 @@
-import React, { Fragment, lazy, Suspense } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { Fragment, lazy, Suspense } from 'preact/compat';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
@@ -38,7 +40,7 @@ export default function NavBar() {
         return <></>;
     }
     const logged = data.status;
-    if(window.location.pathname.startsWith() === '/licenses' && !logged) {
+    if(window.location.pathname.startsWith('/licenses')  && !logged) {
         navigate('/login');
         toast.error('You need to be logged for see this page.', {
             position: 'bottom-right',

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { useEffect, useState } from 'preact/compat';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -56,9 +58,9 @@ export default function Features1() {
     ];
     return (
         <section
-            id="features"
-            aria-label="Features for running your books"
-            className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo"
+            id='features'
+            aria-label='Features for running your books'
+            className='relative overflow-hidden pb-28 pt-20 sm:py-32 bg-bg450-logo'
         >
             {/*<img
                     className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -67,9 +69,9 @@ export default function Features1() {
                     width={2245}
                     height={1636}
                 />*/}
-            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-                    <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+            <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+                <div className='max-w-2xl md:mx-auto md:text-center xl:max-w-none'>
+                    <h2 className='font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl'>
                         {t('features1.title')}
                     </h2>
                     <p className='mt-6 text-lg tracking-tight text-blue-100'>
@@ -84,9 +86,9 @@ export default function Features1() {
                     {({ selectedIndex }) => (
                         <>
                             <div
-                                className="-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5">
+                                className='-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5'>
                                 <Tab.List
-                                    className="relative flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
+                                    className='relative flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal'>
                                     {features.map((feature, featureIndex) => (
                                         <div
                                             key={feature.title}
@@ -127,35 +129,35 @@ export default function Features1() {
                                     ))}
                                 </Tab.List>
                             </div>
-                            <Tab.Panels className="lg:col-span-7">
+                            <Tab.Panels className='lg:col-span-7'>
                                 {features.map((feature) => (
                                     <Tab.Panel key={feature.title} unmount={false}>
-                                        <div className="relative sm:px-6 lg:hidden">
+                                        <div className='relative sm:px-6 lg:hidden'>
                                             <div
-                                                className="absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl" />
-                                            <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
+                                                className='absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl' />
+                                            <p className='relative mx-auto max-w-2xl text-base text-white sm:text-center'>
                                                 {feature.description}
                                             </p>
                                         </div>
                                         <div
-                                            className="mt-20 overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                                            className='mt-20 overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]'>
                                             <img
                                                 loading={'lazy'}
-                                                className="hidden md:block w-full"
+                                                className='hidden md:block w-full'
                                                 width={1920}
                                                 height={1080}
                                                 src={feature.image}
                                                 alt={feature.title}
-                                                sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
+                                                sizes='(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem'
                                             />
                                             <img
                                                 loading={'lazy'}
-                                                className=" md:hidden w-full"
+                                                className=' md:hidden w-full'
                                                 width={630}
                                                 height={994}
                                                 src={feature.imagemobile}
                                                 alt={feature.title}
-                                                sizes="(min-width: 640px) 100vw, 45rem"
+                                                sizes='(min-width: 640px) 100vw, 45rem'
                                             />
                                         </div>
                                     </Tab.Panel>

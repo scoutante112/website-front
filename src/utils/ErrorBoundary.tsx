@@ -1,24 +1,30 @@
-import React from 'react';
-import { toast } from 'react-toastify';
-import { useDark } from '../App';
+import { PureComponent } from 'preact/compat';
 
-class ErrorBoundary extends React.Component {
-    constructor(props) {
+interface Props {
+    children: JSX.Element[] | JSX.Element;
+}
+
+interface State {
+    hasError: boolean;
+}
+
+class ErrorBoundary extends PureComponent<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = { hasError: false };
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError(_: any) {
         return { hasError: true };
     }
 
-    componentDidCatch(error, errorInfo) {
+    componentDidCatch(error: Error, errorInfo: object) {
         console.error('ErrorBoundary caught an error', error, errorInfo);
     }
 
     render() {
         if (this.state.hasError) {
-            return <p className={'text-white mx-auto my-auto'}>A unknow error occured</p>;
+            return <p className={'text-white mx-auto my-auto'}>A unknown error occurred</p>;
         }
 
         return this.props.children;

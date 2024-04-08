@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'preact/compat';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Installer } from './AutoInstallerContainer';
 import { useFormik } from 'formik';
@@ -13,6 +13,7 @@ import { classNames } from '../../NavBar';
 import AceEditor from 'react-ace';
 import createAutoInstaller from '../../../api/admin/autoinstaller/createAutoInstaller';
 import { useDark } from '../../../App';
+
 export default function AutoInstallerNew() {
     const dark = useDark();
 
@@ -33,7 +34,7 @@ export default function AutoInstallerNew() {
             type: 'createFile',
             where: '',
             content: '',
-            version:  '',
+            version: '',
             theme_id: -1,
             product_id: -1,
         },
@@ -55,14 +56,15 @@ export default function AutoInstallerNew() {
             <form onSubmit={() => formik.handleSubmit}>
                 <div className='space-y-12 sm:space-y-16'>
                     <div>
-                        <h2 className={`text-base font-semibold leading-7 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>New AutoInstaller</h2>
+                        <h2 className={`text-base font-semibold leading-7 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>New
+                            AutoInstaller</h2>
 
 
                         <div
                             className='mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0'>
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='name'
-                                    className={`block text-sm font-medium leading-6 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
+                                       className={`block text-sm font-medium leading-6 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
                                     Name
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -84,7 +86,7 @@ export default function AutoInstallerNew() {
 
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='where'
-                                    className={`block text-sm font-medium leading-6 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
+                                       className={`block text-sm font-medium leading-6 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
                                     Where
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -105,7 +107,7 @@ export default function AutoInstallerNew() {
                             </div>
                             <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6'>
                                 <label htmlFor='version'
-                                    className={`block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
+                                       className={`block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5 ${dark ? 'text-slate-100' : 'text-gray-900'}`}>
                                     Version
                                 </label>
                                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
@@ -137,7 +139,7 @@ export default function AutoInstallerNew() {
                                                     <span
                                                         className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
                                                         <ChevronUpDownIcon className='h-5 w-5 text-gray-400'
-                                                            aria-hidden='true' />
+                                                                           aria-hidden='true' />
                                                     </span>
                                                 </Listbox.Button>
 
@@ -176,7 +178,7 @@ export default function AutoInstallerNew() {
                                                                                 )}
                                                                             >
                                                                                 <CheckIcon className='h-5 w-5'
-                                                                                    aria-hidden='true' />
+                                                                                           aria-hidden='true' />
                                                                             </span>
                                                                         ) : null}
                                                                     </>
@@ -203,7 +205,7 @@ export default function AutoInstallerNew() {
                                                     <span
                                                         className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
                                                         <ChevronUpDownIcon className='h-5 w-5 text-gray-400'
-                                                            aria-hidden='true' />
+                                                                           aria-hidden='true' />
                                                     </span>
                                                 </Listbox.Button>
 
@@ -242,7 +244,7 @@ export default function AutoInstallerNew() {
                                                                                 )}
                                                                             >
                                                                                 <CheckIcon className='h-5 w-5'
-                                                                                    aria-hidden='true' />
+                                                                                           aria-hidden='true' />
                                                                             </span>
                                                                         ) : null}
                                                                     </>

@@ -1,9 +1,8 @@
-import React from 'react';
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/solid';
 import { useDark } from '../../App';
 
-const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: number, setPage: any}) => {
-    if(totalPages < 2) {
+const Pagination = ({ totalPages, page, setPage }: { totalPages: number, page: number, setPage: any }) => {
+    if (totalPages < 2) {
         return <></>;
     }
     const visiblePages = 3;
@@ -28,7 +27,7 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                         onClick={() => handlePageChange(i)}
                     >
                         {i}
-                    </button>
+                    </button>,
                 );
             }
         } else {
@@ -41,13 +40,13 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                             onClick={() => handlePageChange(i)}
                         >
                             {i}
-                        </button>
+                        </button>,
                     );
                 }
                 pages.push(
-                    <button key="right-ellipsis" className="join-item btn btn-disabled outline-0">
+                    <button key='right-ellipsis' className='join-item btn btn-disabled outline-0'>
                         {ellipsis}
-                    </button>
+                    </button>,
                 );
                 pages.push(
                     <button
@@ -56,7 +55,7 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                         onClick={() => handlePageChange(totalPages)}
                     >
                         {totalPages}
-                    </button>
+                    </button>,
                 );
             } else if (currentPage > totalPages - visiblePages) {
                 pages.push(
@@ -66,12 +65,12 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                         onClick={() => handlePageChange(1)}
                     >
                         {1}
-                    </button>
+                    </button>,
                 );
                 pages.push(
-                    <button key="left-ellipsis" className="join-item btn btn-disabled outline-0">
+                    <button key='left-ellipsis' className='join-item btn btn-disabled outline-0'>
                         {ellipsis}
-                    </button>
+                    </button>,
                 );
                 for (let i = totalPages - visiblePages; i <= totalPages; i++) {
                     pages.push(
@@ -81,7 +80,7 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                             onClick={() => handlePageChange(i)}
                         >
                             {i}
-                        </button>
+                        </button>,
                     );
                 }
             } else {
@@ -92,12 +91,12 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                         onClick={() => handlePageChange(1)}
                     >
                         {1}
-                    </button>
+                    </button>,
                 );
                 pages.push(
-                    <button key="left-ellipsis" className="join-item btn btn-disabled outline-0">
+                    <button key='left-ellipsis' className='join-item btn btn-disabled outline-0'>
                         {ellipsis}
-                    </button>
+                    </button>,
                 );
                 for (let i = currentPage - 1; i <= currentPage + 1; i++) {
                     pages.push(
@@ -107,13 +106,13 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                             onClick={() => handlePageChange(i)}
                         >
                             {i}
-                        </button>
+                        </button>,
                     );
                 }
                 pages.push(
-                    <button key="right-ellipsis" className="join-item btn btn-disabled outline-0">
+                    <button key='right-ellipsis' className='join-item btn btn-disabled outline-0'>
                         {ellipsis}
-                    </button>
+                    </button>,
                 );
                 pages.push(
                     <button
@@ -122,7 +121,7 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                         onClick={() => handlePageChange(totalPages)}
                     >
                         {totalPages}
-                    </button>
+                    </button>,
                 );
             }
         }
@@ -170,24 +169,24 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
     const pageNumbers = generatePageNumbers();
 
     return (
-        <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 pb-4">
-            <div className="-mt-px flex w-0 flex-1 ml-12 md:ml-24 lg:ml-40 2xl:ml-52">
+        <nav className='flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 pb-4'>
+            <div className='-mt-px flex w-0 flex-1 ml-12 md:ml-24 lg:ml-40 2xl:ml-52'>
                 <button
                     className={page === 1 ? 'inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500' : 'inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'}
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}
                 >
-                    <ArrowLongLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-          Previous
+                    <ArrowLongLeftIcon className='mr-3 h-5 w-5 text-gray-400' aria-hidden='true' />
+                    Previous
                 </button>
             </div>
-            <div className="hidden md:-mt-px md:flex mx-2 lg:mx-8 xl:mx-16">
+            <div className='hidden md:-mt-px md:flex mx-2 lg:mx-8 xl:mx-16'>
                 {pageNumbers.map((pageNumber, index) => {
                     if (pageNumber === 0) {
                         return (
                             <span
                                 key={`ellipsis-${index}`}
-                                className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500"
+                                className='inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500'
                             >
                 ...
                             </span>
@@ -208,14 +207,14 @@ const Pagination = ({ totalPages, page, setPage }: {totalPages: number, page: nu
                     );
                 })}
             </div>
-            <div className="-mt-px flex w-0 flex-1 justify-end mr-12 md:mr-24 lg:mr-40 2xl:mr-52">
+            <div className='-mt-px flex w-0 flex-1 justify-end mr-12 md:mr-24 lg:mr-40 2xl:mr-52'>
                 <button
                     className={page === totalPages ? 'inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500' : 'inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'}
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page === totalPages}
                 >
-          Next
-                    <ArrowLongRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    Next
+                    <ArrowLongRightIcon className='ml-3 h-5 w-5 text-gray-400' aria-hidden='true' />
                 </button>
             </div>
         </nav>

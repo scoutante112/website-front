@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'preact/compat';
 import Loading from '../Elements/Loading';
 import { useNavigate, useParams } from 'react-router-dom';
 import addPasskey from '../../api/auth/passkeys/addPasskey';
@@ -12,12 +12,12 @@ import { useDark } from '../../App';
 export default function AddPasskey() {
     const { token } = useParams();
     const navigate = useNavigate();
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
-        fetcher
+        fetcher,
     );
-    if(!token) {
+    if (!token) {
         navigate('/');
         return <></>;
     }
@@ -52,6 +52,6 @@ export default function AddPasskey() {
         });
     }, []);
     return (
-        <Loading/>
+        <Loading />
     );
 }

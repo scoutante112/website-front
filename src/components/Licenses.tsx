@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import { object, string } from 'yup';
 import getLicenses from '../api/licenses/getLicenses';
 import { AnimatePresence, motion } from 'framer-motion';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDark } from '../App';
 import { Helmet } from 'react-helmet';
 

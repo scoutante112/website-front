@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react';
+// @ts-nocheck
+import { Fragment, useState } from 'preact/compat';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useDark } from '../../App';
@@ -15,14 +16,18 @@ import Field from '../Elements/Form/Field';
 const form = object({
     code: string().required('You need to enter the code.'),
 });
-export default function AskCode({setOpenModal, email}: {setOpenModal: React.Dispatch<React.SetStateAction<boolean>>, email: string}) {
-    const {dark} = useDark();
+export default function AskCode({ email }: {
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    email: string
+}) {
+    const { dark } = useDark();
     const [loading, setLoading] = useState<boolean>(false);
     const navigate = useNavigate();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
-        fetcher
+        fetcher,
     );
+
     function getEmailAction(email: string) {
         if (email.includes('@')) {
             const domain = email.split('@')[1].toLowerCase();
@@ -68,11 +73,11 @@ export default function AskCode({setOpenModal, email}: {setOpenModal: React.Disp
     }
 
     const formik = useFormik({
-        initialValues: { code: ''},
+        initialValues: { code: '' },
         validationSchema: form,
         onSubmit: (values) => {
             setLoading(true);
-            if(values.code.length !== 6) {
+            if (values.code.length !== 6) {
                 toast.error('Your code is incorrect.', {
                     position: 'bottom-right',
                     autoClose: 5000,
@@ -111,50 +116,54 @@ export default function AskCode({setOpenModal, email}: {setOpenModal: React.Disp
                     progress: undefined,
                     theme: dark ? 'dark' : 'light',
                 });
-                
-            });                
 
-        }
+            });
+
+        },
     });
     return (
 
 
-
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
+            <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
                 <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-100 translate-y-0 sm:scale-100"
+                    enter='ease-out duration-300'
+                    enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+                    enterTo='opacity-100 translate-y-0 sm:scale-100'
+                    leave='ease-in duration-200'
+                    leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+                    leaveTo='opacity-100 translate-y-0 sm:scale-100'
                 >
-                    <Dialog.Panel className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} relative transform overflow-hidden rounded-lg px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6`}>
+                    <Dialog.Panel
+                        className={`${dark ? 'bg-bg450-lessdark' : 'bg-white'} relative transform overflow-hidden rounded-lg px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6`}>
 
-                        <div className="sm:flex sm:items-start">
-                            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-tellow-100 sm:mx-0 sm:h-10 sm:w-10">
-                                <ExclamationTriangleIcon className="h-6 w-6 text-yellow-600" aria-hidden="true" />
+                        <div className='sm:flex sm:items-start'>
+                            <div
+                                className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-tellow-100 sm:mx-0 sm:h-10 sm:w-10'>
+                                <ExclamationTriangleIcon className='h-6 w-6 text-yellow-600' aria-hidden='true' />
                             </div>
-                            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                <Dialog.Title as="h3" className={`text-base font-semibold leading-6 ${dark ? 'text-slate-200' : 'text-gray-900'}`}>
-                                Add a new PassKey
+                            <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
+                                <Dialog.Title as='h3'
+                                    className={`text-base font-semibold leading-6 ${dark ? 'text-slate-200' : 'text-gray-900'}`}>
+                                    Add a new PassKey
                                 </Dialog.Title>
-                                <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
-                                    For finish the creation of the passkey you need to enter the code that has been sent to your email.<br/>
+                                <div className='mt-2'>
+                                    <p className='text-sm text-gray-500'>
+                                        For finish the creation of the passkey you need to enter the code that has been
+                                        sent to your email.<br />
                                         {getEmailAction(email)}
                                     </p>
                                 </div>
-                                <div className="mt-2">
-                                    <form className="space-y-6" action="#" method="POST"
+                                <div className='mt-2'>
+                                    <form className='space-y-6' action='#' method='POST'
                                         onSubmit={formik.handleSubmit}>
-                                        <Field name={'Enter the code'} id={'code'} type={'text'} onChange={formik.handleChange} required/>
+                                        <Field name={'Enter the code'} id={'code'} type={'text'}
+                                            onChange={formik.handleChange} required />
                                         <div
-                                            className="flex justify-end">
+                                            className='flex justify-end'>
                                             <button
-                                                type="submit"
+                                                type='submit'
                                                 className={`${
                                                     loading && 'opacity-50'
                                                 } bg-bg450-logo px-3 py-1.5 text-white hover:bg-bg450-logohover inline-flex rounded-md text-sm font-semibold shadow-sm sm:w-auto`}

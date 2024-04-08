@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { debounce } from 'debounce';
 import Loading from './Elements/Loading';
@@ -114,12 +114,12 @@ export default function Products() {
             <div className={'flex gap-x-2 text-center mx-2'}>
                 <input type='text' placeholder={t('products.search')} defaultValue={search}
                     className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} ml-auto block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset  focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-xs mb-4`}
-                    onChange={(e) => searchValue(e.target.value)} />
+                    onChange={(e) => searchValue(e.target ? (e.target as HTMLInputElement).value: '')} />
                 <select
                     className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} mr-auto block rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6 max-w-screen-xl mb-4 min-w-screen-lg`}
                     value={category}
                     onChange={(e) => {
-                        setCategory(e.target.value);
+                        setCategory(e.target ? (e.target as HTMLInputElement).value : '');
                         setPage(1);
                     }}>
                     <option disabled selected>{t('products.category.select')}</option>

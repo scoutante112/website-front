@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { ReactNode } from 'preact/compat';
+import { ReactNode, useEffect } from 'preact/compat';
 import { langs } from './i18n';
 import { changeLanguage } from 'i18next';
 import Cookies from 'js-cookie';

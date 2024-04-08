@@ -1,4 +1,3 @@
-import React from 'react';
 import { AcademicCapIcon, CurrencyEuroIcon, ServerIcon } from '@heroicons/react/24/solid';
 import { useDark } from '../App';
 import { Helmet } from 'react-helmet';

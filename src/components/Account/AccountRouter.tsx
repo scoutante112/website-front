@@ -1,13 +1,16 @@
-import React, { ElementType, createContext, Fragment, lazy, Suspense, useState, useEffect } from 'react';
+// @ts-nocheck
+import { createContext, Fragment, lazy, Suspense, useEffect, useState } from 'preact/compat';
 import Loading from '../Elements/Loading';
-import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
-    ArrowLongLeftIcon, ChevronDownIcon,
+    ArrowLongLeftIcon,
+    ChevronDownIcon,
     ClipboardIcon,
     HomeIcon,
     ShoppingBagIcon,
-    TicketIcon, UserCircleIcon,
+    TicketIcon,
+    UserCircleIcon,
 } from '@heroicons/react/24/solid';
 import NotFoundPage from '../NotFoundPage';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
@@ -26,82 +29,99 @@ import ProductsContainer from '../Admin/Products/ProductsContainer';
 import LicensesContainer from '../Admin/Licenses/LicensesContainer';
 import DarkModeIcon from '../Elements/DarkModeIcon';
 import { useDark } from '../../App';
+import { ComponentClass, FunctionComponent } from 'react';
+
 const AccountContainer = lazy(() => import('./Manager/AccountContainer'));
 const AccountLicenseContainer = lazy(() => import('./License/AccountLicenseContainer'));
 const AccountOrderContainer = lazy(() => import('./Order/AccountOrderContainer'));
 const AccountLinkOauthCallback = lazy(() => import('./Manager/Forms/AccountLinkOauthCallback'));
 const TicketContainer = lazy(() => import('./Ticket/TicketContainer'));
 const TicketViewContainer = lazy(() => import('./Ticket/TicketViewContainer'));
+
+type ElementType = string | FunctionComponent<any> | ComponentClass<any>;
+
 interface RouteItem {
     name: string;
     link: string;
     component: JSX.Element;
     icon?: ElementType;
 }
+
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
-export const NavContext = createContext('');
+
+type NavContextType = {
+    active: string;
+    setActive: (active: string) => void;
+};
+const defaultSetActive = (_: string) => {
+    console.warn('setActive was called without a NavContext provider');
+};
+export const NavContext = createContext<NavContextType>({
+    active: '',
+    setActive: defaultSetActive,
+});
 export const routesList: RouteItem[] = [
     {
         name: 'Account',
         link: '/',
         component: <AccountContainer />,
-        icon: HomeIcon
+        icon: HomeIcon,
     },
     {
         name: 'Oauth',
         link: '/manage/OauthCallback',
-        component: <AccountLinkOauthCallback />
+        component: <AccountLinkOauthCallback />,
     },
     {
         name: 'Licenses',
         link: '/licenses',
         component: <AccountLicenseContainer />,
-        icon: ClipboardIcon
+        icon: ClipboardIcon,
     },
     {
         name: 'Orders',
         link: '/orders',
         component: <AccountOrderContainer />,
-        icon: ShoppingBagIcon
+        icon: ShoppingBagIcon,
     },
     {
         name: 'Tickets',
         link: '/tickets',
         component: <TicketContainer />,
-        icon: TicketIcon
+        icon: TicketIcon,
     },
     {
         name: 'Tickets-info',
         link: '/ticket/:id',
-        component: <TicketViewContainer />
-    }
+        component: <TicketViewContainer />,
+    },
 ];
 export const AdminRoutes: RouteItem[] = [
     {
         name: 'blogs',
         link: '/admin/blogs',
         component: <BlogsContainer />,
-        icon: ClipboardIcon
+        icon: ClipboardIcon,
     },
     {
         name: 'users',
         link: '/admin/users',
         component: <UsersContainer />,
-        icon: ClipboardIcon
+        icon: ClipboardIcon,
     },
     {
         name: 'products',
         link: '/admin/products',
         component: <ProductsContainer />,
-        icon: ClipboardIcon
+        icon: ClipboardIcon,
     },
     {
         name: 'licenses',
         link: '/admin/licenses',
         component: <LicensesContainer />,
-        icon: ClipboardIcon
+        icon: ClipboardIcon,
     },
 ];
 
@@ -110,19 +130,19 @@ export default function AccountRouter() {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
     const [active, setActive] = useState<string>('');
     const [admin, setAdmin] = useState<boolean>(window.location.pathname.substr(3).startsWith('/account/admin'));
-    const {dark} = useDark();
+    const { dark } = useDark();
 
     const infos = true;
 
     const { data, error, mutate, isLoading } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=${infos}`,
-        fetcher
+        fetcher,
     );
     if (!data || (error || isLoading)) {
         return <></>;
     }
     useEffect(() => {
-        if(!data.status) {
+        if (!data.status) {
             window.location.href = '/';
         }
     }, [data]);
@@ -132,75 +152,78 @@ export default function AccountRouter() {
         email: data.data.email,
         discord: data.data.discord,
         google: data.data.google,
-        github: data.data.github
+        github: data.data.github,
+        newsletter: data.data.newsletter
     };
 
-    if(myaccount.role !== 1) {
-        if(window.location.pathname.startsWith('/admin')) {
+    if (myaccount.role !== 1) {
+        if (window.location.pathname.startsWith('/admin')) {
             window.location.href = '/';
         }
         setAdmin(false);
     }
 
+
     return (
         <NavContext.Provider value={{ active, setActive }}>
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-10 lg:hidden" onClose={setSidebarOpen}>
+                    <Dialog as='div' className='relative z-10 lg:hidden' onClose={setSidebarOpen}>
                         <Transition.Child
-                            as={Fragment}
-                            enter="transition-opacity ease-linear duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition-opacity ease-linear duration-300"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
+                            enter='transition-opacity ease-linear duration-300'
+                            enterFrom='opacity-0'
+                            enterTo='opacity-100'
+                            leave='transition-opacity ease-linear duration-300'
+                            leaveFrom='opacity-100'
+                            leaveTo='opacity-0'
                         >
-                            <div className="fixed inset-0 bg-gray-900/80" />
+                            <div className='fixed inset-0 bg-gray-900/80' />
                         </Transition.Child>
 
-                        <div className="fixed inset-0 flex">
+                        <div className='fixed inset-0 flex'>
                             <Transition.Child
                                 as={Fragment}
-                                enter="transition ease-in-out duration-300 transform"
-                                enterFrom="-translate-x-full"
-                                enterTo="translate-x-0"
-                                leave="transition ease-in-out duration-300 transform"
-                                leaveFrom="translate-x-0"
-                                leaveTo="-translate-x-full"
+                                enter='transition ease-in-out duration-300 transform'
+                                enterFrom='-translate-x-full'
+                                enterTo='translate-x-0'
+                                leave='transition ease-in-out duration-300 transform'
+                                leaveFrom='translate-x-0'
+                                leaveTo='-translate-x-full'
                             >
-                                <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+                                <Dialog.Panel className='relative mr-16 flex w-full max-w-xs flex-1'>
                                     <Transition.Child
                                         as={Fragment}
-                                        enter="ease-in-out duration-300"
-                                        enterFrom="opacity-0"
-                                        enterTo="opacity-100"
-                                        leave="ease-in-out duration-300"
-                                        leaveFrom="opacity-100"
-                                        leaveTo="opacity-0"
+                                        enter='ease-in-out duration-300'
+                                        enterFrom='opacity-0'
+                                        enterTo='opacity-100'
+                                        leave='ease-in-out duration-300'
+                                        leaveFrom='opacity-100'
+                                        leaveTo='opacity-0'
                                     >
-                                        <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                                            <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
-                                                <span className="sr-only">Close sidebar</span>
-                                                <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                                        <div className='absolute left-full top-0 flex w-16 justify-center pt-5'>
+                                            <button type='button' className='-m-2.5 p-2.5'
+                                                    onClick={() => setSidebarOpen(false)}>
+                                                <span className='sr-only'>Close sidebar</span>
+                                                <XMarkIcon className='h-6 w-6 text-white' aria-hidden='true' />
                                             </button>
                                         </div>
                                     </Transition.Child>
                                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                                    <div className={`${dark ? 'bg-bg450-dark' : 'bg-white'} flex grow flex-col gap-y-5 overflow-y-auto  px-6 pb-4`}>
-                                        <div className="flex h-16 shrink-0 items-center">
+                                    <div
+                                        className={`${dark ? 'bg-bg450-dark' : 'bg-white'} flex grow flex-col gap-y-5 overflow-y-auto  px-6 pb-4`}>
+                                        <div className='flex h-16 shrink-0 items-center'>
                                             <a href={'/'}>
                                                 <img
-                                                    className="h-8 w-auto"
-                                                    src="https://cdn.bagou450.com/assets/img/logo_full_colored.webp"
-                                                    alt="Bagou450"
+                                                    className='h-8 w-auto'
+                                                    src='https://cdn.bagou450.com/assets/img/logo_full_colored.webp'
+                                                    alt='Bagou450'
                                                 />
                                             </a>
                                         </div>
-                                        <nav className="flex flex-1 flex-col">
-                                            <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                                        <nav className='flex flex-1 flex-col'>
+                                            <ul role='list' className='flex flex-1 flex-col gap-y-7'>
                                                 <li>
-                                                    <ul role="list" className="-mx-2 space-y-1">
+                                                    <ul role='list' className='-mx-2 space-y-1'>
                                                         {admin && AdminRoutes.map((route) => (
                                                             route.icon && (
                                                                 <li key={route.name}>
@@ -210,15 +233,15 @@ export default function AccountRouter() {
                                                                             window.location.pathname.substr(3) === `/account${route.link}`
                                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
-                                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                                         )}
                                                                     >
                                                                         <route.icon
                                                                             className={classNames(
-                                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
-                                                                                'h-6 w-6 shrink-0'
+                                                                                window.location.pathname.substr(3) === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                                'h-6 w-6 shrink-0',
                                                                             )}
-                                                                            aria-hidden="true"
+                                                                            aria-hidden='true'
                                                                         />
                                                                         {route.name}
                                                                     </NavLink>
@@ -231,18 +254,18 @@ export default function AccountRouter() {
                                                                     <NavLink
                                                                         to={`/account${route.link}`}
                                                                         className={classNames(
-                                                                            window.location.pathname.substr(3)  === `/account${route.link}`
+                                                                            window.location.pathname.substr(3) === `/account${route.link}`
                                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
-                                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                                         )}
                                                                     >
                                                                         <route.icon
                                                                             className={classNames(
-                                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
-                                                                                'h-6 w-6 shrink-0'
+                                                                                window.location.pathname.substr(3) === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                                'h-6 w-6 shrink-0',
                                                                             )}
-                                                                            aria-hidden="true"
+                                                                            aria-hidden='true'
                                                                         />
                                                                         {route.name}
                                                                     </NavLink>
@@ -252,25 +275,26 @@ export default function AccountRouter() {
                                                     </ul>
                                                 </li>
                                                 {myaccount.role ?
-                                                    <li className="mt-auto">
-                                                        <button onClick={() => setAdmin(!admin)} className="w-full group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                                                    <li className='mt-auto'>
+                                                        <button onClick={() => setAdmin(!admin)}
+                                                                className='w-full group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-blue-600'>
                                                             <UserCircleIcon
-                                                                className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600"
-                                                                aria-hidden="true"
+                                                                className='h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600'
+                                                                aria-hidden='true'
                                                             />
                                                             {admin ? 'Return to user View' : 'Go to admin view'}
                                                         </button>
                                                     </li>
-                                               : <></> }
-                                                <li className="mt-auto">
+                                                    : <></>}
+                                                <li className='mt-auto'>
 
                                                     <a
-                                                        href="/"
+                                                        href='/'
                                                         className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}  group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}
                                                     >
                                                         <BiRightArrow
                                                             className={`h-6 w-6 shrink-0 ${dark ? 'text-slate-200' : 'text-gray-400'} group-hover:text-blue-600`}
-                                                            aria-hidden="true"
+                                                            aria-hidden='true'
                                                         />
                                                         Back to the shop
                                                     </a>
@@ -286,38 +310,39 @@ export default function AccountRouter() {
                 </Transition.Root>
 
                 {/* Static sidebar for desktop */}
-                <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-72 lg:flex-col">
+                <div className='hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-72 lg:flex-col'>
                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                    <div className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} flex grow flex-col gap-y-5 overflow-y-auto border-r px-6 pb-4`}>
-                        <NavLink to={'/'} className="flex h-16 shrink-0 items-center">
+                    <div
+                        className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} flex grow flex-col gap-y-5 overflow-y-auto border-r px-6 pb-4`}>
+                        <NavLink to={'/'} className='flex h-16 shrink-0 items-center'>
                             <img
-                                className="h-8 w-auto"
-                                src="https://cdn.bagou450.com/assets/img/logo_full_colored.webp"
-                                alt="Bagou450"
+                                className='h-8 w-auto'
+                                src='https://cdn.bagou450.com/assets/img/logo_full_colored.webp'
+                                alt='Bagou450'
                             />
                         </NavLink>
-                        <nav className="flex flex-1 flex-col">
-                            <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                        <nav className='flex flex-1 flex-col'>
+                            <ul role='list' className='flex flex-1 flex-col gap-y-7'>
                                 <li>
-                                    <ul role="list" className="-mx-2 space-y-1">
+                                    <ul role='list' className='-mx-2 space-y-1'>
                                         {admin && AdminRoutes.map((route) => (
                                             route.icon && (
                                                 <li key={route.name}>
                                                     <NavLink
                                                         to={`/account${route.link}`}
                                                         className={classNames(
-                                                            window.location.pathname.substr(3)  === `/account${route.link}`
+                                                            window.location.pathname.substr(3) === `/account${route.link}`
                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         )}
                                                     >
                                                         <route.icon
                                                             className={classNames(
-                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
-                                                                'h-6 w-6 shrink-0'
+                                                                window.location.pathname.substr(3) === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                'h-6 w-6 shrink-0',
                                                             )}
-                                                            aria-hidden="true"
+                                                            aria-hidden='true'
                                                         />
                                                         {route.name}
                                                     </NavLink>
@@ -330,18 +355,18 @@ export default function AccountRouter() {
                                                     <NavLink
                                                         to={`/account${route.link}`}
                                                         className={classNames(
-                                                            window.location.pathname.substr(3)  === `/account${route.link}`
+                                                            window.location.pathname.substr(3) === `/account${route.link}`
                                                                 ? (dark ? 'bg-bg450-inputdark text-slate-200' : 'bg-gray-50 text-blue-600')
                                                                 : (dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'),
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         )}
                                                     >
                                                         <route.icon
                                                             className={classNames(
-                                                                window.location.pathname.substr(3)  === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
-                                                                'h-6 w-6 shrink-0'
+                                                                window.location.pathname.substr(3) === `/account${route.link}` ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600',
+                                                                'h-6 w-6 shrink-0',
                                                             )}
-                                                            aria-hidden="true"
+                                                            aria-hidden='true'
                                                         />
                                                         {route.name}
                                                     </NavLink>
@@ -351,25 +376,26 @@ export default function AccountRouter() {
                                     </ul>
                                 </li>
 
-                                <li className="mt-auto">
+                                <li className='mt-auto'>
                                     {myaccount.role ?
-                                        <li className="mt-auto">
-                                            <button onClick={() => setAdmin(!admin)} className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'} group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}>
+                                        <li className='mt-auto'>
+                                            <button onClick={() => setAdmin(!admin)}
+                                                    className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'} group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}>
                                                 <UserCircleIcon
-                                                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600"
-                                                    aria-hidden="true"
+                                                    className='h-6 w-6 shrink-0 text-gray-400 group-hover:text-blue-600'
+                                                    aria-hidden='true'
                                                 />
                                                 {admin ? 'Return to user View' : 'Go to admin view'}
                                             </button>
                                         </li>
                                         : <></>}
                                     <NavLink
-                                        to="/"
+                                        to='/'
                                         className={`${dark ? 'text-slate-200 hover:text-slate-300 hover:bg-bg450-lessdark' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'} group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6`}
                                     >
                                         <ArrowLongLeftIcon
                                             className={`h-6 w-6 shrink-0`}
-                                            aria-hidden="true"
+                                            aria-hidden='true'
                                         />
                                         Back to the shop
                                     </NavLink>
@@ -378,21 +404,25 @@ export default function AccountRouter() {
                         </nav>
                     </div>
                 </div>
-                <div className="lg:pl-72">
-                    <div className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8`}>
-                        <button type="button" className={`-m-2.5 p-2.5 ${dark ? 'text-white' : 'text-gray-700'} lg:hidden`} onClick={() => setSidebarOpen(true)}>
-                            <span className="sr-only">Open sidebar</span>
-                            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <div className='lg:pl-72'>
+                    <div
+                        className={`${dark ? 'bg-bg450-dark border-bg450-logo' : 'bg-white border-gray-200'} sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8`}>
+                        <button type='button'
+                                className={`-m-2.5 p-2.5 ${dark ? 'text-white' : 'text-gray-700'} lg:hidden`}
+                                onClick={() => setSidebarOpen(true)}>
+                            <span className='sr-only'>Open sidebar</span>
+                            <Bars3Icon className='h-6 w-6' aria-hidden='true' />
                         </button>
 
                         {/* Separator */}
-                        <div className={`${dark ? 'bg-b450-dark' : 'bg-gray-200'} h-6 w-px lg:hidden`} aria-hidden="true" />
+                        <div className={`${dark ? 'bg-b450-dark' : 'bg-gray-200'} h-6 w-px lg:hidden`}
+                             aria-hidden='true' />
 
-                        <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+                        <div className='flex flex-1 gap-x-4 self-stretch lg:gap-x-6'>
 
                             <div className='flex items-center gap-x-4 lg:gap-x-6'>
 
-                                <DarkModeIcon/>
+                                <DarkModeIcon />
                                 {/* Separator */}
                                 <div className='hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200' aria-hidden='true' />
 
@@ -410,11 +440,13 @@ export default function AccountRouter() {
                                                 alt={`${myaccount.name} Avatar`}
                                             />
                                             <span className='my-auto hidden lg:flex lg:items-center'>
-                                                <span className={`${dark ?  'text-slate-200' : 'text-gray-900'} ml-4 text-sm font-semibold leading-6`}
+                                                <span
+                                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} ml-4 text-sm font-semibold leading-6`}
                                                     aria-hidden='true'>
                                                     {myaccount.name}
                                                 </span>
-                                                <ChevronDownIcon className={`${dark ?  'text-slate-300' : 'text-gray-900'} ml-2 h-5 w-5 text-gray-400`}
+                                                <ChevronDownIcon
+                                                    className={`${dark ? 'text-slate-300' : 'text-gray-900'} ml-2 h-5 w-5 text-gray-400`}
                                                     aria-hidden='true' />
                                             </span>
 
@@ -435,7 +467,8 @@ export default function AccountRouter() {
                                             <Menu.Item>
                                                 <Link
                                                     className={`${dark ? 'hover:bg-bg450-inputdark' : 'hover:bg-gray-200'} block px-4 py-2 text-sm `}
-                                                    to={'/account/'}><p className={dark ? 'text-slate-200' : 'text-black'}>My account</p>
+                                                    to={'/account/'}><p
+                                                    className={dark ? 'text-slate-200' : 'text-black'}>My account</p>
                                                 </Link>
 
                                             </Menu.Item>
@@ -486,8 +519,6 @@ export default function AccountRouter() {
                     </main>
                 </div>
             </div>
-
-
 
 
         </NavContext.Provider>

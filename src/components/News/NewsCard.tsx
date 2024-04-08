@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'preact/compat';
 import Loading from '../Elements/Loading';
 import ReactHtmlParser from 'react-html-parser';
 import { useNavigate, useParams } from 'react-router-dom';

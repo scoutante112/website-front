@@ -1,5 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useDark } from '../App';
 import { useTranslation } from 'react-i18next';

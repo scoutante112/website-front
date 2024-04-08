@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
@@ -24,12 +24,12 @@ interface OrderItem {
 
 export default function AccountOrderContainer() {
     const [page, setPage] = useState<number>(1);
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { t } = useTranslation();
 
     const { data, error, isLoading } = useSWR(
         `${config.privateapilink}/orders?page=${page}`,
-        fetcher
+        fetcher,
     );
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -38,75 +38,77 @@ export default function AccountOrderContainer() {
         setActive(window.location.pathname);
     }, []);
     if (!data || (error || isLoading)) {
-        return <Loading/>;
+        return <Loading />;
     }
     document.title = `Bagou450 - ${t('account.order.title')}`;
     return (
         <>
 
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className='px-4 sm:px-6 lg:px-8'>
 
-                <div className="sm:flex sm:items-center">
-                    <div className="sm:flex-auto">
+                <div className='sm:flex sm:items-center'>
+                    <div className='sm:flex-auto'>
                         <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>{t('account.order.title')}</h1>
                         <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm `}>
                             {t('account.utils.youare')} <strong
-                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.order.title').toLowerCase()}</strong> {t('account.utils.page')}.
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.order.title').toLowerCase()}</strong> {t('account.utils.page')}.
                             {t('account.order.description')}
                         </p>
                     </div>
                 </div>
 
-                <div className="-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
-                    <table className="min-w-full divide-y divide-gray-300">
+                <div className='-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg'>
+                    <table className='min-w-full divide-y divide-gray-300'>
                         <thead>
-                            <tr>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
-                                    {t('account.order.col1')}
-                                </th>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                        <tr>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
+                                {t('account.order.col1')}
+                            </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
 
-                                    {t('account.order.col2')}
-                                </th>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
+                                {t('account.order.col2')}
+                            </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
 
-                                    {t('account.order.col3')}
-                                </th>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                                {t('account.order.col3')}
+                            </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
 
-                                    {t('account.order.col4')}
-                                </th>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
+                                {t('account.order.col4')}
+                            </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm hidden lg:table-cell font-semibold sm:pl-6`}>
 
-                                    {t('account.order.col5')}
-                                </th>
-                                <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
-                                    <span className='sr-only'>{t('account.order.col6')} </span>
-                                </th>
-                            </tr>
+                                {t('account.order.col5')}
+                            </th>
+                            <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
+                                <span className='sr-only'>{t('account.order.col6')} </span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {data.data && data.data.orders && data.data.orders.length > 0 && data.data.orders.map((order: OrderItem, planIdx: number) => (
-                                <OrderRow order={order} index={planIdx} key={planIdx}/>
-                            ))}
+                        {data.data && data.data.orders && data.data.orders.length > 0 && data.data.orders.map((order: OrderItem, planIdx: number) => (
+                            <OrderRow order={order} index={planIdx} key={planIdx} />
+                        ))}
                         </tbody>
                     </table>
                 </div>
             </div>
             <nav
-                className="flex items-center justify-between lg:border-t lg:border-gray-200 px-4 py-3 sm:px-6 my-2"
-                aria-label="Pagination"
+                className='flex items-center justify-between lg:border-t lg:border-gray-200 px-4 py-3 sm:px-6 my-2'
+                aria-label='Pagination'
             >
                 <div className='hidden sm:block'>
                     <p className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-sm `}>
-                        {t('account.utils.pagination.show')}  <span className='font-medium'>{page * 10 - 10}</span> {t('account.utils.pagination.to')}  <span
-                            className='font-medium'>{page * 10}</span> {t('account.utils.pagination.of')} {' '}
-                        <span className='font-medium'>{data.data ? data.data.total : '0'}</span> {t('account.utils.pagination.result')}
+                        {t('account.utils.pagination.show')} <span
+                        className='font-medium'>{page * 10 - 10}</span> {t('account.utils.pagination.to')} <span
+                        className='font-medium'>{page * 10}</span> {t('account.utils.pagination.of')} {' '}
+                        <span
+                            className='font-medium'>{data.data ? data.data.total : '0'}</span> {t('account.utils.pagination.result')}
                     </p>
                 </div>
                 <div className='flex flex-1 justify-between sm:justify-end'>
@@ -118,9 +120,9 @@ export default function AccountOrderContainer() {
                         {t('account.utils.pagination.previous')}
                     </button>
                     <button
-                        onClick={() => setPage(page+1)}
-                        disabled={page*10 >= data.data ? data.data.total : 0}
-                        className={`${page*10 >= data.data ? data.data.total : 0 && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
+                        onClick={() => setPage(page + 1)}
+                        disabled={page * 10 >= data.data ? data.data.total : 0}
+                        className={`${page * 10 >= data.data ? data.data.total : 0 && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
                     >
                         {t('account.utils.pagination.next')}
                     </button>
@@ -134,7 +136,7 @@ export default function AccountOrderContainer() {
 function OrderRow({ order, index }: { order: OrderItem, index: number }) {
     const [loading, setLoading] = useState<boolean>(false);
     const orderid = order.order_id;
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { t } = useTranslation();
 
     const downloadProduct = () => {
@@ -149,16 +151,16 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
             progress: undefined,
             theme: dark ? 'dark' : 'light',
         });
-        getDownloadLink(orderid).then((data) => {
+        getDownloadLink(`${orderid}`).then((data) => {
             fetch(`${config.privateapilink}${data.data.data}`, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${Cookies.get('access_token')}`
-                }
+                    Authorization: `Bearer ${Cookies.get('access_token')}`,
+                },
             }).then(response => response.blob()).then(blob => {
-                if(blob.type === 'application/json') {
+                if (blob.type === 'application/json') {
                     return toast.error(t('account.utils.errormessage'), {
                         position: 'bottom-right',
                         autoClose: 5000,
@@ -231,11 +233,11 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                     'X-Requested-With': 'XMLHttpRequest',
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${Cookies.get('access_token')}`
-                }
+                    Authorization: `Bearer ${Cookies.get('access_token')}`,
+                },
             }).then(response => response.blob()).then(blob => {
                 // Téléchargement du fichier blob
-                if(blob.type === 'application/json') {
+                if (blob.type === 'application/json') {
                     return toast.error(t('account.utils.errormessage'), {
                         position: 'bottom-right',
                         autoClose: 5000,
@@ -287,7 +289,7 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
 
         <tr key={index}>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm hidden lg:table-cell`}>
-                <div className="font-medium ">{order.order_id}</div>
+                <div className='font-medium '>{order.order_id}</div>
             </td>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200 px-3 py-3.5 text-sm table-cel`}>
                 {order.products.map((item: any, key: number) => (
@@ -314,12 +316,12 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                         theme: dark ? 'dark' : 'light',
                     });
                 }}>
-                {order.stripe_id.slice(0,32)}{order.stripe_id.length > 32 && '...'}
+                {order.stripe_id.slice(0, 32)}{order.stripe_id.length > 32 && '...'}
             </td>
 
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200 px-3 py-3.5 text-sm table-cell`}>
                 <button
-                    className="inline-flex items-center rounded-md bg-purple-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    className='inline-flex items-center rounded-md bg-purple-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
                     onClick={() => downloadInvoice()}
                     disabled={loading}
                 >
@@ -328,13 +330,13 @@ function OrderRow({ order, index }: { order: OrderItem, index: number }) {
                 <br />
 
                 {order['status'] === 'complete' &&
-                <button
-                    className="inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
-                    onClick={() => downloadProduct()}
-                    disabled={loading}
-                >
-                    {t('account.order.row.button.2')}{order.products.length > 1 && 's'}
-                </button>
+                    <button
+                        className='inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
+                        onClick={() => downloadProduct()}
+                        disabled={loading}
+                    >
+                        {t('account.order.row.button.2')}{order.products.length > 1 && 's'}
+                    </button>
 
                 }
             </td>

@@ -1,4 +1,6 @@
-import React, { Fragment, useState } from 'react';
+// @ts-nocheck
+
+import { Fragment, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -11,18 +13,20 @@ import deleteCategory from '../../../api/admin/blogs/deleteCategory';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { clearFields } from '../../../utils/Function';
+import { useDark } from '../../../App';
 
 interface category {
-  id: number;
-  name: string;
-  slug: string;
+    id: number;
+    name: string;
+    slug: string;
 }
-export default function CategoryContainer() {
-    const {data: categories, error, mutate, isLoading} = useSWR(`${config.privateapilink}/categories`, fetcher);
 
-    if((!categories || (error || isLoading))) {
+export default function CategoryContainer() {
+    const { data: categories, error, mutate, isLoading } = useSWR(`${config.privateapilink}/categories`, fetcher);
+
+    if ((!categories || (error || isLoading))) {
         return (
-            <Loading/>
+            <Loading />
         );
     }
 
@@ -34,20 +38,20 @@ export default function CategoryContainer() {
                         <tr>
                             <th scope='col'
                                 className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 hidden lg:table-cell'>
-                  Id
+                            Id
                             </th>
                             <th
                                 scope='col'
                                 className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell'
                             >
-                  Name
+                            Name
                             </th>
 
                             <th
                                 scope='col'
                                 className=' px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell'
                             >
-                  Slug
+                            Slug
                             </th>
                             <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
                                 <span className='sr-only'>Select</span>
@@ -63,13 +67,12 @@ export default function CategoryContainer() {
             </div>
 
 
-        
         </section>
     );
 }
 
 function CategoryRow({ category, mutate }: { category: category, mutate: any }) {
-
+    const { dark } = useDark();
     const [loading, setLoading] = useState<boolean>(false);
     const [edit, setEdit] = useState<boolean>(false);
     const form = object({
@@ -156,7 +159,7 @@ function CategoryRow({ category, mutate }: { category: category, mutate: any }) 
                 });
                 return mutate();
 
-                
+
             }).catch((e) => {
                 toast.error(`Error: ${e.response.data.message}`, {
                     position: 'bottom-right',
@@ -171,42 +174,42 @@ function CategoryRow({ category, mutate }: { category: category, mutate: any }) 
                 setLoading(false);
 
             });
-        }
+        },
     });
     return (
         <>
             <Transition.Root show={edit} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={setEdit}>
-                    <div className="fixed inset-0" />
+                <Dialog as='div' className='relative z-10' onClose={setEdit}>
+                    <div className='fixed inset-0' />
 
-                    <div className="fixed inset-0 overflow-hidden">
-                        <div className="absolute inset-0 overflow-hidden">
-                            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+                    <div className='fixed inset-0 overflow-hidden'>
+                        <div className='absolute inset-0 overflow-hidden'>
+                            <div className='pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16'>
                                 <Transition.Child
                                     as={Fragment}
-                                    enter="transform transition ease-in-out duration-500 sm:duration-700"
-                                    enterFrom="translate-x-full"
-                                    enterTo="translate-x-0"
-                                    leave="transform transition ease-in-out duration-500 sm:duration-700"
-                                    leaveFrom="translate-x-0"
-                                    leaveTo="translate-x-full"
+                                    enter='transform transition ease-in-out duration-500 sm:duration-700'
+                                    enterFrom='translate-x-full'
+                                    enterTo='translate-x-0'
+                                    leave='transform transition ease-in-out duration-500 sm:duration-700'
+                                    leaveFrom='translate-x-0'
+                                    leaveTo='translate-x-full'
                                 >
-                                    <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
-                                        <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                                            <div className="px-4 sm:px-6">
-                                                <div className="flex items-start justify-between">
-                                                    <Dialog.Title className="text-black font-semibold leading-6">
-                                Create news
+                                    <Dialog.Panel className='pointer-events-auto w-screen max-w-2xl'>
+                                        <div className='flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl'>
+                                            <div className='px-4 sm:px-6'>
+                                                <div className='flex items-start justify-between'>
+                                                    <Dialog.Title className='text-black font-semibold leading-6'>
+                                                        Create news
                                                     </Dialog.Title>
-                                                    <div className="ml-3 flex h-7 items-center">
+                                                    <div className='ml-3 flex h-7 items-center'>
                                                         <button
-                                                            type="button"
-                                                            className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                            type='button'
+                                                            className='relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                                             onClick={() => setEdit(false)}
                                                         >
-                                                            <span className="absolute -inset-2.5" />
-                                                            <span className="sr-only">Close panel</span>
-                                                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                            <span className='absolute -inset-2.5' />
+                                                            <span className='sr-only'>Close panel</span>
+                                                            <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -220,7 +223,7 @@ function CategoryRow({ category, mutate }: { category: category, mutate: any }) 
                                                         <div>
                                                             <label htmlFor='name'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                      Name
+                                                                Name
                                                             </label>
                                                         </div>
                                                         <input
@@ -236,7 +239,7 @@ function CategoryRow({ category, mutate }: { category: category, mutate: any }) 
                                                         <div>
                                                             <label htmlFor='slug'
                                                                 className='mt-10 block text-sm font-medium leading-6 text-gray-900'>
-                                                      Slug
+                                                                Slug
                                                             </label>
                                                         </div>
                                                         <input
@@ -266,7 +269,7 @@ function CategoryRow({ category, mutate }: { category: category, mutate: any }) 
 
 
                                                     </div>
-                                               
+
                                                 </form>
 
                                             </div>

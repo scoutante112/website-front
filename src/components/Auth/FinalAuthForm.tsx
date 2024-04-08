@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react';
+// @ts-nocheck
+import { Fragment, useState } from 'preact/compat';
 import { useNavigate } from 'react-router-dom';
 import createOption from '../../api/auth/passkeys/createOption';
 import {
@@ -18,14 +19,14 @@ import verificationPasskey from '../../api/auth/passkeys/verificationPasskey';
 import { Dialog, Transition } from '@headlessui/react';
 import AskCode from './AskCode';
 
-export default function FinalAuthForm({email}: {email: string}) {
+export default function FinalAuthForm({ email }: { email: string }) {
     const [loading, setLoading] = useState<boolean>(false);
-    const {dark} = useDark();
+    const { dark } = useDark();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const navigate = useNavigate();
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
-        fetcher
+        fetcher,
     );
     const addKey = () => {
         setLoading(true);
@@ -50,7 +51,7 @@ export default function FinalAuthForm({email}: {email: string}) {
                     await get(
                         parseRequestOptionsFromJSON({
                             publicKey: options,
-                        })
+                        }),
                     ).then((credential) => {
                         if (!credential) {
                             toast.error('An unexpected error occurred. Are you sure that you used the correct key? Code: BagAuth-004', {
@@ -149,7 +150,7 @@ export default function FinalAuthForm({email}: {email: string}) {
                             });
                         });
                     }).catch((e) => {
-                        console.error(e)
+                        console.error(e);
                         toast.error('An unexpected error occurred. You used the correct key? Code: BagAuth-022', {
                             position: 'bottom-right',
                             autoClose: 5000,
@@ -191,7 +192,7 @@ export default function FinalAuthForm({email}: {email: string}) {
     };
     const emailLogin = () => {
         login(email).then((data) => {
-            if(data.data['status'] === 'error') {
+            if (data.data['status'] === 'error') {
                 toast.error(`Error: ${data.data['message']} Code: BagAuth-030`, {
                     position: 'bottom-right',
                     autoClose: 5000,
@@ -216,7 +217,7 @@ export default function FinalAuthForm({email}: {email: string}) {
                 });
             }
         }).catch((e) => {
-            if(e.response && e.response.data && e.response.data.message === 'Error during email sending.') {
+            if (e.response && e.response.data && e.response.data.message === 'Error during email sending.') {
                 toast.error('Our server can\'t send a email to your email address are you sure that you used a valid email? Code: BagAuth-033', {
                     position: 'bottom-right',
                     autoClose: 5000,
@@ -247,19 +248,19 @@ export default function FinalAuthForm({email}: {email: string}) {
     return (
         <>
             <Transition.Root show={openModal} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={() => setOpenModal(true)} >
+                <Dialog as='div' className='relative z-10' onClose={() => setOpenModal(true)}>
                     <Transition.Child
                         as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-100"
+                        enter='ease-out duration-300'
+                        enterFrom='opacity-0'
+                        enterTo='opacity-100'
+                        leave='ease-in duration-200'
+                        leaveFrom='opacity-100'
+                        leaveTo='opacity-100'
                     >
-                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                        <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
                     </Transition.Child>
-                    <AskCode setOpenModal={setOpenModal} email={email}/>
+                    <AskCode email={email} />
                 </Dialog>
             </Transition.Root>
             <div className='sm:mx-auto sm:w-full sm:max-w-md'>
@@ -269,29 +270,35 @@ export default function FinalAuthForm({email}: {email: string}) {
                 </h1>
             </div>
 
-            <div className={'grid grid-cols-2 gap-4 mx-4 md:lg-8 md:gap-6 lg:mx-24 lg:gap-8 xl:mx-32 xl:gap-12 2xl:mx-44 '}>
-                <div className={`${dark ? 'bg-bg450-inputdark' : 'bg-gray-100'} duration-200 hover:scale-110 p-4 lg:p-8 text-center items-center ${loading && 'opacity-50'}`}
+            <div
+                className={'grid grid-cols-2 gap-4 mx-4 md:lg-8 md:gap-6 lg:mx-24 lg:gap-8 xl:mx-32 xl:gap-12 2xl:mx-44 '}>
+                <div
+                    className={`${dark ? 'bg-bg450-inputdark' : 'bg-gray-100'} duration-200 hover:scale-110 p-4 lg:p-8 text-center items-center ${loading && 'opacity-50'}`}
                     onClick={() => addKey()}>
                     <img src={'https://cdn.bagou450.com/assets/img/illustration/keypass.webp'}
                         className={'mx-auto my-2 lg:my-4'} alt={'KeyPass Illustration Image'}
                         title={'KeyPass Illustration Image'} />
-                    <div className="flex flex-col items-center justify-center">
+                    <div className='flex flex-col items-center justify-center'>
                         <h2 className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-lg font-bold flex lg:text-2xl`}>
-                            PassKey <span className="mx-1 lg:mx-2 my-auto inline-flex items-center rounded-md bg-green-50 px-1 lg:px-2 py-1 text-xs lg:text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                            PassKey <span
+                                className='mx-1 lg:mx-2 my-auto inline-flex items-center rounded-md bg-green-50 px-1 lg:px-2 py-1 text-xs lg:text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20'>
                     Recommended
                             </span>
                         </h2>
-                        <h4 className={`${dark ? 'text-slate-400' : 'text-gray-600'} hidden lg:flex text-sm text-center text-black font-semibold lg:text-lg`}>Keypass is a more
+                        <h4 className={`${dark ? 'text-slate-400' : 'text-gray-600'} hidden lg:flex text-sm text-center text-black font-semibold lg:text-lg`}>Keypass
+                            is a more
                             secure
                             login method than traditional passwords, providing enhanced protection for accessing our
                             website.</h4>
                     </div>
                 </div>
-                <div className={`${dark ? 'bg-bg450-inputdark' : 'bg-gray-100'} duration-200 hover:scale-110 p-4 lg:p-8 text-center items-center ${loading && 'opacity-50'}`} onClick={() => emailLogin()}>
+                <div
+                    className={`${dark ? 'bg-bg450-inputdark' : 'bg-gray-100'} duration-200 hover:scale-110 p-4 lg:p-8 text-center items-center ${loading && 'opacity-50'}`}
+                    onClick={() => emailLogin()}>
                     <img src={'https://cdn.bagou450.com/assets/img/illustration/email.webp'}
                         className={'mx-auto my-2 lg:my-4'} alt={'Email Illustration Image'}
                         title={'Email Illustration Image'} />
-                    <div className="flex flex-col items-center justify-center">
+                    <div className='flex flex-col items-center justify-center'>
                         <h2 className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-lg text-black font-bold flex lg:text-2xl`}>
                             Email
                         </h2>

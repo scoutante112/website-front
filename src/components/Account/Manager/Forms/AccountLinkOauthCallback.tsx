@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { fetcher } from '../../../../api/http';
 import Cookies from 'js-cookie';
@@ -15,36 +15,38 @@ export default function AccountLinkOauthCallback() {
     const [sent, setSent] = useState(false);
     const { t } = useTranslation();
 
-    const {dark} = useDark();
+    const { dark } = useDark();
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type');
     const code = urlParams.get('code');
 
     const { mutate } = useSWR(
         `${config.privateapilink}/auth/isLogged?infos=true`,
-        fetcher
+        fetcher,
     );
     useEffect(() => {
         fetchData();
     }, []);
-    if(!code || !type) {
+    if (!code || !type) {
         return (
             <div className={'flex flex-col items-center justify-center h-full'}>
-                <AccountContainer/>
+                <AccountContainer />
             </div>
         );
     }
     const fetchUrl = `${config.privateapilink}/account/oauthCallback?token=${encodeURIComponent(code)}&type=${type}`;
     const fetchData = async () => {
-        if(!sent) {
+        if (!sent) {
             setSent(true);
             try {
-                const response = await fetch(fetchUrl, {headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${Cookies.get('access_token')}`
-                }});
+                const response = await fetch(fetchUrl, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${Cookies.get('access_token')}`,
+                    },
+                });
                 const data = await response.json();
                 mutate();
                 setLoading(false);
@@ -89,7 +91,7 @@ export default function AccountLinkOauthCallback() {
                 mutate();
             }
         }
-        
+
     };
 
     if (loading) {
@@ -98,7 +100,7 @@ export default function AccountLinkOauthCallback() {
 
     return (
         <div className={'flex flex-col items-center justify-center h-full'}>
-            <AccountContainer/>
+            <AccountContainer />
         </div>
     );
 }

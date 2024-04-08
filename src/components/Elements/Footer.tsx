@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDark } from '../../App';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +9,7 @@ export default function Footer() {
     const lang = Cookies.get('lang') || navigator.language.split('-')[0];
     return (
         <footer className={`${dark ? 'bg-bg450-dark' : 'bg-white'} w-full border-t border-gray-900/10`}
-            aria-labelledby='footer-heading'>
+                aria-labelledby='footer-heading'>
             <h2 id='footer-heading' className='sr-only'>
                 Footer
             </h2>
@@ -28,8 +27,8 @@ export default function Footer() {
                         <p className={`${dark ? 'text-gray-300' : 'text-gray-600'} text-sm leading-6`}>
                             Bagou450<br />{t('footer.sysadmin')}<br />{t('footer.addons')}<br />
                             <img loading={'lazy'} height={'38px'} width={'185px'}
-                                src={'https://cdn.bagou450.com/assets/img/illustration/payment-gateway.webp'}
-                                alt={'Payment gateway'} />
+                                 src={'https://cdn.bagou450.com/assets/img/illustration/payment-gateway.webp'}
+                                 alt={'Payment gateway'} />
                         </p>
                         {/*<div className="flex space-x-6">
             {navigation.social.map((item) => (
@@ -48,28 +47,28 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link to={`/${lang}/tos`}
-                                            onClick={() => window.scrollTo(0, 0)}
-                                            className='link link-hover p-2 lg:p-0'>{t('footer.legal.terms')}</Link>
+                                              onClick={() => window.scrollTo(0, 0)}
+                                              className='link link-hover p-2 lg:p-0'>{t('footer.legal.terms')}</Link>
                                     </li>
 
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link to={`/${lang}/pp`}
-                                            onClick={() => window.scrollTo(0, 0)}
-                                            className='link link-hover p-2 lg:p-0'>{t('footer.legal.privacy')}</Link>
+                                              onClick={() => window.scrollTo(0, 0)}
+                                              className='link link-hover p-2 lg:p-0'>{t('footer.legal.privacy')}</Link>
                                     </li>
 
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link to={`/${lang}/rp`} className='p-2 lg:p-0 link link-hover'
-                                            onClick={() => window.scrollTo(0, 0)}>
+                                              onClick={() => window.scrollTo(0, 0)}>
                                             {t('footer.legal.refund')}</Link></li>
 
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link to={`/${lang}/lm`}
-                                            onClick={() => window.scrollTo(0, 0)}
-                                            className='link link-hover p-2 lg:p-0'> {t('footer.legal.legal')}</Link>
+                                              onClick={() => window.scrollTo(0, 0)}
+                                              className='link link-hover p-2 lg:p-0'> {t('footer.legal.legal')}</Link>
                                     </li>
 
 
@@ -81,8 +80,8 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)}
-                                            to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-versions-changer`}
-                                            className='link link-hover'>
+                                              to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-versions-changer`}
+                                              className='link link-hover'>
                                             {t('footer.products.changer')}
                                         </Link>
                                     </li>
@@ -90,8 +89,8 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)}
-                                            to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-plugins-installer`}
-                                            className='link link-hover'>
+                                              to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-plugins-installer`}
+                                              className='link link-hover'>
                                             {t('footer.products.plugins')}
                                         </Link>
                                     </li>
@@ -99,8 +98,8 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)}
-                                            to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-mods-installer`}
-                                            className='link link-hover'>
+                                              to={`/${lang}/product/pterodactyl/addons/minecraft/minecraft-mods-installer`}
+                                              className='link link-hover'>
                                             {t('footer.products.mods')}
                                         </Link>
                                     </li>
@@ -108,8 +107,8 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)}
-                                            to={`/${lang}/product/pterodactyl/addons/management/cloud-servers`}
-                                            className=' link link-hover'>
+                                              to={`/${lang}/product/pterodactyl/addons/management/cloud-servers`}
+                                              className=' link link-hover'>
                                             {t('footer.products.cloud')}
                                         </Link>
                                     </li>
@@ -117,8 +116,8 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)}
-                                            to={`/${lang}/product/pterodactyl/addons/fivem/artifacts-changer`}
-                                            className='link link-hover'>
+                                              to={`/${lang}/product/pterodactyl/addons/fivem/artifacts-changer`}
+                                              className='link link-hover'>
                                             {t('footer.products.artifacts')}
                                         </Link>
                                     </li>
@@ -135,7 +134,7 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)} to={`/${lang}/contact`}
-                                            className='link link-hover p-2 lg:p-0'>
+                                              className='link link-hover p-2 lg:p-0'>
                                             {t('footer.support.support')}
                                         </Link>
                                     </li>
@@ -143,7 +142,7 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <a href={'https://help.bagou450.com'} rel={'noreferrer'} target={'_blank'}
-                                            className='link link-hover p-2 lg:p-0'>
+                                           className='link link-hover p-2 lg:p-0'>
                                             {t('footer.support.knowledge')}
                                         </a>
                                     </li>
@@ -172,26 +171,26 @@ export default function Footer() {
 
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <a href={'https://builtbybit.com/creators/bagou450.187451/'} target={'_blank'}
-                                            rel={'noreferrer'} className='link link-hover'>
+                                           rel={'noreferrer'} className='link link-hover'>
                                             {t('footer.about.bbb')}
                                         </a>
                                     </li>
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <Link onClick={() => window.scrollTo(0, 0)} to={`/${lang}/blog`}
-                                            className='link link-hover'>
+                                              className='link link-hover'>
                                             {t('footer.about.blog')}
                                         </Link>
                                     </li>
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
 
                                         <a href={'https://www.youtube.com/@bagou450developement8'} target={'_blank'}
-                                            rel={'noreferrer'} className='link link-hover'>
+                                           rel={'noreferrer'} className='link link-hover'>
                                             {t('footer.about.youtube')}
                                         </a>
                                     </li>
                                     <li className={`${dark ? 'text-gray-300 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'} text-sm leading-6`}>
                                         <a href={'#'} target={'_blank'}
-                                            rel={'noreferrer'} className='link link-hover'>
+                                           rel={'noreferrer'} className='link link-hover'>
                                             {t('footer.about.hosting')}
                                         </a>
                                     </li>

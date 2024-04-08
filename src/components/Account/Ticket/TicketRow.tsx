@@ -4,15 +4,15 @@ import { Ticket } from './TicketContainer';
 import { useDark } from '../../../App';
 import { useTranslation } from 'react-i18next';
 
-export default function TicketRow({ticket }: {ticket: Ticket}) {
+export default function TicketRow({ ticket }: { ticket: Ticket }) {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const {dark} = useDark();
+    const { dark } = useDark();
     return (
         <>
             <tr key={ticket.id} className={'hidden lg:table-row'}>
                 <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm table-cell`}>
-                    <div className="font-medium">{ticket.id}</div>
+                    <div className='font-medium'>{ticket.id}</div>
                 </td>
                 <td className={`${dark ? 'text-gray-400' : 'text-gray-500'}  border-t border-gray-200 px-3 py-3.5 text-sm table-cell`}
                 >
@@ -31,7 +31,7 @@ export default function TicketRow({ticket }: {ticket: Ticket}) {
 
                 <td className={`${dark ? 'text-gray-400' : 'text-gray-500'}  border-t border-gray-200 px-3 py-3.5 text-sm table-cell`}>
                     <NavLink
-                        className="inline-flex items-center rounded-md bg-indigo-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                        className='inline-flex items-center rounded-md bg-indigo-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
                         to={`/account/ticket/${ticket.id}`}
                     >
                         {t('account.ticket.container.row.4')}
@@ -41,18 +41,17 @@ export default function TicketRow({ticket }: {ticket: Ticket}) {
             </tr>
             <tr key={ticket.id} className={'lg:hidden cursor-pointer'}
                 onClick={() => navigate(`/account/ticket/${ticket.id}`)}>
-             
-                <td className="border-t border-gray-200 px-3 py-3.5 text-sm text-gray-500 table-cell"
+
+                <td className='border-t border-gray-200 px-3 py-3.5 text-sm text-gray-500 table-cell'
                 >
                     {ticket.name}
                 </td>
-           
+
 
                 <td className={`border-t border-gray-200 px-3 py-3.5 text-sm table-cell ${ticket.status === 'closed' ? 'text-red-500' : ticket.status === 'support_answer' ? 'text-green-500' : 'text-blue-500'}`}>
                     {ticket.status === 'closed' ? t('account.ticket.container.row.1') : ticket.status === 'support_answer' ? t('account.ticket.container.row.2') : t('account.ticket.container.row.3')}
                 </td>
 
-              
 
             </tr>
         </>

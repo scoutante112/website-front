@@ -1,13 +1,14 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'preact/compat';
 import { NavLink } from 'react-router-dom';
 import { useDark } from '../App';
 import TrustedBy from './Elements/Home/TrustedBy';
 import Loading from './Elements/Loading';
+import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
 const Features1 = lazy(() => import('./Elements/Home/Features1'));
 const Features2 = lazy(() => import('./Elements/Home/Features2'));
 const GetStarted = lazy(() => import('./Elements/Home/GetStarted'));
-import { useTranslation } from 'react-i18next';
-import Cookies from 'js-cookie';
+
 
 export default function Home() {
     const {dark} = useDark();

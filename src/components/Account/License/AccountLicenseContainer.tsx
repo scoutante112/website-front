@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'preact/compat';
 import useSWR from 'swr';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -19,15 +19,16 @@ import ButtonSpin from '../../Elements/ButtonSpin';
 import { useTranslation } from 'react-i18next';
 
 interface License {
-  product: string;
-  usage: number;
-  version: string;
-  order_id: number;
-  maxusage: number;
-  product_id: number;
-  license: string;
-  ip: string[];
+    product: string;
+    usage: number;
+    version: string;
+    order_id: number;
+    maxusage: number;
+    product_id: number;
+    license: string;
+    ip: string[];
 }
+
 export default function AccountLicenseContainer() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState<string>('');
@@ -35,7 +36,7 @@ export default function AccountLicenseContainer() {
     const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation();
 
-    const {dark} = useDark();
+    const { dark } = useDark();
     // @ts-ignore
     const { setActive } = useContext(NavContext);
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function AccountLicenseContainer() {
     }, []);
     const { data, mutate, error, isLoading } = useSWR(
         `${config.privateapilink}/license?search=${search}&page=${page}`,
-        fetcher
+        fetcher,
     );
     const form = object({
         license: string().required(t('account.license.addform.obj1')).min(8),
@@ -83,7 +84,7 @@ export default function AccountLicenseContainer() {
             });
             setLoading(false);
 
-        }
+        },
     });
     document.title = `Bagou450 | ${t('account.license.title')}`;
 
@@ -96,7 +97,7 @@ export default function AccountLicenseContainer() {
                         <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>{t('account.license.title')}</h1>
                         <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm`}>
                             {t('account.title.youare')}<strong
-                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.license.title')}</strong> {t('account.title.page')}
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.license.title')}</strong> {t('account.title.page')}
                             {t('account.license.desc')}
                         </p>
                     </div>
@@ -147,7 +148,7 @@ export default function AccountLicenseContainer() {
                                 disabled={loading}
                                 className='inline-flex w-full items-center justify-center rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled sm:ml-3 sm:mt-0 sm:w-auto'
                             >
-                                {!loading ? t('account.utils.add') : <ButtonSpin/>}
+                                {!loading ? t('account.utils.add') : <ButtonSpin />}
                             </button>
                         </form>
                     </div>
@@ -166,7 +167,7 @@ export default function AccountLicenseContainer() {
                         <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Licenses</h1>
                         <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm`}>
                             {t('account.utils.youare')} <strong
-                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.license.title').toLowerCase()}</strong> {t('account.utils.page')}
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>{t('account.license.title').toLowerCase()}</strong> {t('account.utils.page')}
                             {t('account.license.desc')}
                         </p>
                     </div>
@@ -218,92 +219,99 @@ export default function AccountLicenseContainer() {
                                 type='submit'
                                 className='inline-flex w-full items-center justify-center rounded-md bg-bg450-logo px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled sm:ml-3 sm:mt-0 sm:w-auto'
                             >
-                                {!loading ? t('account.utils.add') : <ButtonSpin/>}
+                                {!loading ? t('account.utils.add') : <ButtonSpin />}
                             </button>
                         </form>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} mt-10 block text-sm font-medium leading-6`}>
+                        <label htmlFor='search'
+                               className={`${dark ? 'text-slate-200' : 'text-gray-900'} mt-10 block text-sm font-medium leading-6`}>
                             {t('account.utils.search')}                   </label>
                     </div>
-                    <div className="mt-2">
+                    <div className='mt-2'>
                         <input
-                            type="text"
-                            name="search"
-                            onChange={debounce((e) => {setSearch(e.target.value);}, 500)}
-                            id="search"
+                            type='text'
+                            name='search'
+                            onChange={debounce((e) => {
+                                setSearch(e.target ? (e.target as HTMLInputElement).value : '');
+                            }, 500)}
+                            id='search'
                             defaultValue={search}
                             className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 px-1.5 mx-auto shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            placeholder="bgxw_Ddf4dg45bfdb54b5df4b5d"
+                            placeholder='bgxw_Ddf4dg45bfdb54b5df4b5d'
                         />
                     </div>
                 </div>
-                <div className="-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
-                    <table className="min-w-full divide-y divide-gray-300">
+                <div className='-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg'>
+                    <table className='min-w-full divide-y divide-gray-300'>
                         <thead>
-                            <tr>
-                                <th scope="col" className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
-                                    {t('account.license.tab.col1')}
-                                </th>
-                                <th
-                                    scope="col"
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
-                                >
-                                    {t('account.license.tab.col2')}
-                                </th>
-                                <th
-                                    scope="col"
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}
-                                >
-                                    {t('account.license.tab.col3')}
-                                </th>
-                                <th
-                                    scope="col"
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
-                                >
-                                    {t('account.license.tab.col4')}
-                                </th>
-                                <th scope='col'
-                                    className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
-                                    {t('account.license.tab.col5')}
-                                </th>
-                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                    <span className="sr-only">                                    {t('account.license.tab.col6')}</span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                                {t('account.license.tab.col1')}
+                            </th>
+                            <th
+                                scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
+                            >
+                                {t('account.license.tab.col2')}
+                            </th>
+                            <th
+                                scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}
+                            >
+                                {t('account.license.tab.col3')}
+                            </th>
+                            <th
+                                scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell`}
+                            >
+                                {t('account.license.tab.col4')}
+                            </th>
+                            <th scope='col'
+                                className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6`}>
+                                {t('account.license.tab.col5')}
+                            </th>
+                            <th scope='col' className='relative py-3.5 pl-3 pr-4 sm:pr-6'>
+                                <span
+                                    className='sr-only'>                                    {t('account.license.tab.col6')}</span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {data.data.license.map((plan: License, planIdx: number) => (
-                                <LicenseRow license={plan} mutate={mutate} index={planIdx} key={planIdx}/>
-                            ))}
+                        {data.data.license.map((plan: License, planIdx: number) => (
+                            <LicenseRow license={plan} mutate={mutate} index={planIdx} key={planIdx} />
+                        ))}
                         </tbody>
                     </table>
                 </div>
             </div>
             <nav
-                className="flex items-center justify-between px-4 py-3 sm:px-6 my-2"
-                aria-label="Pagination"
+                className='flex items-center justify-between px-4 py-3 sm:px-6 my-2'
+                aria-label='Pagination'
             >
-                <div className="hidden sm:block">
+                <div className='hidden sm:block'>
                     <p className={`${dark ? 'text-slate-300' : 'text-gray-700'} text-sm `}>
-                        {t('account.utils.pagination.show')} <span className="font-medium">{page*10-10}</span> {t('account.utils.pagination.to')} <span className="font-medium">{page*10}</span> {t('account.utils.pagination.of')}{' '}
-                        <span className="font-medium">{data.data.total}</span> {t('account.utils.pagination.result')}
+                        {t('account.utils.pagination.show')} <span
+                        className='font-medium'>{page * 10 - 10}</span> {t('account.utils.pagination.to')} <span
+                        className='font-medium'>{page * 10}</span> {t('account.utils.pagination.of')}{' '}
+                        <span className='font-medium'>{data.data.total}</span> {t('account.utils.pagination.result')}
                     </p>
                 </div>
-                <div className="flex flex-1 justify-between sm:justify-end">
+                <div className='flex flex-1 justify-between sm:justify-end'>
                     <button
-                        onClick={() => setPage(page-1)}
+                        onClick={() => setPage(page - 1)}
                         disabled={page < 2}
                         className={`${page < 2 && 'opacity-50'} relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
                     >
                         {t('account.utils.pagination.previous')}
                     </button>
                     <button
-                        onClick={() => setPage(page+1)}
-                        disabled={page*10 >= data.data.total}
-                        className={`${page*10 >= data.data.total && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
+                        onClick={() => setPage(page + 1)}
+                        disabled={page * 10 >= data.data.total}
+                        className={`${page * 10 >= data.data.total && 'opacity-50'} relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
                     >
                         {t('account.utils.pagination.next')}
                     </button>
@@ -314,9 +322,9 @@ export default function AccountLicenseContainer() {
 }
 
 
-function LicenseRow({license, mutate, index}: {license: License, mutate: any, index: number}) {
+function LicenseRow({ license, mutate, index }: { license: License, mutate: any, index: number }) {
     const [loading, setLoading] = useState<boolean>(false);
-    const {dark} = useDark();
+    const { dark } = useDark();
     const { t } = useTranslation();
     const resettheLicense = () => {
         setLoading(true);
@@ -351,7 +359,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
         setLoading(true);
         createOrder([license.product_id], true).then((data) => {
             setLoading(false);
-            if(data.data.status === 'success') {
+            if (data.data.status === 'success') {
                 window.location.href = data.data.data;
             }
         }).catch(() => {
@@ -370,10 +378,10 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
     };
     return (
 
-        
+
         <tr key={index}>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
-                <div className="font-medium">{license['product']}</div>
+                <div className='font-medium'>{license['product']}</div>
             </td>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}
                 onClick={() => {
@@ -389,7 +397,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                         theme: dark ? 'dark' : 'light',
                     });
                 }}>
-                {license['license'].slice(0,17)}{license['license'].length > 17 && '...'}
+                {license['license'].slice(0, 17)}{license['license'].length > 17 && '...'}
             </td>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
                 {license['usage']}/{license['maxusage']}
@@ -404,7 +412,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                             key={index}
                             title={thelicense}
                         >
-                            {thelicense.slice(0,17)}{thelicense.length > 17 && '...'}
+                            {thelicense.slice(0, 17)}{thelicense.length > 17 && '...'}
                         </button>
                     ))}
                 </div>
@@ -414,7 +422,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
             </td>
             <td className={`${dark ? 'text-gray-400' : 'text-gray-500'} border-t border-gray-200  px-3 py-3.5 text-sm  table-cell`}>
                 <button
-                    className="inline-flex items-center rounded-md bg-red-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    className='inline-flex items-center rounded-md bg-red-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
                     onClick={() => resettheLicense()}
                     disabled={loading}
                 >
@@ -422,7 +430,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                 </button>
                 <br />
                 <button
-                    className="inline-flex items-center rounded-md bg-purple-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    className='inline-flex items-center rounded-md bg-purple-600 px-2.5 py-1.5 mb-1 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
                     onClick={() => buyUsage()}
                     disabled={loading}
                 >
@@ -430,7 +438,7 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                 </button>
                 <br />
                 <button
-                    className="inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
+                    className='inline-flex items-center rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:opacity-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white'
                     onClick={() => {
                         navigator.clipboard.writeText(license['license']);
                         toast.success('License copied to clipboard.', {
@@ -450,6 +458,6 @@ function LicenseRow({license, mutate, index}: {license: License, mutate: any, in
                 </button>
             </td>
         </tr>
-  
+
     );
 }

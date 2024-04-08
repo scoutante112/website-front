@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/compat';
 import useSWR from 'swr';
 import { config } from '../../../config/config';
 import { fetcher } from '../../../api/http';
@@ -60,9 +60,9 @@ export default function AutoInstallerContainer() {
                     <div className='sm:flex-auto'>
                         <h1 className={`${dark ? 'text-slate-200' : 'text-gray-900'} text-base font-semibold leading-6`}>Licenses</h1>
                         <p className={`${dark ? 'text-slate-300' : 'text-gray-900'} mt-2 text-sm`}>
-                        You are on the <strong
-                                className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>licenses</strong> page.
-                        You can here see all your licenses releated to our products.
+                            You are on the <strong
+                            className={`font-semibold ${dark ? 'text-slate-200' : 'text-gray-600'}`}>licenses</strong> page.
+                            You can here see all your licenses releated to our products.
                         </p>
                     </div>
 
@@ -72,7 +72,7 @@ export default function AutoInstallerContainer() {
                             onClick={() => navigate('/account/admin/autoinstaller/new')}
                             className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
                         >
-                        Add license
+                            Add license
                             <ArrowDownCircleIcon
                                 className={`mx-2 h-5 w-5 my-auto transform transition-transform`}
 
@@ -86,53 +86,54 @@ export default function AutoInstallerContainer() {
 
                 <div>
                     <div>
-                        <label htmlFor="search" className={`${dark ? 'text-slate-200' : 'text-gray-900'} mt-10 block text-sm font-medium leading-6`}>
-                        Search
+                        <label htmlFor='search'
+                               className={`${dark ? 'text-slate-200' : 'text-gray-900'} mt-10 block text-sm font-medium leading-6`}>
+                            Search
                         </label>
                     </div>
-                    <div className="mt-2">
+                    <div className='mt-2'>
                         <input
-                            type="text"
-                            name="search"
-                            id="search"
+                            type='text'
+                            name='search'
+                            id='search'
                             className={`${dark ? 'bg-bg450-inputdark text-gray-300 ring-gray-500 placeholder:text-gray-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400'} block w-full rounded-md border-0 py-1.5 px-1.5 mx-auto shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-bg450-logo sm:text-sm sm:leading-6`}
-                            placeholder="bgxw_Ddf4dg45bfdb54b5df4b5d"
+                            placeholder='bgxw_Ddf4dg45bfdb54b5df4b5d'
                         />
                     </div>
                 </div>
-                <div className="-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+                <div className='-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg'>
                     <table className='min-w-full divide-y divide-gray-300 text-black'>
                         {/* head */}
                         <thead>
-                            <tr>
-                                <th scope='col'
-                                    className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
-                            Name
-                                </th>
-                                <th scope='col'
-                                    className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
-                            Type
-                                </th>
-                                <th scope='col'
-                                    className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
-                            Theme
-                                </th>
-                                <th scope='col'
-                                    className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
-                            Version
-                                </th>
-                                <th scope='col'
-                                    className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
-                            Actions
-                                </th>
-                            </tr>
+                        <tr>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                                Name
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 table-cell'>
+                                Type
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                                Theme
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                                Version
+                            </th>
+                            <th scope='col'
+                                className='py-3.5 px-3 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell'>
+                                Actions
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {data.data.length > 0 && data.data.map((autoinstaller: Installer, index: number) => {
-                                return (
-                                    <AutoInstallerRow autoinstaller={autoinstaller} mutate={mutate} key={index} />
-                                );
-                            })}
+                        {data.data.length > 0 && data.data.map((autoinstaller: Installer, index: number) => {
+                            return (
+                                <AutoInstallerRow autoinstaller={autoinstaller} mutate={mutate} key={index} />
+                            );
+                        })}
 
                         </tbody>
                     </table>
@@ -203,5 +204,5 @@ function AutoInstallerRow({ autoinstaller, mutate }: { autoinstaller: Installer,
 
         </tr>
     )
-    ;
+        ;
 }

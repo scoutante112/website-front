@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'preact/compat';
 import { Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import Loading from './Elements/Loading';
@@ -7,7 +7,6 @@ import Home from './Home';
 import Discount from './Elements/Discount';
 import { useDark } from '../App';
 import { changeLanguage } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 
 const NotFoundPage = lazy(() => import('./NotFoundPage'));

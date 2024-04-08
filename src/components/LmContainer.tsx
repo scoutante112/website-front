@@ -1,4 +1,3 @@
-import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useDark } from '../App';
 import { useTranslation } from 'react-i18next';

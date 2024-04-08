@@ -1,5 +1,5 @@
 import './assets/App.css';
-import React, { createContext, lazy, Suspense, useContext, useEffect, useState } from 'react';
+import { Fragment, createContext, lazy, Suspense, useContext, useEffect, useState } from 'preact/compat';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStylesheet from './assets/css/GlobalStylesheet';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -128,7 +128,7 @@ function App() {
 
                             <Routes>
                                 {langs.map((lang, index) => (
-                                    <React.Fragment key={index}>
+                                    <Fragment key={index}>
                                         <Route path={`/${lang}/account/*`} element={<Suspense fallback={<Loading />} >
                                             <AccountRouter />
                                         </Suspense>} />
@@ -137,7 +137,7 @@ function App() {
                                         </Suspense>} />
                                         <Route path={`/${lang}/*`} element={<MainRouter />}/>
 
-                                    </React.Fragment>
+                                    </Fragment>
                                 ))}
 
                                 <Route path={'/*'} element={<Suspense fallback={<Loading />}><LanguageRedirect/> </Suspense>} />

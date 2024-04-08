@@ -4,7 +4,7 @@ import logout from '../../../api/auth/logout';
 import { toast } from 'react-toastify';
 import { useDark } from '../../../App';
 
-export default function AccountMenu({data, mutate}: {data: any, mutate: any}) {
+export default function AccountMenu({ data, mutate }: { data: any, mutate: any }) {
     const { dark } = useDark();
 
     return (
