@@ -8,15 +8,16 @@ import { Account } from '../Manager/Forms/EditAccountForm';
 import { debounce } from 'debounce';
 import { config } from '../../../config/config';
 import { NavContext } from '../AccountRouter';
-import { Listbox, Transition } from '@headlessui/react';
+import { Listbox, Switch, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../../NavBar';
 import { ArrowDownCircleIcon } from '@heroicons/react/24/outline';
 import CreateTicketForm from './CreateTicketForm';
-import TicketRow from './TicketRow';
 import { useDark } from '../../../App';
 import { useTranslation } from 'react-i18next';
-import { Key } from 'preact';
+import { h } from 'preact';
+import TicketList from './TicketList';
+import TicketListDiscord from './TicketListDiscord';
 
 export interface Ticket {
     created_at: string;
@@ -31,7 +32,19 @@ export interface Ticket {
     updated_at: string;
     user_id: number;
 }
-
+export interface TicketDiscord {
+    ID: number,
+    Name: string,
+    Status: string,
+    License: string,
+    Logs: string,
+    ChannelId: string,
+    Owner: {
+        DiscordID: string;
+        Username: string;
+        Avatar: string;
+    }
+}
 interface Sort {
     name: string;
     value: string;
@@ -74,14 +87,14 @@ export default function TicketContainer() {
     const [search, setSearch] = useState<string>('');
     const { dark } = useDark();
     const [open, setOpen] = useState<boolean>(false);
- 
+    const [discord, setDiscord] = useState<boolean>(false);
     const { setActive } = useContext(NavContext);
     useEffect(() => {
         setActive(window.location.pathname);
     }, []);
 
     const { data, mutate, error: error3, isLoading } = useSWR(
-        `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}`,
+        `${config.privateapilink}/tickets?sort=${sort}&page=${page}&search=${search}&discord=${discord}`,
         fetcher,
     );
     const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
@@ -269,7 +282,7 @@ export default function TicketContainer() {
                             <button
                                 type='button'
                                 onClick={() => setOpen(!open)}
-                                className='flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
+                                className=' mx-auto flex rounded-md bg-bg450-logo px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-bg450-logohover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg450-logodisabled relative'
                             >
                                 {t('account.ticket.container.button.1')}
                                 <ArrowDownCircleIcon
@@ -280,6 +293,31 @@ export default function TicketContainer() {
                                 />
 
                             </button>
+                            <div className='flex gap-x-2 mt-2'>
+                                <p>Discord ticket</p>
+                                <Switch
+                                    checked={discord}
+                                    onChange={setDiscord}
+                                    className="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+                                >
+                                    <span className="sr-only">Discord ticket</span>
+                                    <span aria-hidden="true" className="pointer-events-none absolute h-full w-full rounded-md bg-white" />
+                                    <span
+                                        aria-hidden="true"
+                                        className={classNames(
+                                            discord ? 'bg-indigo-600' : 'bg-gray-200',
+                                            'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out'
+                                        )}
+                                    />
+                                    <span
+                                        aria-hidden="true"
+                                        className={classNames(
+                                            discord ? 'translate-x-5' : 'translate-x-0',
+                                            'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white shadow ring-0 transition-transform duration-200 ease-in-out'
+                                        )}
+                                    />
+                                </Switch>
+                            </div>
                         </div>
 
                     </div>
@@ -301,6 +339,7 @@ export default function TicketContainer() {
                                 placeholder={t('account.utils.search').toUpperCase()}
                             />
                         </div>
+
                         <Listbox value={sort} onChange={setSort}>
                             {({ open }) => (
                                 <>
@@ -312,13 +351,13 @@ export default function TicketContainer() {
                                                     const foundItem = sortType.find((item) => item.value === sort);
                                                     return (
                                                         <>
-                                                                                                            <span
-                                                                                                                className='truncate'>{foundItem ? foundItem.name : ''}</span>
+                                                            <span
+                                                                className='truncate'>{foundItem ? foundItem.name : ''}</span>
                                                             <span
                                                                 className='ml-2 truncate text-gray-500'>{foundItem ? foundItem.subname : ''}</span>
                                                         </>
 
-                                                    )
+                                                    );
 
                                                 })()}
 
@@ -389,71 +428,31 @@ export default function TicketContainer() {
 
 
                     </div>
-
-                    {data.data.data.length > 0 ?
-                        <div className='-mx-4 mt-2 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg'>
-                            <table className='min-w-full divide-y divide-gray-300'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold hidden lg:table-cell sm:pl-6`}>
-                                            {t('account.ticket.container.table.1')}
-                                        </th>
-                                        <th
-                                            scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
-                                        >
-                                            {t('account.ticket.container.table.2')}
-                                        </th>
-                                        <th
-                                            scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}
-                                        >
-                                            {t('account.ticket.container.table.3')}
-                                        </th>
-                                        <th
-                                            scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell`}
-                                        >
-                                            {t('account.ticket.container.table.4')}
-                                        </th>
-                                        <th scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell`}>
-                                            {t('account.ticket.container.table.5')}
-                                        </th>
-                                        <th scope='col'
-                                            className={`${dark ? 'text-slate-200' : 'text-gray-900'}  relative py-3.5 pl-3 pr-4 sm:pr-6 hidden lg:table-cell`}>
-                                            <span className='sr-only'>{t('account.ticket.container.table.6')}</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {data.data.data.map((ticket: Ticket, key: Key | null | undefined) => (
-                                        <TicketRow ticket={ticket} key={key} />
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                    {discord ?
+                        <TicketListDiscord data={data}/>
 
                         :
-                        <p className={`text-center ${dark ? 'text-slate-200' : 'text-black'} opacity-80`}>{t('account.ticket.container.table.7')}</p>
+                        <TicketList data={data}/>
+
                     }
-                    <div className={'flex w-full max-w-7xl mx-auto'}>
-                        {page > 1 &&
+                    {!discord && (
+                        <div className={'flex w-full max-w-7xl mx-auto'}>
+                            {page > 1 &&
                             <p className={`relative inline-flex items-center mt-2 rounded-md bg-indigo-600 px-1.5 py-1 text-white ${isLoading || isLoading2 && 'opacity-50'}  hover:bg-indigo-500 focus:z-10`}
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                     setPage(page - 1);
                                 }}>{t('account.utils.pagination.previous')}</p>
-                        }
-                        {page < data.data.last_page &&
+                            }
+                            {page < data.data.last_page &&
                             <p className={`relative ml-auto mt-2 inline-flex items-center rounded-md bg-indigo-600 px-1.5 py-1 text-white ${isLoading || isLoading2 && 'opacity-50'}  hover:bg-indigo-500 focus:z-10`}
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                     setPage(page + 1);
                                 }}>{t('account.utils.pagination.next')}</p>
-                        }
-                    </div>
+                            }
+                        </div>
+                    )}
                 </div>
             </section>
             <section className='min-h-screen'></section>
