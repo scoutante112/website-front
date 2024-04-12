@@ -1,13 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
+
 import { useState } from 'preact/compat';
-import addMessage from '../../../api/account/tickets/addMessage';
 import { toast } from 'react-toastify';
 import moment from 'moment/moment';
 import Markdown from 'marked-react';
-import { Account } from '../Manager/Forms/EditAccountForm';
 import { useDark } from '../../../App';
 import ButtonSpin from '../../Elements/ButtonSpin';
+import sendMessage from '../../../api/account/tickets/discord/sendMessage';
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import getAttachment from '../../../api/account/tickets/discord/getAttachment';
+import { h } from 'preact';
 
 export interface Message {
     content: string;
@@ -19,12 +20,12 @@ export interface Message {
 }
 
 
-export default function ConversationDiscordRow({ account, open, data }: {
-    account: Account,
+export default function ConversationDiscordRow({ id, open, data, mutate }: {
+    id: number;
     open: boolean,
-    data: any
+    data: any,
+    mutate: any;
 }) {
-    console.log(data);
     const { dark } = useDark();
     const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
@@ -35,11 +36,9 @@ export default function ConversationDiscordRow({ account, open, data }: {
     };
     const handleSubmit = (e: Event) => {
         e.preventDefault();
-        if (!id) {
-            return;
-        }
+
         setLoading(true);
-        addMessage(id, message, account, []).then((data) => {
+        sendMessage(id, message).then((data) => {
             data = data.data;
             setLoading(false);
             mutate();
@@ -81,7 +80,49 @@ export default function ConversationDiscordRow({ account, open, data }: {
             setLoading(false);
         });
     };
+    const downloadAttachment = (uuid: string, filename: string) => {
+        setLoading(true);
+        getAttachment(id, uuid).then((response) => {
+            const url = window.URL.createObjectURL(
+                new Blob([response.data], { type: response.headers['content-type'] })
+            );
 
+            const link = document.createElement('a');
+            link.href = url;
+
+
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            toast.success('Your file has been downloaded', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light'
+            });
+            setLoading(false);
+            mutate();
+
+        }).catch((e) => {
+            toast.error(`Error: ${e}`, {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: dark ? 'dark' : 'light',
+            });
+            setLoading(false);
+        });
+    };
     return (
         <div>
             {data.map((message: Message, index: number) => {
@@ -102,15 +143,28 @@ export default function ConversationDiscordRow({ account, open, data }: {
                                 {message.owner ? message.owner : 'Undefined user'}
                                 <time className='text-xs opacity-50 mx-1'>{moment(message.created_at).fromNow()}</time>
                             </h4>
-                            <div className='mt-1 text-black'>
+                            <div className={`mt-1 markdown ${dark ? 'text-slate-200' : 'text-black'}`}>
                                 <Markdown
                                     breaks={true}
                                     openLinksInNewTab={true}
-                                    className='text-black'
                                     style={{ whiteSpace: 'pre-line' }}
                                 >
                                     {message.content.replaceAll(/\n\n/g, '\n \n')}
                                 </Markdown>
+                            </div>
+                            <div className='mt-2 flex gap-x-2'>
+                                {message.attachments.map((attachment, i) => (
+                                    <div key={i} className={`flex gap-x-2 ${dark ? 'text-slate-200 bg-bg450-dark' : 'text-black bg-slate-200'} p-2 rounded-lg items-center mt-2`}>
+                                        <div>
+                                            <p>Nom: {attachment.name}</p>
+                                            <p>Type: {attachment.type}</p>
+                                        </div>
+                                        <button disabled={loading} onClick={() => downloadAttachment(attachment.uuid, `${attachment.name}.${attachment.type}`)}
+                                            className="mr-2 bg-blue-500 hover:bg-blue-700 text-white ml-auto font-bold p-1 rounded-full inline-flex">
+                                            {loading ? <ButtonSpin /> : <ArrowDownTrayIcon className="w-5 h-5 mx-auto"/>}
+                                        </button>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

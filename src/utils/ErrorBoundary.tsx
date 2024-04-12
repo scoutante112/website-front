@@ -1,4 +1,6 @@
+import { h } from 'preact';
 import { PureComponent } from 'preact/compat';
+import ErrorPage from '../components/ErrorPage';
 
 interface Props {
     children: JSX.Element[] | JSX.Element;
@@ -14,7 +16,7 @@ class ErrorBoundary extends PureComponent<Props, State> {
         this.state = { hasError: false };
     }
 
-    static getDerivedStateFromError(_: any) {
+    static getDerivedStateFromError() {
         return { hasError: true };
     }
 
@@ -23,8 +25,9 @@ class ErrorBoundary extends PureComponent<Props, State> {
     }
 
     render() {
+
         if (this.state.hasError) {
-            return <p className={'text-white mx-auto my-auto'}>A unknown error occurred</p>;
+            return <ErrorPage/>;
         }
 
         return this.props.children;

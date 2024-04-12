@@ -490,8 +490,8 @@ export default function AccountRouter() {
                                                     progress: undefined,
                                                     theme: dark ? 'dark' : 'light',
                                                 });
-                                                navigate('/');
                                                 mutate();
+                                                navigate('/');
                                             })}>
                                                 <p className={`${dark ? 'hover:bg-bg450-inputdark' : 'hover:bg-gray-200'} text-red-500 block px-4 py-2 text-sm `}>
                                                     Logout

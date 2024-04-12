@@ -129,11 +129,10 @@ export default function ConversationRow({ id, account, page, open }: {
                                 {message.first_name ? message.first_name : 'Undefined'} {message.last_name ? message.last_name : 'user'}
                                 <time className='text-xs opacity-50 mx-1'>{moment(message.created_at).fromNow()}</time>
                             </h4>
-                            <div className='mt-1 text-black'>
+                            <div className={`mt-1 markdown ${dark ? 'text-slate-200' : 'text-black'}`}>
                                 <Markdown
                                     breaks={true}
                                     openLinksInNewTab={true}
-                                    className='text-black'
                                     style={{ whiteSpace: 'pre-line' }}
                                 >
                                     {message.message.replaceAll(/\n\n/g, '\n \n')}

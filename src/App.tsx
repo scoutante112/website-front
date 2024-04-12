@@ -11,6 +11,8 @@ import ErrorBoundary from './utils/ErrorBoundary';
 import { langs } from './utils/i18n';
 import LanguageRedirect from './utils/LanguageRedirect';
 import LanguageDetector from './utils/LanguageDetector';
+import { Helmet } from 'react-helmet';
+import { h } from 'preact';
 
 const  CookiesBanner = lazy(() => import('./components/Elements/CookiesBanner'));
 const Loading = lazy(() => import('./components/Elements/Loading'));
@@ -109,10 +111,23 @@ function App() {
 
     }, []);
 
+    const currentLang = Cookies.get('lang');
+    const basePath = location.pathname.replace(/^\/[a-z]{2}\//, '/');
+
 
     return (
-        <DarkContext.Provider value={{ dark, setDark }}>
 
+        <DarkContext.Provider value={{ dark, setDark }}>
+            <Helmet>
+                <link rel='canonical' href={`${window.location.origin}/${currentLang}${basePath}`} />
+
+                {langs.filter(lang => lang !== currentLang).map((lang) => (
+                    <link key={lang} rel='alternate' hrefLang={lang}
+                        href={`${window.location.origin}/${lang}${basePath}`} />
+                ))}
+
+                <link rel='alternate' hrefLang='x-default' href={`${window.location.origin}/en${basePath}`} />
+            </Helmet>
             <ErrorBoundary>
                 <LanguageDetector>
                     <GlobalStylesheet />

@@ -1,13 +1,15 @@
 import tw from 'twin.macro';
 import { createGlobalStyle } from 'styled-components';
 
-
 export default createGlobalStyle`
     html {
         ${tw`font-sans`};
         letter-spacing: 0.015em;
     }
-
+    .markdown * {
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
     footer {
             margin-top: auto;
     }
@@ -15,8 +17,7 @@ export default createGlobalStyle`
         ${tw`font-medium tracking-normal`};
     }
     p {
-        ${tw`leading-snug font-sans text-black dark:text-[#cbd5e1]`};
-        color: black;
+        ${tw`leading-snug font-sans`};
     }
 
     form {

@@ -6,11 +6,10 @@ import useSWR from 'swr';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { fetcher } from '../../../api/http';
 import Loading from '../../Elements/Loading';
-import { Account } from '../Manager/Forms/EditAccountForm';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import { config } from '../../../config/config';
-import updateTicket from '../../../api/account/tickets/updateTicket';
+import closeTicket from '../../../api/account/tickets/discord/closeTicket';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import { useDark } from '../../../App';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +25,7 @@ export default function TicketViewDiscordContainer() {
         window.scrollTo(0, 0);
     }, []);
     const { data, error, isLoading, mutate } = useSWR(
-        `${config.privateapilink}/tickets/getDiscordTicket/${id}`,
+        `${config.privateapilink}/tickets/discordTicket/${id}`,
         fetcher,
     );
     const { data: data2, error: error2, isLoading: isLoading2 } = useSWR(
@@ -41,10 +40,9 @@ export default function TicketViewDiscordContainer() {
     if (!data2.status) {
         return <></>;
     }
-    const account: Account = data2.data;
-    const UpdateStatus = () => {
+    const close = () => {
         setLoading(true);
-        updateTicket(data.data.ticket.id, data.data.status !== 'closed' ? 'closed' : account.role ? 'support_answer' : 'client_answer').then((data) => {
+        closeTicket(data.data.id).then((data) => {
             if (data.data.status === 'error') {
                 toast.error(`${t('account.utils.error')}: ${data.data.message}`, {
                     position: 'bottom-right',
@@ -101,7 +99,7 @@ export default function TicketViewDiscordContainer() {
                         <div className={'flex justify-between my-2'}>
                             <button disabled={loading}
                                 className={`hover:bg-red-500 bg-red-600 ${loading && 'opacity-50'} flex rounded  px-1.5 py-1 text-sm font-semibold text-white shadow-sm mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-                                onClick={() => UpdateStatus()}>
+                                onClick={() => close()}>
 
                                 <LockClosedIcon className='h-5 w-5' aria-hidden='true' />
                                 {t('account.ticket.view.close')}
@@ -112,8 +110,8 @@ export default function TicketViewDiscordContainer() {
 
                 </div>
                 <div className={'mx-4 col-span-3'}>
-                    <ConversationDiscordRow open={data.data.status !== 'closed'} data={data.data.messages}
-                        account={account} />
+                    <ConversationDiscordRow mutate={mutate} open={data.data.status !== 'closed'} data={data.data.messages}
+                        id={data.data.id} />
 
                 </div>
 
