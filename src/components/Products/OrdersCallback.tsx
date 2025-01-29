@@ -15,7 +15,7 @@ export default function OrdersCallback() {
     const {dark} = useDark();
     const { id } = useParams();
     const { data, error, isLoading } = useSWR(
-        `https://api.bagou450.com/api/client/web/orders/status?id=${id}`,
+        `https://api-mc.labnat.se/api/client/web/orders/status?id=${id}`,
         fetcher
     );
     useEffect(() => {

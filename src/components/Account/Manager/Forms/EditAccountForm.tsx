@@ -193,7 +193,7 @@ export function Discord({ account }: { account: Account }) {
 
     const [loading, setLoading] = useState(false);
     const { mutate } = useSWR(
-        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api-mc.labnat.se/api/client/web/auth/isLogged?infos=true',
         fetcher,
     );
     const { t } = useTranslation();
@@ -289,7 +289,7 @@ export function Google({ account }: { account: Account }) {
     const [loading, setLoading] = useState(false);
     const { dark } = useDark();
     const { mutate } = useSWR(
-        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api-mc.labnat.se/api/client/web/auth/isLogged?infos=true',
         fetcher,
     );
     const { t } = useTranslation();
@@ -385,7 +385,7 @@ export function Github({ account }: { account: Account }) {
     const { dark } = useDark();
     const [loading, setLoading] = useState(false);
     const { mutate } = useSWR(
-        'https://api.bagou450.com/api/client/web/auth/isLogged?infos=true',
+        'https://api-mc.labnat.se/api/client/web/auth/isLogged?infos=true',
         fetcher,
     );
     const githubLink = (() => {
